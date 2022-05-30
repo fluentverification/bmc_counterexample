@@ -20,3 +20,11 @@ Necessary arguments and location to the prism binary are specified in a json fil
 - construct_path_bound : Maximum length of added sub-traces using scaffolding method.
 - base : set to initial value of property_variable in the model,
 - step : set to (property_value-base) if divide and conquer is not intended.
+
+To run the program, simply pass one of the json files to the *bmc_cex.py* script.
+
+'''
+python3 bmc_cex.py json/single_species.json 
+'''
+
+The resulting graph would be saved in PRISM explicit format in three files in the results/model_name folder: *model_name.tra*, *model_name.sta*, *model_name.lab*. Console log will be saved in the same subdirectory as *mode_name.results*.
