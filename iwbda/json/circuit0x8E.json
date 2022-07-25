@@ -1,0 +1,13 @@
+{
+	"model" : "circuit0x8E_010_111",
+	"starting_bound" : 0,
+	"prism_binary" : "/home/ubu/projects/probmc/prism-4.7-src/prism/bin/prism",
+	"csl_property" : "P=? [true U<=1000 YFP_protein=30]",
+	"property_variable" : "YFP_protein",
+	"property_value" : "30",
+	"probability_bound" : "0.999",
+	"model_check_step" : "10",
+	"construct_path_bound" : "3",
+	"base" : "0",
+	"step" : "10"
+}

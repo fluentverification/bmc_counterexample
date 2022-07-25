@@ -385,12 +385,13 @@ class graph:
 	#calculate the probability of the graph with respect to
 	#csl_prop
 	def model_check(self, model, model_name, prism_bin, csl_prop):
-		self.to_file('./results/' + model_name + '/' + model_name, model)
+		self.to_file_2('./results/' + model_name + '/' + model_name, model)
 		prism_model_files = 'results/' + model_name + '/' + model_name + '.all'
 		stdout_result = subprocess.run([prism_bin, '-importmodel', prism_model_files, '-pf', csl_prop, '-ctmc'], stdout=subprocess.PIPE)
 		stdout_result = stdout_result.stdout.decode('utf-8')
 		stdout_result = stdout_result.splitlines()
-
+		# print ('='*60)
+		# print(stdout_result)
 		result = ''
 		for r in stdout_result:
 			if 'Result' in r: 

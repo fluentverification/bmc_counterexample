@@ -392,7 +392,10 @@ class circuit0x8E_010_111:
 		 [R9_in, R9_out],
 		 [R10_in, R10_out],
 		 [R11_in, R11_out],
-		 [R12_in, R12_out]]
+		 [R12_in, R12_out],
+		 [R13_in, R13_out],
+		 [R14_in, R14_out],
+		 [R15_in, R15_out]]
 		
 		
 		############# end of model descriptioon block #############
