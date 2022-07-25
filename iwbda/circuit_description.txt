@@ -1,0 +1,83 @@
+Circuit0x8E  Model
+Author: Lukas Buecherl
+
+
+Key:
+S1 = AmtR_protein
+S2 = Ara_AraC_protein
+S3 = BetI_protein
+S4 = HlyIIR_protein
+S5 = LacI_protein
+S6 = PhlF_protein
+S7 = TetR_protein
+S8 = YFP_protein
+S9 = topModel_AmtRpart_module_sub__pBAD
+S10 = topModel_AmtRpart_module_sub__pHlyIIR
+S11 = topModel_BetIpart_module_sub__pHlyIIR
+S12 = topModel_BetIpart_module_sub__pTet
+S13 = topModel_HlyIIRpart_module_sub__pBAD
+S14 = topModel_HlyIIRpart_module_sub__pTet
+S15 = topModel_PhlFpart_module_sub__pAmtR
+S16 = topModel_PhlFpart_module_sub__pTac
+S17 = topModel_YFPpart_module_sub__pBetI
+S18 = topModel_YFPpart_module_sub__pPhlF
+
+
+Initial State:
+S1(0) = S3(0) = S6(0) = 70
+S2(0) = 60
+S4(0) = S5(0) = S7(0) = S(8) = 0
+S9(0) = ... = S18(0) = 2.0
+
+
+Parameters:
+ka = 0.25;
+ka_f = 0.0033;
+ka_r = 1.0;
+kao_f = 1.0;
+kao_r = 1.0;
+kb = 1.0E-4;
+kc_f = 0.05;
+kc_r = 1.0;
+kd = 7.5E-4;
+ko = 0.05;
+ko_f = 0.033;
+ko_r = 1.0;
+kr_f = 0.5;
+kr_r = 1.0;
+nc = 2.0;
+ng = 2.0;
+np = 10.0;
+nr = 30.0;
+
+
+Reaction rates:
+k1 = kd = 7.5E-4;
+k2 = S9*(kb*ko_f/ko_r*nr+ka*kao_f/kao_r*nr*(ka_f/ka_r*S2)^nc)/(1+ko_f/ko_r*nr+kao_f/kao_r*nr*(ka_f/ka_r*S(2))^nc);
+k3 = S(10)*ko*ko_f/ko_r*nr/(1+ko_f/ko_r*nr+(kr_f/kr_r*S(4))^nc);
+k4 = S(11)*ko*ko_f/ko_r*nr/(1+ko_f/ko_r*nr+(kr_f/kr_r*S(4))^nc);
+k5 = S(12)*ko*ko_f/ko_r*nr/(1+ko_f/ko_r*nr+(kr_f/kr_r*X(7))^nc);
+k6 = S(14)*(kb*ko_f/ko_r*nr+ka*kao_f/kao_r*nr*(ka_f/ka_r*S(2))^nc)/(1+ko_f/ko_r*nr+kao_f/kao_r*nr*(ka_f/ka_r*S(2))^nc);
+k7 = S(11)*ko*ko_f/ko_r*nr/(1+ko_f/ko_r*nr+(kr_f/kr_r*S(7))^nc);
+k8 = S(16)*ko*ko_f/ko_r*nr/(1+ko_f/ko_r*nr+(kr_f/kr_r*S(5))^nc);
+k9 = S(15)*ko*ko_f/ko_r*nr/(1+ko_f/ko_r*nr+(kr_f/kr_r*S(1))^nc);
+k10 = S(18)*ko*ko_f/ko_r*nr/(1+ko_f/ko_r*nr+(kr_f/kr_r*X(6))^nc);
+k11 = S(17)*ko*ko_f/ko_r*nr/(1+ko_f/ko_r*nr+(kr_f/kr_r*X(3))^nc);
+
+
+Reactions:
+10*S1 -k1-> []
+10*S3 -k1-> []
+10*S4 -k1-> []
+10*S6 -k1-> []
+10*S8 -k1-> []
+S9 + S2 -k2-> S9 + S2 + 10*S1
+S10 + S4 -k3-> S10 + S4 + 10*S1
+S11 + S4 -k4-> S11 + S4 + 10*S3
+S12 + S7 -k5-> S12 + S7 + 10*S3
+S14 + S2 -k6-> S14 + S2 + 10*S4
+S13 + S7 -k7-> S13 + S7 + 10*S4
+S16 + S5 -k8-> S16 + S5 + 10*S6
+S15 + S1 -k9-> S15 + S1 + 10*S6
+S18 + S6 -k10-> S18 + S6 + 10*S8
+S17 + S3 -k11-> S17 + S3 + 10*S8
