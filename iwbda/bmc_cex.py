@@ -152,17 +152,25 @@ for i in range(base, property_val, step):
 
 count = 0
 start_time = time.time()
+seed_path_total_time = 0
+scaffold_total_time = 0
 
 with open('./results/' + model_name + '/' + model_name + '.results', mode = 'w', encoding= 'ascii') as f:
 	f.truncate()
 	while prob <= prob_bound:
 		
+		seed_path_start_time = time.time()	
 		bmc_dq(graph, property_val, step, base, property_var, max_search_bound, path_dict)
+		seed_path_end_time = time.time()
+		seed_path_total_time = seed_path_total_time + (seed_path_end_time-seed_path_start_time)
 		count = count + 1
 		prob = graph.model_check(model, model_name, prism, csl_prop)
 		if count>2:
 			count = 0
+			scaffold_start_time = time.time()
 			count, prob1, terminate = construct_path_3(graph, model, model_name, prism, csl_prop, cp_bound, count, prob, prob_bound, property_var, property_val, mc_step)
+			scaffold_end_time = time.time()
+			scaffold_total_time = scaffold_total_time + (scaffold_end_time-scaffold_start_time)
 			prob = graph.model_check(model, model_name, prism, csl_prop)
 		elapsed_time = time.time()
 		print('# of nodes: ' + str(len(graph.node_list)))
@@ -185,6 +193,8 @@ with open('./results/' + model_name + '/' + model_name + '.results', mode = 'w',
 		if (elapsed_time-start_time) > 1800:
 			break
 	f.close()
+	print("seed path time: " + str(seed_path_total_time))
+	print("scaffold time: " + str(scaffold_total_time)) 
 
 f.close()
 
