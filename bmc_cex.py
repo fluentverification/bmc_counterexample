@@ -19,7 +19,7 @@ import time
 ############################################################
 ############################################################
 ############################################################
-def bmc_dq(graph, level, step, base, property_var, max_search_bound, path_dict):
+def bmc_dq(graph, level, step, base, property_var, max_search_bound, path_dict, reaction_dict):
 	if level == base + step: 
 		bound = 1
 		flag = True
@@ -40,7 +40,7 @@ def bmc_dq(graph, level, step, base, property_var, max_search_bound, path_dict):
 			if (solver.check(property_constraint) == sat): 
 				flag = False
 				path = solver.model()
-				graph.add_path(path)
+				graph.add_path(path, reaction_dict)
 				curr_path_list = path_dict[(level-step, bound)]
 				curr_path_list.append(path)
 				path_dict[(level-step, bound)] = curr_path_list
@@ -146,6 +146,15 @@ prob = 0
 max_search_bound = 50
 
 path_dict = {}
+reaction_dict = {
+	"R1": 0,
+	"R2":0,
+	"R3":0,
+	"R4":0,
+	"R5":0,
+	"R6":0,
+}
+
 for i in range(base, property_val, step):
 	for j in range(1, max_search_bound):
 		path_dict[(i, j)] = []
@@ -157,18 +166,19 @@ with open('./results/' + model_name + '/' + model_name + '.results', mode = 'w',
 	f.truncate()
 	while prob <= prob_bound:
 		
-		bmc_dq(graph, property_val, step, base, property_var, max_search_bound, path_dict)
+		bmc_dq(graph, property_val, step, base, property_var, max_search_bound, path_dict, reaction_dict)
 		count = count + 1
 		prob = graph.model_check(model, model_name, prism, csl_prop)
 		if count>2:
 			count = 0
-			count, prob1, terminate = construct_path_3(graph, model, model_name, prism, csl_prop, cp_bound, count, prob, prob_bound, property_var, property_val, mc_step)
+			count, prob1, terminate = construct_path_3(graph, model, model_name, prism, csl_prop, cp_bound, count, prob, prob_bound, property_var, property_val, mc_step, reaction_dict)
 			prob = graph.model_check(model, model_name, prism, csl_prop)
 		elapsed_time = time.time()
 		print('# of nodes: ' + str(len(graph.node_list)))
 		print('# of edges: ' + str(len(graph.edge_list)))
 		print('probability = ' + str(prob))
 		print('elapsed time: ' + str(elapsed_time-start_time))
+		print(reaction_dict)
 		print('='*40)
 
 		

@@ -1,570 +1,625 @@
 # of nodes: 4
 # of edges: 3
 probability = 1.0835493431353527e-12
-elapsed time: 0.2871851921081543
+elapsed time: 0.2939302921295166
 ========================================
 # of nodes: 4
 # of edges: 6
 probability = 8.668394745082822e-12
-elapsed time: 0.581820011138916
+elapsed time: 0.5624477863311768
 ========================================
-# of nodes: 31
-# of edges: 70
-probability = 1.9405264264568284e-11
-elapsed time: 1.734632968902588
+# of nodes: 32
+# of edges: 80
+probability = 1.3654266987540061e-11
+elapsed time: 1.585301160812378
 ========================================
-# of nodes: 45
-# of edges: 132
-probability = 2.9316863517675497e-11
-elapsed time: 3.2641050815582275
+# of nodes: 36
+# of edges: 133
+probability = 2.8542658570070307e-11
+elapsed time: 2.5761053562164307
 ========================================
-# of nodes: 59
-# of edges: 191
-probability = 4.0933511051433275e-11
-elapsed time: 5.115177631378174
+# of nodes: 61
+# of edges: 205
+probability = 3.235435271131823e-11
+elapsed time: 4.1966588497161865
 ========================================
-# of nodes: 74
-# of edges: 251
-probability = 4.345147258618384e-11
-elapsed time: 7.2734904289245605
+# of nodes: 65
+# of edges: 259
+probability = 3.434055462870335e-11
+elapsed time: 5.507967472076416
 ========================================
-# of nodes: 83
-# of edges: 305
-probability = 4.478988674231212e-11
-elapsed time: 9.779924631118774
+# of nodes: 79
+# of edges: 321
+probability = 3.6246248244490714e-11
+elapsed time: 7.714057922363281
 ========================================
-# of nodes: 102
-# of edges: 366
-probability = 4.919448584940274e-11
-elapsed time: 12.527688264846802
+# of nodes: 89
+# of edges: 379
+probability = 4.459091869433585e-11
+elapsed time: 10.215136051177979
 ========================================
-# of nodes: 107
-# of edges: 418
-probability = 5.466558912309773e-11
-elapsed time: 15.621395826339722
+# of nodes: 98
+# of edges: 424
+probability = 5.882298396380861e-11
+elapsed time: 12.913111448287964
+========================================
+# of nodes: 119
+# of edges: 480
+probability = 6.324400117352788e-11
+elapsed time: 15.88593578338623
 ========================================
 # of nodes: 125
-# of edges: 478
-probability = 6.47292527187963e-11
-elapsed time: 18.96497416496277
+# of edges: 534
+probability = 6.483451272547212e-11
+elapsed time: 19.093745708465576
 ========================================
-# of nodes: 134
-# of edges: 528
-probability = 6.64873781792154e-11
-elapsed time: 21.186137199401855
+# of nodes: 139
+# of edges: 592
+probability = 6.909739688673156e-11
+elapsed time: 22.561778783798218
 ========================================
-# of nodes: 152
-# of edges: 583
-probability = 6.802675224218888e-11
-elapsed time: 25.182849168777466
+# of nodes: 140
+# of edges: 642
+probability = 7.656135535102865e-11
+elapsed time: 24.884685754776
 ========================================
-# of nodes: 154
-# of edges: 634
-probability = 7.446821165201364e-11
-elapsed time: 27.818826913833618
+# of nodes: 161
+# of edges: 707
+probability = 8.214149633139688e-11
+elapsed time: 28.860168933868408
 ========================================
-# of nodes: 179
-# of edges: 704
-probability = 7.657011418817931e-11
-elapsed time: 32.34120845794678
+# of nodes: 166
+# of edges: 758
+probability = 9.813551931343081e-11
+elapsed time: 31.52826476097107
+========================================
+# of nodes: 180
+# of edges: 815
+probability = 1.0368767206256257e-10
+elapsed time: 35.95640730857849
 ========================================
 # of nodes: 186
-# of edges: 757
-probability = 8.741940464079807e-11
-elapsed time: 35.229021310806274
+# of edges: 869
+probability = 1.062309870332433e-10
+elapsed time: 40.775726318359375
 ========================================
-# of nodes: 186
-# of edges: 809
-probability = 9.437388275562403e-11
-elapsed time: 38.38361740112305
+# of nodes: 208
+# of edges: 924
+probability = 1.1377362427911413e-10
+elapsed time: 45.7647864818573
 ========================================
-# of nodes: 204
-# of edges: 873
-probability = 9.578943764490299e-11
-elapsed time: 43.911264181137085
+# of nodes: 210
+# of edges: 976
+probability = 1.259712899387919e-10
+elapsed time: 48.876521825790405
 ========================================
-# of nodes: 206
-# of edges: 925
-probability = 1.027726627646938e-10
-elapsed time: 47.291512966156006
+# of nodes: 233
+# of edges: 1036
+probability = 1.3341930776150235e-10
+elapsed time: 54.528459787368774
 ========================================
-# of nodes: 217
-# of edges: 982
-probability = 1.1272187063840824e-10
-elapsed time: 53.410205602645874
-========================================
-# of nodes: 228
-# of edges: 1039
-probability = 1.154799658198926e-10
-elapsed time: 59.594698905944824
-========================================
-# of nodes: 230
-# of edges: 1089
-probability = 1.271113789977922e-10
-elapsed time: 66.1942732334137
-========================================
-# of nodes: 241
-# of edges: 1142
-probability = 1.2750651975223094e-10
-elapsed time: 73.07966351509094
+# of nodes: 233
+# of edges: 1086
+probability = 1.3947400055070562e-10
+elapsed time: 58.030837535858154
 ========================================
 # of nodes: 249
-# of edges: 1192
-probability = 1.323558461574257e-10
-elapsed time: 77.19473266601562
+# of edges: 1140
+probability = 1.475676215559877e-10
+elapsed time: 63.98148250579834
 ========================================
-# of nodes: 262
-# of edges: 1240
-probability = 1.346510336280232e-10
-elapsed time: 84.46909976005554
+# of nodes: 249
+# of edges: 1190
+probability = 1.488993908169289e-10
+elapsed time: 67.78526282310486
 ========================================
-# of nodes: 264
-# of edges: 1290
-probability = 1.399440763495925e-10
-elapsed time: 89.13104009628296
+# of nodes: 276
+# of edges: 1265
+probability = 1.4936419562780758e-10
+elapsed time: 74.14367294311523
+========================================
+# of nodes: 277
+# of edges: 1317
+probability = 1.5063567537505008e-10
+elapsed time: 78.0028944015503
 ========================================
 # of nodes: 283
-# of edges: 1353
-probability = 1.437438158855183e-10
-elapsed time: 94.27565884590149
+# of edges: 1369
+probability = 1.5332014906746275e-10
+elapsed time: 82.04255986213684
 ========================================
-# of nodes: 288
-# of edges: 1405
-probability = 1.5206262601139585e-10
-elapsed time: 98.91587042808533
+# of nodes: 289
+# of edges: 1424
+probability = 1.5932228705949704e-10
+elapsed time: 89.74807095527649
 ========================================
-# of nodes: 297
-# of edges: 1460
-probability = 1.6415059800680554e-10
-elapsed time: 107.56269574165344
+# of nodes: 299
+# of edges: 1483
+probability = 1.6664476593131312e-10
+elapsed time: 97.45744776725769
 ========================================
-# of nodes: 316
-# of edges: 1524
-probability = 1.6700221461390917e-10
-elapsed time: 116.37348413467407
+# of nodes: 304
+# of edges: 1537
+probability = 1.7415799087811657e-10
+elapsed time: 105.51341509819031
 ========================================
-# of nodes: 321
-# of edges: 1574
-probability = 1.675818956543459e-10
-elapsed time: 121.63488006591797
+# of nodes: 325
+# of edges: 1598
+probability = 1.7501803366669972e-10
+elapsed time: 113.63955950737
 ========================================
-# of nodes: 339
-# of edges: 1634
-probability = 1.6920708007325496e-10
-elapsed time: 131.09131717681885
+# of nodes: 331
+# of edges: 1649
+probability = 1.7816188507151869e-10
+elapsed time: 118.38089919090271
 ========================================
-# of nodes: 341
-# of edges: 1684
-probability = 1.7070329832624582e-10
-elapsed time: 136.86653804779053
+# of nodes: 344
+# of edges: 1709
+probability = 1.8019693504307642e-10
+elapsed time: 127.04916667938232
 ========================================
-# of nodes: 352
-# of edges: 1735
-probability = 1.745270466362735e-10
-elapsed time: 147.39581418037415
+# of nodes: 350
+# of edges: 1760
+probability = 1.8347967381015148e-10
+elapsed time: 132.07620882987976
 ========================================
 # of nodes: 355
-# of edges: 1785
-probability = 1.7664136359293867e-10
-elapsed time: 153.35423851013184
+# of edges: 1810
+probability = 1.8540272847689808e-10
+elapsed time: 141.3106460571289
 ========================================
-# of nodes: 378
-# of edges: 1851
-probability = 1.8986456829251327e-10
-elapsed time: 164.12952589988708
+# of nodes: 371
+# of edges: 1872
+probability = 1.8934586527497516e-10
+elapsed time: 150.8717658519745
 ========================================
-# of nodes: 379
-# of edges: 1901
-probability = 1.9107771192582206e-10
-elapsed time: 170.29332566261292
+# of nodes: 373
+# of edges: 1923
+probability = 1.9751541359255816e-10
+elapsed time: 156.47006106376648
 ========================================
-# of nodes: 382
-# of edges: 1951
-probability = 1.9390450883426075e-10
-elapsed time: 176.54576206207275
+# of nodes: 381
+# of edges: 1969
+probability = 2.0049539786938567e-10
+elapsed time: 166.81699919700623
 ========================================
-# of nodes: 398
-# of edges: 2010
-probability = 1.9799232438212268e-10
-elapsed time: 188.69915771484375
+# of nodes: 399
+# of edges: 2022
+probability = 2.0435368485916875e-10
+elapsed time: 176.93483304977417
 ========================================
-# of nodes: 398
-# of edges: 2062
-probability = 2.021860643520231e-10
-elapsed time: 195.75942254066467
+# of nodes: 408
+# of edges: 2080
+probability = 2.0637082698669498e-10
+elapsed time: 187.78893113136292
 ========================================
-# of nodes: 419
-# of edges: 2126
-probability = 2.0415217510727657e-10
-elapsed time: 208.38117384910583
+# of nodes: 418
+# of edges: 2138
+probability = 2.072306938113478e-10
+elapsed time: 198.5529706478119
 ========================================
-# of nodes: 425
-# of edges: 2177
-probability = 2.0513200712816762e-10
-elapsed time: 216.026300907135
+# of nodes: 420
+# of edges: 2188
+probability = 2.171781622142867e-10
+elapsed time: 205.39451718330383
 ========================================
-# of nodes: 445
-# of edges: 2243
-probability = 2.0525255448418627e-10
-elapsed time: 228.85862064361572
+# of nodes: 441
+# of edges: 2252
+probability = 2.1779597057119249e-10
+elapsed time: 212.33076310157776
 ========================================
-# of nodes: 454
-# of edges: 2294
-probability = 2.0679336724177445e-10
-elapsed time: 236.57725477218628
+# of nodes: 444
+# of edges: 2302
+probability = 2.2333758516202997e-10
+elapsed time: 218.8012228012085
 ========================================
-# of nodes: 461
-# of edges: 2350
-probability = 2.0760153522124427e-10
-elapsed time: 251.03483271598816
+# of nodes: 450
+# of edges: 2360
+probability = 2.3183777976895877e-10
+elapsed time: 230.99276638031006
 ========================================
-# of nodes: 471
-# of edges: 2404
-probability = 2.130385772783856e-10
-elapsed time: 266.5658173561096
+# of nodes: 462
+# of edges: 2416
+probability = 2.343285508229285e-10
+elapsed time: 243.99497604370117
 ========================================
-# of nodes: 473
-# of edges: 2455
-probability = 2.2342236860555795e-10
-elapsed time: 275.6966781616211
+# of nodes: 476
+# of edges: 2474
+probability = 2.398966237202657e-10
+elapsed time: 257.0095057487488
 ========================================
-# of nodes: 494
-# of edges: 2521
-probability = 2.2499117577732641e-10
-elapsed time: 290.3750810623169
+# of nodes: 477
+# of edges: 2524
+probability = 2.490555399344633e-10
+elapsed time: 264.8674056529999
 ========================================
-# of nodes: 496
-# of edges: 2572
-probability = 2.26064356395303e-10
-elapsed time: 299.5674068927765
+# of nodes: 495
+# of edges: 2586
+probability = 2.496813228602607e-10
+elapsed time: 277.66766595840454
 ========================================
-# of nodes: 511
-# of edges: 2634
-probability = 2.2719537182034034e-10
-elapsed time: 316.1891920566559
+# of nodes: 495
+# of edges: 2637
+probability = 2.508488787510406e-10
+elapsed time: 285.20940256118774
 ========================================
-# of nodes: 518
-# of edges: 2684
-probability = 2.283506603465096e-10
-elapsed time: 325.5256712436676
+# of nodes: 498
+# of edges: 2689
+probability = 2.559204491813538e-10
+elapsed time: 299.5959804058075
 ========================================
-# of nodes: 536
+# of nodes: 514
 # of edges: 2746
-probability = 2.2947330585580013e-10
-elapsed time: 342.25016736984253
+probability = 2.5661902363196196e-10
+elapsed time: 313.81137681007385
+========================================
+# of nodes: 516
+# of edges: 2796
+probability = 2.5928635417161164e-10
+elapsed time: 321.6865658760071
+========================================
+# of nodes: 534
+# of edges: 2860
+probability = 2.600012055173744e-10
+elapsed time: 336.532755613327
 ========================================
 # of nodes: 538
-# of edges: 2796
-probability = 2.3148143872654249e-10
-elapsed time: 351.56728506088257
+# of edges: 2911
+probability = 2.61750702186202e-10
+elapsed time: 344.4203522205353
 ========================================
-# of nodes: 546
-# of edges: 2854
-probability = 2.369349971805303e-10
-elapsed time: 369.65704131126404
+# of nodes: 540
+# of edges: 2962
+probability = 2.6543479894880907e-10
+elapsed time: 352.5806415081024
 ========================================
-# of nodes: 553
-# of edges: 2908
-probability = 2.3947190460220317e-10
-elapsed time: 386.9260358810425
+# of nodes: 548
+# of edges: 3020
+probability = 2.7057171825830054e-10
+elapsed time: 368.3393051624298
 ========================================
-# of nodes: 567
-# of edges: 2965
-probability = 2.4003983484276214e-10
-elapsed time: 404.8291084766388
+# of nodes: 557
+# of edges: 3075
+probability = 2.718242341184476e-10
+elapsed time: 384.00031900405884
 ========================================
-# of nodes: 568
-# of edges: 3016
-probability = 2.4543364142273275e-10
-elapsed time: 415.0506806373596
+# of nodes: 566
+# of edges: 3133
+probability = 2.738813256231481e-10
+elapsed time: 400.7217786312103
+========================================
+# of nodes: 573
+# of edges: 3190
+probability = 2.7642937555038535e-10
+elapsed time: 417.0103793144226
+========================================
+# of nodes: 574
+# of edges: 3240
+probability = 2.7938024924031877e-10
+elapsed time: 427.38289284706116
 ========================================
 # of nodes: 591
-# of edges: 3082
-probability = 2.465986866678395e-10
-elapsed time: 432.8122408390045
+# of edges: 3298
+probability = 2.842627758358592e-10
+elapsed time: 443.8430404663086
 ========================================
-# of nodes: 591
-# of edges: 3132
-probability = 2.4697566543112585e-10
-elapsed time: 443.09553933143616
+# of nodes: 595
+# of edges: 3350
+probability = 2.9030300252258964e-10
+elapsed time: 453.040518283844
 ========================================
-# of nodes: 602
-# of edges: 3184
-probability = 2.510250713690734e-10
-elapsed time: 462.2608971595764
+# of nodes: 597
+# of edges: 3402
+probability = 2.9313512399910234e-10
+elapsed time: 463.1808156967163
 ========================================
-# of nodes: 617
-# of edges: 3244
-probability = 2.534791854172583e-10
-elapsed time: 482.06706380844116
+# of nodes: 616
+# of edges: 3471
+probability = 2.945598361193853e-10
+elapsed time: 480.63229274749756
 ========================================
 # of nodes: 620
-# of edges: 3296
-probability = 2.6492168424917463e-10
-elapsed time: 493.9683711528778
+# of edges: 3521
+probability = 2.955972060936147e-10
+elapsed time: 490.5675747394562
 ========================================
-# of nodes: 633
-# of edges: 3359
-probability = 2.721899987604312e-10
-elapsed time: 513.7237477302551
+# of nodes: 622
+# of edges: 3573
+probability = 2.978300847292035e-10
+elapsed time: 502.08151173591614
 ========================================
-# of nodes: 636
-# of edges: 3410
-probability = 2.740841043899406e-10
-elapsed time: 524.1069688796997
+# of nodes: 635
+# of edges: 3633
+probability = 3.03938584856741e-10
+elapsed time: 521.4248151779175
 ========================================
-# of nodes: 639
-# of edges: 3461
-probability = 2.776496525808992e-10
-elapsed time: 535.2495243549347
-========================================
-# of nodes: 645
-# of edges: 3511
-probability = 2.848161102909138e-10
-elapsed time: 556.171178817749
-========================================
-# of nodes: 656
-# of edges: 3569
-probability = 2.887367792520033e-10
-elapsed time: 578.5967919826508
-========================================
-# of nodes: 669
-# of edges: 3628
-probability = 2.895334165167011e-10
-elapsed time: 601.4416055679321
-========================================
-# of nodes: 678
+# of nodes: 642
 # of edges: 3684
-probability = 3.0070946084078433e-10
-elapsed time: 625.3615963459015
+probability = 3.0834840259556277e-10
+elapsed time: 531.9587695598602
+========================================
+# of nodes: 662
+# of edges: 3747
+probability = 3.1090256802549626e-10
+elapsed time: 551.1692638397217
+========================================
+# of nodes: 663
+# of edges: 3798
+probability = 3.125500598012359e-10
+elapsed time: 561.4255452156067
+========================================
+# of nodes: 668
+# of edges: 3850
+probability = 3.1440367639341837e-10
+elapsed time: 572.9614858627319
+========================================
+# of nodes: 685
+# of edges: 3905
+probability = 3.1569003803689883e-10
+elapsed time: 593.2754149436951
 ========================================
 # of nodes: 686
-# of edges: 3737
-probability = 3.1301947041333454e-10
-elapsed time: 647.6818234920502
+# of edges: 3956
+probability = 3.174729250475798e-10
+elapsed time: 603.9762766361237
 ========================================
-# of nodes: 693
-# of edges: 3788
-probability = 3.147097339975778e-10
-elapsed time: 671.3166122436523
+# of nodes: 692
+# of edges: 4009
+probability = 3.197619522073314e-10
+elapsed time: 625.8426461219788
 ========================================
-# of nodes: 717
-# of edges: 3850
-probability = 3.183665146807373e-10
-elapsed time: 694.8485181331635
-========================================
-# of nodes: 719
-# of edges: 3901
-probability = 3.2444575431043005e-10
-elapsed time: 707.694730758667
-========================================
-# of nodes: 733
-# of edges: 3962
-probability = 3.2608075021068885e-10
-elapsed time: 732.876011133194
-========================================
-# of nodes: 736
-# of edges: 4013
-probability = 3.2674565698349584e-10
-elapsed time: 747.6325325965881
-========================================
-# of nodes: 753
+# of nodes: 713
 # of edges: 4075
-probability = 3.278772901348304e-10
-elapsed time: 774.1964244842529
+probability = 3.20262683553674e-10
+elapsed time: 647.4748351573944
 ========================================
-# of nodes: 754
-# of edges: 4126
-probability = 3.3350693308013387e-10
-elapsed time: 788.1458373069763
+# of nodes: 715
+# of edges: 4127
+probability = 3.335702833875134e-10
+elapsed time: 658.0661497116089
 ========================================
-# of nodes: 762
-# of edges: 4182
-probability = 3.393474405196623e-10
-elapsed time: 816.6684308052063
+# of nodes: 718
+# of edges: 4177
+probability = 3.422378679584219e-10
+elapsed time: 669.6761891841888
 ========================================
-# of nodes: 768
-# of edges: 4235
-probability = 3.4561104722137907e-10
-elapsed time: 850.0636878013611
+# of nodes: 721
+# of edges: 4228
+probability = 3.485793680455243e-10
+elapsed time: 692.694442987442
 ========================================
-# of nodes: 787
-# of edges: 4293
-probability = 3.541654580598516e-10
-elapsed time: 878.3346910476685
+# of nodes: 758
+# of edges: 4300
+probability = 3.4935206564700996e-10
+elapsed time: 715.343597650528
 ========================================
-# of nodes: 789
-# of edges: 4343
-probability = 3.568023510035139e-10
-elapsed time: 894.9901781082153
+# of nodes: 759
+# of edges: 4351
+probability = 3.5210329593397475e-10
+elapsed time: 726.8230874538422
 ========================================
-# of nodes: 813
-# of edges: 4411
-probability = 3.587791991970624e-10
-elapsed time: 926.6273167133331
+# of nodes: 766
+# of edges: 4402
+probability = 3.548034038405434e-10
+elapsed time: 738.8654894828796
 ========================================
-# of nodes: 816
-# of edges: 4462
-probability = 3.593748208787561e-10
-elapsed time: 941.2291676998138
+# of nodes: 766
+# of edges: 4454
+probability = 3.5826143885785606e-10
+elapsed time: 752.301965713501
 ========================================
-# of nodes: 818
-# of edges: 4515
-probability = 3.605928033398413e-10
-elapsed time: 957.7780706882477
+# of nodes: 775
+# of edges: 4506
+probability = 3.6353983781300837e-10
+elapsed time: 777.0701689720154
 ========================================
-# of nodes: 831
-# of edges: 4567
-probability = 3.6328958543245484e-10
-elapsed time: 986.7162737846375
+# of nodes: 779
+# of edges: 4560
+probability = 3.6736366429238524e-10
+elapsed time: 802.0601434707642
 ========================================
-# of nodes: 832
-# of edges: 4618
-probability = 3.6451844634126297e-10
-elapsed time: 1002.9425032138824
+# of nodes: 788
+# of edges: 4615
+probability = 3.698153156492326e-10
+elapsed time: 825.7843956947327
 ========================================
-# of nodes: 851
-# of edges: 4683
-probability = 3.6745934656976336e-10
-elapsed time: 1032.1929652690887
+# of nodes: 799
+# of edges: 4672
+probability = 3.7931321238100024e-10
+elapsed time: 850.6803917884827
 ========================================
-# of nodes: 852
-# of edges: 4733
-probability = 3.690357365970761e-10
-elapsed time: 1047.4369518756866
+# of nodes: 801
+# of edges: 4723
+probability = 3.8062178287406374e-10
+elapsed time: 866.2493603229523
 ========================================
-# of nodes: 855
-# of edges: 4784
-probability = 3.7162243265995547e-10
-elapsed time: 1065.4215743541718
+# of nodes: 825
+# of edges: 4778
+probability = 3.810905838248426e-10
+elapsed time: 890.8626754283905
 ========================================
-# of nodes: 868
-# of edges: 4842
-probability = 3.754491022047036e-10
-elapsed time: 1094.408284664154
+# of nodes: 829
+# of edges: 4829
+probability = 3.824557936961474e-10
+elapsed time: 903.8101177215576
 ========================================
-# of nodes: 869
-# of edges: 4892
-probability = 3.833248513793436e-10
-elapsed time: 1112.0343978404999
+# of nodes: 833
+# of edges: 4876
+probability = 3.832598101083861e-10
+elapsed time: 930.3775343894958
 ========================================
-# of nodes: 890
-# of edges: 4959
-probability = 3.858428184185855e-10
-elapsed time: 1142.268877506256
+# of nodes: 845
+# of edges: 4935
+probability = 3.855769108209416e-10
+elapsed time: 957.3717291355133
 ========================================
-# of nodes: 898
-# of edges: 5011
-probability = 3.9039147816983597e-10
-elapsed time: 1157.7607369422913
+# of nodes: 847
+# of edges: 4985
+probability = 3.923414099127897e-10
+elapsed time: 971.6967046260834
 ========================================
-# of nodes: 901
-# of edges: 5062
-probability = 3.980770216440742e-10
-elapsed time: 1174.201566696167
+# of nodes: 861
+# of edges: 5043
+probability = 3.9925347417658804e-10
+elapsed time: 1001.3179652690887
 ========================================
-# of nodes: 915
-# of edges: 5125
-probability = 4.0175642402800076e-10
-elapsed time: 1208.5435645580292
+# of nodes: 863
+# of edges: 5093
+probability = 4.0564336196980535e-10
+elapsed time: 1016.054122209549
 ========================================
-# of nodes: 919
-# of edges: 5175
-probability = 4.0460735605414544e-10
-elapsed time: 1226.723014831543
+# of nodes: 879
+# of edges: 5160
+probability = 4.0694916060243813e-10
+elapsed time: 1045.1039600372314
 ========================================
-# of nodes: 931
-# of edges: 5237
-probability = 4.0703149073477426e-10
-elapsed time: 1261.6676976680756
+# of nodes: 885
+# of edges: 5211
+probability = 4.069684270111474e-10
+elapsed time: 1061.9682931900024
 ========================================
-# of nodes: 931
-# of edges: 5287
-probability = 4.0762047076896753e-10
-elapsed time: 1282.9619183540344
+# of nodes: 909
+# of edges: 5283
+probability = 4.0728436574888406e-10
+elapsed time: 1090.0251932144165
 ========================================
-# of nodes: 949
-# of edges: 5347
-probability = 4.079821007969054e-10
-elapsed time: 1316.7339828014374
+# of nodes: 909
+# of edges: 5334
+probability = 4.1003362834013825e-10
+elapsed time: 1103.783947467804
 ========================================
-# of nodes: 952
-# of edges: 5398
-probability = 4.089933556091739e-10
-elapsed time: 1334.8045156002045
+# of nodes: 918
+# of edges: 5385
+probability = 4.119387233758506e-10
+elapsed time: 1118.4409930706024
 ========================================
-# of nodes: 960
-# of edges: 5449
-probability = 4.1930906302640966e-10
-elapsed time: 1356.775042295456
+# of nodes: 918
+# of edges: 5436
+probability = 4.1660199565168513e-10
+elapsed time: 1134.3470594882965
 ========================================
-# of nodes: 979
-# of edges: 5499
-probability = 4.2690674981279525e-10
-elapsed time: 1392.1226551532745
+# of nodes: 940
+# of edges: 5498
+probability = 4.2141321296469496e-10
+elapsed time: 1164.3056786060333
 ========================================
-# of nodes: 980
-# of edges: 5550
-probability = 4.351750949452755e-10
-elapsed time: 1430.8950884342194
+# of nodes: 943
+# of edges: 5548
+probability = 4.2367332336724656e-10
+elapsed time: 1182.5078160762787
 ========================================
-# of nodes: 998
-# of edges: 5615
-probability = 4.429235905790902e-10
-elapsed time: 1469.9200036525726
+# of nodes: 958
+# of edges: 5602
+probability = 4.2444984748692384e-10
+elapsed time: 1212.5127432346344
 ========================================
-# of nodes: 998
-# of edges: 5665
-probability = 4.4379263133101674e-10
-elapsed time: 1488.1515123844147
+# of nodes: 958
+# of edges: 5652
+probability = 4.2841203042273155e-10
+elapsed time: 1227.9577088356018
 ========================================
-# of nodes: 1003
-# of edges: 5718
-probability = 4.589210842764683e-10
-elapsed time: 1529.429890871048
+# of nodes: 962
+# of edges: 5703
+probability = 4.314290588369704e-10
+elapsed time: 1246.7901377677917
 ========================================
-# of nodes: 1021
-# of edges: 5783
-probability = 4.595325194080184e-10
-elapsed time: 1567.3338272571564
+# of nodes: 981
+# of edges: 5755
+probability = 4.3945237443154804e-10
+elapsed time: 1278.5153234004974
 ========================================
-# of nodes: 1026
-# of edges: 5834
-probability = 4.655038517248646e-10
-elapsed time: 1586.8480911254883
+# of nodes: 982
+# of edges: 5805
+probability = 4.489844883016693e-10
+elapsed time: 1296.536853313446
 ========================================
-# of nodes: 1034
-# of edges: 5893
-probability = 4.67195074598414e-10
-elapsed time: 1627.037959098816
+# of nodes: 1008
+# of edges: 5871
+probability = 4.5147482578522915e-10
+elapsed time: 1329.5156452655792
+========================================
+# of nodes: 1009
+# of edges: 5921
+probability = 4.5195905710042983e-10
+elapsed time: 1346.8286640644073
+========================================
+# of nodes: 1011
+# of edges: 5972
+probability = 4.5333653591346194e-10
+elapsed time: 1367.5330142974854
+========================================
+# of nodes: 1036
+# of edges: 6034
+probability = 4.551667926827537e-10
+elapsed time: 1399.5540084838867
 ========================================
 # of nodes: 1038
-# of edges: 5943
-probability = 4.673706801691158e-10
-elapsed time: 1648.25177693367
+# of edges: 6085
+probability = 4.559492883774815e-10
+elapsed time: 1416.6051814556122
 ========================================
-# of nodes: 1053
-# of edges: 6005
-probability = 4.688679998676234e-10
-elapsed time: 1686.3422162532806
+# of nodes: 1045
+# of edges: 6142
+probability = 4.669999151770262e-10
+elapsed time: 1453.0886373519897
 ========================================
-# of nodes: 1057
-# of edges: 6057
-probability = 4.780657594296435e-10
-elapsed time: 1705.9841742515564
+# of nodes: 1061
+# of edges: 6202
+probability = 4.677354531246753e-10
+elapsed time: 1487.9419057369232
 ========================================
-# of nodes: 1059
-# of edges: 6109
-probability = 4.828658015000232e-10
-elapsed time: 1755.270136833191
-========================================
-# of nodes: 1082
-# of edges: 6175
-probability = 4.84116666279537e-10
-elapsed time: 1794.7923738956451
+# of nodes: 1064
+# of edges: 6252
+probability = 4.694626400213456e-10
+elapsed time: 1509.0081312656403
 ========================================
 # of nodes: 1085
-# of edges: 6226
-probability = 4.890731299019954e-10
-elapsed time: 1816.6622676849365
+# of edges: 6314
+probability = 4.697844431635039e-10
+elapsed time: 1542.1054782867432
+========================================
+# of nodes: 1088
+# of edges: 6364
+probability = 4.703044005925984e-10
+elapsed time: 1561.907903432846
+========================================
+# of nodes: 1106
+# of edges: 6418
+probability = 4.718553731790052e-10
+elapsed time: 1598.7153851985931
+========================================
+# of nodes: 1107
+# of edges: 6468
+probability = 4.730503495496062e-10
+elapsed time: 1619.5814580917358
+========================================
+# of nodes: 1125
+# of edges: 6532
+probability = 4.740703446410557e-10
+elapsed time: 1663.0534527301788
+========================================
+# of nodes: 1127
+# of edges: 6582
+probability = 4.753792648046281e-10
+elapsed time: 1680.3137922286987
+========================================
+# of nodes: 1132
+# of edges: 6632
+probability = 4.782842623880676e-10
+elapsed time: 1700.1808173656464
+========================================
+# of nodes: 1141
+# of edges: 6690
+probability = 4.826140837430318e-10
+elapsed time: 1745.5203838348389
+========================================
+# of nodes: 1150
+# of edges: 6746
+probability = 4.828203417005587e-10
+elapsed time: 1787.7438390254974
+========================================
+# of nodes: 1163
+# of edges: 6804
+probability = 4.836987242546901e-10
+elapsed time: 1830.1224439144135
 ========================================

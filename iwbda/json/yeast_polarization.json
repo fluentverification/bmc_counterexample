@@ -5,7 +5,7 @@
 	"csl_property" : "P=? [true U<=20 Gbg=50]",
 	"property_variable" : "Gbg",
 	"property_value" : "50",
-	"probability_bound" : "1E-500",
+	"probability_bound" : "1E-1",
 	"model_check_step" : "10",
 	"construct_path_bound" : "3",
 	"base" : "0",
