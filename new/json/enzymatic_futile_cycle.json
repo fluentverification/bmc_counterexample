@@ -1,0 +1,19 @@
+{
+	"model" : "enzymatic_futile_cycle",
+	"starting_bound" : 19,
+	"prism_binary" : "/home/ubu/projects/probmc/prism-4.7-src/prism/bin/prism",
+	"csl_property" : "P=? [true U<=100 S5=40]",
+	"property_variable" : "S5",
+	"property_value" : "40",
+	"probability_bound" : "0.99",
+	"model_check_step" : "10",
+	"scaffold_bound_limit" : "4",
+	"scaffold_count_limit" : "50",
+	"base" : "50",
+	"step" : "-10",
+	"A1" : "4",
+	"A2" : "3, 5",
+	"A3" : "6",
+	"A4" : "1",
+	"A5" : "2"
+}

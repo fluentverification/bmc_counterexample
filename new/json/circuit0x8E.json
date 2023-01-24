@@ -6,8 +6,7 @@
 	"property_variable" : "YFP_protein",
 	"property_value" : "30",
 	"probability_bound" : "0.999",
-	"model_check_step" : "10",
-	"construct_path_bound" : "3",
-	"base" : "0",
-	"step" : "30"
+	"model_check_step" : "1",
+	"scaffold_bound_limit" : "4",
+	"scaffold_count_limit" : "50"
 }

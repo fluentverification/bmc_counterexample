@@ -1,14 +1,13 @@
-from z3 import *
-import numpy as np
-import models
-from Graph import graph, node
-from utils import *
+from z3 import * 
+x, y, z = Reals('x y z')
+s = Solver()
+s.add(x > 1, y > 1, x + y > 3, z - x < 10)
+print (s.check())
 
-constructor = getattr(models, 'circuit0x8E_010_111')
-model = constructor()
-X = model.initial_state()
+m = s.model()
+print("x = %s" % m[x])
 
-V = model.reaction_rates(X)
+print("traversing model...")
+for d in m.decls():
+    print("%s = %s" % (d.name(), m[d]))
 
-for i in V:
-	print(i)

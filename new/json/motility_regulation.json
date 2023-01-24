@@ -1,0 +1,12 @@
+{
+	"model" : "motility_regulation",
+	"starting_bound" : 10,
+	"prism_binary" : "/home/ubu/projects/probmc/prism-4.7-src/prism/bin/prism",
+	"csl_property" : "P=? [true U<=10 CodY=19]",
+	"property_variable" : "CodY",
+	"property_value" : "19",
+	"probability_bound" : "0.99",
+	"model_check_step" : "1",
+	"scaffold_bound_limit" : "4",
+	"scaffold_count_limit" : "50"
+}
