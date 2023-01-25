@@ -20,7 +20,32 @@ def get_initial_state(model):
 		constraints.append(x == init_value)
 	return And(constraints)
 
-def get_encoding(model, bound):
+def get_encoding(model, bound, reaction_subset):
+	species_vector = model.species_vector()
+	constraints = []
+	reactions_dict = {}
+	
+	for i, e in enumerate(model.reactions_dict()):
+		if (int(reaction_subset[i])==1):
+			reactions_dict[e] = model.reactions_dict()[e]
+	
+	for j, r in enumerate(reactions_dict): 
+		r_constraints = []
+		for i, s in enumerate(species_vector): 
+			var_name_prev = s + '.' + str(bound-1)
+			var_name_curr = s + '.' + str(bound)
+			x = Int(var_name_prev)
+			y = Int(var_name_curr)
+			r_constraints.append(y == (x + reactions_dict[r][2][i]))
+			r_constraints.append(y >= 0)
+			reaction_var_name = 'selected_reaction.' + str(bound-1) 
+			selected_reaction = Int(reaction_var_name)
+		r_constraints.append(selected_reaction == int(r))
+		constraints.append(And(r_constraints))
+	
+	return simplify(Or(constraints))
+
+def get_encoding_original(model, bound):
 	species_vector = model.species_vector()
 	constraints = []
 	for j, r in enumerate(model.reactions_dict()): 
@@ -51,12 +76,14 @@ def loop_constraint(model, bound):
 		return True
 	else:
 		species_vector = model.species_vector()
+		var_values = []
 		constraints = []
-		for s in species_vector:
-			x = Int(s + '.' + str(bound-1))
-			for i in range(1,bound-1): 
+		for i in range(0, bound):
+			for s in species_vector:
+				x = Int(s + '.' + str(bound))
 				y = Int(s + '.' + str(i))
-				constraints.append(x==y)
+				var_values.append(x==y)
+			constraints.append(And(var_values))
 		return Not(Or(constraints))
 
 #exclude_graph for bound b returns constraints 
@@ -98,7 +125,7 @@ def exclude_graph(graph, bound):
 				constraints.append(And(var_values))
 		return Not(Or(constraints))
 
-def scaffold(graph, model, bound_limit, count_limit, property_var, property_val):
+def scaffold(graph, model, bound_limit, count_limit, property_var, property_val, reaction_subset):
 	curr_bound = 1
 	c_count = 0
 	
@@ -121,9 +148,9 @@ def scaffold(graph, model, bound_limit, count_limit, property_var, property_val)
 		solver.add(init_const)
 		solver.add(exclude_graph(graph, curr_bound))
 		for j in range(1, curr_bound):
-			solver.add(loop_constraint(model, j))
-			solver.add(get_encoding(model, j))
-		solver.add(get_encoding(model, curr_bound))
+			#solver.add(loop_constraint(model, j))
+			solver.add(get_encoding(model, j, reaction_subset))
+		solver.add(get_encoding(model, curr_bound, reaction_subset))
 
 		#target states can be any state on the graph or a new
 		#target state
