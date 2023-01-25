@@ -1,7 +1,7 @@
 {
 	"model" : "circuit0x8E",
 	"starting_bound" : 0,
-	"prism_binary" : "/home/ubu/projects/probmc/prism-4.7-src/prism/bin/prism",
+	"prism_binary" : "/home/ma/bmc/prism-4.7-linux64/bin/prism",
 	"csl_property" : "P=? [true U<=1000 YFP_protein=30]",
 	"property_variable" : "YFP_protein",
 	"property_value" : "30",
