@@ -6,14 +6,15 @@
 	"property_variable" : "S5",
 	"property_value" : "40",
 	"probability_bound" : "0.99",
-	"model_check_step" : "10",
+	"model_check_step" : "1",
 	"scaffold_bound_limit" : "4",
 	"scaffold_count_limit" : "50",
-	"base" : "50",
-	"step" : "-10",
-	"A1" : "4",
-	"A2" : "3, 5",
-	"A3" : "6",
-	"A4" : "1",
-	"A5" : "2"
+	"start_scaffold" : "3",
+	"model_bound_prob_threshold" : "1E-20",
+	"A1" : "0,0,0,1,0,0",
+	"A2" : "0,0,1,1,1,0",
+	"A3" : "0,0,1,1,1,1",
+	"A4" : "1,0,1,1,1,1",
+	"A5" : "1,1,1,1,1,1"
+
 }
