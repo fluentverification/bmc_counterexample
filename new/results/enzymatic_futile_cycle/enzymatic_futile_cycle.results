@@ -1,530 +1,249 @@
 # of nodes: 20
 # of edges: 19
 probability = 8.04201994519839e-29
+upper-bound probability = 0.9999998792179352
 reaction list = ['0', '0', '1', '1', '1', '1']
-elapsed time: 0.41471052169799805
+elapsed time: 0.5270631313323975
 ========================================
 # of nodes: 41
 # of edges: 69
 probability = 2.084380042985426e-28
+upper-bound probability = 0.9999966479861796
 reaction list = ['1', '0', '1', '1', '1', '1']
-elapsed time: 4.358952760696411
+elapsed time: 4.1801862716674805
 ========================================
 # of nodes: 41
 # of edges: 69
 probability = 2.084380042985426e-28
+upper-bound probability = 0.9999966479861796
 reaction list = ['1', '1', '1', '1', '1', '1']
-elapsed time: 5.875277280807495
+elapsed time: 6.671046733856201
 ========================================
 # of nodes: 43
 # of edges: 119
 probability = 0.030162969978259645
+upper-bound probability = 0.8348937301819391
 reaction list = ['1', '1', '1', '1', '1', '1']
-elapsed time: 10.63795280456543
+elapsed time: 10.757008075714111
 ========================================
 # of nodes: 43
 # of edges: 119
 probability = 0.030162969978259645
+upper-bound probability = 0.8348937301819391
 reaction list = ['1', '1', '1', '1', '1', '1']
-elapsed time: 11.61836290359497
+elapsed time: 11.51418423652649
 ========================================
 # of nodes: 43
 # of edges: 119
 probability = 0.030162969978259645
+upper-bound probability = 0.8348937301819391
 reaction list = ['1', '1', '1', '1', '1', '1']
-elapsed time: 12.80184006690979
+elapsed time: 12.77851152420044
 ========================================
 # of nodes: 45
 # of edges: 125
 probability = 0.03851653631894885
+upper-bound probability = 0.6887539255355216
 reaction list = ['1', '1', '1', '1', '1', '1']
-elapsed time: 17.79763174057007
+elapsed time: 17.115854740142822
 ========================================
 # of nodes: 45
 # of edges: 125
 probability = 0.03851653631894885
+upper-bound probability = 0.6887539255355216
 reaction list = ['1', '1', '1', '1', '1', '1']
-elapsed time: 19.14677858352661
+elapsed time: 18.239458560943604
 ========================================
 # of nodes: 45
 # of edges: 125
 probability = 0.03851653631894885
+upper-bound probability = 0.6887539255355216
 reaction list = ['1', '1', '1', '1', '1', '1']
-elapsed time: 20.70324182510376
+elapsed time: 19.307390689849854
 ========================================
 # of nodes: 47
 # of edges: 131
 probability = 0.03896422160259078
+upper-bound probability = 0.6739701340889335
 reaction list = ['1', '1', '1', '1', '1', '1']
-elapsed time: 25.661561250686646
+elapsed time: 23.983198642730713
 ========================================
 # of nodes: 47
 # of edges: 131
 probability = 0.03896422160259078
+upper-bound probability = 0.6739701340889335
 reaction list = ['1', '1', '1', '1', '1', '1']
-elapsed time: 27.19474172592163
+elapsed time: 24.92509913444519
 ========================================
 # of nodes: 47
 # of edges: 131
 probability = 0.03896422160259078
+upper-bound probability = 0.6739701340889335
 reaction list = ['1', '1', '1', '1', '1', '1']
-elapsed time: 28.003485918045044
+elapsed time: 26.45276713371277
 ========================================
 # of nodes: 49
 # of edges: 137
 probability = 0.04132710715957773
+upper-bound probability = 0.5375379242418946
 reaction list = ['1', '1', '1', '1', '1', '1']
-elapsed time: 33.107661485672
+elapsed time: 30.631200551986694
 ========================================
 # of nodes: 49
 # of edges: 137
 probability = 0.04132710715957773
+upper-bound probability = 0.5375379242418946
 reaction list = ['1', '1', '1', '1', '1', '1']
-elapsed time: 33.7509183883667
+elapsed time: 31.771628618240356
 ========================================
 # of nodes: 49
 # of edges: 137
 probability = 0.04132710715957773
+upper-bound probability = 0.5375379242418946
 reaction list = ['1', '1', '1', '1', '1', '1']
-elapsed time: 34.97740602493286
+elapsed time: 33.464970111846924
 ========================================
 # of nodes: 51
 # of edges: 143
 probability = 0.04144351458891322
+upper-bound probability = 0.523986277983514
 reaction list = ['1', '1', '1', '1', '1', '1']
-elapsed time: 39.792327880859375
+elapsed time: 38.72946858406067
 ========================================
 # of nodes: 51
 # of edges: 143
 probability = 0.04144351458891322
+upper-bound probability = 0.523986277983514
 reaction list = ['1', '1', '1', '1', '1', '1']
-elapsed time: 40.81405854225159
+elapsed time: 39.72952747344971
 ========================================
 # of nodes: 51
 # of edges: 143
 probability = 0.04144351458891322
+upper-bound probability = 0.523986277983514
 reaction list = ['1', '1', '1', '1', '1', '1']
-elapsed time: 41.551050424575806
+elapsed time: 40.66845107078552
 ========================================
 # of nodes: 53
 # of edges: 149
 probability = 0.04200911931002055
+upper-bound probability = 0.4062629988281767
 reaction list = ['1', '1', '1', '1', '1', '1']
-elapsed time: 46.3422691822052
+elapsed time: 45.07639217376709
 ========================================
 # of nodes: 53
 # of edges: 149
 probability = 0.04200911931002055
+upper-bound probability = 0.4062629988281767
 reaction list = ['1', '1', '1', '1', '1', '1']
-elapsed time: 47.722864866256714
+elapsed time: 46.35959053039551
 ========================================
 # of nodes: 53
 # of edges: 149
 probability = 0.04200911931002055
+upper-bound probability = 0.4062629988281767
 reaction list = ['1', '1', '1', '1', '1', '1']
-elapsed time: 48.53807520866394
+elapsed time: 48.014766216278076
 ========================================
 # of nodes: 55
 # of edges: 155
 probability = 0.042034832884963264
+upper-bound probability = 0.3946527724863611
 reaction list = ['1', '1', '1', '1', '1', '1']
-elapsed time: 54.152217864990234
+elapsed time: 52.76870012283325
 ========================================
 # of nodes: 55
 # of edges: 155
 probability = 0.042034832884963264
+upper-bound probability = 0.3946527724863611
 reaction list = ['1', '1', '1', '1', '1', '1']
-elapsed time: 55.53499245643616
+elapsed time: 54.10412335395813
 ========================================
 # of nodes: 55
 # of edges: 155
 probability = 0.042034832884963264
+upper-bound probability = 0.3946527724863611
 reaction list = ['1', '1', '1', '1', '1', '1']
-elapsed time: 56.654887437820435
+elapsed time: 55.2961106300354
 ========================================
 # of nodes: 57
 # of edges: 161
 probability = 0.042150308857117784
+upper-bound probability = 0.2990788954239444
 reaction list = ['1', '1', '1', '1', '1', '1']
-elapsed time: 61.71377873420715
+elapsed time: 60.75084900856018
 ========================================
 # of nodes: 57
 # of edges: 161
 probability = 0.042150308857117784
+upper-bound probability = 0.2990788954239444
 reaction list = ['1', '1', '1', '1', '1', '1']
-elapsed time: 63.10486125946045
+elapsed time: 61.842193841934204
 ========================================
 # of nodes: 57
 # of edges: 161
 probability = 0.042150308857117784
+upper-bound probability = 0.2990788954239444
 reaction list = ['1', '1', '1', '1', '1', '1']
-elapsed time: 64.03908777236938
+elapsed time: 62.98802971839905
 ========================================
 # of nodes: 59
 # of edges: 167
 probability = 0.042155172293534104
+upper-bound probability = 0.2896802971281446
 reaction list = ['1', '1', '1', '1', '1', '1']
-elapsed time: 69.41285562515259
+elapsed time: 68.63456964492798
 ========================================
 # of nodes: 59
 # of edges: 167
 probability = 0.042155172293534104
+upper-bound probability = 0.2896802971281446
 reaction list = ['1', '1', '1', '1', '1', '1']
-elapsed time: 70.05085372924805
+elapsed time: 69.49111104011536
 ========================================
 # of nodes: 59
 # of edges: 167
 probability = 0.042155172293534104
+upper-bound probability = 0.2896802971281446
 reaction list = ['1', '1', '1', '1', '1', '1']
-elapsed time: 71.0242908000946
+elapsed time: 70.19506001472473
 ========================================
 # of nodes: 61
 # of edges: 173
 probability = 0.04217543716303194
+upper-bound probability = 0.21617736885233713
 reaction list = ['1', '1', '1', '1', '1', '1']
-elapsed time: 76.07495141029358
+elapsed time: 75.80784106254578
 ========================================
 # of nodes: 61
 # of edges: 173
 probability = 0.04217543716303194
+upper-bound probability = 0.21617736885233713
 reaction list = ['1', '1', '1', '1', '1', '1']
-elapsed time: 76.68238592147827
+elapsed time: 76.61533427238464
 ========================================
 # of nodes: 61
 # of edges: 173
 probability = 0.04217543716303194
+upper-bound probability = 0.21617736885233713
 reaction list = ['1', '1', '1', '1', '1', '1']
-elapsed time: 77.74150085449219
+elapsed time: 78.2172486782074
 ========================================
 # of nodes: 63
 # of edges: 179
 probability = 0.042176230796981684
+upper-bound probability = 0.20895961302660204
 reaction list = ['1', '1', '1', '1', '1', '1']
-elapsed time: 83.71897411346436
+elapsed time: 83.3906033039093
 ========================================
 # of nodes: 63
 # of edges: 179
 probability = 0.042176230796981684
+upper-bound probability = 0.20895961302660204
 reaction list = ['1', '1', '1', '1', '1', '1']
-elapsed time: 84.37117266654968
+elapsed time: 85.2271192073822
 ========================================
 # of nodes: 63
 # of edges: 179
 probability = 0.042176230796981684
-reaction list = ['1', '1', '1', '1', '1', '1']
-elapsed time: 85.27044701576233
-========================================
-# of nodes: 65
-# of edges: 185
-probability = 0.0421793103462842
-reaction list = ['1', '1', '1', '1', '1', '1']
-elapsed time: 90.76429557800293
-========================================
-# of nodes: 65
-# of edges: 185
-probability = 0.0421793103462842
-reaction list = ['1', '1', '1', '1', '1', '1']
-elapsed time: 91.99001669883728
-========================================
-# of nodes: 65
-# of edges: 185
-probability = 0.0421793103462842
-reaction list = ['1', '1', '1', '1', '1', '1']
-elapsed time: 93.30629110336304
-========================================
-# of nodes: 67
-# of edges: 191
-probability = 0.04217942289149697
-reaction list = ['1', '1', '1', '1', '1', '1']
-elapsed time: 99.65327620506287
-========================================
-# of nodes: 67
-# of edges: 191
-probability = 0.04217942289149697
-reaction list = ['1', '1', '1', '1', '1', '1']
-elapsed time: 100.45146083831787
-========================================
-# of nodes: 67
-# of edges: 191
-probability = 0.04217942289149697
-reaction list = ['1', '1', '1', '1', '1', '1']
-elapsed time: 101.80682897567749
-========================================
-# of nodes: 69
-# of edges: 197
-probability = 0.04217983098954212
-reaction list = ['1', '1', '1', '1', '1', '1']
-elapsed time: 107.7264256477356
-========================================
-# of nodes: 69
-# of edges: 197
-probability = 0.04217983098954212
-reaction list = ['1', '1', '1', '1', '1', '1']
-elapsed time: 108.75483179092407
-========================================
-# of nodes: 69
-# of edges: 197
-probability = 0.04217983098954212
-reaction list = ['1', '1', '1', '1', '1', '1']
-elapsed time: 109.96490526199341
-========================================
-# of nodes: 71
-# of edges: 203
-probability = 0.042179844953695624
-reaction list = ['1', '1', '1', '1', '1', '1']
-elapsed time: 116.26967358589172
-========================================
-# of nodes: 71
-# of edges: 203
-probability = 0.042179844953695624
-reaction list = ['1', '1', '1', '1', '1', '1']
-elapsed time: 117.19070744514465
-========================================
-# of nodes: 71
-# of edges: 203
-probability = 0.042179844953695624
-reaction list = ['1', '1', '1', '1', '1', '1']
-elapsed time: 118.59851574897766
-========================================
-# of nodes: 73
-# of edges: 209
-probability = 0.04217989242505141
-reaction list = ['1', '1', '1', '1', '1', '1']
-elapsed time: 124.89232993125916
-========================================
-# of nodes: 73
-# of edges: 209
-probability = 0.04217989242505141
-reaction list = ['1', '1', '1', '1', '1', '1']
-elapsed time: 126.09255313873291
-========================================
-# of nodes: 73
-# of edges: 209
-probability = 0.04217989242505141
-reaction list = ['1', '1', '1', '1', '1', '1']
-elapsed time: 126.78117680549622
-========================================
-# of nodes: 75
-# of edges: 215
-probability = 0.04217989395066519
-reaction list = ['1', '1', '1', '1', '1', '1']
-elapsed time: 133.39394116401672
-========================================
-# of nodes: 75
-# of edges: 215
-probability = 0.04217989395066519
-reaction list = ['1', '1', '1', '1', '1', '1']
-elapsed time: 134.62970352172852
-========================================
-# of nodes: 75
-# of edges: 215
-probability = 0.04217989395066519
-reaction list = ['1', '1', '1', '1', '1', '1']
-elapsed time: 136.2900083065033
-========================================
-# of nodes: 77
-# of edges: 221
-probability = 0.04217989882768833
-reaction list = ['1', '1', '1', '1', '1', '1']
-elapsed time: 143.06002020835876
-========================================
-# of nodes: 77
-# of edges: 221
-probability = 0.04217989882768833
-reaction list = ['1', '1', '1', '1', '1', '1']
-elapsed time: 143.87905883789062
-========================================
-# of nodes: 77
-# of edges: 221
-probability = 0.04217989882768833
-reaction list = ['1', '1', '1', '1', '1', '1']
-elapsed time: 144.80009293556213
-========================================
-# of nodes: 79
-# of edges: 227
-probability = 0.042179898975323746
-reaction list = ['1', '1', '1', '1', '1', '1']
-elapsed time: 151.23819541931152
-========================================
-# of nodes: 79
-# of edges: 227
-probability = 0.042179898975323746
-reaction list = ['1', '1', '1', '1', '1', '1']
-elapsed time: 152.39029622077942
-========================================
-# of nodes: 79
-# of edges: 227
-probability = 0.042179898975323746
-reaction list = ['1', '1', '1', '1', '1', '1']
-elapsed time: 153.1539022922516
-========================================
-# of nodes: 81
-# of edges: 233
-probability = 0.04217989942038002
-reaction list = ['1', '1', '1', '1', '1', '1']
-elapsed time: 159.72324132919312
-========================================
-# of nodes: 81
-# of edges: 233
-probability = 0.04217989942038002
-reaction list = ['1', '1', '1', '1', '1', '1']
-elapsed time: 160.53661823272705
-========================================
-# of nodes: 81
-# of edges: 233
-probability = 0.04217989942038002
-reaction list = ['1', '1', '1', '1', '1', '1']
-elapsed time: 161.59514713287354
-========================================
-# of nodes: 83
-# of edges: 239
-probability = 0.042179899433104864
-reaction list = ['1', '1', '1', '1', '1', '1']
-elapsed time: 168.21984815597534
-========================================
-# of nodes: 83
-# of edges: 239
-probability = 0.042179899433104864
-reaction list = ['1', '1', '1', '1', '1', '1']
-elapsed time: 170.01796412467957
-========================================
-# of nodes: 83
-# of edges: 239
-probability = 0.042179899433104864
-reaction list = ['1', '1', '1', '1', '1', '1']
-elapsed time: 171.03202271461487
-========================================
-# of nodes: 85
-# of edges: 245
-probability = 0.04217989946937207
-reaction list = ['1', '1', '1', '1', '1', '1']
-elapsed time: 178.2740728855133
-========================================
-# of nodes: 85
-# of edges: 245
-probability = 0.04217989946937207
-reaction list = ['1', '1', '1', '1', '1', '1']
-elapsed time: 179.8591558933258
-========================================
-# of nodes: 85
-# of edges: 245
-probability = 0.04217989946937207
-reaction list = ['1', '1', '1', '1', '1', '1']
-elapsed time: 181.07268166542053
-========================================
-# of nodes: 87
-# of edges: 251
-probability = 0.042179899470354075
-reaction list = ['1', '1', '1', '1', '1', '1']
-elapsed time: 188.06329321861267
-========================================
-# of nodes: 87
-# of edges: 251
-probability = 0.042179899470354075
-reaction list = ['1', '1', '1', '1', '1', '1']
-elapsed time: 189.45392990112305
-========================================
-# of nodes: 87
-# of edges: 251
-probability = 0.042179899470354075
-reaction list = ['1', '1', '1', '1', '1', '1']
-elapsed time: 191.08493971824646
-========================================
-# of nodes: 89
-# of edges: 257
-probability = 0.042179899473006245
-reaction list = ['1', '1', '1', '1', '1', '1']
-elapsed time: 198.02604246139526
-========================================
-# of nodes: 89
-# of edges: 257
-probability = 0.042179899473006245
-reaction list = ['1', '1', '1', '1', '1', '1']
-elapsed time: 198.95513343811035
-========================================
-# of nodes: 89
-# of edges: 257
-probability = 0.042179899473006245
-reaction list = ['1', '1', '1', '1', '1', '1']
-elapsed time: 199.95896244049072
-========================================
-# of nodes: 91
-# of edges: 263
-probability = 0.04217989947307438
-reaction list = ['1', '1', '1', '1', '1', '1']
-elapsed time: 207.53813314437866
-========================================
-# of nodes: 91
-# of edges: 263
-probability = 0.04217989947307438
-reaction list = ['1', '1', '1', '1', '1', '1']
-elapsed time: 208.8793363571167
-========================================
-# of nodes: 91
-# of edges: 263
-probability = 0.04217989947307438
-reaction list = ['1', '1', '1', '1', '1', '1']
-elapsed time: 209.78729963302612
-========================================
-# of nodes: 93
-# of edges: 269
-probability = 0.04217989947324913
-reaction list = ['1', '1', '1', '1', '1', '1']
-elapsed time: 217.11896800994873
-========================================
-# of nodes: 93
-# of edges: 269
-probability = 0.04217989947324913
-reaction list = ['1', '1', '1', '1', '1', '1']
-elapsed time: 218.46731185913086
-========================================
-# of nodes: 93
-# of edges: 269
-probability = 0.04217989947324913
-reaction list = ['1', '1', '1', '1', '1', '1']
-elapsed time: 219.49118089675903
-========================================
-# of nodes: 95
-# of edges: 275
-probability = 0.04217989947325337
-reaction list = ['1', '1', '1', '1', '1', '1']
-elapsed time: 227.03102278709412
-========================================
-# of nodes: 95
-# of edges: 275
-probability = 0.04217989947325337
-reaction list = ['1', '1', '1', '1', '1', '1']
-elapsed time: 227.67881751060486
-========================================
-# of nodes: 95
-# of edges: 275
-probability = 0.04217989947325337
-reaction list = ['1', '1', '1', '1', '1', '1']
-elapsed time: 229.1385636329651
-========================================
-# of nodes: 97
-# of edges: 281
-probability = 0.04217989947326391
-reaction list = ['1', '1', '1', '1', '1', '1']
-elapsed time: 237.0029320716858
-========================================
-# of nodes: 97
-# of edges: 281
-probability = 0.04217989947326391
-reaction list = ['1', '1', '1', '1', '1', '1']
-elapsed time: 237.66444540023804
-========================================
-# of nodes: 97
-# of edges: 281
-probability = 0.04217989947326391
-reaction list = ['1', '1', '1', '1', '1', '1']
-elapsed time: 239.24132895469666
-========================================
-# of nodes: 99
-# of edges: 287
-probability = 0.04217989947326426
-reaction list = ['1', '1', '1', '1', '1', '1']
-elapsed time: 247.0965359210968
-========================================
-# of nodes: 99
-# of edges: 287
+upper-bound probability = 0.20895961302660204

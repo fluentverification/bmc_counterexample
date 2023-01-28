@@ -3,6 +3,7 @@
 	"starting_bound" : 100,
 	"prism_binary" : "/home/ma/bmc/prism-4.7-linux64/bin/prism",
 	"csl_property" : "P=? [true U<=20 Gbg=50]",
+	"csl_property_sink" : "P=? [Gbg<50 U<=20 (\"sink\")]",
 	"property_variable" : "Gbg",
 	"property_value" : "50",
 	"probability_bound" : "0.99",

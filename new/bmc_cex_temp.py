@@ -26,6 +26,7 @@ json_data = json.load(f)
 model_name = json_data['model']
 starting_bound = int(json_data['starting_bound'])
 csl_prop = json_data['csl_property']
+csl_prop_sink = json_data['csl_property_sink']
 prism = json_data['prism_binary']
 prob_bound = float(json_data['probability_bound'])
 property_var = json_data['property_variable']
@@ -71,6 +72,7 @@ graph.add_node(node_)
 count = 0
 prob = 0
 prob_prev = 0
+prob_sink = 0
 model_bound = 0
 flag = True
 start_time = time.time()
@@ -131,6 +133,7 @@ with open('./results/' + model_name + '/' + model_name + '.results', mode = 'w',
             if (count % mc_step == 0):
                 prob_prev = prob
                 prob = graph.model_check(model, model_name, prism, csl_prop)
+                prob_sink = graph.model_check(model, model_name, prism, csl_prop_sink)
                 if (prob_prev != 0 and model_bound < 4):
                     if ((float(prob)-float(prob_prev))/float(prob_prev) < model_bound_prob_threshold):
                         model_bound = model_bound + 1
@@ -142,6 +145,7 @@ with open('./results/' + model_name + '/' + model_name + '.results', mode = 'w',
             print('# of nodes: ' + str(len(graph.node_list)))
             print('# of edges: ' + str(len(graph.edge_list)))
             print('probability = ' + str(prob))
+            print('upper-bound probability = ' + str(prob_sink))
             print('reaction list = ' + str(reaction_subset))
             print('elapsed time: ' + str(elapsed_time-start_time))
             print('='*40)
@@ -150,6 +154,8 @@ with open('./results/' + model_name + '/' + model_name + '.results', mode = 'w',
             f.write('# of edges: ' + str(len(graph.edge_list)))
             f.write('\n')
             f.write('probability = ' + str(prob))
+            f.write('\n')
+            f.write('upper-bound probability = ' + str(prob_sink+ prob))
             f.write('\n')
             f.write('reaction list = ' + str(reaction_subset))
             f.write('\n')
