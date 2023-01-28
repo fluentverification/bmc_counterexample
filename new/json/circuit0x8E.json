@@ -3,6 +3,7 @@
 	"starting_bound" : 0,
 	"prism_binary" : "/home/ma/bmc/prism-4.7-linux64/bin/prism",
 	"csl_property" : "P=? [true U<=1000 YFP_protein=30]",
+	"csl_property_sink" : "P=? [YFP_protein<30  U<=1000 (\"sink\")]",
 	"property_variable" : "YFP_protein",
 	"property_value" : "30",
 	"probability_bound" : "0.999",
