@@ -63,6 +63,72 @@ def get_encoding_original(model, bound):
 		constraints.append(And(r_constraints))
 	return simplify(Or(constraints))
 
+def get_encoding_rate(model, bound):
+	species_vector = model.species_vector()
+	constraints = []
+	
+	for j, r in enumerate(model.reactions_dict()): 
+		r_constraints = []
+		reactants = []
+		for i, s in enumerate(species_vector): 
+			if model.reactions_dict()[r][0][i] > 0: 
+				x = Int(s + '.' + str(bound))
+				reactants.append(x)
+			var_name_prev = s + '.' + str(bound-1)
+			var_name_curr = s + '.' + str(bound)
+			x = Int(var_name_prev)
+			y = Int(var_name_curr)
+			r_constraints.append(y == (x + model.reactions_dict()[r][2][i]))
+			r_constraints.append(y >= 0)
+			reaction_var_name = 'selected_reaction.' + str(bound-1) 
+			selected_reaction = Int(reaction_var_name)
+		r_constraints.append(selected_reaction == (j+1))
+		
+		temp_rate = model.reaction_rates()[j]
+		temp_rate = RealVal(temp_rate)
+
+		for s in reactants:
+			temp_rate = temp_rate * s
+		rate_curr = Real('rate.' + str(bound))
+		rate_prev = Real('rate.' + str(bound-1))
+		rate_constraint = (rate_curr == (rate_prev*temp_rate))
+		r_constraints.append(rate_constraint)
+		constraints.append(And(r_constraints))
+	return simplify(Or(constraints))
+
+def get_encoding_LU(model, L, U, property_var, property_val):
+	constraints = []
+	for i in range (1,L+1):
+		constraints.append(get_encoding_rate(model, i))
+	
+	target_enc = []
+	for i in range (L, U+1):
+		x = Int(property_var + '.' + str(i))
+		target_enc.append(x==property_val)
+	
+	constraints.append(simplify(Or(target_enc)))
+
+	for i in range (L, U):
+		equality_enc = []
+		for j in range (i, U):
+			for k, s in enumerate(model.species_vector()): 
+				var_name_next = s + '.' + str(j+1)
+				var_name_curr = s + '.' + str(j)
+				x = Int(var_name_next)
+				y = Int(var_name_curr)
+				r_next = Real("rate." + str(j+1))
+				r_curr = Real("rate." + str(j))
+				
+				equality_enc.append(And (y == x, r_curr == r_next))
+
+		x = Int(property_var + '.' + str(i))
+		term1 = Implies(Not(x==property_val), get_encoding_rate(model, i+1))
+		term2 = Implies((x==property_val), And(equality_enc))
+		constraints.append(And(term1, term2))
+
+
+	return simplify(And(constraints))
+
 #returns the set of contraints ensuring a path found of 
 #specified bound does not contain a loop (two equal nodes does
 #not appear in the path). Works incrementally: for ensuring a path
