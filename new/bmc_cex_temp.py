@@ -81,72 +81,36 @@ excluded_paths = []
 with open('./results/' + model_name + '/' + model_name + '.results', mode = 'w', encoding= 'ascii') as f:
     f.truncate()
 	
-    bound = starting_bound
+    L = 19
+    U = 19
+    
+    solver = Solver()
+    solver.add(get_initial_state(model))
+    solver.add(Real("rate.0")==1.0)
+    solver.add(get_encoding_LU(model, L, U, property_var, property_val))
+
 
     while prob <= prob_bound:
-		
-        solver = Solver()
-        solver.add(get_initial_state(model))
-        
-        if (flag == False):
-            flag = True
-            model_bound = model_bound + 1
-            solver.add(excluded_paths)
 
-        flag = False
-        
-        if (model_bound == 0):
-            reaction_subset = A1
-        elif (model_bound == 1):
-            reaction_subset = A2
-        elif (model_bound == 2):
-            reaction_subset = A3
-        elif (model_bound == 3):
-            reaction_subset = A4
-        else:
-            reaction_subset = A5
-        
-
-        for j in range(1, bound+1):
-            solver.add(get_encoding(model, j, reaction_subset))
-        
-        #for j in range(1, bound+1):
-        #    solver.add(loop_constraint(model, j))
-
-        x = Int(property_var + '.' + str(bound))
-        property_constraint = (x==property_val)
-        
-        #solver.add(exclude_graph(graph, bound))
-        
-        while (solver.check(property_constraint) == sat):
-            flag = True
+        while (solver.check() == sat):
             count = count + 1
             path = solver.model()
+            print(path[Real("rate.18")])
             ep = exclude_path(path)
             solver.add(ep)
-            excluded_paths.append(ep)
             graph.add_path(path)
 
-            if (count % start_scaffold == 0):
-                scaffold(graph, model, bound-1, scaffold_count_limit, property_var, property_val, reaction_subset)
+            # if (count % start_scaffold == 0):
+            #     scaffold(graph, model, bound-1, scaffold_count_limit, property_var, property_val, reaction_subset)
 
-            if (count % mc_step == 0):
-                prob_prev = prob
-                prob = graph.model_check(model, model_name, prism, csl_prop)
-                prob_sink = graph.model_check(model, model_name, prism, csl_prop_sink)
-                if (prob_prev != 0 and model_bound < 4):
-                    if ((float(prob)-float(prob_prev))/float(prob_prev) < model_bound_prob_threshold):
-                        model_bound = model_bound + 1
-                        flag = True
-                        break
-            
+            prob = graph.model_check(model, model_name, prism, csl_prop)
+            prob_sink = graph.model_check(model, model_name, prism, csl_prop_sink)
             
             elapsed_time = time.time()
             print('# of nodes: ' + str(len(graph.node_list)))
             print('# of edges: ' + str(len(graph.edge_list)))
             print('probability = ' + str(prob))
             print('upper-bound probability = ' + str(prob_sink))
-            print('reaction list = ' + str(reaction_subset))
             print('elapsed time: ' + str(elapsed_time-start_time))
             print('='*40)
             f.write('# of nodes: ' + str(len(graph.node_list)))
@@ -157,8 +121,6 @@ with open('./results/' + model_name + '/' + model_name + '.results', mode = 'w',
             f.write('\n')
             f.write('upper-bound probability = ' + str(prob_sink+ prob))
             f.write('\n')
-            f.write('reaction list = ' + str(reaction_subset))
-            f.write('\n')
             f.write('elapsed time: ' + str(elapsed_time-start_time))
             f.write('\n')
             f.write('='*40)
@@ -168,11 +130,6 @@ with open('./results/' + model_name + '/' + model_name + '.results', mode = 'w',
         elapsed_time = time.time()
         if (elapsed_time-start_time>1800):
             break
-        if (model_bound >= 4 and flag==False):
-            bound = bound + 1
-            excluded_paths = []
-            model_bound = 0
-            flag = True
         
     f.close()
 
