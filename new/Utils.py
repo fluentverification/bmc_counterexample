@@ -3,9 +3,10 @@ from Graph import graph
 
 def exclude_path(path): 
 	assignments = []
-	for d in path.decls(): 
-		x = Int(d.name())
-		assignments.append(x == path[d])
+	for d in path.decls():
+		if not ("rate" in d.name()): 
+			x = Int(d.name())
+			assignments.append(x == path[d])
 	return Not(And(assignments))
 
 #get smt encoding for the initial state constraint
@@ -68,11 +69,12 @@ def get_encoding_rate(model, bound):
 	constraints = []
 	
 	for j, r in enumerate(model.reactions_dict()): 
+		#if (j==3 or j==5):
 		r_constraints = []
 		reactants = []
 		for i, s in enumerate(species_vector): 
 			if model.reactions_dict()[r][0][i] > 0: 
-				x = Int(s + '.' + str(bound))
+				x = Int(s + '.' + str(bound-1))
 				reactants.append(x)
 			var_name_prev = s + '.' + str(bound-1)
 			var_name_curr = s + '.' + str(bound)
@@ -91,7 +93,7 @@ def get_encoding_rate(model, bound):
 			temp_rate = temp_rate * s
 		rate_curr = Real('rate.' + str(bound))
 		rate_prev = Real('rate.' + str(bound-1))
-		rate_constraint = (rate_curr == (rate_prev*temp_rate))
+		rate_constraint = (rate_curr == (rate_prev+temp_rate))
 		r_constraints.append(rate_constraint)
 		constraints.append(And(r_constraints))
 	return simplify(Or(constraints))
@@ -106,7 +108,7 @@ def get_encoding_LU(model, L, U, property_var, property_val):
 		x = Int(property_var + '.' + str(i))
 		target_enc.append(x==property_val)
 	
-	constraints.append(simplify(Or(target_enc)))
+	constraints.append(Or(target_enc))
 
 	for i in range (L, U):
 		equality_enc = []
@@ -119,7 +121,7 @@ def get_encoding_LU(model, L, U, property_var, property_val):
 				r_next = Real("rate." + str(j+1))
 				r_curr = Real("rate." + str(j))
 				
-				equality_enc.append(And (y == x, r_curr == r_next))
+				equality_enc.append(And (y == x, r_next==r_curr))
 
 		x = Int(property_var + '.' + str(i))
 		term1 = Implies(Not(x==property_val), get_encoding_rate(model, i+1))
@@ -246,3 +248,53 @@ def scaffold(graph, model, bound_limit, count_limit, property_var, property_val,
 		#if flag: 
 		#	curr_bound = 1
 
+
+def check_sat(model, state_vector, bound, target_var, target_value):
+    vars = []
+    for r in model.reactions_dict():
+        x = Int("n" + str(r))
+        vars.append(x)
+    
+    constraints = []
+    #first constraint (n1,n2,...>=0)
+    for i in vars:
+        constraints.append(i>=0)
+
+    #second constraint (n1+n2+...=bound)
+    sum = 0
+    for i in vars:
+        sum = sum + i
+    constraints.append((sum==bound))
+    
+    #third constraint (reaching the target)
+    vars = []
+    for i, s in enumerate(model.species_vector()):
+        if s==target_var:
+            target_index = i
+    for i, r in enumerate(model.reactions_dict()):
+        if model.reactions_dict()[r][2][target_index]!=0:
+            vars.append([Int("n" + str(r)), model.reactions_dict()[r][2][target_index]])
+    sum = state_vector[target_index]
+    for i in vars:
+        sum = sum + i[0]*i[1]
+    constraints.append(sum==target_value)
+    
+    #fourth constraint (species population >=0)
+    for i, s in enumerate(model.species_vector()):
+        if s==target_var:
+            continue
+        vars = []
+        for j, r in enumerate(model.reactions_dict()):
+            if model.reactions_dict()[r][2][i]!=0:
+                vars.append([Int("n" + str(r)), model.reactions_dict()[r][2][i]])
+        sum = state_vector[i]
+        for j in vars:
+            sum = sum + j[0]*j[1]
+        constraints.append(sum>=0) 
+
+    solver = Solver()
+    solver.add(And(constraints))
+    if (solver.check()==sat):
+        return True
+    else:
+        return False

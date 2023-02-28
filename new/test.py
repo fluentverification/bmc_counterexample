@@ -1,58 +1,66 @@
 from z3 import *
+import Models
+import numpy as np
 
-def check_satisfiability():
-    # create z3 integer variables for x, y, and z
-    x, y, z = Ints('x y z')
+def check_sat(model, state_vector, bound, target_var, target_value):
+    vars = []
+    for r in model.reactions_dict():
+        x = Int("n" + str(r))
+        vars.append(x)
     
-    # create a solver instance
+    constraints = []
+    #first constraint (n1,n2,...>=0)
+    for i in vars:
+        constraints.append(i>=0)
+
+    #second constraint (n1+n2+...=bound)
+    sum = 0
+    for i in vars:
+        sum = sum + i
+    constraints.append((sum==bound))
+    
+    #third constraint (reaching the target)
+    vars = []
+    for i, s in enumerate(model.species_vector()):
+        if s==target_var:
+            target_index = i
+    for i, r in enumerate(model.reactions_dict()):
+        if model.reactions_dict()[r][2][target_index]!=0:
+            vars.append([Int("n" + str(r)), model.reactions_dict()[r][2][target_index]])
+    sum = state_vector[target_index]
+    for i in vars:
+        sum = sum + i[0]*i[1]
+    constraints.append(sum==target_value)
+    
+    #fourth constraint (species population >=0)
+    for i, s in enumerate(model.species_vector()):
+        if s==target_var:
+            continue
+        vars = []
+        for j, r in enumerate(model.reactions_dict()):
+            if model.reactions_dict()[r][2][i]!=0:
+                vars.append([Int("n" + str(r)), model.reactions_dict()[r][2][i]])
+        sum = state_vector[i]
+        for j in vars:
+            sum = sum + j[0]*j[1]
+        constraints.append(sum>=0) 
+
     solver = Solver()
-    
-    # add the constraint that x^2 + y^2 = z^2
-    solver.add(x**2 + y**2 == z**2)
-    
-    # check for satisfiability
-    if solver.check() == sat:
-        # if there is a satisfiable assignment, print the values of x, y, and z
-        model = solver.model()
-        print(f"x = {model[x]}, y = {model[y]}, z = {model[z]}")
+    solver.add(And(constraints))
+    if (solver.check()==sat):
+        return True
     else:
-        print("No satisfiable assignment exists.")
-
-from z3 import *
-
-def check_satisfiability_nonzero():
-    # create z3 integer variables for x, y, and z
-    x, y, z = Ints('x y z')
-    
-    # create a solver instance
-    solver = Solver()
-    
-    # add the constraint that x^2 + y^2 = z^2
-    solver.add(x**2 + y**2 == z**2)
-    
-    # add constraints to ensure that x, y, and z are non-zero
-    solver.add(x != 0)
-    solver.add(y != 0)
-    solver.add(z != 0)
-    
-    # check for satisfiability
-    if solver.check() == sat:
-        # if there is a satisfiable assignment, print the values of x, y, and z
-        model = solver.model()
-        print(f"x = {model[x]}, y = {model[y]}, z = {model[z]}")
-    else:
-        print("No satisfiable assignment exists.")
+        return False
+           
 
 
-for i in range(1, 5):
-    print(i)
+constructor = getattr(Models, "yeast_polarization")
+model = constructor()
 
-S = [ [Bool(f"S_{i}^{j}") for j in range(3)] for i in range(4) ]
-print (S[0][0])
+state_vector = model.initial_state()
 
-def get_encoding(i):
-    # implement the encoding for taking allowable transitions until it reaches bound i
-    pass
+for i in range(120):
+ print (str(i) + str(check_sat(model, state_vector, bound=i, target_var="Gbg", target_value=50)))
 
 # def path_probability_encoding(L, U, P):
 #     # define state variables S_i^j

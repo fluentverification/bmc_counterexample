@@ -81,27 +81,55 @@ excluded_paths = []
 with open('./results/' + model_name + '/' + model_name + '.results', mode = 'w', encoding= 'ascii') as f:
     f.truncate()
 	
-    L = 19
-    U = 19
+    L = 100
+    U = 102
     
     solver = Solver()
+    initial_state_encoding = get_initial_state(model)
     solver.add(get_initial_state(model))
     solver.add(Real("rate.0")==1.0)
     solver.add(get_encoding_LU(model, L, U, property_var, property_val))
+    pt = 15000
 
-
+    #Enzym
+    reaction_subset = [1,1,1,1,1,1]
+    #Yeast
+    #reaction_subset = [1,1,1,1,1,1,1,1]
+    #circuit
+    #reaction_subset = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+    #motility
+    #reaction_subset = [1,1,1,1,1,1,1,1,1,1,1,1]
     while prob <= prob_bound:
 
-        while (solver.check() == sat):
+        if (pt>1):
+            print(pt)
+        while (solver.check(Real("rate.19")>pt) == sat):
             count = count + 1
             path = solver.model()
-            print(path[Real("rate.18")])
+            # for i in range(U+1):
+            #     print('========')
+            #     print(i)
+            #     print(path[Real("rate." + str(i))])
+
             ep = exclude_path(path)
             solver.add(ep)
             graph.add_path(path)
+            #initial state of a path can be any node in the graph
+            # init_const = []
+            # for n in graph.node_list:
+            #     var_values = []
+            #     if n.var_dict[property_var] == property_val: 
+            #         continue
+            #     for s in n.var_dict: 
+            #         x = Int (s + '.0')
+            #         temp_const = (x == n.var_dict[s])
+            #         var_values.append(temp_const)
+            #     init_const.append(And(var_values))
+            # initial_state_encoding = Or(init_const)
+            #print(solver)
 
             # if (count % start_scaffold == 0):
-            #     scaffold(graph, model, bound-1, scaffold_count_limit, property_var, property_val, reaction_subset)
+            #     scaffold(graph, model, U-1, scaffold_count_limit, property_var, property_val, reaction_subset)
 
             prob = graph.model_check(model, model_name, prism, csl_prop)
             prob_sink = graph.model_check(model, model_name, prism, csl_prop_sink)
@@ -125,6 +153,9 @@ with open('./results/' + model_name + '/' + model_name + '.results', mode = 'w',
             f.write('\n')
             f.write('='*40)
             f.write('\n')
+
+        if pt>0:
+            pt = pt/2.0
 
 
         elapsed_time = time.time()
