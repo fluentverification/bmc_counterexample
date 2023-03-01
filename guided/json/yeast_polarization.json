@@ -1,0 +1,20 @@
+{
+	"model" : "yeast_polarization",
+	"starting_bound" : 100,
+	"prism_binary" : "/home/ubu/projects/probmc/prism-4.5/prism/bin/prism",
+	"csl_property" : "P=? [true U<=20 Gbg=50]",
+	"csl_property_sink" : "P=? [Gbg<50 U<=20 (\"sink\")]",
+	"property_variable" : "Gbg",
+	"property_value" : "50",
+	"probability_bound" : "0.99",
+	"model_check_step" : "1",
+	"scaffold_bound_limit" : "4",
+	"scaffold_count_limit" : "200",
+	"start_scaffold" : "5",
+	"model_bound_prob_threshold" : "1E-80",
+	"A1" : "1,1,1,1,1,1,1,1",
+	"A2" : "1,1,1,1,1,1,1,1",
+	"A3" : "1,1,1,1,1,1,1,1",
+	"A4" : "1,1,1,1,1,1,1,1",
+	"A5" : "1,1,1,1,1,1,1,1"
+}

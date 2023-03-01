@@ -1,0 +1,13 @@
+{
+	"model" : "single_species",
+	"starting_bound" : 30,
+	"prism_binary" : "/home/ubu/projects/probmc/prism-4.7-src/prism/bin/prism",
+	"csl_property" : "P=? [true U<=100 S2=70]",
+	"property_variable" : "S2",
+	"property_value" : "70",
+	"probability_bound" : "0.99",
+	"model_check_step" : "5",
+	"construct_path_bound" : "3",
+	"base" : "40",
+	"step" : "30"
+}
