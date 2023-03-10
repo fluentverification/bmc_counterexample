@@ -89,7 +89,7 @@ with open('./results/' + model_name + '/' + model_name + '.results', mode = 'w',
     solver.add(get_initial_state(model))
     solver.add(Real("rate.0")==1.0)
     solver.add(get_encoding_LU(model, L, U, property_var, property_val))
-    pt = 15000
+    pt = 1000
 
     #Enzym
     reaction_subset = [1,1,1,1,1,1]

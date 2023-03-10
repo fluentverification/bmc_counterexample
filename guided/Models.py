@@ -1,5 +1,58 @@
 import numpy as np
 
+class test: 
+	def __init__(self): 
+		
+		###########################################################
+		####### change this block for adding a new model ##########
+		self.species_vector_ = ['S1', 'S2', 'S3']
+		
+		#same size as species_vector_
+		self.initial_state_ = [1, 1, 1]
+
+		#each Ri_in and Ri_out is the same size as species_vector
+		R1_in  = [1, 0, 0]
+		R1_out = [1, 1, 1]
+
+		R2_in  = [1, 0, 0]
+		R2_out = [1, 0, 1]
+
+		
+
+		R = [[R1_in, R1_out], [R2_in, R2_out]]
+		
+		#same size as R
+		self.reaction_rates_ = [9.0, 1.0]
+		############# end of model descriptioon block #############
+		###########################################################
+		###########################################################
+
+		self.reactions = {}
+		for i, e in enumerate(R):
+			R_effect = np.array(np.array(e[1])-np.array(e[0])).tolist()
+			self.reactions[i+1] = [e[0], e[1], R_effect] 
+	
+	def species_vector(self):
+		return  self.species_vector_
+
+	def initial_state(self):
+		return self.initial_state_
+
+	def reactions_dict(self): 
+		return self.reactions
+
+	def reaction_rates(self): 
+		return self.reaction_rates_
+
+
+
+
+###############################################################
+#+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
+###############################################################
+
+
+
 #species cannot have dot "." in their name as it is used internally
 #by the program to keep the state of the species through time(steps)
 
