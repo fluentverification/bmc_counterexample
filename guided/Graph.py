@@ -4,7 +4,7 @@ import math
 import subprocess
 
 class node:
-	def __init__(self, var_dict, parent=None): 
+	def __init__(self, var_dict, parent=None, child = None, r_dict=None, taken_reaction=None): 
 		#a dictionary assining values to all of model's variables
 		self.var_dict = var_dict	
 		self.is_initial = False
@@ -13,6 +13,9 @@ class node:
 		#a list containing all the edges going out of the node
 		self.out_edges = []
 		self.parent = parent
+		self.r_dict = r_dict
+		self.taken_reaction = taken_reaction
+		self.child = child
 
 	def make_initial(self): 
 		self.is_initial = True
@@ -25,8 +28,13 @@ class node:
 	def set_index(self, index_): 
 		self.index = index_
 
-	def add_out_edge(self, edge_): 
-		self.out_edges.append(edge_)
+	def add_out_edge(self, edge_):
+		flag = True
+		for e in self.out_edges:
+			if e.equals(edge_):
+				flag = False
+		if flag:
+			self.out_edges.append(edge_)
 
 
 #an edge has two nodes n1:source node, n2: destination node
@@ -142,7 +150,7 @@ class graph:
 		#the states file (.sta)
 		states_file_name = file_name_prefix + '.sta'
 		with open(states_file_name, mode='w', encoding='ascii') as f:
-			f.truncate()
+			f.truncate(0)
 			
 			#first line of the .sta file shows the variable formats
 			state_vector_line = '('
@@ -182,7 +190,7 @@ class graph:
 		#the labels file (.lab)
 		labels_file_name = file_name_prefix + '.lab'
 		with open(labels_file_name, mode='w', encoding='ascii') as f:
-			f.truncate()
+			f.truncate(0)
 			sink_state_index = self.node_list[-1].index + 1
 			lab_line = '0="init" 2="sink"'
 			f.write(lab_line)
@@ -248,7 +256,7 @@ class graph:
 
 		trans_file_name = file_name_prefix + '.tra'
 		with open(trans_file_name, mode='w', encoding='ascii') as f:
-			f.truncate()
+			f.truncate(0)
 			num_transitions = 0
 			for n in trans_list: 
 				for e in n: 
