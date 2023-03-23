@@ -206,7 +206,7 @@ while (True):
         break
     else:
         min_bound = min_bound + 1
-
+print(min_bound)
 #print (min_bound)
 #pointing the current node to the initial state of the graph
 initial_state_vector = model.initial_state()
