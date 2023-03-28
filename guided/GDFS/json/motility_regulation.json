@@ -1,0 +1,11 @@
+{
+	"model" : "motility_regulation",
+	"starting_bound" : 9,
+	"prism_binary" : "/home/ubu/projects/probmc/prism-4.7-src/prism/bin/prism",
+	"csl_property" : "P=? [true U<=10 CodY=19]",
+	"property_variable" : "CodY",
+	"property_variable_index" : "6",
+	"property_value" : "19",
+	"model_check_step" : "1",
+	"max_combination" : "9"
+}

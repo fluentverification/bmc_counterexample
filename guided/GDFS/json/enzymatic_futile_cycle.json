@@ -1,0 +1,11 @@
+{
+	"model" : "enzymatic_futile_cycle",
+	"starting_bound" : 19,
+	"prism_binary" : "/home/ubu/projects/probmc/prism-4.7-src/prism/bin/prism",
+	"csl_property" : "P=? [true U<=100 S5=40]",
+	"property_variable" : "S5",
+	"property_variable_index" : "4",
+	"property_value" : "40",
+	"model_check_step" : "1",
+	"max_combination" : "6"
+}

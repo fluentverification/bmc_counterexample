@@ -20,4 +20,4 @@ def get_reaction_rate(var_values, model, reaction):
 class set_(set):
     def __contains__(self, value):
         # Override the __contains__ method
-        return any(value.equals(x) for x in self)
+        return any(value == x for x in self)
