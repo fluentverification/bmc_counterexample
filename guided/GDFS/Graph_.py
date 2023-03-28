@@ -8,12 +8,11 @@ class Node:
         self.initial_state = False
         self.out_edges = {}
         self.index = -1
-        self.bound = -1
         self.reachability_probability = 0
 
     def add_edge(self, edge):
         edge_tuple = edge.get_tuple()
-        if edge_tuple not in self.neighbors:
+        if edge_tuple not in self.out_edges:
             self.out_edges[edge_tuple] = edge
 
     def __eq__(self, node) -> bool:
@@ -35,12 +34,12 @@ class Edge:
         return src_check and dst_check and reaction_check
     
     def get_tuple(self):
-        return self.src.var_values + self.dst.var_values + (self.reaction)
+        return self.src.var_values + self.dst.var_values + (self.reaction,)
 
 
 
 class Graph:
-    def __init(self):
+    def __init__(self):
         self.nodes = {}
         self.edges = {}
 
@@ -54,9 +53,24 @@ class Graph:
             return (True, self.edges[edge_tuple])
         return (False, None)
     
+    def add_node(self, node):
+        if node.var_values not in self.nodes:
+            self.nodes[node.var_values] = node
+            return node
+        else:
+            return self.nodes[node.var_values]
+
+    def add_edge(self, edge):
+        edge.src = self.add_node(edge.src)
+        edge.dst = self.add_node(edge.dst)
+        edge_tuple = edge.get_tuple()
+        if edge_tuple not in self.edges:
+            self.edges[edge_tuple] = edge
+            self.nodes[edge.src.var_values].add_edge(edge)
+    
     def to_file_prism_format(self, model, file_name_prefix):
         # the states file (.sta) ###########################################
-        species_vector = model.get_species_vector()
+        species_vector = model.get_species_tuple()
         states_file_name = file_name_prefix + '.sta'     
         with open(states_file_name, mode='w', encoding='ascii') as f:
             f.truncate(0)       
@@ -72,12 +86,12 @@ class Graph:
 
             #every other line is a unique state
             index = 0
-            for n in self.nodes:
-                self.nodes[n].index = index
-                if self.nodes[n].initial_state:
+            for n in self.nodes.values():
+                n.index = index
+                if n.initial_state:
                     initial_state_index = index
                 line = str(index) + ':('
-                for j in n.get_var_values(): 
+                for j in n.var_values: 
                     line = line + str(j) + ','
                 line_list = list(line)
                 line_list[-1] = ')'
@@ -85,6 +99,16 @@ class Graph:
                 f.write(line)
                 f.write('\n')
                 index = index + 1
+            #adding the sink state
+            line = str(index) + ':('
+            for i in range (len(model.get_species_tuple())):
+                line = line + '-1,'
+            line_list = list(line)
+            line_list[-1] = ')'
+            line = ''.join(line_list)
+            f.write(line)
+            f.write('\n')
+            
         ##########################################################################
 
         # the labels file (.lab) #################################################
@@ -95,7 +119,8 @@ class Graph:
             f.write(lab_line)
             f.write('\n')
             f.write(str(initial_state_index) + ': 0')
-            f.write(str(-2) + ': 2')
+            f.write('\n')
+            f.write(str(index) + ': 2')
             f.close()
         ##########################################################################
 
@@ -119,13 +144,13 @@ class Graph:
                 remainin_rate = total_rate - current_rate
                 if remainin_rate<=0:
                     continue
-                line = str(n.index) + ' ' + '-2' + ' ' + remainin_rate
+                line = str(n.index) + ' ' + str(index) + ' ' + str(remainin_rate)
                 f.write(line)
                 f.write('\n')
             f.close()
 
-    def check_probability(self, file_name_prefix, prism_bin, csl_prop):
-        self.to_file_prism_format(file_name_prefix)
+    def check_probability(self, model, file_name_prefix, prism_bin, csl_prop):
+        self.to_file_prism_format(model, file_name_prefix)
         stdout_result = subprocess.run([prism_bin, '-importmodel', file_name_prefix + ".all", '-pf', csl_prop, '-ctmc'], stdout=subprocess.PIPE)
         stdout_result = stdout_result.stdout.decode('utf-8')
         stdout_result = stdout_result.splitlines()
