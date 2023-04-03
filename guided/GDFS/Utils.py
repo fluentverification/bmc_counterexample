@@ -1,25 +1,14 @@
-from z3 import *
-from Models import enzymatic_futile_cycle, motility_regulation, yeast_polarization
+from z3 import Int, And, Solver, sat
 import itertools
 
 def get_total_outgoing_rate(var_values, model):
     rate = 0
-    for i, r in enumerate(model.get_reactions_vector()):
-        comb = 1
-        for j, coefficient in enumerate(r[0]):
-            if coefficient>0:
-                for c in range(coefficient):
-                    comb = comb * var_values[j]
-        rate = rate + model.get_reaction_rates()[i] * comb
+    for i in range(len(model.get_reactions_vector())):
+        rate = rate + model.get_reaction_rate(var_values, i)
     return rate
 
 def get_reaction_rate(var_values, model, reaction):
-    rate = model.get_reaction_rates()[reaction]
-    for i, coefficient in enumerate(model.get_reactions_vector()[reaction][0]):
-        if coefficient>0:
-            for c in range(coefficient):
-                rate = rate * var_values[i]
-    return rate
+    return model.get_reaction_rate(var_values, reaction)
 
 def is_target(var_values, target_index, target_value):
     if var_values[target_index] == target_value:
@@ -60,9 +49,9 @@ def get_min_max(model, bound, target_index, target_value, maximum_comb):
     #third constraint (reaching the target)
     vars = []
     for i, r in enumerate(model.get_reactions_vector()):
-        if r[2][target_index]!=0:
-            vars.append([Int("n_i_" + str(i)), r[2][target_index]])
-            vars.append([Int("n_t_" + str(i)), r[2][target_index]])
+        if r[target_index]!=0:
+            vars.append([Int("n_i_" + str(i)), r[target_index]])
+            vars.append([Int("n_t_" + str(i)), r[target_index]])
     sum = model.get_initial_state()[target_index]
     for i in vars:
         sum = sum + i[0]*i[1]
@@ -72,10 +61,10 @@ def get_min_max(model, bound, target_index, target_value, maximum_comb):
         vars_i = []
         vars = []
         for j, r in enumerate(model.get_reactions_vector()):
-            if r[2][i]!=0:
-                vars.append([Int("n_i_"+str(j)), r[2][i]])
-                vars.append([Int("n_t_"+str(j)), r[2][i]])
-                vars_i.append([Int("n_i_"+str(j)), r[2][i]])
+            if r[i]!=0:
+                vars.append([Int("n_i_"+str(j)), r[i]])
+                vars.append([Int("n_t_"+str(j)), r[i]])
+                vars_i.append([Int("n_i_"+str(j)), r[i]])
         sum = model.get_initial_state()[i]
         for j in vars:
             sum = sum + j[0]*j[1]
@@ -102,14 +91,14 @@ def get_min_max(model, bound, target_index, target_value, maximum_comb):
                 max_value = max_value + model.get_initial_state()[j]
             for v in vars:
                 for j in e:
-                    max_value = max_value + (model.get_reactions_vector()[v[0]][2][j] * v[1])
+                    max_value = max_value + (model.get_reactions_vector()[v[0]][j] * v[1])
             min_max[e][1] = max_value
             sum = 0
             for j in e:
                 sum = sum + model.get_initial_state()[j]
             for v in vars:
                 for j in e:
-                    sum = sum + (Int(v[2]) * model.get_reactions_vector()[v[0]][2][j])
+                    sum = sum + (Int(v[2]) * model.get_reactions_vector()[v[0]][j])
             solver.add(sum>max_value)
         solver.pop()
     for i, e in enumerate(min_max):
@@ -126,18 +115,16 @@ def get_min_max(model, bound, target_index, target_value, maximum_comb):
                 min_value = min_value + model.get_initial_state()[j]
             for v in vars:
                 for j in e:
-                    min_value = min_value + (model.get_reactions_vector()[v[0]][2][j] * v[1])
+                    min_value = min_value + (model.get_reactions_vector()[v[0]][j] * v[1])
             min_max[e][0] = min_value
             sum = 0
             for j in e:
                 sum = sum + model.get_initial_state()[j]
             for v in vars:
                 for j in e:
-                    sum = sum + (Int(v[2]) * model.get_reactions_vector()[v[0]][2][j])
+                    sum = sum + (Int(v[2]) * model.get_reactions_vector()[v[0]][j])
             solver.add(sum<min_value)
         solver.pop()
-
-
     return min_max
 
 def check_sat(var_values, min_max):
@@ -148,13 +135,3 @@ def check_sat(var_values, min_max):
         if value > min_max[e][1] or value < min_max[e][0]:
             return False
     return True
-
-
-target_index = 5
-target_value = 50
-#original bound is 100
-bound = 103
-model = yeast_polarization()
-#print('here')
-print(get_min_max(model = model, bound = bound, target_index=target_index, target_value=target_value, maximum_comb=100))
-# # print(get_subsets((1,2,3,4), 1, 4))

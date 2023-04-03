@@ -9,6 +9,7 @@ class Node:
         self.out_edges = {}
         self.index = -1
         self.reachability_probability = 0
+        self.incoming_edge = None
 
     def add_edge(self, edge):
         edge_tuple = edge.get_tuple()
@@ -150,8 +151,8 @@ class Graph:
             f.close()
 
     def check_probability(self, model, file_name_prefix, prism_bin, csl_prop):
-        self.to_file_prism_format(model, file_name_prefix)
-        stdout_result = subprocess.run([prism_bin, '-importmodel', file_name_prefix + ".all", '-pf', csl_prop, '-ctmc'], stdout=subprocess.PIPE)
+        self.to_file_prism_format(model, "./results/" + file_name_prefix + "/" + file_name_prefix)
+        stdout_result = subprocess.run([prism_bin, '-importmodel', "./results/" + file_name_prefix + "/" + file_name_prefix + ".all", '-pf', csl_prop, '-ctmc'], stdout=subprocess.PIPE)
         stdout_result = stdout_result.stdout.decode('utf-8')
         stdout_result = stdout_result.splitlines()
         result = ''
