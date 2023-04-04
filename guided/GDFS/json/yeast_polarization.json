@@ -1,10 +1,10 @@
 {
-	"model" : "yeast_polarization",
+	"model_path" : "./yeast_unb.sm",
+	"model_name" : "yeast_polarization",
 	"starting_bound" : 100,
 	"prism_binary" : "/home/ubu/projects/probmc/prism-4.7-src/prism/bin/prism",
 	"csl_property" : "P=? [true U<=20 Gbg=50]",
 	"target_variable" : "Gbg",
-	"target_variable_index" : "5",
 	"target_value" : "50",
 	"model_check_step" : "10000",
 	"max_combination" : "9"
