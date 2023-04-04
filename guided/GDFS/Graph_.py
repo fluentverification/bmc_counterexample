@@ -1,5 +1,8 @@
-from Utils import get_total_outgoing_rate
+from Utils import is_target, get_total_outgoing_rate, get_reaction_rate
 import subprocess
+import stormpy
+import numpy as np
+import scipy.sparse as sp
 
 
 class Node:
@@ -164,4 +167,64 @@ class Graph:
             result = result[:result.find(' ')]
         result = float(result)
         return result
+
+    #Uses STORM to model-check. Has errors!! debug before deploying
+    def model_check(self, model, target_index, target_value, property):
+        num_nodes = len(self.nodes)
+        exit_rates = np.empty(num_nodes+1, dtype='float64')
+        rate_matrix = sp.csr_matrix((num_nodes+1, num_nodes+1), dtype='float64')
+        rate_matrix = rate_matrix.tolil()
+        rate_matrix = np.zeros((num_nodes+1, num_nodes+1), dtype='float64')
+        target_states = []
+        init_states = []
+        property = stormpy.parse_properties_without_context(property)[0]
+    
+        sink_node_tuple = tuple()
+        for i in range(len(model.get_species_tuple())):
+            sink_node_tuple = sink_node_tuple + (-1,)
+        sink_node = Node()
+        sink_node.var_values = sink_node_tuple
+        sink_node.index = num_nodes
+        self.add_node(sink_node)
+
+        index = 0
+        for n in self.nodes.values():
+            n.index = index
+            index = index + 1
+            if n.initial_state:
+                init_states.append(n.index)
+            if is_target(n.var_values, target_index, target_value):
+                target_states.append(n.index)
+    
+        if len(init_states) != 1:
+            raise Exception('|number of initial states does not equal to 1|')
+    
+        for n in self.nodes.values():
+            sum_out_rates = 0
+            for e in n.out_edges.values():
+                rate_matrix[n.index, e.dst.index] = e.rate
+                sum_out_rates = sum_out_rates + e.rate
+            total_outgoing_rate = get_total_outgoing_rate(n.var_values, model)
+            exit_rates[n.index] = total_outgoing_rate
+            remaining_rate = total_outgoing_rate - sum_out_rates
+            if remaining_rate>0:
+                rate_matrix[n.index, sink_node.index] = remaining_rate
+    
+        state_labeling = stormpy.storage.StateLabeling(num_nodes+1)
+        state_labels = {'init', 'target'}
+        for label in state_labels:
+            state_labeling.add_label(label)
+
+        for i in init_states:
+            state_labeling.add_label_to_state('init', i)
+    
+        for i in target_states:
+            state_labeling.add_label_to_state('target', i)
+    
+        rate_matrix = stormpy.build_sparse_matrix(rate_matrix)
+        components = stormpy.SparseModelComponents(transition_matrix=rate_matrix, state_labeling=state_labeling, rate_transitions=True)
+        components.exit_rates = exit_rates.tolist()
+        ctmc = stormpy.storage.SparseCtmc(components)
+        result = stormpy.model_checking(ctmc, property)
+        return result.at(init_states[0])
 

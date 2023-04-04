@@ -1,4 +1,3 @@
-from Utils import get_reaction_rate, get_total_outgoing_rate
 from Utils import get_min_max
 from Search_Algos import ggdfs_prob, ggdfs_prob_trace_back, ggdfs_trace_back, ggdfs
 from Graph_ import Node, Edge, Graph
@@ -20,7 +19,7 @@ target_value = int(json_data['target_value'])
 mc_step = int(json_data['model_check_step'])
 max_comb = int(json_data['max_combination'])
 
-model = Model(model_path) 
+model = Model(model_path)
 target_index = model.species_to_index_dict[target_var]
 
 if not os.path.exists('./results'): 

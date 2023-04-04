@@ -1,27 +1,31 @@
+import re
 import stormpy
 import stormpy.core
 import __future__
 
+def replace_whole_word(expression, s1, s2):
+    return re.sub(r"\b%s\b" % s1, s2, expression)
+
 def evaluate_expression_arithmetic(expression, variables):
-    expression = expression.replace('^', '**')
+    expression = replace_whole_word(expression, '\^', '**')
     # Create a replacement dictionary from the variables dictionary
     replacement_dict = {var: str(val) for var, val in variables.items()}
     # Replace variables in the expression string using the replacement dictionary
     for var, val in replacement_dict.items():
-        expression = expression.replace(var, val)
+        expression = replace_whole_word(expression, var, val)
     # Evaluate the expression and return the result
     return eval(compile(expression, '<string>', 'eval', __future__.division.compiler_flag))
 
 def evaluate_expression_logical(expression, variables):
-    expression = expression.replace('&', 'and')
-    expression = expression.replace('|', 'or')
-    expression = expression.replace(' = ', ' == ')
-    expression = expression.replace('true', 'True')
+    expression = replace_whole_word(expression, '\&', 'and')
+    expression = replace_whole_word(expression, '\|', 'or')
+    expression = replace_whole_word(expression, '\=', '==')
+    expression = replace_whole_word(expression, 'true', 'True')
     # Create a replacement dictionary from the variables dictionary
     replacement_dict = {var: str(val) for var, val in variables.items()}
     # Replace variables in the expression string using the replacement dictionary
     for var, val in replacement_dict.items():
-        expression = expression.replace(var, val)
+        expression = replace_whole_word(expression, var, val)
     # Evaluate the expression and return the result
     return eval(expression)
 

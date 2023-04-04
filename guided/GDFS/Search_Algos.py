@@ -8,7 +8,7 @@ def construct_trace(graph, node):
         graph.add_edge(curr_node.incoming_edge)
         curr_node = curr_node.incoming_edge.src
 
-#guided greedy DFS where all the nodes allowed by the minmax dictionary search stack. 
+#guided greedy DFS where all the nodes allowed by the minmax dictionary are added to search stack. 
 #All nodes added to the search stack are added to the graph.
 def ggdfs(graph, start_node, model, target_index, target_value, min_max):
     flag = False
@@ -16,7 +16,6 @@ def ggdfs(graph, start_node, model, target_index, target_value, min_max):
     stack = [start_node]
     while stack:
         node = stack.pop()
-        #print(node.get_var_values())
         if not node.var_values in visited:
             visited[node.var_values] = node
             if is_target(node.var_values, target_index, target_value):
