@@ -26,6 +26,9 @@ class Node:
 
     def __eq__(self, node) -> bool:
         return self.var_values == node.var_values
+
+    def __lt__(self, node):
+        return False
         
     
 
