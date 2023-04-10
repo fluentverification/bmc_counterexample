@@ -1,5 +1,5 @@
 {
-	"model_path" : "./yeast_unb.sm",
+	"model_path" : "./models/yeast_unb.sm",
 	"model_name" : "yeast_polarization",
 	"starting_bound" : 100,
 	"prism_binary" : "/home/ubu/projects/probmc/prism-4.7-src/prism/bin/prism",

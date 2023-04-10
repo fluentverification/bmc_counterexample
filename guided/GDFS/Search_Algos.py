@@ -1,5 +1,5 @@
 from Utils import is_target, get_reaction_rate, get_total_outgoing_rate, check_sat
-from Graph_ import Node, Edge, Graph
+from Graph import Node, Edge, Graph
 def construct_trace(graph, node):
     curr_node = node
     flag = True
@@ -7,6 +7,23 @@ def construct_trace(graph, node):
         flag = False
         graph.add_edge(curr_node.incoming_edge)
         curr_node = curr_node.incoming_edge.src
+
+def post_process(graph, target_index, target_value):
+    new_graph = Graph()
+    visited = {}
+    stack = []
+    for n in graph.nodes.values():
+        if is_target(n.var_values, target_index, target_value):
+            new_graph.add_node(n)
+            stack.append(n)
+    while stack:
+        curr_node = stack.pop()
+        visited[curr_node.var_values] = curr_node
+        for e in curr_node.in_edges.values():
+            new_graph.add_edge(e)
+            if not e.src.var_values in visited:
+                stack.append(e.src)
+    return new_graph
 
 #guided greedy DFS where all the nodes allowed by the minmax dictionary are added to search stack. 
 #All nodes added to the search stack are added to the graph.
@@ -50,20 +67,16 @@ def ggdfs(graph, start_node, model, target_index, target_value, min_max):
                 if neighbor.var_values not in visited:
                     stack.append(neighbor)
     return flag
-
-#guided greedy DFS where all the nodes allowed by the minmax dictionary search stack. 
-#Whenever the search reaches a target or a node already in the graph,
-#the algorithm traces back and adds all the edges to the graph. the size of the returned graph would
-#be smaller than ggdfs
-def ggdfs_trace_back(graph, start_node, model, target_index, target_value, min_max):
+    
+#guided greedy DFS where all the nodes allowed by the minmax dictionary are added to search stack. 
+#All nodes added to the search stack are added to the graph.
+def ggdfs_prob(graph, start_node, model, target_index, target_value, min_max, prob_thresh, size):
     flag = False
     visited = {}
-    stack = [start_node]
+    stack = [(start_node, 1.0)]
     while stack:
-        node = stack.pop()
-        if (graph.get_node(node.var_values)[0] or is_target(node.var_values, target_index, target_value)):
-            if (not node.initial_state):
-                construct_trace(graph, node)
+        node, prob = stack.pop()
+        
         if not node.var_values in visited:
             visited[node.var_values] = node
             if is_target(node.var_values, target_index, target_value):
@@ -76,35 +89,46 @@ def ggdfs_trace_back(graph, start_node, model, target_index, target_value, min_m
                     total_rate = get_total_outgoing_rate(node.var_values, model)
                     if rate > 0:
                         dst_var_values = [None] * len(model.get_species_tuple())
-                        for j, coefficient in enumerate(r[2]):
+                        for j, coefficient in enumerate(r):
                             dst_var_values[j] = node.var_values[j] + coefficient
                         dst_var_values = tuple(dst_var_values)
-                        if check_sat(dst_var_values, min_max):
+                        if check_sat(dst_var_values, min_max) and prob>prob_thresh:
                             new_node = Node()
                             new_node.var_values = dst_var_values
-                            new_node.reachability_probability = float(rate/total_rate)*node.reachability_probability
+                            new_node.reachability_probability = (float(rate/total_rate)*prob)
                             edge = Edge()
                             edge.src = node
                             edge.dst = new_node
                             edge.rate = rate
                             edge.reaction = i
-                            new_node.incoming_edge = edge
-                            neighbors.append(new_node)
+
+                            if prob>prob_thresh:
+                                if new_node.var_values in visited:
+                                    old_prob = visited[new_node.var_values].reachability_probability
+                                    if new_node.reachability_probability > old_prob:
+                                        del visited[new_node.var_values]
+
+                                # if new_node.var_values in visited:
+                                #     del visited[new_node.var_values]
+                                if not graph.get_edge(edge.get_tuple())[0]:
+                                    graph.add_edge(edge)
+                                neighbors.append(new_node)
             neighbors = sorted(neighbors, key=lambda n: n.reachability_probability, reverse = True)
             for neighbor in neighbors:
                 if neighbor.var_values not in visited:
-                    stack.append(neighbor)
+                    stack.append((neighbor, new_node.reachability_probability))
     return flag
 
-#guided greedy DFS where all the nodes with reachability probability greater than the threshold 
-#are added to the search stack. All nodes added to the search stack are added to the graph.
-def ggdfs_prob(graph, start_node, model, target_index, target_value, prob_thresh, min_max):
+
+
+def ggdfs_prob(graph, start_node, model, target_index, target_value, min_max, prob_thresh, size):
     flag = False
     visited = {}
-    stack = [start_node]
+    stack = [(start_node, 1.0)]
+
     while stack:
-        node = stack.pop()
-        if not node.var_values in visited:
+        node, prob = stack.pop()
+        if node.var_values not in visited:
             visited[node.var_values] = node
             if is_target(node.var_values, target_index, target_value):
                 flag = True
@@ -114,18 +138,14 @@ def ggdfs_prob(graph, start_node, model, target_index, target_value, prob_thresh
                 for i, r in enumerate(model.get_reactions_vector()):
                     rate = get_reaction_rate(node.var_values, model, i)
                     total_rate = get_total_outgoing_rate(node.var_values, model)
-                    if rate > 0:
+                    if rate > 0 :
                         dst_var_values = [None] * len(model.get_species_tuple())
-                        for j, coefficient in enumerate(r[2]):
+                        for j, coefficient in enumerate(r):
                             dst_var_values[j] = node.var_values[j] + coefficient
                         dst_var_values = tuple(dst_var_values)
-                        if check_sat(dst_var_values, min_max):
+                        if check_sat(dst_var_values, min_max) and ((prob*float(rate/total_rate))>prob_thresh):
                             new_node = Node()
                             new_node.var_values = dst_var_values
-                            if graph.get_node(dst_var_values)[0]:
-                                new_node = graph.get_node(dst_var_values)[1]
-                            new_node.reachability_probability = new_node.reachability_probability + float(rate/total_rate)*node.reachability_probability
-
                             edge = Edge()
                             edge.src = node
                             edge.dst = new_node
@@ -133,60 +153,10 @@ def ggdfs_prob(graph, start_node, model, target_index, target_value, prob_thresh
                             edge.reaction = i
 
                             if not graph.get_edge(edge.get_tuple())[0]:
-                                graph.add_edge(edge)
-                                # node.reachability_probability = node.reachability_probability + float(rate/total_rate)
+                                    graph.add_edge(edge)
+                            neighbors.append((new_node, prob*float(rate/total_rate)))
                 
-                            if new_node.reachability_probability>= prob_thresh:
-                                neighbors.append(new_node)
-            neighbors = sorted(neighbors, key=lambda n: n.reachability_probability, reverse = True)
-            for neighbor in neighbors:
-                if neighbor.var_values not in visited:
-                    stack.append(neighbor)
-    return flag
-
-#guided Greedy DFS where all the nodes with reachability probability greater than the threshold 
-#are added to the search stack. Whenever the search reaches a target or a node already in the graph,
-#the algorithm traces back and adds all the edges to the graph. the size of the returned graph would
-#be smaller than ggdfs_prob
-def ggdfs_prob_trace_back(graph, start_node, model, target_index, target_value, prob_thresh, min_max):
-    flag = False
-    visited = {}
-    stack = [start_node]
-    while stack:
-        node = stack.pop()
-        if (graph.get_node(node.var_values)[0] or is_target(node.var_values, target_index, target_value)):
-            if (not node.initial_state):
-                construct_trace(graph, node)
-        if not node.var_values in visited:
-            visited[node.var_values] = node
-            if is_target(node.var_values, target_index, target_value):
-                flag = True
-                neighbors = []
-            else:
-                neighbors = []
-                for i, r in enumerate(model.get_reactions_vector()):
-                    rate = get_reaction_rate(node.var_values, model, i)
-                    total_rate = get_total_outgoing_rate(node.var_values, model)
-                    if rate > 0:
-                        dst_var_values = [None] * len(model.get_species_tuple())
-                        for j, coefficient in enumerate(r[2]):
-                            dst_var_values[j] = node.var_values[j] + coefficient
-                        dst_var_values = tuple(dst_var_values)
-                        if check_sat(dst_var_values, min_max):
-                            new_node = Node()
-                            new_node.var_values = dst_var_values
-                            new_node.reachability_probability = float(rate/total_rate)*node.reachability_probability
-                            edge = Edge()
-                            edge.src = node
-                            edge.dst = new_node
-                            edge.rate = rate
-                            edge.reaction = i
-
-                            if new_node.reachability_probability> prob_thresh:
-                                new_node.incoming_edge = edge
-                                neighbors.append(new_node) 
-            neighbors = sorted(neighbors, key=lambda n: n.reachability_probability, reverse = True)
-            for neighbor in neighbors:
-                if neighbor.var_values not in visited:
+                neighbors = sorted(neighbors, key=lambda n: n[1], reverse = True)
+                for neighbor in neighbors:
                     stack.append(neighbor)
     return flag

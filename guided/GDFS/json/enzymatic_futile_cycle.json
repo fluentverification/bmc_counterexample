@@ -1,9 +1,10 @@
 {
-	"model_path" : "./enzym_unb_2.sm",
+	"model_path" : "./models/enzym_unb_2.sm",
 	"model_name" : "enzymatic_futile_cycle",
 	"starting_bound" : 19,
 	"prism_binary" : "/home/ubu/projects/probmc/prism-4.7-src/prism/bin/prism",
 	"csl_property" : "P=? [true U<=100 S4=40]",
+	"csl_property_upper_bound" : "P=? [S4!=40 U<=100 (S4=40 | \"sink\")]",
 	"target_variable" : "S4",
 	"target_value" : "40",
 	"model_check_step" : "1",

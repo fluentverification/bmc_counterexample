@@ -3,31 +3,16 @@ import stormpy
 import stormpy.core
 import __future__
 
-def replace_whole_word(expression, s1, s2):
-    return re.sub(r"\b%s\b" % s1, s2, expression)
+def format_expression(expression):
+    expression = re.sub(r'\^' , '**', expression)
+    expression = re.sub(r'\&' , 'and', expression)
+    expression = re.sub(r'\|' , 'or', expression)
+    expression = re.sub(r'\b%s\b' % '\=', '==', expression)
+    expression = re.sub(r'\b%s\b' % 'true', 'True', expression)
+    return expression
 
-def evaluate_expression_arithmetic(expression, variables):
-    expression = replace_whole_word(expression, '\^', '**')
-    # Create a replacement dictionary from the variables dictionary
-    replacement_dict = {var: str(val) for var, val in variables.items()}
-    # Replace variables in the expression string using the replacement dictionary
-    for var, val in replacement_dict.items():
-        expression = replace_whole_word(expression, var, val)
-    # Evaluate the expression and return the result
-    return eval(compile(expression, '<string>', 'eval', __future__.division.compiler_flag))
-
-def evaluate_expression_logical(expression, variables):
-    expression = replace_whole_word(expression, '\&', 'and')
-    expression = replace_whole_word(expression, '\|', 'or')
-    expression = replace_whole_word(expression, '\=', '==')
-    expression = replace_whole_word(expression, 'true', 'True')
-    # Create a replacement dictionary from the variables dictionary
-    replacement_dict = {var: str(val) for var, val in variables.items()}
-    # Replace variables in the expression string using the replacement dictionary
-    for var, val in replacement_dict.items():
-        expression = replace_whole_word(expression, var, val)
-    # Evaluate the expression and return the result
-    return eval(expression)
+def evaluate_compiled_expression(expression, var_assignments):
+    return eval(expression, var_assignments)
 
 class Model:
     def __init__(self, model_path):
@@ -80,7 +65,43 @@ class Model:
                     var_index = self.species_to_index_dict[var_name]
                     assignment = {var_name : 0}
                     expression = str(a.expression)
-                    self.reactions_vector[i][var_index] = evaluate_expression_arithmetic(expression,assignment)
+                    expression = format_expression(expression)
+                    expression = compile(expression, '<string>', 'eval', __future__.division.compiler_flag)
+                    self.reactions_vector[i][var_index] = evaluate_compiled_expression(expression,assignment)
+        
+        #reaction_rate_expression is a dictionary with a list of size two for every reaction index
+        #element1: compiled guard expression
+        #element2: compiled rate expression
+        self.reaction_rate_expression = {}
+
+        for i, c in enumerate(self.commands):
+            index = self.reaction_to_index_dict[c]
+            guard = ""
+            flag = True
+            for g in self.commands[c][0]:
+                if flag:
+                    guard = str(g)
+                    flag = False
+                else:
+                    guard = guard + " and " + str(g)
+
+            rate = ""
+            flag = True
+            for u in self.commands[c][1]:
+                if flag:
+                    rate = str(u.probability_expression)
+                    flag = False
+                else:
+                    rate = rate + " * " + str(u.probability_expression)
+            
+            guard = format_expression(guard)
+            guard = compile(guard, '<string>', 'eval', __future__.division.compiler_flag)
+            rate = format_expression(rate)
+            rate = compile(rate, '<string>', 'eval', __future__.division.compiler_flag)
+            self.reaction_rate_expression[index] = [guard, rate]
+
+
+        
 
     def get_initial_state(self):
         return self.initial_state_tuple
@@ -92,15 +113,15 @@ class Model:
         return self.reactions_vector
 
     def get_reaction_rate(self, var_assignment_tuple, r_index):
-        r_label = self.index_to_reaction_dict[r_index]
-        return_value = 1.0
         var_dict = {}
         for i, s in enumerate(self.species_tuple):
             var_dict[s] = var_assignment_tuple[i]
-        c = self.commands[r_label]
-        for g in c[0]:
-            if not evaluate_expression_logical(str(g), var_dict):
-                return 0.0
-        for u in c[1]:
-            return_value = return_value * (evaluate_expression_arithmetic(str(u.probability_expression), var_dict))
-        return return_value
+        
+        guard = self.reaction_rate_expression[r_index][0]
+        rate = self.reaction_rate_expression[r_index][1]
+
+        if not evaluate_compiled_expression(guard, var_dict):
+            return 0.0
+        return evaluate_compiled_expression(rate, var_dict)
+
+

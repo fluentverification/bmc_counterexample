@@ -1,0 +1,12 @@
+{
+	"model_name" : "circuit0x8E",
+	"model_path" : "./models/Circuit0x8E_100to111_unb.sm",
+	"starting_bound" : 3,
+	"prism_binary" : "/home/ubu/projects/probmc/prism-4.7-src/prism/bin/prism",
+	"csl_property" : "P=? [true U<=1000 YFP_protein=30]",
+	"target_variable" : "YFP_protein",
+	"target_value" : "30",
+	"model_check_step" : "10",
+	"max_combination" : "6"
+
+}
