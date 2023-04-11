@@ -1,7 +1,7 @@
 from Utils import is_target, get_reaction_rate, get_total_outgoing_rate, check_sat
 from Graph import Node, Edge, Graph
-from queue import PriorityQueue
 from heapq import heapify, heappush, heappop
+import time
 
 def construct_trace(graph, node):
     curr_node = node
@@ -164,21 +164,41 @@ def ggdfs_prob(graph, start_node, model, target_index, target_value, min_max, pr
                     stack.append(neighbor)
     return flag
 
+######################################################
+########### Best First Search Methods ################
+
 def h(reach_prob, var_value, model):
-    return reach_prob
+    return -reach_prob
 
 def backtrack(graph, node, model):
-    pass
+    visited = set()
+    stack = [node]
+    while (stack):
+        curr_node = stack.pop()
+        if curr_node.var_values not in visited:
+            for e in curr_node.in_edges.values():
+                if e.src.var_values not in graph.nodes:   
+                    stack.append(e.src)
+                graph.add_edge(e)
 
-def XBF(model, target_index, target_value, mc_step):
+        visited.add(curr_node.var_values)
+            
+
+
+def XBF(model, target_index, target_value, mc_step, model_name, prism_bin, csl_prop):
+    start_time = time.time()
     init_node = Node()
     init_node.initial_state = True
     init_node.var_values = model.get_initial_state()
-    init_node.reachability_probability = 1.0 
+    init_node.reachability_probability = 1.0
+    nodes = {}
+    nodes[init_node.var_values] = init_node
     # diag <-- empty graph
     # closed <-- empty hash table
     # open_ <-- empty priority queue (implemented using heap functions)
     # map_ <-- mapping node's var_values to a list of size 2 containing the hueristic value and the node object
+    # map_ gives access to the list elements of open_. after an element of the list of size 2 is changed, the 
+    # open_ should get heapified again in order to maintain the logic of the heap
     diag = Graph()
     diag_size = len(diag.nodes) + len(diag.edges)
     open_ = []
@@ -195,6 +215,8 @@ def XBF(model, target_index, target_value, mc_step):
         s = h_s[1]
         del map_[s.var_values]
         closed[s.var_values] = [old_h, s]
+        # print(s.var_values)
+        # print("===============")
         
         for i, r in enumerate(model.get_reactions_vector()):
             rate = get_reaction_rate(s.var_values, model, i)
@@ -204,23 +226,37 @@ def XBF(model, target_index, target_value, mc_step):
                 for j, coefficient in enumerate(r):
                     dst_var_values[j] = s.var_values[j] + coefficient
                 dst_var_values = tuple(dst_var_values)
-                s_prime = Node()
-                s_prime.var_values = dst_var_values
+                if dst_var_values in nodes:
+                    s_prime = nodes[dst_var_values]
+                else:
+                    s_prime = Node()
+                    s_prime.var_values = dst_var_values
+                    nodes[s_prime.var_values] = s_prime
                 edge = Edge()
                 edge.src = s
                 edge.dst = s_prime
                 edge.rate = rate
                 edge.reaction = i
                 s_prime.add_in_edge(edge)
-                s_prime.reachability_probability = s.reachability_probability * float(rate/total_rate)
+                if (s.reachability_probability * float(rate/total_rate)) > s_prime.reachability_probability:
+                    s_prime.reachability_probability = s.reachability_probability * float(rate/total_rate)
 
-                if is_target(s_prime.var_values, target_index, target_value):
-                    backtrack(diag, s_prime, model)
-            
                 new_h = h(s_prime.reachability_probability, s_prime.var_values, model)
 
-                if (s_prime.var_values not in map_ 
-                    and s_prime.var_values not in closed):
+                if (is_target(s_prime.var_values, target_index, target_value)
+                    or diag.get_node(s_prime.var_values)[0]):
+                    backtrack(diag, s_prime, model)
+                    if (len(diag.nodes) + len(diag.edges) - diag_size >= mc_step):
+                        result = diag.check_probability(model, model_name, prism_bin, csl_prop)
+                        print('probability= ' + str(result))
+                        diag_size = len(diag.edges) + len(diag.nodes)
+                        print('size= ' + str(diag_size))
+                        print('time= ' + str(time.time()-start_time))
+                        print('='*50)
+            
+                if ((s_prime.var_values not in map_) 
+                    and (s_prime.var_values not in closed)
+                    and (not is_target(s_prime.var_values, target_index, target_value))):
                     node_list = [new_h, s_prime]
                     heappush(open_, node_list)
                     map_[s_prime.var_values] = node_list
@@ -234,6 +270,6 @@ def XBF(model, target_index, target_value, mc_step):
                             del closed[s_prime.var_values]
                             node_list = [new_h, s_prime]
                             heappush(open_, node_list)
+                            if s_prime.var_values in map_:
+                                raise Exception("a node is both in open and closed")
                             map_[s_prime.var_values] = node_list
-
-

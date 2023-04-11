@@ -21,14 +21,14 @@ class Node:
 
     def add_in_edge(self, edge):
         edge_tuple = edge.get_tuple()
-        if edge_tuple not in self.out_edges:
+        if edge_tuple not in self.in_edges:
             self.in_edges[edge_tuple] = edge
 
     def __eq__(self, node) -> bool:
         return self.var_values == node.var_values
 
     def __lt__(self, node):
-        return False
+        return True
         
     
 
