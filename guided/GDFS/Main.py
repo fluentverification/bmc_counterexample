@@ -7,6 +7,19 @@ import json
 import sys, os, re
 
 
+# from heapq import heapify, heappush, heappop
+# open_ = []
+# a = [-2, 4]
+# heappush(open_, a)
+# print(open_)
+# b = [-0.5, 3]
+# c = [-0.0009, 17]
+# heappush(open_, b)
+# heappush(open_, c)
+# print(open_)
+
+# quit()
+
 #read json elements
 f = open(sys.argv[1])
 json_data = json.load(f)
@@ -24,6 +37,7 @@ max_comb = int(json_data['max_combination'])
 model = Model(model_path)
 target_index = model.species_to_index_dict[target_var]
 
+
 if not os.path.exists('./results'): 
     os.makedirs('./results')
 if not os.path.exists('./results/' + model_name):
@@ -32,7 +46,7 @@ if not os.path.exists('./results/' + model_name):
 start_time = time.time()
 
 
-XBF(model, target_index, target_value, mc_step)
+XBF(model, target_index, target_value, mc_step, model_name, prism_bin, csl_prop)
 ################################################################################################
 ################################################################################################
 # init_node = Node()

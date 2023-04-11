@@ -7,6 +7,6 @@
 	"csl_property_upper_bound" : "P=? [CodY!=19 U<=10 (CodY=19 | \"sink\")]",
 	"target_variable" : "CodY",
 	"target_value" : "19",
-	"model_check_step" : "1",
+	"model_check_step" : "50000",
 	"max_combination" : "9"
 }
