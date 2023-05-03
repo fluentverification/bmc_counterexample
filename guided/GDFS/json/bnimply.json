@@ -1,0 +1,12 @@
+{
+	"model_name" : "bnimply",
+	"model_path" : "/home/ubu/projects/probmc/bmc_counterexample/guided/GDFS/models/Bnimply_v2/BnimplyA.sm",
+	"starting_bound" : 3,
+	"prism_binary" : "/home/ubu/projects/probmc/prism-4.7-src/prism/bin/prism",
+	"csl_property" : "P=? [true U<=1000 YFP_protein>10]",
+	"target_variable" : "YFP_protein",
+	"target_value" : "10",
+	"model_check_step" : "5000",
+	"max_combination" : "10"
+
+}

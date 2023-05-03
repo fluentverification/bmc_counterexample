@@ -1,4 +1,4 @@
-from z3 import Int, And, Solver, sat
+from z3 import Int, And, Solver, sat, simplify, Or
 import itertools
 
 def get_total_outgoing_rate(var_values, model):
@@ -14,6 +14,19 @@ def is_target(var_values, target_index, target_value):
     if var_values[target_index] == target_value:
         return True
     return False
+
+def backtrack(graph, node, model):
+    visited = set()
+    stack = [node]
+    while (stack):
+        curr_node = stack.pop()
+        if curr_node.var_values not in visited:
+            for e in curr_node.in_edges.values():
+                if e.src.var_values not in graph.nodes:   
+                    stack.append(e.src)
+                graph.add_edge(e)
+
+        visited.add(curr_node.var_values)
 
 #returns all the subsets of a tuple with cardinality in range [L, U]
 #returns a list of tuples where each tuple is a subset
@@ -128,6 +141,7 @@ def get_min_max(model, bound, target_index, target_value, maximum_comb):
     return min_max
 
 def check_sat(var_values, min_max):
+    return True
     for e in min_max:
         value = 0
         for j in e:
@@ -135,3 +149,172 @@ def check_sat(var_values, min_max):
         if value > min_max[e][1] or value < min_max[e][0]:
             return False
     return True
+
+#################################################################################
+##### Testing new implementation of min_max with a range ########################
+
+# range would be a tuple (a, b). get_min_max_range returns 
+# constraints on the state-space only admitting error-traces that 
+# have length in the range [a, b] 
+def get_min_max_range(model, range_, target_index, target_value, maximum_comb):
+    upper_bound = range_[1]
+    lower_bound = range_[0]
+    min_max = {}
+    index_tuple = (0,)
+    for i in range(1,len(model.get_species_tuple())):
+        index_tuple = index_tuple + (i,)
+    for s in get_subsets(index_tuple, 1, maximum_comb):
+        min_max[s] = [-1, -1]
+    
+    vars = []
+    for i, r in enumerate(model.get_reactions_vector()):
+        x= Int("n_i_" + str(i))
+        vars.append(x)
+    for i, r in enumerate(model.get_reactions_vector()):
+        x= Int("n_t_" + str(i))
+        vars.append(x)
+    constraints = []
+    #first constraint (n_i_0,n_t_0,n_i_1,n_t_1,... >=0)
+    for i in vars:
+        constraints.append(i>=0)
+    #second constraint (n_i_0+n_i_t+n_i_1+...<=bound)
+    sum = 0
+    for i in vars:
+        sum = sum + i
+    constraints.append((sum<upper_bound))
+    constraints.append((sum>=lower_bound))
+    #third constraint (reaching the target)
+    vars = []
+    for i, r in enumerate(model.get_reactions_vector()):
+        if r[target_index]!=0:
+            vars.append([Int("n_i_" + str(i)), r[target_index]])
+            vars.append([Int("n_t_" + str(i)), r[target_index]])
+    sum = model.get_initial_state()[target_index]
+    for i in vars:
+        sum = sum + i[0]*i[1]
+    constraints.append(sum==target_value)
+    #fourth constraint (species population>=0)
+    for i, s in enumerate(model.get_species_tuple()):
+        vars_i = []
+        vars = []
+        for j, r in enumerate(model.get_reactions_vector()):
+            if r[i]!=0:
+                vars.append([Int("n_i_"+str(j)), r[i]])
+                vars.append([Int("n_t_"+str(j)), r[i]])
+                vars_i.append([Int("n_i_"+str(j)), r[i]])
+        sum = model.get_initial_state()[i]
+        for j in vars:
+            sum = sum + j[0]*j[1]
+        constraints.append(sum>=0)
+        sum = model.get_initial_state()[i]
+        for j in vars_i:
+            sum = sum + j[0]*j[1]
+        constraints.append(sum>=0)
+
+    solver = Solver()
+    solver.add(And(constraints))
+
+    for i, e in enumerate(min_max):
+        solver.push()
+        while (solver.check()==sat):
+            assignment = solver.model()
+            vars = []
+            for d in assignment.decls():
+                if "n_i_" in str(d.name()):
+                    r_index = int(d.name()[4:])
+                    vars.append([r_index, assignment[d].as_long(), d.name()])
+            max_value = 0
+            for j in e:
+                max_value = max_value + model.get_initial_state()[j]
+            for v in vars:
+                for j in e:
+                    max_value = max_value + (model.get_reactions_vector()[v[0]][j] * v[1])
+            min_max[e][1] = max_value
+            sum = 0
+            for j in e:
+                sum = sum + model.get_initial_state()[j]
+            for v in vars:
+                for j in e:
+                    sum = sum + (Int(v[2]) * model.get_reactions_vector()[v[0]][j])
+            solver.add(sum>max_value)
+        solver.pop()
+    for i, e in enumerate(min_max):
+        solver.push()
+        while (solver.check()==sat):
+            assignment = solver.model()
+            vars = []
+            for d in assignment.decls():
+                if "n_i_" in str(d.name()):
+                    r_index = int(d.name()[4:])
+                    vars.append([r_index, assignment[d].as_long(), d.name()])
+            min_value = 0
+            for j in e:
+                min_value = min_value + model.get_initial_state()[j]
+            for v in vars:
+                for j in e:
+                    min_value = min_value + (model.get_reactions_vector()[v[0]][j] * v[1])
+            min_max[e][0] = min_value
+            sum = 0
+            for j in e:
+                sum = sum + model.get_initial_state()[j]
+            for v in vars:
+                for j in e:
+                    sum = sum + (Int(v[2]) * model.get_reactions_vector()[v[0]][j])
+            solver.add(sum<min_value)
+        solver.pop()
+    return min_max
+
+
+# returns a list. each element of the list is a dictionary
+def get_constraints_range(model, range_list, target_index, target_value, maximum_comb):
+    returned_list = [None] * len(range_list)
+    for i, e in enumerate(range_list):
+        print(e)
+        returned_list[i] = get_min_max_range(model, e, target_index, target_value, maximum_comb)
+    return returned_list
+
+def get_score(var_values, min_max_list):
+    score = 1.0
+    step = float(score/len(min_max_list))
+    for l in min_max_list:
+        for e in l:
+            value = 0
+            for j in e:
+                value = value + var_values[j]
+            if value > l[e][1] or value < l[e][0]:
+                score = score - step
+                continue
+            return score
+    return 0.0
+
+##############################################################################
+########################## Original BMC encodings ############################
+def get_initial_state(model):
+    species_vector = model.get_species_tuple()
+    initial_state = model.get_initial_state()
+    constraints = []
+    for i, s in enumerate(species_vector): 
+        var_name = s + '.' + '0'
+        x = Int(var_name)
+        init_value = initial_state[i]
+        constraints.append(x == init_value)
+    return And(constraints)
+
+def get_encoding(model, bound):
+    species_vector = model.get_species_tuple()
+    constraints = []
+    for j, r in enumerate(model.get_reactions_vector()): 
+        r_constraints = []
+        for i, s in enumerate(species_vector): 
+            var_name_prev = s + '.' + str(bound-1)
+            var_name_curr = s + '.' + str(bound)
+            x = Int(var_name_prev)
+            y = Int(var_name_curr)
+            r_constraints.append(y == (x + r[i]))
+            r_constraints.append(y >= 0)
+        reaction_var_name = 'selected_reaction.' + str(bound-1) 
+        selected_reaction = Int(reaction_var_name)
+        r_constraints.append(selected_reaction == (j))
+        constraints.append(And(r_constraints))
+    return simplify(Or(constraints))
+

@@ -13,6 +13,7 @@ class Node:
         self.index = -1
         self.reachability_probability = 0
         self.in_edges = {}
+        self.last_in_edge = None
 
     def add_out_edge(self, edge):
         edge_tuple = edge.get_tuple()
