@@ -1,0 +1,841 @@
+ WARN (Program.cpp:238): The input model is a CTMC, but uses probabilistic commands like they are used in PRISM. Consider rewriting the commands to use Markovian commands instead.
+ WARN (Program.cpp:1586): The model uses synchronizing Markovian commands. This may lead to unexpected verification results, because of unclear semantics.
+ WARN (Program.cpp:1586): The model uses synchronizing Markovian commands. This may lead to unexpected verification results, because of unclear semantics.
+ WARN (Program.cpp:1586): The model uses synchronizing Markovian commands. This may lead to unexpected verification results, because of unclear semantics.
+ WARN (Program.cpp:1586): The model uses synchronizing Markovian commands. This may lead to unexpected verification results, because of unclear semantics.
+ WARN (Program.cpp:1586): The model uses synchronizing Markovian commands. This may lead to unexpected verification results, because of unclear semantics.
+ WARN (Program.cpp:1586): The model uses synchronizing Markovian commands. This may lead to unexpected verification results, because of unclear semantics.
+ WARN (Program.cpp:1586): The model uses synchronizing Markovian commands. This may lead to unexpected verification results, because of unclear semantics.
+ WARN (Program.cpp:1586): The model uses synchronizing Markovian commands. This may lead to unexpected verification results, because of unclear semantics.
+==================================================
+
+Starting... 
+
+
+--------------------
+prob_thresh
+curr_max_bound= 8
+current witness information: 
+probability= 1.0275355719707565e-11
+size= 1004
+time= 1.5392963886260986
+==================================================
+prob_thresh
+curr_max_bound= 10
+current witness information: 
+probability= 1.0409840834627627e-11
+size= 2004
+time= 3.9076955318450928
+==================================================
+prob_thresh
+curr_max_bound= 11
+current witness information: 
+probability= 5.2727730318950585e-11
+size= 3005
+time= 5.4755072593688965
+==================================================
+prob_thresh
+curr_max_bound= 12
+current witness information: 
+probability= 5.2782011629870005e-11
+size= 4008
+time= 7.405379056930542
+==================================================
+prob_thresh
+curr_max_bound= 12
+current witness information: 
+probability= 5.2854794285910344e-11
+size= 5008
+time= 8.691199779510498
+==================================================
+prob_thresh
+curr_max_bound= 13
+current witness information: 
+probability= 5.316001046324874e-11
+size= 6012
+time= 11.178151845932007
+==================================================
+prob_thresh
+curr_max_bound= 15
+current witness information: 
+probability= 1.2267633780689353e-10
+size= 7014
+time= 16.69240093231201
+==================================================
+prob_thresh
+curr_max_bound= 17
+current witness information: 
+probability= 2.2894994140838006e-10
+size= 8016
+time= 23.101897716522217
+==================================================
+prob_thresh
+curr_max_bound= 18
+current witness information: 
+probability= 2.495222403201569e-10
+size= 9020
+time= 28.809171199798584
+==================================================
+prob_thresh
+curr_max_bound= 19
+current witness information: 
+probability= 3.5630635248165724e-10
+size= 10034
+time= 35.26575326919556
+==================================================
+prob_thresh
+curr_max_bound= 19
+current witness information: 
+probability= 3.566349071093628e-10
+size= 11034
+time= 38.029494762420654
+==================================================
+prob_thresh
+curr_max_bound= 20
+current witness information: 
+probability= 3.978165065177663e-10
+size= 12037
+time= 46.21955490112305
+==================================================
+prob_thresh
+curr_max_bound= 20
+current witness information: 
+probability= 4.190925485208178e-10
+size= 13044
+time= 49.048094749450684
+==================================================
+prob_thresh
+curr_max_bound= 22
+current witness information: 
+probability= 5.883010982134847e-10
+size= 14044
+time= 66.53046369552612
+==================================================
+prob_thresh
+curr_max_bound= 22
+current witness information: 
+probability= 6.307233461093108e-10
+size= 15050
+time= 69.3085207939148
+==================================================
+prob_thresh
+curr_max_bound= 23
+current witness information: 
+probability= 7.582471876014516e-10
+size= 16055
+time= 80.58667659759521
+==================================================
+prob_thresh
+curr_max_bound= 24
+current witness information: 
+probability= 9.251109780689369e-10
+size= 17066
+time= 89.7378716468811
+==================================================
+prob_thresh
+curr_max_bound= 25
+current witness information: 
+probability= 9.411543182635039e-10
+size= 18069
+time= 101.60875797271729
+==================================================
+prob_thresh
+curr_max_bound= 25
+current witness information: 
+probability= 1.0005948888774163e-09
+size= 19074
+time= 104.18402600288391
+==================================================
+prob_thresh
+curr_max_bound= 25
+current witness information: 
+probability= 1.0547985517380056e-09
+size= 20084
+time= 106.50729179382324
+==================================================
+prob_thresh
+curr_max_bound= 25
+current witness information: 
+probability= 1.077572091523067e-09
+size= 21101
+time= 109.22612881660461
+==================================================
+prob_thresh
+curr_max_bound= 25
+current witness information: 
+probability= 1.0799569213638686e-09
+size= 22102
+time= 112.49284267425537
+==================================================
+prob_thresh
+curr_max_bound= 26
+current witness information: 
+probability= 1.190255542662e-09
+size= 23103
+time= 134.27575492858887
+==================================================
+prob_thresh
+curr_max_bound= 26
+current witness information: 
+probability= 1.22046694143771e-09
+size= 24107
+time= 137.0298252105713
+==================================================
+prob_thresh
+curr_max_bound= 26
+current witness information: 
+probability= 1.232222125237171e-09
+size= 25107
+time= 139.8964650630951
+==================================================
+prob_thresh
+curr_max_bound= 26
+current witness information: 
+probability= 1.239470258848261e-09
+size= 26118
+time= 143.02082753181458
+==================================================
+prob_thresh
+curr_max_bound= 26
+current witness information: 
+probability= 1.2432584605415554e-09
+size= 27118
+time= 146.88519191741943
+==================================================
+prob_thresh
+curr_max_bound= 27
+current witness information: 
+probability= 1.3911648401203337e-09
+size= 28124
+time= 177.66296863555908
+==================================================
+prob_thresh
+curr_max_bound= 28
+current witness information: 
+probability= 1.478263917075359e-09
+size= 29128
+time= 198.60751605033875
+==================================================
+prob_thresh
+curr_max_bound= 29
+current witness information: 
+probability= 1.518812201009291e-09
+size= 30138
+time= 220.29035806655884
+==================================================
+prob_thresh
+curr_max_bound= 30
+current witness information: 
+probability= 1.693497771830452e-09
+size= 31139
+time= 248.28915977478027
+==================================================
+prob_thresh
+curr_max_bound= 30
+current witness information: 
+probability= 1.8560560422448311e-09
+size= 32139
+time= 252.41168594360352
+==================================================
+prob_thresh
+curr_max_bound= 30
+current witness information: 
+probability= 1.8597877389828873e-09
+size= 33141
+time= 257.2774167060852
+==================================================
+prob_thresh
+curr_max_bound= 31
+current witness information: 
+probability= 1.956813179619187e-09
+size= 34141
+time= 293.2190029621124
+==================================================
+prob_thresh
+curr_max_bound= 32
+current witness information: 
+probability= 2.0535363058817207e-09
+size= 35141
+time= 322.31528544425964
+==================================================
+prob_thresh
+curr_max_bound= 32
+current witness information: 
+probability= 2.1058468765004928e-09
+size= 36147
+time= 326.82917857170105
+==================================================
+prob_thresh
+curr_max_bound= 33
+current witness information: 
+probability= 2.2077199795008116e-09
+size= 37153
+time= 368.47760105133057
+==================================================
+prob_thresh
+curr_max_bound= 34
+current witness information: 
+probability= 2.4216845223150276e-09
+size= 38163
+time= 410.18375039100647
+==================================================
+prob_thresh
+curr_max_bound= 34
+current witness information: 
+probability= 2.552753992562324e-09
+size= 39168
+time= 415.33666825294495
+==================================================
+prob_thresh
+curr_max_bound= 34
+current witness information: 
+probability= 2.5913691044474983e-09
+size= 40169
+time= 420.159462928772
+==================================================
+prob_thresh
+curr_max_bound= 34
+current witness information: 
+probability= 2.625760497090652e-09
+size= 41176
+time= 425.1724512577057
+==================================================
+prob_thresh
+curr_max_bound= 34
+current witness information: 
+probability= 2.701011746206543e-09
+size= 42179
+time= 430.9507563114166
+==================================================
+prob_thresh
+curr_max_bound= 35
+current witness information: 
+probability= 2.855070108948046e-09
+size= 43185
+time= 494.18794345855713
+==================================================
+prob_thresh
+curr_max_bound= 35
+current witness information: 
+probability= 2.923709222637001e-09
+size= 44189
+time= 502.1594841480255
+==================================================
+prob_thresh
+curr_max_bound= 36
+current witness information: 
+probability= 3.0648010293965116e-09
+size= 45191
+time= 554.1531205177307
+==================================================
+prob_thresh
+curr_max_bound= 36
+current witness information: 
+probability= 3.2342217820485315e-09
+size= 46195
+time= 561.3266324996948
+==================================================
+prob_thresh
+curr_max_bound= 36
+current witness information: 
+probability= 3.25703891542544e-09
+size= 47202
+time= 566.2204780578613
+==================================================
+prob_thresh
+curr_max_bound= 36
+current witness information: 
+probability= 3.2961135410750678e-09
+size= 48204
+time= 571.696640253067
+==================================================
+prob_thresh
+curr_max_bound= 36
+current witness information: 
+probability= 3.3144243933669106e-09
+size= 49204
+time= 578.213849067688
+==================================================
+prob_thresh
+curr_max_bound= 36
+current witness information: 
+probability= 3.347587704971023e-09
+size= 50207
+time= 586.064395904541
+==================================================
+prob_thresh
+curr_max_bound= 36
+current witness information: 
+probability= 3.3865076327498814e-09
+size= 51208
+time= 594.0125069618225
+==================================================
+prob_thresh
+curr_max_bound= 36
+current witness information: 
+probability= 3.4011801489133325e-09
+size= 52237
+time= 603.9005656242371
+==================================================
+prob_thresh
+curr_max_bound= 37
+current witness information: 
+probability= 3.4056982223381623e-09
+size= 53243
+time= 697.0030815601349
+==================================================
+prob_thresh
+curr_max_bound= 37
+current witness information: 
+probability= 3.598059376413534e-09
+size= 54260
+time= 705.7783408164978
+==================================================
+prob_thresh
+curr_max_bound= 38
+current witness information: 
+probability= 3.681036441533963e-09
+size= 55260
+time= 761.6193771362305
+==================================================
+prob_thresh
+curr_max_bound= 38
+current witness information: 
+probability= 3.783224563167251e-09
+size= 56261
+time= 769.9048578739166
+==================================================
+prob_thresh
+curr_max_bound= 38
+current witness information: 
+probability= 3.8461577761427306e-09
+size= 57265
+time= 778.0501163005829
+==================================================
+prob_thresh
+curr_max_bound= 38
+current witness information: 
+probability= 3.894326182436404e-09
+size= 58268
+time= 785.8588166236877
+==================================================
+prob_thresh
+curr_max_bound= 39
+current witness information: 
+probability= 4.148452779115407e-09
+size= 59269
+time= 854.5497679710388
+==================================================
+prob_thresh
+curr_max_bound= 39
+current witness information: 
+probability= 4.384156682166177e-09
+size= 60274
+time= 862.3558411598206
+==================================================
+prob_thresh
+curr_max_bound= 39
+current witness information: 
+probability= 4.464930030909759e-09
+size= 61275
+time= 871.6744244098663
+==================================================
+prob_thresh
+curr_max_bound= 40
+current witness information: 
+probability= 4.602698101555738e-09
+size= 62278
+time= 932.6592674255371
+==================================================
+prob_thresh
+curr_max_bound= 40
+current witness information: 
+probability= 4.661609913098843e-09
+size= 63281
+time= 941.4636595249176
+==================================================
+prob_thresh
+curr_max_bound= 40
+current witness information: 
+probability= 4.697774924170413e-09
+size= 64282
+time= 951.1572065353394
+==================================================
+prob_thresh
+curr_max_bound= 40
+current witness information: 
+probability= 4.709695101272273e-09
+size= 65282
+time= 961.9596507549286
+==================================================
+prob_thresh
+curr_max_bound= 41
+current witness information: 
+probability= 4.772514830962386e-09
+size= 66284
+time= 1043.270292520523
+==================================================
+prob_thresh
+curr_max_bound= 41
+current witness information: 
+probability= 4.834413729250371e-09
+size= 67287
+time= 1051.2018299102783
+==================================================
+prob_thresh
+curr_max_bound= 41
+current witness information: 
+probability= 5.0283392327394804e-09
+size= 68295
+time= 1060.2878522872925
+==================================================
+prob_thresh
+curr_max_bound= 41
+current witness information: 
+probability= 5.10784885116819e-09
+size= 69295
+time= 1068.951763868332
+==================================================
+prob_thresh
+curr_max_bound= 41
+current witness information: 
+probability= 5.203616111604242e-09
+size= 70300
+time= 1078.2108318805695
+==================================================
+prob_thresh
+curr_max_bound= 41
+current witness information: 
+probability= 5.208706862392098e-09
+size= 71308
+time= 1086.8345341682434
+==================================================
+prob_thresh
+curr_max_bound= 41
+current witness information: 
+probability= 5.242910730023148e-09
+size= 72312
+time= 1097.488346338272
+==================================================
+prob_thresh
+curr_max_bound= 41
+current witness information: 
+probability= 5.260083192643498e-09
+size= 73313
+time= 1109.3173928260803
+==================================================
+prob_thresh
+curr_max_bound= 41
+current witness information: 
+probability= 5.293862155849007e-09
+size= 74325
+time= 1122.559517621994
+==================================================
+prob_thresh
+curr_max_bound= 42
+current witness information: 
+probability= 5.3165587496154095e-09
+size= 75336
+time= 1287.219718694687
+==================================================
+prob_thresh
+curr_max_bound= 42
+current witness information: 
+probability= 5.428584648907264e-09
+size= 76336
+time= 1300.0602352619171
+==================================================
+prob_thresh
+curr_max_bound= 42
+current witness information: 
+probability= 5.437032143961978e-09
+size= 77339
+time= 1311.417410850525
+==================================================
+prob_thresh
+curr_max_bound= 43
+current witness information: 
+probability= 5.478303778372238e-09
+size= 78345
+time= 1418.0186111927032
+==================================================
+prob_thresh
+curr_max_bound= 43
+current witness information: 
+probability= 5.685667056712563e-09
+size= 79346
+time= 1429.7135186195374
+==================================================
+prob_thresh
+curr_max_bound= 43
+current witness information: 
+probability= 5.782557732600689e-09
+size= 80346
+time= 1440.1396594047546
+==================================================
+prob_thresh
+curr_max_bound= 43
+current witness information: 
+probability= 5.826207388229042e-09
+size= 81361
+time= 1450.8877220153809
+==================================================
+prob_thresh
+curr_max_bound= 43
+current witness information: 
+probability= 5.853567749224428e-09
+size= 82364
+time= 1463.047357559204
+==================================================
+prob_thresh
+curr_max_bound= 43
+current witness information: 
+probability= 5.861910820109479e-09
+size= 83372
+time= 1473.243378162384
+==================================================
+prob_thresh
+curr_max_bound= 43
+current witness information: 
+probability= 5.884215805577509e-09
+size= 84374
+time= 1485.2613780498505
+==================================================
+prob_thresh
+curr_max_bound= 43
+current witness information: 
+probability= 5.895158409473217e-09
+size= 85375
+time= 1499.2074291706085
+==================================================
+prob_thresh
+curr_max_bound= 44
+current witness information: 
+probability= 5.9044059548841754e-09
+size= 86377
+time= 1652.6557292938232
+==================================================
+prob_thresh
+curr_max_bound= 44
+current witness information: 
+probability= 5.914137446658765e-09
+size= 87385
+time= 1667.1563577651978
+==================================================
+prob_thresh
+curr_max_bound= 45
+current witness information: 
+probability= 5.955507024037579e-09
+size= 88391
+time= 1749.444657087326
+==================================================
+prob_thresh
+curr_max_bound= 45
+current witness information: 
+probability= 6.1012108974269e-09
+size= 89392
+time= 1761.4690608978271
+==================================================
+prob_thresh
+curr_max_bound= 45
+current witness information: 
+probability= 6.234079346687027e-09
+size= 90392
+time= 1776.2451136112213
+==================================================
+prob_thresh
+curr_max_bound= 46
+current witness information: 
+probability= 6.337312340284086e-09
+size= 91403
+time= 1885.8046777248383
+==================================================
+prob_thresh
+curr_max_bound= 46
+current witness information: 
+probability= 6.416148820679347e-09
+size= 92405
+time= 1897.9728832244873
+==================================================
+prob_thresh
+curr_max_bound= 47
+current witness information: 
+probability= 6.453833511505466e-09
+size= 93407
+time= 2006.2071669101715
+==================================================
+prob_thresh
+curr_max_bound= 47
+current witness information: 
+probability= 6.500218126447456e-09
+size= 94415
+time= 2020.7652156352997
+==================================================
+prob_thresh
+curr_max_bound= 47
+current witness information: 
+probability= 6.526164018146815e-09
+size= 95432
+time= 2032.9237432479858
+==================================================
+prob_thresh
+curr_max_bound= 47
+current witness information: 
+probability= 6.56629763737633e-09
+size= 96432
+time= 2045.9560070037842
+==================================================
+prob_thresh
+curr_max_bound= 47
+current witness information: 
+probability= 6.601204056612561e-09
+size= 97440
+time= 2062.0484936237335
+==================================================
+prob_thresh
+curr_max_bound= 47
+current witness information: 
+probability= 6.607375597266319e-09
+size= 98446
+time= 2077.4375507831573
+==================================================
+prob_thresh
+curr_max_bound= 47
+current witness information: 
+probability= 6.61918398407141e-09
+size= 99451
+time= 2094.458769798279
+==================================================
+prob_thresh
+curr_max_bound= 48
+current witness information: 
+probability= 6.759486727835273e-09
+size= 100451
+time= 2320.829537630081
+==================================================
+prob_thresh
+curr_max_bound= 48
+current witness information: 
+probability= 6.844279199496558e-09
+size= 101454
+time= 2336.502716779709
+==================================================
+prob_thresh
+curr_max_bound= 48
+current witness information: 
+probability= 6.950481815926921e-09
+size= 102455
+time= 2352.7471096515656
+==================================================
+prob_thresh
+curr_max_bound= 48
+current witness information: 
+probability= 6.959867377724243e-09
+size= 103456
+time= 2368.585962295532
+==================================================
+prob_thresh
+curr_max_bound= 49
+current witness information: 
+probability= 6.980346682478221e-09
+size= 104458
+time= 2510.9431161880493
+==================================================
+prob_thresh
+curr_max_bound= 49
+current witness information: 
+probability= 7.055082323201263e-09
+size= 105462
+time= 2527.182648420334
+==================================================
+prob_thresh
+curr_max_bound= 49
+current witness information: 
+probability= 7.184842383921716e-09
+size= 106463
+time= 2544.566383123398
+==================================================
+prob_thresh
+curr_max_bound= 50
+current witness information: 
+probability= 7.567932062906659e-09
+size= 107472
+time= 2723.5705218315125
+==================================================
+prob_thresh
+curr_max_bound= 51
+current witness information: 
+probability= 7.60615317864983e-09
+size= 108473
+time= 2843.050569295883
+==================================================
+prob_thresh
+curr_max_bound= 51
+current witness information: 
+probability= 7.697008323995703e-09
+size= 109473
+time= 2861.7199125289917
+==================================================
+prob_thresh
+curr_max_bound= 51
+current witness information: 
+probability= 7.732420653870827e-09
+size= 110476
+time= 2877.9420399665833
+==================================================
+prob_thresh
+curr_max_bound= 51
+current witness information: 
+probability= 7.787408894540668e-09
+size= 111480
+time= 2896.0987162590027
+==================================================
+prob_thresh
+curr_max_bound= 52
+current witness information: 
+probability= 7.87099171966448e-09
+size= 112485
+time= 3098.978923559189
+==================================================
+prob_thresh
+curr_max_bound= 52
+current witness information: 
+probability= 7.87616935750314e-09
+size= 113493
+time= 3117.6054770946503
+==================================================
+prob_thresh
+curr_max_bound= 52
+current witness information: 
+probability= 7.87960309229757e-09
+size= 114493
+time= 3140.7525544166565
+==================================================
+prob_thresh
+curr_max_bound= 53
+current witness information: 
+probability= 7.942052493157307e-09
+size= 115505
+time= 3361.057241678238
+==================================================
+prob_thresh
+curr_max_bound= 53
+current witness information: 
+probability= 8.02551221221203e-09
+size= 116511
+time= 3384.0148770809174
+==================================================
+prob_thresh
+curr_max_bound= 53
+current witness information: 
+probability= 8.069674190465292e-09
+size= 117511
+time= 3408.427166700363
+==================================================
+prob_thresh
+curr_max_bound= 54
+current witness information: 
+probability= 8.129109530902018e-09
+size= 118520
+time= 3637.302504301071
+==================================================

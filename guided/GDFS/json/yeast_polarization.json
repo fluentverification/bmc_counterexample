@@ -6,6 +6,6 @@
 	"csl_property" : "P=? [true U<=20 Gbg=50]",
 	"target_variable" : "Gbg",
 	"target_value" : "50",
-	"model_check_step" : "10000",
+	"model_check_step" : "1",
 	"max_combination" : "9"
 }

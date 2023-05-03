@@ -1,0 +1,121 @@
+ WARN (Program.cpp:238): The input model is a CTMC, but uses probabilistic commands like they are used in PRISM. Consider rewriting the commands to use Markovian commands instead.
+ WARN (Program.cpp:1586): The model uses synchronizing Markovian commands. This may lead to unexpected verification results, because of unclear semantics.
+ WARN (Program.cpp:1586): The model uses synchronizing Markovian commands. This may lead to unexpected verification results, because of unclear semantics.
+ WARN (Program.cpp:1586): The model uses synchronizing Markovian commands. This may lead to unexpected verification results, because of unclear semantics.
+ WARN (Program.cpp:1586): The model uses synchronizing Markovian commands. This may lead to unexpected verification results, because of unclear semantics.
+ WARN (Program.cpp:1586): The model uses synchronizing Markovian commands. This may lead to unexpected verification results, because of unclear semantics.
+ WARN (Program.cpp:1586): The model uses synchronizing Markovian commands. This may lead to unexpected verification results, because of unclear semantics.
+ WARN (Program.cpp:1586): The model uses synchronizing Markovian commands. This may lead to unexpected verification results, because of unclear semantics.
+ WARN (Program.cpp:1586): The model uses synchronizing Markovian commands. This may lead to unexpected verification results, because of unclear semantics.
+probability= 5.459550362677509e-10
+size= 132562
+time= 19.38255214691162
+==================================================
+probability= 2.686195163067778e-08
+size= 182563
+time= 38.24331498146057
+==================================================
+probability= 9.791175679909578e-08
+size= 232563
+time= 62.813573598861694
+==================================================
+probability= 2.1468138699123132e-07
+size= 282563
+time= 94.0578408241272
+==================================================
+probability= 3.763782154746759e-07
+size= 332563
+time= 130.43061304092407
+==================================================
+probability= 5.279595622415246e-07
+size= 382563
+time= 173.57510089874268
+==================================================
+probability= 7.088722088184067e-07
+size= 432564
+time= 224.8427164554596
+==================================================
+probability= 8.758745450450077e-07
+size= 482566
+time= 282.43831753730774
+==================================================
+probability= 1.0419566282861853e-06
+size= 532570
+time= 347.23976373672485
+==================================================
+probability= 1.2080873155165639e-06
+size= 582572
+time= 417.33797907829285
+==================================================
+probability= 1.3511321565779855e-06
+size= 632572
+time= 497.4264931678772
+==================================================
+probability= 1.4654752588831329e-06
+size= 682572
+time= 584.3602035045624
+==================================================
+probability= 1.5834934145571493e-06
+size= 732572
+time= 678.6261739730835
+==================================================
+probability= 1.6936365928381522e-06
+size= 782573
+time= 789.79119181633
+==================================================
+probability= 1.7798892267763148e-06
+size= 832578
+time= 908.289223909378
+==================================================
+probability= 1.8630947850704611e-06
+size= 882578
+time= 1043.4533562660217
+==================================================
+probability= 1.940408359383153e-06
+size= 932578
+time= 1182.1619346141815
+==================================================
+probability= 1.9981555737880933e-06
+size= 982579
+time= 1324.7993891239166
+==================================================
+probability= 2.0486637738213405e-06
+size= 1032584
+time= 1479.0734581947327
+==================================================
+probability= 2.1032713561534566e-06
+size= 1082585
+time= 1647.6464540958405
+==================================================
+probability= 2.1444535901621924e-06
+size= 1132589
+time= 1822.0516324043274
+==================================================
+probability= 2.180458555999301e-06
+size= 1182590
+time= 2038.2587819099426
+==================================================
+probability= 2.2121071332165972e-06
+size= 1232590
+time= 2270.5222198963165
+==================================================
+probability= 2.243317603862761e-06
+size= 1282592
+time= 2528.542331457138
+==================================================
+probability= 2.2642598226179675e-06
+size= 1332593
+time= 2807.494249343872
+==================================================
+probability= 2.284830930519073e-06
+size= 1382593
+time= 3109.771038532257
+==================================================
+probability= 2.3045041140452163e-06
+size= 1432597
+time= 3418.12993144989
+==================================================
+probability= 2.3207479061490782e-06
+size= 1482597
+time= 3748.0466136932373
+==================================================
