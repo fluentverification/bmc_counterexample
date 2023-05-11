@@ -1,6 +1,6 @@
 from Utils import get_constraints_range
 from Search_Algos import ggdfs_prob, ggdfs, post_process, XBF, Guided_Greedy_DFS, Guided_Greedy_DFS_probability
-from search_algos.BMC_DFS import BMC_DFS, trace_as_list
+from search_algos.CEX_GEN import CEX_GEN
 from Graph import Node, Edge, Graph
 from Model import Model
 import time
@@ -54,5 +54,6 @@ circuit_rpob_thresh = 1E-20
 # XBF(model, target_index, target_value, mc_step, model_name, prism_bin, csl_prop, min_max_list[0])
 # Guided_Greedy_DFS(model, target_var, target_index, target_value, mc_step, model_name, prism_bin, csl_prop, bound)
 # Guided_Greedy_DFS_probability(model, target_var, target_index, target_value, mc_step, model_name, prism_bin, csl_prop, bound, 1E-20)
-BMC_DFS(model, target_var, target_index, target_value, mc_step, model_name, prism_bin, csl_prop, bound, 1E-20)
+# BMC_DFS(model, target_var, target_index, target_value, mc_step, model_name, prism_bin, csl_prop, bound, 1E-20)
+CEX_GEN(model, target_var, target_index, target_value, mc_step, model_name, prism_bin, csl_prop, bound, 1E-20)
 ################################################################################################
