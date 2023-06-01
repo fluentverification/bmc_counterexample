@@ -1,0 +1,950 @@
+probability= 9.549453860211067e-12
+size= 203
+time= 1.5215232372283936
+----------
+frac_sat_time= 0.7619548377583756
+frac_unsat_time= 0.057496409686677095
+E_count = 234 | sat_count = 38 | unsat_count = 41
+#BMC_GDFS calls = 13
+total diag size passed = 727
+==================================================
+probability= 2.0329111606559937e-11
+size= 395
+time= 3.3212008476257324
+----------
+frac_sat_time= 0.7777624074399773
+frac_unsat_time= 0.06434769899334997
+E_count = 715 | sat_count = 85 | unsat_count = 100
+#BMC_GDFS calls = 18
+total diag size passed = 1890
+==================================================
+probability= 2.534650118182908e-11
+size= 556
+time= 4.693655014038086
+----------
+frac_sat_time= 0.7968162148625743
+frac_unsat_time= 0.04789268255019648
+E_count = 846 | sat_count = 123 | unsat_count = 105
+#BMC_GDFS calls = 19
+total diag size passed = 2285
+==================================================
+probability= 3.7566742827641765e-11
+size= 905
+time= 8.241353511810303
+----------
+frac_sat_time= 0.8237644914158421
+frac_unsat_time= 0.04686417583872324
+E_count = 2176 | sat_count = 222 | unsat_count = 183
+#BMC_GDFS calls = 25
+total diag size passed = 5853
+==================================================
+probability= 4.137703664463467e-11
+size= 1059
+time= 9.644587278366089
+----------
+frac_sat_time= 0.8233279794634474
+frac_unsat_time= 0.04120288988675352
+E_count = 2443 | sat_count = 259 | unsat_count = 188
+#BMC_GDFS calls = 26
+total diag size passed = 6758
+==================================================
+probability= 4.645986565281684e-11
+size= 1319
+time= 12.78215479850769
+----------
+frac_sat_time= 0.8287111295364127
+frac_unsat_time= 0.03922955198684212
+E_count = 4782 | sat_count = 342 | unsat_count = 236
+#BMC_GDFS calls = 33
+total diag size passed = 14460
+==================================================
+probability= 5.100501940774569e-11
+size= 1687
+time= 16.68911623954773
+----------
+frac_sat_time= 0.8321234822408378
+frac_unsat_time= 0.04097494803480706
+E_count = 7753 | sat_count = 444 | unsat_count = 320
+#BMC_GDFS calls = 40
+total diag size passed = 24275
+==================================================
+probability= 5.419330848316719e-11
+size= 1893
+time= 18.941014528274536
+----------
+frac_sat_time= 0.8335223796167357
+frac_unsat_time= 0.038135940654446615
+E_count = 8225 | sat_count = 500 | unsat_count = 336
+#BMC_GDFS calls = 41
+total diag size passed = 25962
+==================================================
+probability= 5.629953578285132e-11
+size= 2026
+time= 20.590105533599854
+----------
+frac_sat_time= 0.8316888910009487
+frac_unsat_time= 0.03576847753754261
+E_count = 8697 | sat_count = 539 | unsat_count = 342
+#BMC_GDFS calls = 42
+total diag size passed = 27855
+==================================================
+probability= 6.04474430517123e-11
+size= 2594
+time= 27.703669786453247
+----------
+frac_sat_time= 0.8398692665336278
+frac_unsat_time= 0.0401676533016347
+E_count = 14033 | sat_count = 717 | unsat_count = 508
+#BMC_GDFS calls = 50
+total diag size passed = 44494
+==================================================
+probability= 6.807604219733528e-11
+size= 3163
+time= 34.52288293838501
+----------
+frac_sat_time= 0.8540372395635772
+frac_unsat_time= 0.034357870842025066
+E_count = 14829 | sat_count = 896 | unsat_count = 539
+#BMC_GDFS calls = 51
+total diag size passed = 47088
+==================================================
+probability= 7.138573974873184e-11
+size= 3459
+time= 37.48637366294861
+----------
+frac_sat_time= 0.8532489247056021
+frac_unsat_time= 0.03223239335574137
+E_count = 15617 | sat_count = 970 | unsat_count = 546
+#BMC_GDFS calls = 52
+total diag size passed = 50251
+==================================================
+probability= 7.944544455289641e-11
+size= 3928
+time= 44.64544677734375
+----------
+frac_sat_time= 0.8526990769291631
+frac_unsat_time= 0.0334001680036885
+E_count = 23642 | sat_count = 1149 | unsat_count = 673
+#BMC_GDFS calls = 60
+total diag size passed = 78409
+==================================================
+probability= 8.430655545305972e-11
+size= 4411
+time= 51.30418348312378
+----------
+frac_sat_time= 0.8565901575570041
+frac_unsat_time= 0.0319140150078793
+E_count = 24907 | sat_count = 1325 | unsat_count = 736
+#BMC_GDFS calls = 61
+total diag size passed = 82337
+==================================================
+probability= 9.156612941184018e-11
+size= 4929
+time= 57.55987763404846
+----------
+frac_sat_time= 0.8591976103218788
+frac_unsat_time= 0.029799917370151995
+E_count = 26172 | sat_count = 1491 | unsat_count = 769
+#BMC_GDFS calls = 62
+total diag size passed = 86748
+==================================================
+probability= 9.315434073404664e-11
+size= 5231
+time= 60.84828996658325
+----------
+frac_sat_time= 0.8569213144901081
+frac_unsat_time= 0.028538286595429722
+E_count = 27437 | sat_count = 1570 | unsat_count = 777
+#BMC_GDFS calls = 63
+total diag size passed = 91677
+==================================================
+probability= 1.0308503277878789e-10
+size= 5484
+time= 64.69772005081177
+----------
+frac_sat_time= 0.8494983312471158
+frac_unsat_time= 0.030722414612463392
+E_count = 38498 | sat_count = 1656 | unsat_count = 876
+#BMC_GDFS calls = 71
+total diag size passed = 134085
+==================================================
+probability= 1.0460069373552643e-10
+size= 5733
+time= 68.41837000846863
+----------
+frac_sat_time= 0.8467785899949124
+frac_unsat_time= 0.030739717319809273
+E_count = 39950 | sat_count = 1748 | unsat_count = 926
+#BMC_GDFS calls = 72
+total diag size passed = 139569
+==================================================
+probability= 1.0882086430036637e-10
+size= 6175
+time= 74.60152530670166
+----------
+frac_sat_time= 0.8493609017697671
+frac_unsat_time= 0.02903969538326892
+E_count = 41410 | sat_count = 1912 | unsat_count = 952
+#BMC_GDFS calls = 73
+total diag size passed = 145302
+==================================================
+probability= 1.1333109402256559e-10
+size= 6466
+time= 78.22035050392151
+----------
+frac_sat_time= 0.8477326700397266
+frac_unsat_time= 0.027844425147522875
+E_count = 42864 | sat_count = 2000 | unsat_count = 957
+#BMC_GDFS calls = 74
+total diag size passed = 151477
+==================================================
+probability= 1.1955392003607105e-10
+size= 6625
+time= 81.38302874565125
+----------
+frac_sat_time= 0.8386379302589507
+frac_unsat_time= 0.03094155309259179
+E_count = 58993 | sat_count = 2060 | unsat_count = 1106
+#BMC_GDFS calls = 83
+total diag size passed = 210123
+==================================================
+probability= 1.209612262371733e-10
+size= 7238
+time= 89.63423228263855
+----------
+frac_sat_time= 0.8421178547272931
+frac_unsat_time= 0.030068012087064395
+E_count = 61134 | sat_count = 2276 | unsat_count = 1176
+#BMC_GDFS calls = 84
+total diag size passed = 216748
+==================================================
+probability= 1.2528561706876397e-10
+size= 7803
+time= 97.53157305717468
+----------
+frac_sat_time= 0.8442844943130572
+frac_unsat_time= 0.029073967167665467
+E_count = 63217 | sat_count = 2485 | unsat_count = 1234
+#BMC_GDFS calls = 85
+total diag size passed = 223986
+==================================================
+probability= 1.3104009605654555e-10
+size= 8418
+time= 105.83725810050964
+----------
+frac_sat_time= 0.8467966449322071
+frac_unsat_time= 0.027538390888548994
+E_count = 65326 | sat_count = 2685 | unsat_count = 1268
+#BMC_GDFS calls = 86
+total diag size passed = 231789
+==================================================
+probability= 1.3321761865425997e-10
+size= 8746
+time= 109.90970849990845
+----------
+frac_sat_time= 0.8446662493791984
+frac_unsat_time= 0.026716474520343203
+E_count = 67435 | sat_count = 2783 | unsat_count = 1277
+#BMC_GDFS calls = 87
+total diag size passed = 240207
+==================================================
+probability= 1.445796910919326e-10
+size= 8865
+time= 112.11154055595398
+----------
+frac_sat_time= 0.8383767075498747
+frac_unsat_time= 0.026406068269081977
+E_count = 84647 | sat_count = 2823 | unsat_count = 1287
+#BMC_GDFS calls = 94
+total diag size passed = 302017
+==================================================
+probability= 1.534215977308056e-10
+size= 9335
+time= 120.40959429740906
+----------
+frac_sat_time= 0.8361555918427596
+frac_unsat_time= 0.028498024023068256
+E_count = 93513 | sat_count = 3027 | unsat_count = 1495
+#BMC_GDFS calls = 97
+total diag size passed = 328644
+==================================================
+probability= 1.5585629261303642e-10
+size= 9999
+time= 129.45238327980042
+----------
+frac_sat_time= 0.8370898785938077
+frac_unsat_time= 0.028534077201280348
+E_count = 96450 | sat_count = 3261 | unsat_count = 1608
+#BMC_GDFS calls = 98
+total diag size passed = 337979
+==================================================
+probability= 1.6367779347643567e-10
+size= 10987
+time= 142.95617079734802
+----------
+frac_sat_time= 0.8416532406002115
+frac_unsat_time= 0.027227497820953347
+E_count = 99345 | sat_count = 3612 | unsat_count = 1694
+#BMC_GDFS calls = 99
+total diag size passed = 347978
+==================================================
+probability= 1.693372129077669e-10
+size= 11760
+time= 152.65085458755493
+----------
+frac_sat_time= 0.8419911109246325
+frac_unsat_time= 0.026088389490131206
+E_count = 102234 | sat_count = 3858 | unsat_count = 1733
+#BMC_GDFS calls = 100
+total diag size passed = 358965
+==================================================
+probability= 1.7080705836848037e-10
+size= 12132
+time= 157.0290229320526
+----------
+frac_sat_time= 0.8391096145483746
+frac_unsat_time= 0.025505318876125126
+E_count = 105121 | sat_count = 3955 | unsat_count = 1742
+#BMC_GDFS calls = 101
+total diag size passed = 370725
+==================================================
+probability= 1.9064125436184017e-10
+size= 12258
+time= 159.8005108833313
+----------
+frac_sat_time= 0.8332231165685138
+frac_unsat_time= 0.025326183834757564
+E_count = 130517 | sat_count = 4009 | unsat_count = 1760
+#BMC_GDFS calls = 109
+total diag size passed = 468397
+==================================================
+probability= 1.9911027001102638e-10
+size= 12751
+time= 168.25063729286194
+----------
+frac_sat_time= 0.8298534915272241
+frac_unsat_time= 0.02740239878638677
+E_count = 140960 | sat_count = 4204 | unsat_count = 2000
+#BMC_GDFS calls = 112
+total diag size passed = 505234
+==================================================
+probability= 2.0267104701774284e-10
+size= 13569
+time= 180.42681312561035
+----------
+frac_sat_time= 0.8313666180095047
+frac_unsat_time= 0.02703258846693944
+E_count = 144429 | sat_count = 4506 | unsat_count = 2118
+#BMC_GDFS calls = 113
+total diag size passed = 517985
+==================================================
+probability= 2.1011725526055785e-10
+size= 14506
+time= 193.30451250076294
+----------
+frac_sat_time= 0.8331770936708848
+frac_unsat_time= 0.026261851837457356
+E_count = 147896 | sat_count = 4830 | unsat_count = 2204
+#BMC_GDFS calls = 114
+total diag size passed = 531554
+==================================================
+probability= 2.1526281379275393e-10
+size= 15281
+time= 203.47815990447998
+----------
+frac_sat_time= 0.8323801999519405
+frac_unsat_time= 0.025404894177579577
+E_count = 151363 | sat_count = 5078 | unsat_count = 2243
+#BMC_GDFS calls = 115
+total diag size passed = 546060
+==================================================
+probability= 2.1659944898497508e-10
+size= 15665
+time= 208.4289619922638
+----------
+frac_sat_time= 0.8287132527792691
+frac_unsat_time= 0.024908397305203108
+E_count = 154830 | sat_count = 5177 | unsat_count = 2252
+#BMC_GDFS calls = 116
+total diag size passed = 561341
+==================================================
+probability= 2.197230419838853e-10
+size= 15776
+time= 211.39210772514343
+----------
+frac_sat_time= 0.82201240915087
+frac_unsat_time= 0.02490798354646067
+E_count = 183516 | sat_count = 5214 | unsat_count = 2284
+#BMC_GDFS calls = 124
+total diag size passed = 687299
+==================================================
+probability= 2.469618911578755e-10
+size= 16189
+time= 220.1811785697937
+----------
+frac_sat_time= 0.8196838978602273
+frac_unsat_time= 0.025238024635064284
+E_count = 194637 | sat_count = 5428 | unsat_count = 2405
+#BMC_GDFS calls = 127
+total diag size passed = 734742
+==================================================
+probability= 2.4781337469859036e-10
+size= 16440
+time= 225.3381383419037
+----------
+frac_sat_time= 0.8164186086662828
+frac_unsat_time= 0.025203613243225367
+E_count = 198293 | sat_count = 5531 | unsat_count = 2456
+#BMC_GDFS calls = 128
+total diag size passed = 750931
+==================================================
+probability= 2.504838709479788e-10
+size= 16844
+time= 232.7813436985016
+----------
+frac_sat_time= 0.8143452496694981
+frac_unsat_time= 0.024860651152689157
+E_count = 201920 | sat_count = 5697 | unsat_count = 2492
+#BMC_GDFS calls = 129
+total diag size passed = 767371
+==================================================
+probability= 2.558991051038359e-10
+size= 17262
+time= 240.65403199195862
+----------
+frac_sat_time= 0.8127992325889899
+frac_unsat_time= 0.024156193720593168
+E_count = 205529 | sat_count = 5877 | unsat_count = 2503
+#BMC_GDFS calls = 130
+total diag size passed = 784215
+==================================================
+probability= 2.577021401818955e-10
+size= 17416
+time= 244.20878314971924
+----------
+frac_sat_time= 0.8084844380620293
+frac_unsat_time= 0.023804571555656483
+E_count = 209138 | sat_count = 5930 | unsat_count = 2503
+#BMC_GDFS calls = 131
+total diag size passed = 801477
+==================================================
+probability= 2.953608389991554e-10
+size= 17584
+time= 250.42159032821655
+----------
+frac_sat_time= 0.8034402864030025
+frac_unsat_time= 0.023867216546799654
+E_count = 249033 | sat_count = 6086 | unsat_count = 2571
+#BMC_GDFS calls = 141
+total diag size passed = 975810
+==================================================
+probability= 3.066040223831358e-10
+size= 17796
+time= 256.16654348373413
+----------
+frac_sat_time= 0.799282719807246
+frac_unsat_time= 0.02403121135098509
+E_count = 257684 | sat_count = 6198 | unsat_count = 2649
+#BMC_GDFS calls = 143
+total diag size passed = 1011026
+==================================================
+probability= 3.124518110914043e-10
+size= 19070
+time= 276.6659529209137
+----------
+frac_sat_time= 0.8043611911560691
+frac_unsat_time= 0.02326645968744551
+E_count = 263464 | sat_count = 6686 | unsat_count = 2770
+#BMC_GDFS calls = 144
+total diag size passed = 1028822
+==================================================
+probability= 3.151273318930323e-10
+size= 19675
+time= 286.8691461086273
+----------
+frac_sat_time= 0.8027708325300523
+frac_unsat_time= 0.023315620781541355
+E_count = 267824 | sat_count = 6898 | unsat_count = 2878
+#BMC_GDFS calls = 145
+total diag size passed = 1047892
+==================================================
+probability= 3.196925590305839e-10
+size= 20492
+time= 299.3051471710205
+----------
+frac_sat_time= 0.8018566072058972
+frac_unsat_time= 0.02302968470092133
+E_count = 272118 | sat_count = 7186 | unsat_count = 2966
+#BMC_GDFS calls = 146
+total diag size passed = 1067567
+==================================================
+probability= 3.237971919985989e-10
+size= 21255
+time= 310.35539269447327
+----------
+frac_sat_time= 0.8000397374288195
+frac_unsat_time= 0.022540526630930032
+E_count = 276407 | sat_count = 7433 | unsat_count = 3008
+#BMC_GDFS calls = 147
+total diag size passed = 1088059
+==================================================
+probability= 3.251418543428244e-10
+size= 21671
+time= 316.52138900756836
+----------
+frac_sat_time= 0.795986904047187
+frac_unsat_time= 0.02217128062506923
+E_count = 280696 | sat_count = 7542 | unsat_count = 3017
+#BMC_GDFS calls = 148
+total diag size passed = 1109314
+==================================================
+probability= 3.3696645473554607e-10
+size= 21829
+time= 321.83524560928345
+----------
+frac_sat_time= 0.7897498811032447
+frac_unsat_time= 0.02209364720163554
+E_count = 333719 | sat_count = 7628 | unsat_count = 3056
+#BMC_GDFS calls = 158
+total diag size passed = 1326833
+==================================================
+probability= 3.6834211024304545e-10
+size= 21984
+time= 328.588018655777
+----------
+frac_sat_time= 0.7853706405700711
+frac_unsat_time= 0.02286327826386865
+E_count = 346429 | sat_count = 7767 | unsat_count = 3225
+#BMC_GDFS calls = 160
+total diag size passed = 1370578
+==================================================
+probability= 3.830825300427318e-10
+size= 23950
+time= 357.5896260738373
+----------
+frac_sat_time= 0.791103184195396
+frac_unsat_time= 0.022174696118794177
+E_count = 354850 | sat_count = 8383 | unsat_count = 3408
+#BMC_GDFS calls = 161
+total diag size passed = 1392562
+==================================================
+probability= 3.889048884220947e-10
+size= 25561
+time= 382.53199100494385
+----------
+frac_sat_time= 0.7919944459661619
+frac_unsat_time= 0.021867636847993026
+E_count = 362376 | sat_count = 8955 | unsat_count = 3596
+#BMC_GDFS calls = 162
+total diag size passed = 1416512
+==================================================
+probability= 3.9513193825679753e-10
+size= 26983
+time= 405.3280918598175
+----------
+frac_sat_time= 0.7919397968148182
+frac_unsat_time= 0.02162508716563979
+E_count = 369563 | sat_count = 9485 | unsat_count = 3769
+#BMC_GDFS calls = 163
+total diag size passed = 1442073
+==================================================
+probability= 4.0364488128106623e-10
+size= 28502
+time= 429.3561656475067
+----------
+frac_sat_time= 0.7908070474162201
+frac_unsat_time= 0.021029955577501584
+E_count = 376096 | sat_count = 10029 | unsat_count = 3880
+#BMC_GDFS calls = 164
+total diag size passed = 1469056
+==================================================
+probability= 4.0763763967058254e-10
+size= 29548
+time= 445.2311837673187
+----------
+frac_sat_time= 0.7874305877227848
+frac_unsat_time= 0.020538182469778565
+E_count = 382614 | sat_count = 10359 | unsat_count = 3927
+#BMC_GDFS calls = 165
+total diag size passed = 1497558
+==================================================
+probability= 4.084082918400864e-10
+size= 30013
+time= 454.0805103778839
+----------
+frac_sat_time= 0.7808258324028624
+frac_unsat_time= 0.02018608130992815
+E_count = 389121 | sat_count = 10478 | unsat_count = 3936
+#BMC_GDFS calls = 166
+total diag size passed = 1527106
+==================================================
+probability= 4.269489623561031e-10
+size= 30261
+time= 464.04728388786316
+----------
+frac_sat_time= 0.7730970770923106
+frac_unsat_time= 0.020135435396881975
+E_count = 465999 | sat_count = 10643 | unsat_count = 4013
+#BMC_GDFS calls = 176
+total diag size passed = 1828038
+==================================================
+probability= 4.5364403301351783e-10
+size= 30410
+time= 472.65674662590027
+----------
+frac_sat_time= 0.7657215446126814
+frac_unsat_time= 0.020283253154686588
+E_count = 475142 | sat_count = 10766 | unsat_count = 4119
+#BMC_GDFS calls = 177
+total diag size passed = 1858299
+==================================================
+probability= 4.773665647043499e-10
+size= 30873
+time= 485.54451870918274
+----------
+frac_sat_time= 0.7591210990006719
+frac_unsat_time= 0.020363525733990414
+E_count = 484638 | sat_count = 10979 | unsat_count = 4247
+#BMC_GDFS calls = 178
+total diag size passed = 1888709
+==================================================
+probability= 4.828577638982395e-10
+size= 31639
+time= 502.37676215171814
+----------
+frac_sat_time= 0.7553324514124091
+frac_unsat_time= 0.02017506681248086
+E_count = 493820 | sat_count = 11304 | unsat_count = 4352
+#BMC_GDFS calls = 179
+total diag size passed = 1919582
+==================================================
+probability= 4.850593488395235e-10
+size= 32646
+time= 522.9278445243835
+----------
+frac_sat_time= 0.7512671808834156
+frac_unsat_time= 0.019964264235679503
+E_count = 502936 | sat_count = 11695 | unsat_count = 4484
+#BMC_GDFS calls = 180
+total diag size passed = 1951221
+==================================================
+probability= 5.224837930775681e-10
+size= 34089
+time= 552.0936706066132
+----------
+frac_sat_time= 0.7474083885320448
+frac_unsat_time= 0.01959607067707745
+E_count = 510429 | sat_count = 12110 | unsat_count = 4644
+#BMC_GDFS calls = 181
+total diag size passed = 1983867
+==================================================
+probability= 5.291133330992685e-10
+size= 35107
+time= 573.6589896678925
+----------
+frac_sat_time= 0.7429073975616768
+frac_unsat_time= 0.019473922072163426
+E_count = 517846 | sat_count = 12508 | unsat_count = 4793
+#BMC_GDFS calls = 182
+total diag size passed = 2017956
+==================================================
+probability= 5.371640371107691e-10
+size= 36569
+time= 603.4546523094177
+----------
+frac_sat_time= 0.7386888600673669
+frac_unsat_time= 0.018785319222804197
+E_count = 525267 | sat_count = 13048 | unsat_count = 4858
+#BMC_GDFS calls = 183
+total diag size passed = 2053063
+==================================================
+probability= 5.40487072511325e-10
+size= 37346
+time= 623.7492043972015
+----------
+frac_sat_time= 0.7290340129729816
+frac_unsat_time= 0.018208840956822594
+E_count = 532670 | sat_count = 13310 | unsat_count = 4867
+#BMC_GDFS calls = 184
+total diag size passed = 2089632
+==================================================
+probability= 5.407118704243055e-10
+size= 37456
+time= 636.015736579895
+----------
+frac_sat_time= 0.7168286746227144
+frac_unsat_time= 0.017857656030790016
+E_count = 540073 | sat_count = 13341 | unsat_count = 4867
+#BMC_GDFS calls = 185
+total diag size passed = 2126978
+==================================================
+probability= 5.625829012618116e-10
+size= 37598
+time= 650.3816947937012
+----------
+frac_sat_time= 0.7064508957305936
+frac_unsat_time= 0.017903945347381545
+E_count = 631298 | sat_count = 13482 | unsat_count = 4983
+#BMC_GDFS calls = 196
+total diag size passed = 2539047
+==================================================
+probability= 6.043949286240263e-10
+size= 37762
+time= 665.5998482704163
+----------
+frac_sat_time= 0.6956882426114407
+frac_unsat_time= 0.01787349998731807
+E_count = 640492 | sat_count = 13616 | unsat_count = 5083
+#BMC_GDFS calls = 197
+total diag size passed = 2576645
+==================================================
+probability= 6.296690440216198e-10
+size= 38322
+time= 685.3782444000244
+----------
+frac_sat_time= 0.6897850475490245
+frac_unsat_time= 0.017716327292480346
+E_count = 649916 | sat_count = 13917 | unsat_count = 5184
+#BMC_GDFS calls = 198
+total diag size passed = 2614407
+==================================================
+probability= 6.464288103303698e-10
+size= 39128
+time= 709.5077147483826
+----------
+frac_sat_time= 0.6832843767865332
+frac_unsat_time= 0.017428269974469102
+E_count = 658852 | sat_count = 14222 | unsat_count = 5275
+#BMC_GDFS calls = 199
+total diag size passed = 2652729
+==================================================
+probability= 6.862649236502907e-10
+size= 41432
+time= 756.9249908924103
+----------
+frac_sat_time= 0.6833330305243337
+frac_unsat_time= 0.016495200715660237
+E_count = 667810 | sat_count = 14866 | unsat_count = 5325
+#BMC_GDFS calls = 200
+total diag size passed = 2691857
+==================================================
+probability= 6.890530369550054e-10
+size= 42133
+time= 782.3312337398529
+----------
+frac_sat_time= 0.6742254211713934
+frac_unsat_time= 0.01611476219598933
+E_count = 676357 | sat_count = 15152 | unsat_count = 5371
+#BMC_GDFS calls = 201
+total diag size passed = 2733289
+==================================================
+probability= 7.181389055257304e-10
+size= 45503
+time= 845.5406415462494
+----------
+frac_sat_time= 0.673205547657483
+frac_unsat_time= 0.015148872166225335
+E_count = 686078 | sat_count = 15946 | unsat_count = 5454
+#BMC_GDFS calls = 202
+total diag size passed = 2775422
+==================================================
+probability= 7.316059263028133e-10
+size= 47991
+time= 901.3903813362122
+----------
+frac_sat_time= 0.6649520749474972
+frac_unsat_time= 0.014372629844364871
+E_count = 695186 | sat_count = 16546 | unsat_count = 5512
+#BMC_GDFS calls = 203
+total diag size passed = 2820925
+==================================================
+probability= 7.328929239420446e-10
+size= 48604
+time= 930.9126391410828
+----------
+frac_sat_time= 0.6512898485684439
+frac_unsat_time= 0.01395672459585631
+E_count = 704033 | sat_count = 16729 | unsat_count = 5526
+#BMC_GDFS calls = 204
+total diag size passed = 2868916
+==================================================
+probability= 7.330167451343031e-10
+size= 48761
+time= 951.8878269195557
+----------
+frac_sat_time= 0.6383086160033632
+frac_unsat_time= 0.013649183195025843
+E_count = 712875 | sat_count = 16764 | unsat_count = 5526
+#BMC_GDFS calls = 205
+total diag size passed = 2917520
+==================================================
+probability= 7.996816229861335e-10
+size= 49816
+time= 1004.3655033111572
+----------
+frac_sat_time= 0.6239899776952543
+frac_unsat_time= 0.013316949322060281
+E_count = 838303 | sat_count = 17285 | unsat_count = 5684
+#BMC_GDFS calls = 218
+total diag size passed = 3551476
+==================================================
+probability= 8.170731463172068e-10
+size= 50140
+time= 1041.1824932098389
+----------
+frac_sat_time= 0.608016912654075
+frac_unsat_time= 0.013133700640941435
+E_count = 848482 | sat_count = 17455 | unsat_count = 5791
+#BMC_GDFS calls = 219
+total diag size passed = 3601292
+==================================================
+probability= 8.181013451552551e-10
+size= 50720
+time= 1084.0236077308655
+----------
+frac_sat_time= 0.5935151167102629
+frac_unsat_time= 0.01303199081412229
+E_count = 858803 | sat_count = 17723 | unsat_count = 5958
+#BMC_GDFS calls = 220
+total diag size passed = 3651432
+==================================================
+probability= 8.211852424439802e-10
+size= 51821
+time= 1129.5454893112183
+----------
+frac_sat_time= 0.583315307000893
+frac_unsat_time= 0.012978317237436794
+E_count = 869046 | sat_count = 18169 | unsat_count = 6177
+#BMC_GDFS calls = 221
+total diag size passed = 3702152
+==================================================
+probability= 8.260214702009678e-10
+size= 53237
+time= 1178.008024930954
+----------
+frac_sat_time= 0.5755177451277659
+frac_unsat_time= 0.012863472042186588
+E_count = 879213 | sat_count = 18703 | unsat_count = 6382
+#BMC_GDFS calls = 222
+total diag size passed = 3753973
+==================================================
+probability= 8.34184336908468e-10
+size= 54913
+time= 1234.1550948619843
+----------
+frac_sat_time= 0.5669002052403896
+frac_unsat_time= 0.012562936147367502
+E_count = 889378 | sat_count = 19320 | unsat_count = 6521
+#BMC_GDFS calls = 223
+total diag size passed = 3807210
+==================================================
+probability= 8.379414228571025e-10
+size= 56154
+time= 1283.0015342235565
+----------
+frac_sat_time= 0.5564856294473799
+frac_unsat_time= 0.012204318360230384
+E_count = 899541 | sat_count = 19726 | unsat_count = 6580
+#BMC_GDFS calls = 224
+total diag size passed = 3862123
+==================================================
+probability= 8.385851141628326e-10
+size= 56756
+time= 1322.6502816677094
+----------
+frac_sat_time= 0.5439908956695215
+frac_unsat_time= 0.01186274241676897
+E_count = 909704 | sat_count = 19879 | unsat_count = 6592
+#BMC_GDFS calls = 225
+total diag size passed = 3918277
+==================================================
+probability= 8.386088108352749e-10
+size= 56876
+time= 1355.0159595012665
+----------
+frac_sat_time= 0.5316374253023487
+frac_unsat_time= 0.011579391012522717
+E_count = 919867 | sat_count = 19901 | unsat_count = 6592
+#BMC_GDFS calls = 226
+total diag size passed = 3975033
+==================================================
+probability= 8.644680283756426e-10
+size= 57068
+time= 1381.5760238170624
+----------
+frac_sat_time= 0.5247522816410676
+frac_unsat_time= 0.011548547831658899
+E_count = 1048974 | sat_count = 20093 | unsat_count = 6702
+#BMC_GDFS calls = 238
+total diag size passed = 4657597
+==================================================
+probability= 9.784610871071091e-10
+size= 58110
+time= 1430.036693096161
+----------
+frac_sat_time= 0.5207077880233417
+frac_unsat_time= 0.011314179580032085
+E_count = 1061628 | sat_count = 20659 | unsat_count = 6798
+#BMC_GDFS calls = 239
+total diag size passed = 4714665
+==================================================
+probability= 1.0047658103566693e-09
+size= 58321
+time= 1453.8831889629364
+----------
+frac_sat_time= 0.5152363966045233
+frac_unsat_time= 0.011303552367377472
+E_count = 1072909 | sat_count = 20816 | unsat_count = 6906
+#BMC_GDFS calls = 240
+total diag size passed = 4772775
+==================================================
+probability= 1.0315956216290896e-09
+size= 61181
+time= 1531.535612821579
+----------
+frac_sat_time= 0.5148880070167675
+frac_unsat_time= 0.010951041756842946
+E_count = 1086699 | sat_count = 21789 | unsat_count = 7051
+#BMC_GDFS calls = 241
+total diag size passed = 4831096
+==================================================
+probability= 1.054951321782892e-09
+size= 62948
+time= 1602.2142720222473
+----------
+frac_sat_time= 0.5099283054236614
+frac_unsat_time= 0.010788297802259601
+E_count = 1100692 | sat_count = 22446 | unsat_count = 7261
+#BMC_GDFS calls = 242
+total diag size passed = 4892277
+==================================================
+probability= 1.0968557150627976e-09
+size= 67298
+time= 1717.4261286258698
+----------
+frac_sat_time= 0.5112312587868929
+frac_unsat_time= 0.010345937253600026
+E_count = 1113323 | sat_count = 23734 | unsat_count = 7458
+#BMC_GDFS calls = 243
+total diag size passed = 4955225
+==================================================
+probability= 1.1196456831807416e-09
+size= 72234
+time= 1840.0206933021545
+----------
+frac_sat_time= 0.5135097904223508
+frac_unsat_time= 0.00991458335490819
+E_count = 1128898 | sat_count = 25104 | unsat_count = 7631
+#BMC_GDFS calls = 244
+total diag size passed = 5022523
+==================================================
+probability= 1.1310400553719688e-09
+size= 75353
+time= 1942.2513659000397
+----------
+frac_sat_time= 0.506075279857522
+frac_unsat_time= 0.009509271610345166
+E_count = 1144248 | sat_count = 25909 | unsat_count = 7726
+#BMC_GDFS calls = 245
+total diag size passed = 5094757
+==================================================

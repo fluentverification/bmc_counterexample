@@ -6,7 +6,7 @@
 	"csl_property" : "P=? [true U<=1000 YFP_protein=30]",
 	"target_variable" : "YFP_protein",
 	"target_value" : "30",
-	"model_check_step" : "100",
+	"model_check_step" : "1",
 	"max_combination" : "6"
 
 }

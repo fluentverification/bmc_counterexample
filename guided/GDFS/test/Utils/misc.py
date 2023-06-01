@@ -23,7 +23,9 @@ def trace_as_list(trace, bound, model, nodes):
     for d in trace.decls():
         index = int(d.name()[d.name().rfind('.')+1:])
         if index>bound:
-            continue
+            print(d.name() + ' : ' + str(trace[d]))
+            # continue
+            raise Exception('err - index is: ' + str(index) + ' | bound is: ' + str(bound))
         if ordered_variable_list[index] == None: 
             ordered_variable_list[index] = []
         ordered_variable_list[index].append([d.name()[:d.name().find('.')], int(str(trace[d]))])

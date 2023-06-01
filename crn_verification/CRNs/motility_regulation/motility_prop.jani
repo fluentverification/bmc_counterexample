@@ -1,0 +1,1103 @@
+{
+    "actions": [
+        {
+            "name": "R1"
+        },
+        {
+            "name": "R10"
+        },
+        {
+            "name": "R11"
+        },
+        {
+            "name": "R12"
+        },
+        {
+            "name": "R2"
+        },
+        {
+            "name": "R3"
+        },
+        {
+            "name": "R4"
+        },
+        {
+            "name": "R5"
+        },
+        {
+            "name": "R6"
+        },
+        {
+            "name": "R7"
+        },
+        {
+            "name": "R8"
+        },
+        {
+            "name": "R9"
+        }
+    ],
+    "automata": [
+        {
+            "edges": [
+                {
+                    "action": "R1",
+                    "destinations": [
+                        {
+                            "assignments": [
+                                {
+                                    "comment": "CodY <- (CodY + 1)",
+                                    "ref": "CodY",
+                                    "value": {
+                                        "left": "CodY",
+                                        "op": "+",
+                                        "right": 1
+                                    }
+                                }
+                            ],
+                            "location": "l",
+                            "probability": {
+                                "comment": "((1/10 * codY) / (1/10 * codY))",
+                                "exp": {
+                                    "left": {
+                                        "left": 0.1,
+                                        "op": "*",
+                                        "right": "codY"
+                                    },
+                                    "op": "/",
+                                    "right": {
+                                        "left": 0.1,
+                                        "op": "*",
+                                        "right": "codY"
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                    "guard": {
+                        "comment": "(codY > 0)",
+                        "exp": {
+                            "left": "codY",
+                            "op": ">",
+                            "right": 0
+                        }
+                    },
+                    "location": "l",
+                    "rate": {
+                        "comment": "(1/10 * codY)",
+                        "exp": {
+                            "left": 0.1,
+                            "op": "*",
+                            "right": "codY"
+                        }
+                    }
+                },
+                {
+                    "action": "R10",
+                    "destinations": [
+                        {
+                            "assignments": [
+                                {
+                                    "comment": "flache <- (flache + 1)",
+                                    "ref": "flache",
+                                    "value": {
+                                        "left": "flache",
+                                        "op": "+",
+                                        "right": 1
+                                    }
+                                },
+                                {
+                                    "comment": "CodY_flache <- (CodY_flache - 1)",
+                                    "ref": "CodY_flache",
+                                    "value": {
+                                        "left": "CodY_flache",
+                                        "op": "-",
+                                        "right": 1
+                                    }
+                                },
+                                {
+                                    "comment": "CodY <- (CodY + 1)",
+                                    "ref": "CodY",
+                                    "value": {
+                                        "left": "CodY",
+                                        "op": "+",
+                                        "right": 1
+                                    }
+                                }
+                            ],
+                            "location": "l",
+                            "probability": {
+                                "comment": "((1/10 * CodY_flache) / (1/10 * CodY_flache))",
+                                "exp": {
+                                    "left": {
+                                        "left": 0.1,
+                                        "op": "*",
+                                        "right": "CodY_flache"
+                                    },
+                                    "op": "/",
+                                    "right": {
+                                        "left": 0.1,
+                                        "op": "*",
+                                        "right": "CodY_flache"
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                    "guard": {
+                        "comment": "(CodY_flache > 0)",
+                        "exp": {
+                            "left": "CodY_flache",
+                            "op": ">",
+                            "right": 0
+                        }
+                    },
+                    "location": "l",
+                    "rate": {
+                        "comment": "(1/10 * CodY_flache)",
+                        "exp": {
+                            "left": 0.1,
+                            "op": "*",
+                            "right": "CodY_flache"
+                        }
+                    }
+                },
+                {
+                    "action": "R11",
+                    "destinations": [
+                        {
+                            "assignments": [
+                                {
+                                    "comment": "hag <- (hag - 1)",
+                                    "ref": "hag",
+                                    "value": {
+                                        "left": "hag",
+                                        "op": "-",
+                                        "right": 1
+                                    }
+                                },
+                                {
+                                    "comment": "CodY_hag <- (CodY_hag + 1)",
+                                    "ref": "CodY_hag",
+                                    "value": {
+                                        "left": "CodY_hag",
+                                        "op": "+",
+                                        "right": 1
+                                    }
+                                },
+                                {
+                                    "comment": "CodY <- (CodY - 1)",
+                                    "ref": "CodY",
+                                    "value": {
+                                        "left": "CodY",
+                                        "op": "-",
+                                        "right": 1
+                                    }
+                                }
+                            ],
+                            "location": "l",
+                            "probability": {
+                                "comment": "(((1/100 * CodY) * hag) / ((1/100 * CodY) * hag))",
+                                "exp": {
+                                    "left": {
+                                        "left": {
+                                            "left": 0.01,
+                                            "op": "*",
+                                            "right": "CodY"
+                                        },
+                                        "op": "*",
+                                        "right": "hag"
+                                    },
+                                    "op": "/",
+                                    "right": {
+                                        "left": {
+                                            "left": 0.01,
+                                            "op": "*",
+                                            "right": "CodY"
+                                        },
+                                        "op": "*",
+                                        "right": "hag"
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                    "guard": {
+                        "comment": "((CodY > 0) & (hag > 0))",
+                        "exp": {
+                            "left": {
+                                "left": "CodY",
+                                "op": ">",
+                                "right": 0
+                            },
+                            "op": "∧",
+                            "right": {
+                                "left": "hag",
+                                "op": ">",
+                                "right": 0
+                            }
+                        }
+                    },
+                    "location": "l",
+                    "rate": {
+                        "comment": "((1/100 * CodY) * hag)",
+                        "exp": {
+                            "left": {
+                                "left": 0.01,
+                                "op": "*",
+                                "right": "CodY"
+                            },
+                            "op": "*",
+                            "right": "hag"
+                        }
+                    }
+                },
+                {
+                    "action": "R12",
+                    "destinations": [
+                        {
+                            "assignments": [
+                                {
+                                    "comment": "hag <- (hag + 1)",
+                                    "ref": "hag",
+                                    "value": {
+                                        "left": "hag",
+                                        "op": "+",
+                                        "right": 1
+                                    }
+                                },
+                                {
+                                    "comment": "CodY_hag <- (CodY_hag - 1)",
+                                    "ref": "CodY_hag",
+                                    "value": {
+                                        "left": "CodY_hag",
+                                        "op": "-",
+                                        "right": 1
+                                    }
+                                },
+                                {
+                                    "comment": "CodY <- (CodY + 1)",
+                                    "ref": "CodY",
+                                    "value": {
+                                        "left": "CodY",
+                                        "op": "+",
+                                        "right": 1
+                                    }
+                                }
+                            ],
+                            "location": "l",
+                            "probability": {
+                                "comment": "((1/10 * CodY_hag) / (1/10 * CodY_hag))",
+                                "exp": {
+                                    "left": {
+                                        "left": 0.1,
+                                        "op": "*",
+                                        "right": "CodY_hag"
+                                    },
+                                    "op": "/",
+                                    "right": {
+                                        "left": 0.1,
+                                        "op": "*",
+                                        "right": "CodY_hag"
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                    "guard": {
+                        "comment": "(CodY_hag > 0)",
+                        "exp": {
+                            "left": "CodY_hag",
+                            "op": ">",
+                            "right": 0
+                        }
+                    },
+                    "location": "l",
+                    "rate": {
+                        "comment": "(1/10 * CodY_hag)",
+                        "exp": {
+                            "left": 0.1,
+                            "op": "*",
+                            "right": "CodY_hag"
+                        }
+                    }
+                },
+                {
+                    "action": "R2",
+                    "destinations": [
+                        {
+                            "assignments": [
+                                {
+                                    "comment": "CodY <- (CodY - 1)",
+                                    "ref": "CodY",
+                                    "value": {
+                                        "left": "CodY",
+                                        "op": "-",
+                                        "right": 1
+                                    }
+                                }
+                            ],
+                            "location": "l",
+                            "probability": {
+                                "comment": "((1/5000 * CodY) / (1/5000 * CodY))",
+                                "exp": {
+                                    "left": {
+                                        "left": 0.0002,
+                                        "op": "*",
+                                        "right": "CodY"
+                                    },
+                                    "op": "/",
+                                    "right": {
+                                        "left": 0.0002,
+                                        "op": "*",
+                                        "right": "CodY"
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                    "guard": {
+                        "comment": "(CodY > 0)",
+                        "exp": {
+                            "left": "CodY",
+                            "op": ">",
+                            "right": 0
+                        }
+                    },
+                    "location": "l",
+                    "rate": {
+                        "comment": "(1/5000 * CodY)",
+                        "exp": {
+                            "left": 0.0002,
+                            "op": "*",
+                            "right": "CodY"
+                        }
+                    }
+                },
+                {
+                    "action": "R3",
+                    "destinations": [
+                        {
+                            "assignments": [
+                                {
+                                    "comment": "SigD <- (SigD + 1)",
+                                    "ref": "SigD",
+                                    "value": {
+                                        "left": "SigD",
+                                        "op": "+",
+                                        "right": 1
+                                    }
+                                }
+                            ],
+                            "location": "l",
+                            "probability": {
+                                "comment": "((1 * flache) / (1 * flache))",
+                                "exp": {
+                                    "left": {
+                                        "left": 1,
+                                        "op": "*",
+                                        "right": "flache"
+                                    },
+                                    "op": "/",
+                                    "right": {
+                                        "left": 1,
+                                        "op": "*",
+                                        "right": "flache"
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                    "guard": {
+                        "comment": "(flache > 0)",
+                        "exp": {
+                            "left": "flache",
+                            "op": ">",
+                            "right": 0
+                        }
+                    },
+                    "location": "l",
+                    "rate": {
+                        "comment": "(1 * flache)",
+                        "exp": {
+                            "left": 1,
+                            "op": "*",
+                            "right": "flache"
+                        }
+                    }
+                },
+                {
+                    "action": "R4",
+                    "destinations": [
+                        {
+                            "assignments": [
+                                {
+                                    "comment": "SigD <- (SigD - 1)",
+                                    "ref": "SigD",
+                                    "value": {
+                                        "left": "SigD",
+                                        "op": "-",
+                                        "right": 1
+                                    }
+                                }
+                            ],
+                            "location": "l",
+                            "probability": {
+                                "comment": "((1/5000 * SigD) / (1/5000 * SigD))",
+                                "exp": {
+                                    "left": {
+                                        "left": 0.0002,
+                                        "op": "*",
+                                        "right": "SigD"
+                                    },
+                                    "op": "/",
+                                    "right": {
+                                        "left": 0.0002,
+                                        "op": "*",
+                                        "right": "SigD"
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                    "guard": {
+                        "comment": "(SigD > 0)",
+                        "exp": {
+                            "left": "SigD",
+                            "op": ">",
+                            "right": 0
+                        }
+                    },
+                    "location": "l",
+                    "rate": {
+                        "comment": "(1/5000 * SigD)",
+                        "exp": {
+                            "left": 0.0002,
+                            "op": "*",
+                            "right": "SigD"
+                        }
+                    }
+                },
+                {
+                    "action": "R5",
+                    "destinations": [
+                        {
+                            "assignments": [
+                                {
+                                    "comment": "SigD_hag <- (SigD_hag - 1)",
+                                    "ref": "SigD_hag",
+                                    "value": {
+                                        "left": "SigD_hag",
+                                        "op": "-",
+                                        "right": 1
+                                    }
+                                },
+                                {
+                                    "comment": "hag <- (hag + 1)",
+                                    "ref": "hag",
+                                    "value": {
+                                        "left": "hag",
+                                        "op": "+",
+                                        "right": 1
+                                    }
+                                },
+                                {
+                                    "comment": "SigD <- (SigD + 1)",
+                                    "ref": "SigD",
+                                    "value": {
+                                        "left": "SigD",
+                                        "op": "+",
+                                        "right": 1
+                                    }
+                                },
+                                {
+                                    "comment": "Hag <- (Hag + 1)",
+                                    "ref": "Hag",
+                                    "value": {
+                                        "left": "Hag",
+                                        "op": "+",
+                                        "right": 1
+                                    }
+                                }
+                            ],
+                            "location": "l",
+                            "probability": {
+                                "comment": "((1 * SigD_hag) / (1 * SigD_hag))",
+                                "exp": {
+                                    "left": {
+                                        "left": 1,
+                                        "op": "*",
+                                        "right": "SigD_hag"
+                                    },
+                                    "op": "/",
+                                    "right": {
+                                        "left": 1,
+                                        "op": "*",
+                                        "right": "SigD_hag"
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                    "guard": {
+                        "comment": "(SigD_hag > 0)",
+                        "exp": {
+                            "left": "SigD_hag",
+                            "op": ">",
+                            "right": 0
+                        }
+                    },
+                    "location": "l",
+                    "rate": {
+                        "comment": "(1 * SigD_hag)",
+                        "exp": {
+                            "left": 1,
+                            "op": "*",
+                            "right": "SigD_hag"
+                        }
+                    }
+                },
+                {
+                    "action": "R6",
+                    "destinations": [
+                        {
+                            "assignments": [
+                                {
+                                    "comment": "Hag <- (Hag - 1)",
+                                    "ref": "Hag",
+                                    "value": {
+                                        "left": "Hag",
+                                        "op": "-",
+                                        "right": 1
+                                    }
+                                }
+                            ],
+                            "location": "l",
+                            "probability": {
+                                "comment": "((1/5000 * Hag) / (1/5000 * Hag))",
+                                "exp": {
+                                    "left": {
+                                        "left": 0.0002,
+                                        "op": "*",
+                                        "right": "Hag"
+                                    },
+                                    "op": "/",
+                                    "right": {
+                                        "left": 0.0002,
+                                        "op": "*",
+                                        "right": "Hag"
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                    "guard": {
+                        "comment": "(Hag > 0)",
+                        "exp": {
+                            "left": "Hag",
+                            "op": ">",
+                            "right": 0
+                        }
+                    },
+                    "location": "l",
+                    "rate": {
+                        "comment": "(1/5000 * Hag)",
+                        "exp": {
+                            "left": 0.0002,
+                            "op": "*",
+                            "right": "Hag"
+                        }
+                    }
+                },
+                {
+                    "action": "R7",
+                    "destinations": [
+                        {
+                            "assignments": [
+                                {
+                                    "comment": "SigD_hag <- (SigD_hag + 1)",
+                                    "ref": "SigD_hag",
+                                    "value": {
+                                        "left": "SigD_hag",
+                                        "op": "+",
+                                        "right": 1
+                                    }
+                                },
+                                {
+                                    "comment": "hag <- (hag - 1)",
+                                    "ref": "hag",
+                                    "value": {
+                                        "left": "hag",
+                                        "op": "-",
+                                        "right": 1
+                                    }
+                                },
+                                {
+                                    "comment": "SigD <- (SigD - 1)",
+                                    "ref": "SigD",
+                                    "value": {
+                                        "left": "SigD",
+                                        "op": "-",
+                                        "right": 1
+                                    }
+                                }
+                            ],
+                            "location": "l",
+                            "probability": {
+                                "comment": "(((1/100 * SigD) * hag) / ((1/100 * SigD) * hag))",
+                                "exp": {
+                                    "left": {
+                                        "left": {
+                                            "left": 0.01,
+                                            "op": "*",
+                                            "right": "SigD"
+                                        },
+                                        "op": "*",
+                                        "right": "hag"
+                                    },
+                                    "op": "/",
+                                    "right": {
+                                        "left": {
+                                            "left": 0.01,
+                                            "op": "*",
+                                            "right": "SigD"
+                                        },
+                                        "op": "*",
+                                        "right": "hag"
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                    "guard": {
+                        "comment": "((SigD > 0) & (hag > 0))",
+                        "exp": {
+                            "left": {
+                                "left": "SigD",
+                                "op": ">",
+                                "right": 0
+                            },
+                            "op": "∧",
+                            "right": {
+                                "left": "hag",
+                                "op": ">",
+                                "right": 0
+                            }
+                        }
+                    },
+                    "location": "l",
+                    "rate": {
+                        "comment": "((1/100 * SigD) * hag)",
+                        "exp": {
+                            "left": {
+                                "left": 0.01,
+                                "op": "*",
+                                "right": "SigD"
+                            },
+                            "op": "*",
+                            "right": "hag"
+                        }
+                    }
+                },
+                {
+                    "action": "R8",
+                    "destinations": [
+                        {
+                            "assignments": [
+                                {
+                                    "comment": "SigD_hag <- (SigD_hag - 1)",
+                                    "ref": "SigD_hag",
+                                    "value": {
+                                        "left": "SigD_hag",
+                                        "op": "-",
+                                        "right": 1
+                                    }
+                                },
+                                {
+                                    "comment": "hag <- (hag + 1)",
+                                    "ref": "hag",
+                                    "value": {
+                                        "left": "hag",
+                                        "op": "+",
+                                        "right": 1
+                                    }
+                                },
+                                {
+                                    "comment": "SigD <- (SigD + 1)",
+                                    "ref": "SigD",
+                                    "value": {
+                                        "left": "SigD",
+                                        "op": "+",
+                                        "right": 1
+                                    }
+                                }
+                            ],
+                            "location": "l",
+                            "probability": {
+                                "comment": "((1/10 * SigD_hag) / (1/10 * SigD_hag))",
+                                "exp": {
+                                    "left": {
+                                        "left": 0.1,
+                                        "op": "*",
+                                        "right": "SigD_hag"
+                                    },
+                                    "op": "/",
+                                    "right": {
+                                        "left": 0.1,
+                                        "op": "*",
+                                        "right": "SigD_hag"
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                    "guard": {
+                        "comment": "(SigD_hag > 0)",
+                        "exp": {
+                            "left": "SigD_hag",
+                            "op": ">",
+                            "right": 0
+                        }
+                    },
+                    "location": "l",
+                    "rate": {
+                        "comment": "(1/10 * SigD_hag)",
+                        "exp": {
+                            "left": 0.1,
+                            "op": "*",
+                            "right": "SigD_hag"
+                        }
+                    }
+                },
+                {
+                    "action": "R9",
+                    "destinations": [
+                        {
+                            "assignments": [
+                                {
+                                    "comment": "flache <- (flache - 1)",
+                                    "ref": "flache",
+                                    "value": {
+                                        "left": "flache",
+                                        "op": "-",
+                                        "right": 1
+                                    }
+                                },
+                                {
+                                    "comment": "CodY_flache <- (CodY_flache + 1)",
+                                    "ref": "CodY_flache",
+                                    "value": {
+                                        "left": "CodY_flache",
+                                        "op": "+",
+                                        "right": 1
+                                    }
+                                },
+                                {
+                                    "comment": "CodY <- (CodY - 1)",
+                                    "ref": "CodY",
+                                    "value": {
+                                        "left": "CodY",
+                                        "op": "-",
+                                        "right": 1
+                                    }
+                                }
+                            ],
+                            "location": "l",
+                            "probability": {
+                                "comment": "(((1/50 * CodY) * flache) / ((1/50 * CodY) * flache))",
+                                "exp": {
+                                    "left": {
+                                        "left": {
+                                            "left": 0.02,
+                                            "op": "*",
+                                            "right": "CodY"
+                                        },
+                                        "op": "*",
+                                        "right": "flache"
+                                    },
+                                    "op": "/",
+                                    "right": {
+                                        "left": {
+                                            "left": 0.02,
+                                            "op": "*",
+                                            "right": "CodY"
+                                        },
+                                        "op": "*",
+                                        "right": "flache"
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                    "guard": {
+                        "comment": "((CodY > 0) & (flache > 0))",
+                        "exp": {
+                            "left": {
+                                "left": "CodY",
+                                "op": ">",
+                                "right": 0
+                            },
+                            "op": "∧",
+                            "right": {
+                                "left": "flache",
+                                "op": ">",
+                                "right": 0
+                            }
+                        }
+                    },
+                    "location": "l",
+                    "rate": {
+                        "comment": "((1/50 * CodY) * flache)",
+                        "exp": {
+                            "left": {
+                                "left": 0.02,
+                                "op": "*",
+                                "right": "CodY"
+                            },
+                            "op": "*",
+                            "right": "flache"
+                        }
+                    }
+                }
+            ],
+            "initial-locations": [
+                "l"
+            ],
+            "locations": [
+                {
+                    "name": "l"
+                }
+            ],
+            "name": "motility",
+            "variables": [
+                {
+                    "initial-value": 1,
+                    "name": "codY",
+                    "type": "int"
+                },
+                {
+                    "initial-value": 1,
+                    "name": "flache",
+                    "type": "int"
+                },
+                {
+                    "initial-value": 1,
+                    "name": "SigD_hag",
+                    "type": "int"
+                },
+                {
+                    "initial-value": 1,
+                    "name": "hag",
+                    "type": "int"
+                },
+                {
+                    "initial-value": 1,
+                    "name": "CodY_flache",
+                    "type": "int"
+                },
+                {
+                    "initial-value": 1,
+                    "name": "CodY_hag",
+                    "type": "int"
+                },
+                {
+                    "initial-value": 10,
+                    "name": "SigD",
+                    "type": "int"
+                },
+                {
+                    "initial-value": 10,
+                    "name": "Hag",
+                    "type": "int"
+                }
+            ]
+        }
+    ],
+    "constants": [
+        {
+            "name": "k1",
+            "type": "real",
+            "value": 0.1
+        },
+        {
+            "name": "k2",
+            "type": "real",
+            "value": 0.0002
+        },
+        {
+            "name": "k3",
+            "type": "real",
+            "value": 1
+        },
+        {
+            "name": "k4",
+            "type": "real",
+            "value": 0.0002
+        },
+        {
+            "name": "k5",
+            "type": "real",
+            "value": 1
+        },
+        {
+            "name": "k6",
+            "type": "real",
+            "value": 0.0002
+        },
+        {
+            "name": "k7",
+            "type": "real",
+            "value": 0.01
+        },
+        {
+            "name": "k8",
+            "type": "real",
+            "value": 0.1
+        },
+        {
+            "name": "k9",
+            "type": "real",
+            "value": 0.02
+        },
+        {
+            "name": "k10",
+            "type": "real",
+            "value": 0.1
+        },
+        {
+            "name": "k11",
+            "type": "real",
+            "value": 0.01
+        },
+        {
+            "name": "k12",
+            "type": "real",
+            "value": 0.1
+        }
+    ],
+    "features": [
+        "derived-operators"
+    ],
+    "jani-version": 1,
+    "name": "motility_prop",
+    "properties": [
+        {
+            "expression": {
+                "fun": "values",
+                "op": "filter",
+                "states": {
+                    "op": "initial"
+                },
+                "values": {
+                    "exp": {
+                        "left": true,
+                        "op": "U",
+                        "right": {
+                            "left": "CodY",
+                            "op": "=",
+                            "right": 19
+                        },
+                        "time-bounds": {
+                            "upper": 10,
+                            "upper-exclusive": false
+                        }
+                    },
+                    "op": "Pmin"
+                }
+            },
+            "name": "1"
+        }
+    ],
+    "restrict-initial": {
+        "exp": true
+    },
+    "system": {
+        "elements": [
+            {
+                "automaton": "motility"
+            }
+        ],
+        "syncs": [
+            {
+                "result": "R1",
+                "synchronise": [
+                    "R1"
+                ]
+            },
+            {
+                "result": "R10",
+                "synchronise": [
+                    "R10"
+                ]
+            },
+            {
+                "result": "R11",
+                "synchronise": [
+                    "R11"
+                ]
+            },
+            {
+                "result": "R12",
+                "synchronise": [
+                    "R12"
+                ]
+            },
+            {
+                "result": "R2",
+                "synchronise": [
+                    "R2"
+                ]
+            },
+            {
+                "result": "R3",
+                "synchronise": [
+                    "R3"
+                ]
+            },
+            {
+                "result": "R4",
+                "synchronise": [
+                    "R4"
+                ]
+            },
+            {
+                "result": "R5",
+                "synchronise": [
+                    "R5"
+                ]
+            },
+            {
+                "result": "R6",
+                "synchronise": [
+                    "R6"
+                ]
+            },
+            {
+                "result": "R7",
+                "synchronise": [
+                    "R7"
+                ]
+            },
+            {
+                "result": "R8",
+                "synchronise": [
+                    "R8"
+                ]
+            },
+            {
+                "result": "R9",
+                "synchronise": [
+                    "R9"
+                ]
+            }
+        ]
+    },
+    "type": "ctmc",
+    "variables": [
+        {
+            "initial-value": 10,
+            "name": "CodY",
+            "type": "int"
+        }
+    ]
+}

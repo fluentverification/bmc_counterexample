@@ -1,0 +1,14 @@
+{
+	"model_path" : "./CRNs/yeast_polarization/yeast_unb.sm",
+	"jani_path" : "./CRNs/yeast_polarization/yeast_prop.jani",
+	"model_name" : "yeast_polarization",
+	"starting_bound" : 100,
+	"prism_binary" : "/home/ubu/projects/probmc/prism-4.7-src/prism/bin/prism",
+	"storm_binary" : "/home/ubu/projects/probmc/storm/storm/build/bin/storm",
+	"csl_property" : "P=? [true U<=20 (Gbg=50  & sink_var=0)]",
+	"csl_property_upper_bound" : "P=? [(Gbg != 50) U<=20 (Gbg=50 | \"sink\")]",
+	"target_variable" : "Gbg",
+	"target_value" : "50",
+	"model_check_step" : "1",
+	"max_combination" : "12"
+}
