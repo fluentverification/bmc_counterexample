@@ -12,9 +12,16 @@ from Graph.Node import Node
 from Graph.Edge import Edge
 from Search_Algos.BMC_GDFS.CEX_GEN import CEX_GEN
 from Parser import Parser
+import z3
 
-
-
+# import __future__
+# a = '((1/2 * x) ** 2) > 0'
+# a = compile(a, '<string>', 'eval', __future__.division.compiler_flag)
+# print (eval(a, {'x':1}))
+# quit()
+# a = 'sigd_hag'
+# print(a.find('haa'))
+# quit()
 
 #read json elements
 f = open(sys.argv[1])
@@ -57,4 +64,4 @@ if not os.path.exists('./results/' + model_name):
 # print("Starting... \n")
 
 
-CEX_GEN(model, target_var, target_index, target_value, mc_step, model_name, prism_bin, csl_prop, bound, 1E-20)
+CEX_GEN(model, target_var, target_index, target_value, mc_step, model_name, prism_bin, csl_prop, bound, 1E-1)

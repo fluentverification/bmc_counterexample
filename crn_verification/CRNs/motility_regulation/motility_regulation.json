@@ -1,0 +1,14 @@
+{
+	"model_path" : "./CRNs/motility_regulation/motility_unb.sm",
+	"jani_path" : "./CRNs/motility_regulation/motility_prop.jani",
+	"model_name" : "motility_regulation",
+	"starting_bound" : 10,
+	"prism_binary" : "/home/ubu/projects/probmc/prism-4.7-src/prism/bin/prism",
+	"storm_binary" : "/home/ubu/projects/probmc/storm/storm/build/bin/storm",
+	"csl_property" : "P=? [true U<=10 (CodY=19  & sink_var=0)]",
+	"csl_property_upper_bound" : "P=? [(CodY != 19) U<=10 (CodY=19 | \"sink\")]",
+	"target_variable" : "CodY",
+	"target_value" : "19",
+	"model_check_step" : "50000",
+	"max_combination" : "9"
+}

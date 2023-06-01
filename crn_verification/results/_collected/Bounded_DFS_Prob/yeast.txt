@@ -1,0 +1,12 @@
+Probability Step = -4 (P = P/(10^4) in case threshold is decreased )
+Bound Step = + 2 (K = K + 2 in case bound is increased)
+Results collected without Post-Processing. The size of the diag could be reduced.
+====================================================================================
+P = -68
+K = 100
+diag_size = 266264
+----
+probability= 1.3503873054034063e-30
+size= 266264
+time= 353.6996810436249
+==================================================

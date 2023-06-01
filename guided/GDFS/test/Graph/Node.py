@@ -6,6 +6,7 @@ class Node:
         self.index = -1
         self.reachability_probability = 0
         self.in_edges = {}
+        self.unsat_bounds = set()
 
     def add_out_edge(self, edge):
         edge_tuple = edge.get_tuple()

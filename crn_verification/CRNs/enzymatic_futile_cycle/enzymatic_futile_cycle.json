@@ -1,0 +1,14 @@
+{
+	"model_path" : "./CRNs/enzymatic_futile_cycle/enzym_unb.sm",
+	"jani_path" : "./CRNs/enzymatic_futile_cycle/enzym_prop.jani",
+	"model_name" : "enzymatic_futile_cycle",
+	"starting_bound" : 19,
+	"prism_binary" : "/home/ubu/projects/probmc/prism-4.7-src/prism/bin/prism",
+	"storm_binary" : "/home/ubu/projects/probmc/storm/storm/build/bin/storm",
+	"csl_property" : "P=? [true U<=100 (s5=40 & sink_var=0)]",
+	"csl_property_upper_bound" : "P=? [(s5!=40) U<=100 (s5=40 | \"sink\")]",
+	"target_variable" : "s5",
+	"target_value" : "40",
+	"model_check_step" : "1",
+	"max_combination" : "6"
+}

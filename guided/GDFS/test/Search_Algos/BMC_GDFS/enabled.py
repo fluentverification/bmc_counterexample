@@ -12,9 +12,10 @@ from math import log
 # probability
 def enabled(model, diag, curr_node, path_prob, prob_thresh):
     R = []
+    total_rate = get_total_outgoing_rate(curr_node.var_values, model)
+
     for i, r in enumerate(model.get_reactions_vector()):
-        rate = get_reaction_rate(curr_node.var_values, model, i)
-        total_rate = get_total_outgoing_rate(curr_node.var_values, model)
+        rate = get_reaction_rate(curr_node.var_values, model, i) 
         
         if rate > 0:
             p = path_prob + log(rate/total_rate)
@@ -27,9 +28,9 @@ def enabled(model, diag, curr_node, path_prob, prob_thresh):
                 edge_tuple = curr_node.var_values + dst_var_values + (i,)
 
                 if diag.get_edge(edge_tuple)[0]:
-                    R.append([i, False, p])
+                    R.append((i, False, p))
                 else:
-                    R.append([i, True, p])
+                    R.append((i, True, p))
 
     R =  sorted(R, key=lambda x: x[2])
     return R
