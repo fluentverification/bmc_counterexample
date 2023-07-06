@@ -2,8 +2,12 @@ Starting [Bounded DFS]...
 
 K = 100
 diag_size = 306801
+time stamp before model checking = 7.415605783462524
 ----
 probability= 8.511582811412971e-26
 size= 306801
-time= 274.1288495063782
+time= 250.58678269386292
 ==================================================
+K = 101
+diag_size = 728526
+time stamp before model checking = 263.17572689056396

@@ -17,7 +17,7 @@ if not os.path.exists('./results/' + model_name + '/bounds'):
     os.makedirs('./results/' + model_name + '/bounds')
 
 print("hello")
-# Bounded_DFS.CEX_GEN(json_data)
+Bounded_DFS.CEX_GEN(json_data)
 # Bounded_DFS_Prob.CEX_GEN(json_data)
 # XBF.CEX_GEN(json_data)
-Model_Bounded.CEX_GEN(json_data)
+# Model_Bounded.CEX_GEN(json_data)

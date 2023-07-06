@@ -69,6 +69,7 @@ class Parser:
                     expression = compile(expression, '<string>', 'eval', __future__.division.compiler_flag)
                     self.reactions_vector[i][var_index] = evaluate_compiled_expression(expression,assignment)
         
+        print(self.index_to_reaction_dict)
         #reaction_rate_expression is a dictionary with a list of size two for every reaction index
         #element1: compiled guard expression
         #element2: compiled rate expression
