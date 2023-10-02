@@ -1,3 +1,6 @@
+#! /home/ubu/projects/probmc/storm/pycarl/env/bin/python3
+
+
 import itertools
 from z3 import Solver, Int, And, sat
 from Parser import Parser
@@ -147,7 +150,10 @@ def JSON_Parser(model, model_name, K, jani_path, min_max_dict):
                                     lower_bound_guards.append(gt_guard)
             if "guard" not in edge:
                 raise Exception("an edge does not have a guard")
-            guard = edge["guard"]
+                guard = {'comment': 'generated empty guard', 'exp': True}
+                edge["guard"] = guard
+            else:
+                guard = edge["guard"]
             flag = False
             for g in lower_bound_guards:
                 if not flag:
@@ -182,7 +188,10 @@ def JSON_Parser(model, model_name, K, jani_path, min_max_dict):
                                     upper_bound_guards.append(lt_guard)
             if "guard" not in edge:
                 raise Exception("an edge does not have a guard")
-            guard = edge["guard"]
+                guard = {'comment': 'generated empty guard', 'exp': True}
+                edge["guard"] = guard
+            else:
+                guard = edge["guard"]
             flag = False
             for g in upper_bound_guards:
                 if (not flag) and ("modified" not in guard["comment"]):
@@ -227,7 +236,10 @@ def JSON_Parser(model, model_name, K, jani_path, min_max_dict):
         for edge in edges:
             if "guard" not in edge:
                 raise Exception("an edge does not have a guard")
-            guard = edge["guard"]
+                guard = {'comment': 'generated empty guard', 'exp': True}
+                edge["guard"] = guard
+            else:
+                guard = edge["guard"]
             if ("modified" not in guard["comment"]):
                 guard["exp"] = {"left" : guard["exp"], "op": "∧", "right" : min_max_exp}
             else: 
@@ -243,7 +255,7 @@ def JSON_Parser(model, model_name, K, jani_path, min_max_dict):
     sink_assignments = []
     sink_assignments.append({"ref" : "sink_var", "value" : 1})
     for i, s in enumerate(species_tuple):
-        sink_assignments.append({"ref" : s, "value" : bounds_tuple[i][0]})
+        sink_assignments.append({"ref" : s, "value" : bounds_tuple[i][0]-1})
     ##
 
     for automaton in automata:

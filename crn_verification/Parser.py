@@ -105,24 +105,24 @@ class Parser:
 
         #reactions_lhs_vector contains the effect of the lhs of a 
         #reaction (not the final effect after production happens)
-        self.reactions_lhs_vector = [None] * len(self.commands)
-        for i, c in enumerate(self.commands):
-            self.reactions_lhs_vector[i] = [None] * len(self.species_tuple)
-            delimiter = 'and'
-            result = [part.strip() for part in self.reaction_rate_expression[i][2].split(delimiter)]
-            for r in result:
-                r = re.sub(r'\(|\)', '', r)
-                for j, s in enumerate(self.species_tuple):
-                    val = 0
-                    r_compiled = compile(r, '<string>', 'eval', __future__.division.compiler_flag)
-                    if (s in r) and (('_' + s) not in r) and ((s + '_') not in r):    
-                        while (evaluate_compiled_expression(r_compiled, {s : val}) == False):
-                            val = val + 1
-                    if self.reactions_lhs_vector[i][j] == None:
-                        self.reactions_lhs_vector[i][j] = val
-                    else:
-                        if val > self.reactions_lhs_vector[i][j]:
-                            self.reactions_lhs_vector[i][j] = val
+        # self.reactions_lhs_vector = [None] * len(self.commands)
+        # for i, c in enumerate(self.commands):
+        #     self.reactions_lhs_vector[i] = [None] * len(self.species_tuple)
+        #     delimiter = 'and'
+        #     result = [part.strip() for part in self.reaction_rate_expression[i][2].split(delimiter)]
+        #     for r in result:
+        #         r = re.sub(r'\(|\)', '', r)
+        #         for j, s in enumerate(self.species_tuple):
+        #             val = 0
+        #             r_compiled = compile(r, '<string>', 'eval', __future__.division.compiler_flag)
+        #             if (s in r) and (('_' + s) not in r) and ((s + '_') not in r):    
+        #                 while (evaluate_compiled_expression(r_compiled, {s : val}) == False):
+        #                     val = val + 1
+        #             if self.reactions_lhs_vector[i][j] == None:
+        #                 self.reactions_lhs_vector[i][j] = val
+        #             else:
+        #                 if val > self.reactions_lhs_vector[i][j]:
+        #                     self.reactions_lhs_vector[i][j] = val
 
 
 
@@ -137,8 +137,8 @@ class Parser:
     def get_reactions_vector(self):
         return self.reactions_vector
 
-    def get_reactions_lhs_vector(self):
-        return self.reactions_lhs_vector
+    # def get_reactions_lhs_vector(self):
+    #     return self.reactions_lhs_vector
 
     def get_reaction_rate(self, var_assignment_tuple, r_index):
         var_dict = {}

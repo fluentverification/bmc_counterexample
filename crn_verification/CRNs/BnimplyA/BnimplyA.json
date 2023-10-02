@@ -1,0 +1,13 @@
+{
+	"model_name" : "BnimplyA",
+	"model_path" : "./CRNs/BnimplyA/2023_IWBDA_unbounded_no_complex.sm",
+	"starting_bound" : 1,
+	"prism_binary" : "/home/ubu/projects/probmc/prism-4.7-src/prism/bin/prism",
+	"storm_binary" : "/home/ubu/projects/probmc/storm/storm/build/bin/storm",
+	"csl_property" : "P=? [true U<=1000 (YFP_protein>=10)]",
+	"target_variable" : "YFP_protein",
+	"target_value" : "10",
+	"model_check_step" : "1",
+	"max_combination" : "12"
+
+}
