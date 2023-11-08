@@ -38,11 +38,21 @@ def CEX_GEN(json_data):
     #
 
     print("\nStarting...")
+    
+    #
+    min_max_dict = {}
+    index_tuple = (0,)
+    for i in range(1,len(model.get_species_tuple())):
+        index_tuple = index_tuple + (i,)
+    for s in subsets:
+        min_max_dict[s] = [-1, -1]
+    #
     while (True):
         print("Bound = " + str(K))
         before = time.time()
-        min_max_dict = get_min_max(model, K, target_index, target_value, subsets)
+        min_max_dict = get_min_max(model, K, target_index, target_value, subsets, min_max_dict)
         print("Generating min_max dictonary took " + str(time.time() - before) + "seconds.")
+        #
         JSON_Parser(model, model_name, K, jani_path, min_max_dict)
         print("Calling Storm to calculate the probability... \n\n")
         
@@ -149,7 +159,7 @@ def JSON_Parser(model, model_name, K, jani_path, min_max_dict):
                                     gt_guard = {"left" : s, "op" : ">", "right" : bounds_tuple[i][0] + rhs - 1}
                                     lower_bound_guards.append(gt_guard)
             if "guard" not in edge:
-                raise Exception("an edge does not have a guard")
+                # raise Exception("an edge does not have a guard")
                 guard = {'comment': 'generated empty guard', 'exp': True}
                 edge["guard"] = guard
             else:
@@ -187,7 +197,7 @@ def JSON_Parser(model, model_name, K, jani_path, min_max_dict):
                                     lt_guard = {"left" : s, "op" : "<", "right" : bounds_tuple[i][1] - rhs + 1}
                                     upper_bound_guards.append(lt_guard)
             if "guard" not in edge:
-                raise Exception("an edge does not have a guard")
+                # raise Exception("an edge does not have a guard")
                 guard = {'comment': 'generated empty guard', 'exp': True}
                 edge["guard"] = guard
             else:
@@ -235,7 +245,7 @@ def JSON_Parser(model, model_name, K, jani_path, min_max_dict):
         edges = automaton["edges"]
         for edge in edges:
             if "guard" not in edge:
-                raise Exception("an edge does not have a guard")
+                # raise Exception("an edge does not have a guard")
                 guard = {'comment': 'generated empty guard', 'exp': True}
                 edge["guard"] = guard
             else:
@@ -307,13 +317,13 @@ def get_subsets (tuple, L, U):
 #generating a dictionary. 
 #Keys: combinations of variables:(s1,), (s1,s2), ...
 #Values: a list with l[0] the minimum value and l[1] the maximum value for that key
-def get_min_max(model, bound, target_index, target_value, subsets):
+def get_min_max(model, bound, target_index, target_value, subsets, min_max_prev):
     min_max = {}
     index_tuple = (0,)
     for i in range(1,len(model.get_species_tuple())):
         index_tuple = index_tuple + (i,)
     for s in subsets:
-        min_max[s] = [-1, -1]
+        min_max[s] = min_max_prev[s]
     
     vars = []
     for i, r in enumerate(model.get_reactions_vector()):
@@ -381,7 +391,12 @@ def get_min_max(model, bound, target_index, target_value, subsets):
             for v in vars:
                 for j in e:
                     max_value = max_value + (model.get_reactions_vector()[v[0]][j] * v[1])
-            min_max[e][1] = max_value
+            if max_value > min_max[e][1]:
+                min_max[e][1] = max_value
+            elif min_max[e][1] != -1:
+                max_value = min_max[e][1]
+            else:
+                min_max[e][1] = max_value
             sum = 0
             for j in e:
                 sum = sum + model.get_initial_state()[j]
@@ -407,6 +422,13 @@ def get_min_max(model, bound, target_index, target_value, subsets):
                 for j in e:
                     min_value = min_value + (model.get_reactions_vector()[v[0]][j] * v[1])
             min_max[e][0] = min_value
+            if min_value < min_max[e][0]:
+                min_max[e][0] = min_value
+            elif min_max[e][0] != -1:
+                min_value = min_max[e][0]
+            else:
+                min_max[e][0] = min_value
+
             sum = 0
             for j in e:
                 sum = sum + model.get_initial_state()[j]
