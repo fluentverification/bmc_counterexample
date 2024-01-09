@@ -8,7 +8,8 @@ import time
 import json
 import subprocess
 import copy
-# from Min_Max import get_min_max_bound_only, get_min_max_probability
+from Min_Max import get_min_max_avg_prob
+import math
 
 
 #
@@ -37,9 +38,8 @@ def CEX_GEN(json_data):
     index_tuple = (0,)
     for i in range(1,len(model.get_species_tuple())):
         index_tuple = index_tuple + (i,)
+    # max_comb = 1
     subsets = get_subsets(index_tuple, 1, max_comb)
-    #
-
     print("\nStarting...")
     
     #
@@ -49,26 +49,36 @@ def CEX_GEN(json_data):
         for e in s:
             temp = temp + model.get_initial_state()[e]
         min_max_dict[s] = [temp, temp]
+    
+    ########### parameters ###########
     #
+    thresh = -1
+    division_factor = 100
+    engine = "automatic"
+    #
+    N = math.floor(math.log(K))
+
     while (True):
-        print("Bound = " + str(K))
+        print("thresh = " + str(thresh))
         before = time.time()
         
-        flag, min_max_dict = get_min_max(model, K, target_index, target_value, subsets, min_max_dict)
+        flag, length, min_max_dict = get_min_max_avg_prob(model, thresh, target_index, target_value, subsets, min_max_dict, model_name, division_factor, N)
         print("Generating min_max dictonary took " + str(time.time() - before) + "seconds.")
         #
         if flag:
+            N = math.floor(math.log(length))
             JSON_Parser(model, model_name, K, jani_path, min_max_dict)
             print("Calling Storm to calculate the probability... \n\n")
             
             #running storm on the produced output
-            stdout_result = subprocess.run([storm_bin, "--jani", "./results/" + model_name + "/bounds/" + model_name + "_" + str(K) + ".jani", '--prop', csl_prop_lb], stdout=subprocess.PIPE)
+            stdout_result = subprocess.run([storm_bin, "--jani", "./results/" + model_name + "/bounds/" + model_name + "_" + str(K) + ".jani",'--engine', engine, '--prop', csl_prop_lb], stdout=subprocess.PIPE)
             stdout_result = stdout_result.stdout.decode('utf-8')
             print(stdout_result)
         else:
-            print("No additional witnesses found for bound " + str(K))
+            print("No additional witnesses found for threshold " + str(thresh))
         #
         
+        thresh = thresh - 1
         K = K + 1
         print("\n \nRunning time: " + str(time.time() - start_time) + " seconds")
         print("=" * 50)
@@ -103,15 +113,15 @@ def JSON_Parser(model, model_name, K, jani_path, min_max_dict):
     automata = parsed_json["automata"]
 
     #adding lower-bound and upper-bound to global variables of the model
-    for gv in global_variables:
-        for i, s in enumerate(species_tuple):
-            if gv["name"] == s:
-                type_ = {"base" : "int", 
-                "kind" : "bounded", 
-                "lower-bound" : bounds_tuple[i][0],
-                "upper-bound" : bounds_tuple[i][1]
-                }
-                gv["type"] = type_
+    # for gv in global_variables:
+    #     for i, s in enumerate(species_tuple):
+    #         if gv["name"] == s:
+    #             type_ = {"base" : "int", 
+    #             "kind" : "bounded", 
+    #             "lower-bound" : bounds_tuple[i][0],
+    #             "upper-bound" : bounds_tuple[i][1]
+    #             }
+    #             gv["type"] = type_
     #
 
     #adding lower-bound and upper-bound to local variables of an automaton (module)
@@ -309,241 +319,11 @@ def JSON_Parser(model, model_name, K, jani_path, min_max_dict):
 
 #returns all the subsets of a tuple with cardinality in range [L, U]
 #returns a list of tuples where each tuple is a subset
-#utility functions
-
-############ Functions Generating Min_Max via SMT-Solving ############
-#returns all the subsets of a tuple with cardinality in range [L, U]
-#returns a list of tuples where each tuple is a subset
-############ Functions Generating Min_Max via SMT-Solving ############
-#returns all the subsets of a tuple with cardinality in range [L, U]
-#returns a list of tuples where each tuple is a subset
 def get_subsets (tuple, L, U):
     if U>len(tuple):
         U = len(tuple)
     return list(itertools.chain.from_iterable(itertools.combinations(tuple, r) for r in range(L, U+1)))
 #
-
-#generating a dictionary. 
-#Keys: combinations of variables:(s1,), (s1,s2), ...
-#Values: a list with l[0] the minimum value and l[1] the maximum value for that key
-def get_min_max(model, bound, target_index, target_value, subsets, min_max_prev):
-    min_max = {}
-    index_tuple = (0,)
-    for i in range(1,len(model.get_species_tuple())):
-        index_tuple = index_tuple + (i,)
-    for s in subsets:
-        min_max[s] = min_max_prev[s]
-    
-    vars = []
-    for i, r in enumerate(model.get_reactions_vector()):
-        x= Int("n_i_" + str(i))
-        vars.append(x)
-    for i, r in enumerate(model.get_reactions_vector()):
-        x= Int("n_t_" + str(i))
-        vars.append(x)
-    constraints = []
-    
-    #first constraint (n_i_0,n_t_0,n_i_1,n_t_1,... >=0)
-    for i in vars:
-        constraints.append(i>=0)
-    
-    #second constraint (n_i_0+n_i_t+n_i_1+...<=bound)
-    sum = 0
-    for i in vars:
-        sum = sum + i
-    constraints.append((sum<=bound))
-    
-    #third constraint (reaching the target)
-    vars = []
-    for i, r in enumerate(model.get_reactions_vector()):
-        if r[target_index]!=0:
-            vars.append([Int("n_i_" + str(i)), r[target_index]])
-            vars.append([Int("n_t_" + str(i)), r[target_index]])
-    sum = model.get_initial_state()[target_index]
-    for i in vars:
-        sum = sum + i[0]*i[1]
-    constraints.append(sum==target_value)
-    
-    #fourth constraint (species population>=0)
-    for i, s in enumerate(model.get_species_tuple()):
-        vars_i = []
-        vars = []
-        for j, r in enumerate(model.get_reactions_vector()):
-            if r[i]!=0:
-                vars.append([Int("n_i_"+str(j)), r[i]])
-                vars.append([Int("n_t_"+str(j)), r[i]])
-                vars_i.append([Int("n_i_"+str(j)), r[i]])
-        sum = model.get_initial_state()[i]
-        for j in vars:
-            sum = sum + j[0]*j[1]
-        constraints.append(sum>=0)
-        sum = model.get_initial_state()[i]
-        for j in vars_i:
-            sum = sum + j[0]*j[1]
-        constraints.append(sum>=0)
-
-    solver = Solver()
-    solver.add(And(constraints))
-
-    for i, e in enumerate(min_max):
-        solver.push()
-        while (solver.check()==sat):
-            assignment = solver.model()
-            vars = []
-            for d in assignment.decls():
-                if "n_i_" in str(d.name()):
-                    r_index = int(d.name()[4:])
-                    vars.append([r_index, assignment[d].as_long(), d.name()])
-            max_value = 0
-            for j in e:
-                max_value = max_value + model.get_initial_state()[j]
-            for v in vars:
-                for j in e:
-                    max_value = max_value + (model.get_reactions_vector()[v[0]][j] * v[1])
-            if max_value > min_max[e][1]:
-                min_max[e][1] = max_value
-            elif min_max[e][1] != -1:
-                max_value = min_max[e][1]
-            else:
-                min_max[e][1] = max_value
-            sum = 0
-            for j in e:
-                sum = sum + model.get_initial_state()[j]
-            for v in vars:
-                for j in e:
-                    sum = sum + (Int(v[2]) * model.get_reactions_vector()[v[0]][j])
-            solver.add(sum>max_value)
-        solver.pop()
-    
-    flag = False
-    for i, e in enumerate(min_max):
-        solver.push()
-        while (solver.check()==sat):
-            flag = True
-            assignment = solver.model()
-            vars = []
-            for d in assignment.decls():
-                if "n_i_" in str(d.name()):
-                    r_index = int(d.name()[4:])
-                    vars.append([r_index, assignment[d].as_long(), d.name()])
-            min_value = 0
-            for j in e:
-                min_value = min_value + model.get_initial_state()[j]
-            for v in vars:
-                for j in e:
-                    min_value = min_value + (model.get_reactions_vector()[v[0]][j] * v[1])
-            min_max[e][0] = min_value
-            if min_value < min_max[e][0]:
-                min_max[e][0] = min_value
-            elif min_max[e][0] != -1:
-                min_value = min_max[e][0]
-            else:
-                min_max[e][0] = min_value
-
-            sum = 0
-            for j in e:
-                sum = sum + model.get_initial_state()[j]
-            for v in vars:
-                for j in e:
-                    sum = sum + (Int(v[2]) * model.get_reactions_vector()[v[0]][j])
-            solver.add(sum<min_value)
-        solver.pop()
-    return flag, min_max
-
-# def get_min_max(model, bound, subsets, min_max_dict, target_var, target_value):
-#     print(len(min_max_dict))
-#     count = 0
-#     flag = False
-#     solver = Solver()
-#     solver.add(initial_state_enc(model))
-#     for i in range(1, bound+1):
-#         solver.add(bound_enc(model, i))
-#     solver.add(target_enc(bound, target_var, target_value))
-#     solver.push()
-#     for s in subsets:
-#         min = min_max_dict[s][0]
-#         max = min_max_dict[s][1]
-#         #
-#         constraints = []
-#         for i in range(1, bound+1):
-#             sum = 0
-#             for e in s:
-#                 species = model.index_to_species_dict[e]
-#                 var = Int(species + '.' + str(i))
-#                 sum = sum + var
-#             constraints.append(Or(sum < min, sum > max))
-#         min_max_enc = Or(constraints)
-#         #
-#         count = count + 1
-#         count_flag = False
-#         while(solver.check(min_max_enc) == sat):
-#             if count_flag:
-#                 count = count + 1
-#             count_flag = True
-#             # print(min)
-#             # print(max)
-#             # print('---')
-#             flag = True
-#             for i in range(1, bound+1):
-#                 temp = 0
-#                 for e in s:
-#                     species = model.index_to_species_dict[e]
-#                     var = Int(species + '.' + str(i))
-#                     temp = temp + int(str(solver.model()[var]))
-#                 if temp < min :
-#                     min = temp
-#                     min_max_dict[s][0] = min
-#                 elif temp > max:
-#                     max = temp
-#                     min_max_dict[s][1] = max
-#             #
-#             constraints = []
-#             for i in range(1, bound+1):
-#                 sum = 0
-#                 for e in s:
-#                     species = model.index_to_species_dict[e]
-#                     var = Int(species + '.' + str(i))
-#                     sum = sum + var
-#                 constraints.append(Or(sum < min, sum > max))
-#             min_max_enc = Or(constraints)
-#             #
-#     print("number of times solver was called: " + str(count))        
-#     return flag, min_max_dict
-
-# #returns constraint encoding for the initial state
-# def initial_state_enc(model):
-# 	species_vector = model.get_species_tuple()
-# 	initial_state = model.get_initial_state()
-# 	constraints = []
-# 	for i, s in enumerate(species_vector): 
-# 		var_name = s + '.' + '0'
-# 		x = Int(var_name)
-# 		init_value = initial_state[i]
-# 		constraints.append(x == init_value)
-# 	return And(constraints)
-
-# def bound_enc(model, bound):
-# 	species_vector = model.get_species_tuple()
-# 	constraints = []
-# 	for j, r in enumerate(model.get_reactions_vector()): 
-# 		r_constraints = []
-# 		for i, s in enumerate(species_vector): 
-# 			var_name_prev = s + '.' + str(bound-1)
-# 			var_name_curr = s + '.' + str(bound)
-# 			x = Int(var_name_prev)
-# 			y = Int(var_name_curr)
-# 			r_constraints.append(y == (x + model.get_reactions_vector()[j][i]))
-# 			r_constraints.append(y >= 0)
-# 			# reaction_var_name = 'selected_reaction.' + str(bound-1) 
-# 			# selected_reaction = Int(reaction_var_name)
-# 		# r_constraints.append(selected_reaction == (j+1))
-# 		constraints.append(And(r_constraints))
-# 	return simplify(Or(constraints))
-
-# def target_enc(bound, target_var, target_value):
-#     target_var_name = target_var + '.' + str(bound)
-#     x = Int(target_var_name)
-#     return (x == target_value)
 
 
 

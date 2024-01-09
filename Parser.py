@@ -103,26 +103,28 @@ class Parser:
             rate = compile(rate, '<string>', 'eval', __future__.division.compiler_flag)
             self.reaction_rate_expression[index] = [guard, rate, guard_temp]
 
-        #reactions_lhs_vector contains the effect of the lhs of a 
-        #reaction (not the final effect after production happens)
-        # self.reactions_lhs_vector = [None] * len(self.commands)
-        # for i, c in enumerate(self.commands):
-        #     self.reactions_lhs_vector[i] = [None] * len(self.species_tuple)
-        #     delimiter = 'and'
-        #     result = [part.strip() for part in self.reaction_rate_expression[i][2].split(delimiter)]
-        #     for r in result:
-        #         r = re.sub(r'\(|\)', '', r)
-        #         for j, s in enumerate(self.species_tuple):
-        #             val = 0
-        #             r_compiled = compile(r, '<string>', 'eval', __future__.division.compiler_flag)
-        #             if (s in r) and (('_' + s) not in r) and ((s + '_') not in r):    
-        #                 while (evaluate_compiled_expression(r_compiled, {s : val}) == False):
-        #                     val = val + 1
-        #             if self.reactions_lhs_vector[i][j] == None:
-        #                 self.reactions_lhs_vector[i][j] = val
-        #             else:
-        #                 if val > self.reactions_lhs_vector[i][j]:
-        #                     self.reactions_lhs_vector[i][j] = val
+        # reactions_lhs_vector contains the effect of the lhs of a 
+        # reaction (not the final effect after production happens)
+        self.reactions_lhs_vector = [None] * len(self.commands)
+        for i, c in enumerate(self.commands):
+            self.reactions_lhs_vector[i] = [None] * len(self.species_tuple)
+            delimiter = 'and'
+            result = [part.strip() for part in self.reaction_rate_expression[i][2].split(delimiter)]
+            for r in result:
+                r = re.sub(r'\(|\)', '', r)
+                for j, s in enumerate(self.species_tuple):
+                    temp = r[0:r.find(' ')]
+
+                    val = 0
+                    r_compiled = compile(r, '<string>', 'eval', __future__.division.compiler_flag)
+                    if s == temp and '*' not in r:    
+                        while (evaluate_compiled_expression(r_compiled, {s : val}) == False):
+                            val = val + 1
+                    if self.reactions_lhs_vector[i][j] == None:
+                        self.reactions_lhs_vector[i][j] = val
+                    else:
+                        if val > self.reactions_lhs_vector[i][j]:
+                            self.reactions_lhs_vector[i][j] = val
 
 
 
@@ -151,3 +153,16 @@ class Parser:
         if not evaluate_compiled_expression(guard, var_dict):
             return 0.0
         return evaluate_compiled_expression(rate, var_dict)
+    
+    def get_reaction_rate_constants(self):
+        var_dict = {}
+        for i, s in enumerate(self.species_tuple):
+            var_dict[s] = 1
+        
+        rate_constants = []
+        for r_index, r in enumerate(self.reactions_vector):
+            rate = self.reaction_rate_expression[r_index][1]
+            rate_constants.append(evaluate_compiled_expression(rate, var_dict))
+
+
+        return rate_constants
