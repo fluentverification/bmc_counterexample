@@ -113,15 +113,15 @@ def JSON_Parser(model, model_name, K, jani_path, min_max_dict):
     automata = parsed_json["automata"]
 
     #adding lower-bound and upper-bound to global variables of the model
-    # for gv in global_variables:
-    #     for i, s in enumerate(species_tuple):
-    #         if gv["name"] == s:
-    #             type_ = {"base" : "int", 
-    #             "kind" : "bounded", 
-    #             "lower-bound" : bounds_tuple[i][0],
-    #             "upper-bound" : bounds_tuple[i][1]
-    #             }
-    #             gv["type"] = type_
+    for gv in global_variables:
+        for i, s in enumerate(species_tuple):
+            if gv["name"] == s:
+                type_ = {"base" : "int", 
+                "kind" : "bounded", 
+                "lower-bound" : bounds_tuple[i][0],
+                "upper-bound" : bounds_tuple[i][1]
+                }
+                gv["type"] = type_
     #
 
     #adding lower-bound and upper-bound to local variables of an automaton (module)

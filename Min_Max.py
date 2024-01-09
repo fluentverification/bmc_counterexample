@@ -22,11 +22,19 @@ def get_min_max_avg_prob(model, prob_thresh, target_index, target_value, subsets
    
     #second constraint (probability threshold)
     prob = 0
-    avg_prob_ = avg_prob(model_name)
+    avg_rate_ = avg_prob(model_name)
     for i, _ in enumerate(model.get_reactions_vector()):
         for ii in range(N + 1):
             x = Int("n_" + str(ii) + "_" + str(i))
-            prob = prob + (math.log(avg_prob_[i], division_factor) * x)
+            #using poisson distribution to calculate the probability of n_i reaction_i occurences
+            #using stirling approximation to approximate factorial
+            #using first term of taylor series to approximate natural log
+            rate = avg_rate_[i]
+            poly = x * math.log(rate)
+            poly = poly - rate
+            poly = poly - (x * (x-1))
+            poly = poly + x
+            prob = prob + poly
 
     constraints.append((prob>prob_thresh))
     #
@@ -177,6 +185,22 @@ def get_min_max_avg_prob(model, prob_thresh, target_index, target_value, subsets
 ################################################################################################
 ################################################################################################
 ################################################################################################
+def avg_rate(model_name):
+    if "enzym" in model_name:
+        avg_rate = [107.199, 96.646, 9.569, 107.373, 96.796, 9.588]
+        return avg_rate
+    elif "motil" in model_name:
+        avg_rate = [1.029, 0.022, 7.514, 0.019, 2.76, 0.015, 2.263, 0.27, 1.574, 1.23, 1.533, 1.203]
+        return avg_rate
+    elif "yeast" in model_name:
+        avg_rate = [0.069, 0.194, 42.009, 3.259, 81.074, 46.68, 46.68, 64.428]
+        return avg_rate
+    elif "circuit" in model_name:
+        avg_rate = [169.015, 186.398, 0.263, 50.382, 0.261, 49.758, 203.845, 185.522, 49.74, 50.089, 49.564, 0.013, 0.378, 0.236, 0.215]
+
+        return avg_rate
+    else:
+        raise Exception("Average probability vector for model is not defined")
 
 def avg_prob(model_name):
     # rate_constants = model.get_reaction_rate_constants()
