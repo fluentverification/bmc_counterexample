@@ -1,8 +1,7 @@
 from z3 import Solver, Int, And, Or, sat
 import math
-from scipy.stats import poisson
 
-def get_min_max_avg_prob(model, prob_thresh, target_index, target_value, subsets, min_max_prev, model_name, division_factor, N, max_k, step):
+def get_min_max_avg_prob(model, prob_thresh, target_index, target_value, subsets, min_max_prev, model_name, division_factor, N):
     
     min_max = {}
     for s in subsets:
@@ -25,11 +24,9 @@ def get_min_max_avg_prob(model, prob_thresh, target_index, target_value, subsets
     prob = 0
     avg_prob_ = avg_prob(model_name)
     for i, _ in enumerate(model.get_reactions_vector()):
-        sum = 0
         for ii in range(N + 1):
             x = Int("n_" + str(ii) + "_" + str(i))
-            sum = sum + x
-        prob = prob + (math.log(avg_prob_[i], division_factor) * sum)
+            prob = prob + (math.log(avg_prob_[i], division_factor) * x)
 
     constraints.append((prob>prob_thresh))
     #
