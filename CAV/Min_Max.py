@@ -1,122 +1,214 @@
-from z3 import Solver, Int, And, Or, sat
+from z3 import Solver, Int, And, Or, sat, Real
 import math
+from Poisson import poisson_cdf, poisson_cdf_step
 
-def get_min_max_avg_prob(model, prob_thresh, target_index, target_value, subsets, min_max_prev, model_name, division_factor, N):
+
+def get_min_max_reaction(model, model_name, prob_thresh, poisson_step, division_factor, subsets, min_max_prev):
+    min_max = {}
+    for s in subsets:
+        min_max[s] = min_max_prev[s]
+
+    vars = []
+    for i, r in enumerate(model.get_reactions_vector()):
+        x = Int("n_" + str(i))
+        vars.append(x)
+
+    constraints = []
     
+    #first constraint: n_0, n_1, ... >=0
+    for i in vars:
+        constraints.append(i>=0)
+    #
+    
+    #second constraint: probability threshold
+    prob_vars = []
+    if poisson_step == 1:
+        prob_vector = poisson_cdf(model_name= model_name, cut_off=prob_thresh, division_factor=division_factor)
+    else:
+        prob_vector = poisson_cdf_step(model_name=model_name, step=poisson_step, cut_off=prob_thresh, division_factor=division_factor)
+    for i, _ in enumerate(model.get_reactions_vector()):
+        x = Int("n_" + str(i))
+        prob_dict = prob_vector[i]
+        if prob_dict == None:
+            constraints.append(x == 0)
+        else:
+            # constraints.append(x < list(prob_dict.keys())[-1][1])
+            prob_approx = []
+            prob_value = Real("prob_" + str(i))
+            prob_vars.append(prob_value)
+            for key, value in prob_dict.items():
+                if poisson_step == 1:
+                    prob_approx.append(And(x == key, prob_value == value))
+                else:
+                    prob_approx.append(And(x>=key[0], x<key[1], prob_value == value))
+                    if key == list(prob_dict.keys())[-1]:
+                        prob_approx.append(And(x==key[1], prob_value == value))
+            constraints.append(Or(prob_approx))
+    
+    sum = 0
+    for i in prob_vars:
+        sum = sum + i
+    constraints.append(sum > prob_thresh)
+        
+    #querying the solver
+    solver = Solver()
+    solver.add(And(constraints))
+    flag_u = False
+    for i, e in enumerate(min_max):
+        print(e)
+        solver.push()
+        while(solver.check()==sat):
+            assignment = solver.model()
+            vars_ = []
+            for d in assignment.decls():
+                if "n_" in d.name():
+                    r_index = int(d.name()[2:])
+                    vars_.append([r_index, assignment[d].as_long(), d.name()])
+            
+            max_value = 0
+            for i in e:
+                for v in vars_:
+                    if v[0] == i:
+                        max_value = max_value + v[1]
+            
+            if max_value > min_max[e]:
+                min_max[e] = max_value
+                flag_u = True
+            else:
+                max_value = min_max[e]
+            
+            sum = 0
+            for i in e:
+                for v in vars_:
+                    if v[0] == i:
+                        sum = sum + Int(v[2])
+            solver.add(sum > max_value)
+        solver.pop()
+    return(flag_u, min_max)
+
+def get_min_max_species(model, min_max_reaction, subsets, min_max_prev, target_index, target_value):
     min_max = {}
     for s in subsets:
         min_max[s] = min_max_prev[s]
     
+    steps = 0
+    for key, value in min_max_reaction.items():
+        if len(key) == 1:
+            steps = steps + value
+    
+    steps_log = math.floor(math.log(steps))
+    max_len = math.ceil(steps / steps_log)
+    steps = steps_log
+
     vars = []
-    for i in range(N + 1):
-        for ii, r in enumerate(model.get_reactions_vector()):
+    for i in range(steps):
+        for ii, _ in enumerate(model.get_reactions_vector()):
             x= Int("n_" + str(i) + "_" + str(ii))
             vars.append(x)
         
     constraints = []
     
-    #first constraint (n_0_0,n_0_1,n_1_0,n_1_1,... >=0)
+    #first constraint : n_0_0,n_0_1,n_1_0,n_1_1,... >=0
     for i in vars:
         constraints.append(i>=0)
     #
-   
-    #second constraint (probability threshold)
-    prob = 0
-    avg_prob_ = avg_prob(model_name)
-    for i, _ in enumerate(model.get_reactions_vector()):
-        for ii in range(N + 1):
-            x = Int("n_" + str(ii) + "_" + str(i))
-            prob = prob + (math.log(avg_prob_[i], division_factor) * x)
-
-    constraints.append((prob>prob_thresh))
+        
+    #second constraint : some of reactions in each step must be less than maximum length for each step
+    for i in range(steps):
+        sum = 0
+        for ii, _ in enumerate(model.get_reactions_vector()):
+            x= Int("n_" + str(i) + "_" + str(ii))
+            sum = sum + x
+        constraints.append(sum<=max_len)
     #
     
-    #third constraint (reaching the target)
+    #third constraint : species population must be greater than zero at each arbitrary state
+    species_pops = [None] * steps
+    initial_valuation = list(model.get_initial_state())
+    for i in range(0, steps):
+        valuation = [None] * len(model.get_species_tuple())
+        for s, _ in enumerate(model.get_species_tuple()):
+            valuation[s] = initial_valuation[s]
+            for j, r in enumerate(model.get_reactions_vector()):
+                x = Int("n_" + str(i) + "_" + str(j))
+                if r[s] != 0:
+                    valuation[s] = valuation[s] + (x * r[s])
+        species_pops[i] = valuation
+        initial_valuation = valuation
+        for s in valuation:
+            constraints.append(s>=0)
+    #
+            
+    #fourth constraint : conforming to constraints on reactions
+    for key, value in min_max_reaction.items():
+        sum = 0
+        for r in key:
+            for i in range(steps):
+                x = Int("n_" + str(i) + "_" + str(r))
+                sum = sum + x
+        constraints.append(sum <= value)
+    #
+    
+    #fifth constraint : reaching the target
     vars_ = []
     for i, r in enumerate(model.get_reactions_vector()):
         if r[target_index]!=0:
-            for ii in range(N+1):
+            for ii in range(steps):
                 vars_.append([Int("n_" + str(ii) + "_" + str(i)), r[target_index]])
     sum = model.get_initial_state()[target_index]
     for i in vars_:
         sum = sum + i[0]*i[1]
 
-    constraints.append(sum==target_value)
+    #constraints.append(sum==target_value)   
     #
-
-    #fourth constraint (species population>=0)
-    species_pops = [None] * (N + 1)
-    initial_valuation = list(model.get_initial_state())
-    species_pops[0] = initial_valuation
-    for i in range(1, N+1):
-        valuation = [None] * len(model.get_species_tuple())
-        for ii, s in enumerate(model.get_species_tuple()):
-            valuation[ii] = initial_valuation[ii]
-            for iii, r in enumerate(model.get_reactions_vector()):
-                x = Int("n_" + str(i-1) + "_" + str(iii))
-                if r[ii] > 0:
-                    valuation[ii] = valuation[ii] + (x * r[ii])
-        species_pops[i] = valuation
-        initial_valuation = valuation
-    for i, v in enumerate(species_pops):
-        if i > 0:
-            for ii in v:
-                constraints.append(ii>=0)
-    #
-
-    #
-    
- 
+        
+        
+    #querying the solver
     solver = Solver()
     solver.add(And(constraints))
 
     #upper-bound
-    length = 0
     flag_u = False
-    for i, e in enumerate(min_max):
+    for key, value in min_max.items():
         solver.push()
         while (solver.check()==sat):
             assignment = solver.model()
-            vars__ = [None] * (N + 1)
+            vars_ = [None] * steps
             for d in assignment.decls():
                 if "n_" in d.name():
                     first_occurrence = d.name().find("_")
                     second_occurrence = d.name().find("_", first_occurrence + 1)
                     state_index = int(d.name()[first_occurrence + 1:second_occurrence])
                     r_index = int(d.name()[second_occurrence + 1:])
-                    if vars__[state_index] == None:
-                        vars__[state_index] = []
-                        vars__[state_index].append([r_index, assignment[d].as_long(), d.name()])
+                    if vars_[state_index] == None:
+                        vars_[state_index] = []
+                        vars_[state_index].append([r_index, assignment[d].as_long(), d.name()])
                     else:
-                        vars__[state_index].append([r_index, assignment[d].as_long(), d.name()])
+                        vars_[state_index].append([r_index, assignment[d].as_long(), d.name()])
             
+            pop = 0
             max_value = 0
-            for ii in e:
-                max_value = max_value + model.get_initial_state()[ii]
-            for ii in range(N + 1):
-                for iii in vars__[ii]:
-                    for iv in e:
-                        max_value = max_value + (model.get_reactions_vector()[iii[0]][iv] * iii[1])
-                if max_value > min_max[e][1]:
-                    min_max[e][1] = max_value
+            for s in key:
+                pop = pop + model.get_initial_state()[s]
+            for i in range(steps):
+                for v in vars_[i]:
+                    for s in key:
+                        pop = pop + (model.get_reactions_vector()[v[0]][s] * v[1])
+                if pop > min_max[key][1]:
+                    min_max[key][1] = pop
+                    max_value = pop
                     flag_u = True
-                    length_ = 0
-                    for iv in vars__:
-                        for v in iv:
-                            length_ = length_ + v[1]
-                    if length_ > length:
-                        length = length_
                 else:
-                    max_value = min_max[e][1]
+                    max_value = min_max[key][1]
             
             query = []
             sum = 0
-            for ii in e:
-                sum = sum + model.get_initial_state()[ii]
-            for ii in range(N + 1):
-                for iii in vars__[ii]:
-                    for iv in e:
-                        sum = sum + (Int(iii[2]) * model.get_reactions_vector()[iii[0]][iv])
+            for i in key:
+                sum = sum + model.get_initial_state()[i]
+            for i in range(steps):
+                for v in vars_[i]:
+                    for s in key:
+                        sum = sum + (Int(v[2]) * model.get_reactions_vector()[v[0]][s])
                 query.append(sum > max_value)
             solver.add(Or(query))
         solver.pop()
@@ -124,120 +216,48 @@ def get_min_max_avg_prob(model, prob_thresh, target_index, target_value, subsets
             #
     #lower-bound
     flag_l = False
-    for i, e in enumerate(min_max):
+    for key, value in min_max.items():
         solver.push()
         while (solver.check()==sat):
             assignment = solver.model()
-            vars__ = [None] * (N + 1)
+            vars_ = [None] * steps
             for d in assignment.decls():
                 if "n_" in d.name():
                     first_occurrence = d.name().find("_")
                     second_occurrence = d.name().find("_", first_occurrence + 1)
                     state_index = int(d.name()[first_occurrence + 1:second_occurrence])
                     r_index = int(d.name()[second_occurrence + 1:])
-                    if vars__[state_index] == None:
-                        vars__[state_index] = []
-                        vars__[state_index].append([r_index, assignment[d].as_long(), d.name()])
+                    if vars_[state_index] == None:
+                        vars_[state_index] = []
+                        vars_[state_index].append([r_index, assignment[d].as_long(), d.name()])
                     else:
-                        vars__[state_index].append([r_index, assignment[d].as_long(), d.name()])
+                        vars_[state_index].append([r_index, assignment[d].as_long(), d.name()])
             
+            pop = 0
             min_value = 0
-            for ii in e:
-                min_value = min_value + model.get_initial_state()[ii]
-            for ii in range(N + 1):
-                for iii in vars__[ii]:
-                    for iv in e:
-                        min_value = min_value + (model.get_reactions_vector()[iii[0]][iv] * iii[1])
-                if min_value < min_max[e][0]:
-                    min_max[e][0] = min_value
+            for s in key:
+                pop = pop + model.get_initial_state()[s]
+            for i in range(steps):
+                for v in vars_[i]:
+                    for s in key:
+                        pop = pop + (model.get_reactions_vector()[v[0]][s] * v[1])
+                if pop < min_max[key][0]:
+                    min_max[key][0] = pop
+                    min_value = pop
                     flag_l = True
-                    length_ = 0
-                    for iv in vars__:
-                        for v in iv:
-                            length_ = length_ + v[1]
-                    if length_ > length:
-                        length = length_
                 else:
-                    min_value = min_max[e][0]
+                    min_value = min_max[key][0]
             
             query = []
             sum = 0
-            for ii in e:
-                sum = sum + model.get_initial_state()[ii]
-            for ii in range(N + 1):
-                for iii in vars__[ii]:
-                    for iv in e:
-                        sum = sum + (Int(iii[2]) * model.get_reactions_vector()[iii[0]][iv])
+            for i in key:
+                sum = sum + model.get_initial_state()[i]
+            for i in range(steps):
+                for v in vars_[i]:
+                    for s in key:
+                        sum = sum + (Int(v[2]) * model.get_reactions_vector()[v[0]][s])
                 query.append(sum < min_value)
             solver.add(Or(query))
         solver.pop()
-    return (flag_u or flag_l, length, min_max)
-
-
-################################################################################################
-################################################################################################
-################################################################################################
-def avg_rate(model_name):
-    if "enzym" in model_name:
-        avg_rate = [107.199, 96.646, 9.569, 107.373, 96.796, 9.588]
-        return avg_rate
-    elif "motil" in model_name:
-        avg_rate = [1.029, 0.022, 7.514, 0.019, 2.76, 0.015, 2.263, 0.27, 1.574, 1.23, 1.533, 1.203]
-        return avg_rate
-    elif "yeast" in model_name:
-        avg_rate = [0.069, 0.194, 42.009, 3.259, 81.074, 46.68, 46.68, 64.428]
-        return avg_rate
-    elif "circuit" in model_name:
-        avg_rate = [169.015, 186.398, 0.263, 50.382, 0.261, 49.758, 203.845, 185.522, 49.74, 50.089, 49.564, 0.013, 0.378, 0.236, 0.215]
-        # for i in range (10):
-        #     l = [None] * len(avg_rate)
-        #     for ii, r in enumerate(avg_rate):
-        #         l[ii] = poisson.pmf(k = i, mu = r)
-        #     print(l)
-        # quit()
-        return avg_rate
-    else:
-        raise Exception("Average probability vector for model is not defined")
-
-
-def avg_prob(model_name):
-    # rate_constants = model.get_reaction_rate_constants()
-    # sum = 0
-    # for c in rate_constants:
-    #     sum = sum + c
-    # for i, e in enumerate(rate_constants):
-    #     rate_constants[i] = rate_constants[i] / sum
-    # return rate_constants
-    #
-
-    if "enzym" in model_name:
-        dist =  [0.25095102429706134, 0.2262466319108741, 0.022400865227274323, 0.25135835531906425, 0.22659777934363523, 0.02244534390209073]
-        policy = [1.0, 1.0, 0.5, 1.0, 1.0, 2.0]
-        b = [None] * len(dist)
-        for i, e in enumerate(b):
-            b[i] = dist[i] * policy[i]
-        return b
-    elif "motil" in model_name:
-        dist = [0.052953890489913544, 0.0011321531494442158, 0.3866817620419926, 0.000977768629065459, 0.14203375874845617, 0.0007719226018937835, 0.11645738987237546, 0.013894606834088103, 0.08100041169205434, 0.06329765335529024, 0.07889048991354466, 0.06190819267188143]
-        policy = [3.33, 0.3, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.3, 3.33, 0.3, 3.33]
-        b = [None] * len(dist)
-        for i, e in enumerate(b):
-            b[i] = dist[i] * policy[i]
-        return b
-    elif "yeast" in model_name:
-        dist = [0.0002426220054642695, 0.0006821546240589607, 0.14771460619635504, 0.011459494432000788, 0.2850773401595679, 0.16413906108800147, 0.16413906108800147, 0.22654566040655008]
-        policy = [1.37, 0.725, 1.37, 0.725, 1.37, 0.725, 0.725, 1.37]
-        b = [None] * len(dist)
-        for i, e in enumerate(b):
-            b[i] = dist[i] * policy[i]
-        return dist
-    elif "circuit" in model_name:
-        dist =  [0.16974848319588945, 0.18720692110609946, 0.00026414135479406513, 0.05060064538872468, 0.00026213267528992775, 0.049973937383433815, 0.20472963676044187, 0.18632711948328728, 0.04995585926789658, 0.05030637384136855, 0.04977909547153249, 1.3056416776892954E-05, 0.00037964042628196436, 0.00023702418148821057, 0.00021593304669476808]
-        policy = [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.66, 1.66, 0.6]
-        b = [None] * len(dist)
-        for i, e in enumerate(b):
-            b[i] = dist[i] * policy[i]
-        return b
-    else:
-        raise Exception("Average probability vector for model is not defined")
     
+    return (flag_u or flag_l, min_max)

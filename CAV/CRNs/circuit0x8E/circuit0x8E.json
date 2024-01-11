@@ -1,7 +1,7 @@
 {
 	"model_name" : "circuit0x8E",
 	"model_path" : "./CRNs/circuit0x8E/Circuit0x8E_100to111_unb.sm",
-	"jani_path" : "./CRNs/circuit0x8E/circuit_prop.jani",
+	"jani_path" : "./CRNs/circuit0x8E/circuit.jani",
 	"starting_bound" : 7,
 	"prism_binary" : "/home/ubu/projects/probmc/prism-4.7-src/prism/bin/prism",
 	"storm_binary" : "/home/ubu/projects/probmc/storm/storm/build/bin/storm",
