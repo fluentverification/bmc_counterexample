@@ -5,10 +5,10 @@
 	"starting_bound" : 1,
 	"prism_binary" : "/home/ubu/projects/probmc/prism-4.7-src/prism/bin/prism",
 	"storm_binary" : "/home/ubu/projects/probmc/storm/storm/build/bin/storm",
-	"csl_property" : "P=? [true U<=100 (s2=41)]",
+	"csl_property" : "P=? [true U<=100 (s2=42)]",
 	"csl_property_ub" : "P=? [true U<=100 (sink_var=1)]",
 	"target_variable" : "s2",
-	"target_value" : "41",
+	"target_value" : "42",
 	"model_check_step" : "1",
 	"max_combination" : "6"
 }
