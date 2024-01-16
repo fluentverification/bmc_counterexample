@@ -8,7 +8,7 @@ import time
 import subprocess
 from Min_Max_ import get_min_max_species
 import math
-from JANI_parser import JSON_Parser_bound, JSON_Parser
+from JANI_parser import JSON_Parser_bound
 
 
 #
@@ -29,15 +29,15 @@ def CEX_GEN(json_data):
     model = Parser(model_path)
     target_index = model.species_to_index_dict[target_var]
     #
-
+    
     ##############################
     ########## parameters ########
     #
     thresh = -1
     division_factor = 100
-    engine = "sparse"
+    engine = "automatic"
     max_comb_species = len(model.get_species_tuple())
-    max_comb_species = 2
+    max_comb_species = 1
     steps = 2
     lower_bound = True
     poisson_step = 10
@@ -55,20 +55,15 @@ def CEX_GEN(json_data):
      
     #initializing the min_max for each subset based on the population of 
     #species in the initial state of the model
-    min_max_species = {}
-    # for i in range(steps):
-    #     min_max_bound = {}
-    #     for s in subsets_species:
-    #         temp = 0
-    #         for e in s:
-    #             temp = temp + model.get_initial_state()[e]
-    #         min_max_bound[s] = [temp, temp]
-    #     min_max_species[i] = min_max_bound
-    for s in subsets_species:
-        temp = 0
-        for e in s:
-            temp = temp + model.get_initial_state()[e]
-        min_max_species[s] = [temp, temp]
+    min_max_dict_species = {}
+    for i in range(steps):
+        min_max_bound = {}
+        for s in subsets_species:
+            temp = 0
+            for e in s:
+                temp = temp + model.get_initial_state()[e]
+            min_max_bound[s] = [temp, temp]
+        min_max_dict_species[i] = min_max_bound
     #
 
     while (True):
@@ -81,7 +76,7 @@ def CEX_GEN(json_data):
                                                           division_factor=division_factor,
                                                           poisson_step= poisson_step, 
                                                           subsets=subsets_species, 
-                                                          min_max_prev=min_max_species, 
+                                                          min_max_prev=min_max_dict_species, 
                                                           target_index=target_index, 
                                                           target_value=target_value, 
                                                           lower_bound = lower_bound)
@@ -91,23 +86,23 @@ def CEX_GEN(json_data):
         if flag:
             new_steps = math.floor(math.log(max_len))
             if new_steps > steps:
-                steps = new_steps
-            # if new_steps > steps:
-            #     for i in range(steps, new_steps):
-            #         min_max_bound = {}
-            #         for s in subsets_species:
-            #             temp = 0
-            #             for e in s:
-            #                 temp = temp + model.get_initial_state()[e]
-            #             min_max_bound[s] = [temp, temp]
-            #         min_max_species[i] = min_max_bound
+                for i in range(steps, new_steps):
+                    min_max_bound = {}
+                    for s in subsets_species:
+                        temp = 0
+                        for e in s:
+                            temp = temp + model.get_initial_state()[e]
+                        min_max_bound[s] = [temp, temp]
+                    min_max_dict_species[i] = min_max_bound
+            steps = new_steps
             
-            JSON_Parser(model=model, 
+            JSON_Parser_bound(model=model, 
                         model_name=model_name, 
-                        K=(0-thresh), 
+                        file_suffix=(0-thresh), 
                         jani_path=jani_path, 
-                        min_max_dict=min_max_dict_species)
-                        # max_len = max_len)
+                        min_max_dict=min_max_dict_species,
+                        max_len = max_len,
+                        index_to_reaction=model.index_to_reaction_dict)
             print("Calling Storm to calculate the probability... \n\n")
             
             #running storm on the produced output
