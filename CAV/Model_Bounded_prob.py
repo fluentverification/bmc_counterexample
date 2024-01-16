@@ -8,7 +8,7 @@ import time
 import subprocess
 from Min_Max_ import get_min_max_species
 import math
-from JANI_parser import JSON_Parser
+from JANI_parser import JSON_Parser_bound, JSON_Parser
 
 
 #
@@ -35,12 +35,12 @@ def CEX_GEN(json_data):
     #
     thresh = -1
     division_factor = 100
-    engine = "automatic"
+    engine = "sparse"
     max_comb_species = len(model.get_species_tuple())
-    max_comb_species = 1
+    max_comb_species = 2
     steps = 2
     lower_bound = True
-    poisson_step = 1
+    poisson_step = 10
     #
     ##############################
     ##############################
@@ -65,13 +65,12 @@ def CEX_GEN(json_data):
     #         min_max_bound[s] = [temp, temp]
     #     min_max_species[i] = min_max_bound
     for s in subsets_species:
-            temp = 0
-            for e in s:
-                temp = temp + model.get_initial_state()[e]
-            min_max_species[s] = [temp, temp]
+        temp = 0
+        for e in s:
+            temp = temp + model.get_initial_state()[e]
+        min_max_species[s] = [temp, temp]
     #
 
-    max_trace_len = -1
     while (True):
         print("thresh = " + str(thresh))
         before = time.time()
@@ -88,15 +87,27 @@ def CEX_GEN(json_data):
                                                           lower_bound = lower_bound)
         print("Generating min_max dictonary took " + str(time.time() - before) + "seconds.")
         #
-        print(min_max_dict_species)
+        
         if flag:
-            num_steps = math.log(max_len)
-            # print(num_steps)
+            new_steps = math.floor(math.log(max_len))
+            if new_steps > steps:
+                steps = new_steps
+            # if new_steps > steps:
+            #     for i in range(steps, new_steps):
+            #         min_max_bound = {}
+            #         for s in subsets_species:
+            #             temp = 0
+            #             for e in s:
+            #                 temp = temp + model.get_initial_state()[e]
+            #             min_max_bound[s] = [temp, temp]
+            #         min_max_species[i] = min_max_bound
+            
             JSON_Parser(model=model, 
                         model_name=model_name, 
                         K=(0-thresh), 
                         jani_path=jani_path, 
                         min_max_dict=min_max_dict_species)
+                        # max_len = max_len)
             print("Calling Storm to calculate the probability... \n\n")
             
             #running storm on the produced output

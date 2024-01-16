@@ -180,7 +180,6 @@ def JSON_Parser_reaction(model, model_name, thresh, jani_path, min_max_dict, ind
     
 
 def JSON_Parser(model, model_name, K, jani_path, min_max_dict):
-
     try:
         with open(jani_path, "r") as json_file:
             parsed_json = json.load(json_file)
@@ -432,3 +431,105 @@ def JSON_Parser(model, model_name, K, jani_path, min_max_dict):
     #
 #
 
+def JSON_Parser_bound(model, model_name, file_suffix, jani_path, min_max_dict, max_len):
+    try:
+        with open(jani_path, "r") as json_file:
+            parsed_json = json.load(json_file)
+    except FileNotFoundError:
+        print(f"File '{jani_path}' not found.")
+    except json.JSONDecodeError as e:
+        print(f"Failed to parse JSON: {e}")
+    
+    #add the bounds for each single species to the variables
+    parsed_json = add_bounds(parsed_json=parsed_json, model=model, min_max_dict=min_max_dict)
+                            
+    #Exporting the modified model for a bound into a jani file
+    file_path = "./results/" + model_name + "/bounds/" + model_name + "_" + str(file_suffix) + ".jani"
+    try:
+        with open(file_path, "w") as json_file:
+            json.dump(parsed_json, json_file, indent=4, ensure_ascii=False)
+        print(f"JSON data saved to '{file_path}' successfully.")
+    except IOError:
+        print(f"Unable to save JSON data to '{file_path}'.")
+    #
+    quit()
+
+#
+
+def add_bounds(parsed_json, model, min_max_dict):
+    #getting the minimum and maximum values for species in all bounds
+    species_tuple = model.get_species_tuple()
+    var_bounds_tuple = ([None, None], )
+    for i in range(1,len(model.get_species_tuple())):
+        var_bounds_tuple = var_bounds_tuple + ([None, None],) 
+    for key_1, value_1 in min_max_dict.items():
+        for key_2, value_2 in value_1.items():
+            if len(key_2) == 1:
+                for i, s in enumerate(species_tuple):
+                    if i==key_2[0]:
+                        if var_bounds_tuple[i][0] == None:
+                            var_bounds_tuple[i][0] = value_2[0]
+                        elif value_2[0] < var_bounds_tuple[i][0]:
+                            var_bounds_tuple[i][0] = value_2[0]
+                        if var_bounds_tuple[i][1] == None:
+                            var_bounds_tuple[i][1] = value_2[1]
+                        elif value_2[1] > var_bounds_tuple[i][1]:
+                            var_bounds_tuple[i][1] = value_2[1]
+    #
+    
+    global_variables = parsed_json["variables"]
+    automata = parsed_json["automata"]
+    
+    #adding lower-bound and upper-bound to global variables of the model
+    for gv in global_variables:
+        for i, s in enumerate(species_tuple):
+            if gv["name"] == s:
+                type_ = {"base" : "int", 
+                "kind" : "bounded", 
+                "lower-bound" : var_bounds_tuple[i][0],
+                "upper-bound" : var_bounds_tuple[i][1]
+                }
+                gv["type"] = type_
+    #
+
+    #adding lower-bound and upper-bound to local variables of an automaton (module)
+    for automaton in automata:
+        if "variables" in automaton:
+            local_variables = automaton["variables"]
+            for lv in local_variables:
+                for i, s in enumerate(species_tuple):
+                    if lv["name"] == s:
+                        type_ = {"base" : "int", 
+                        "kind" : "bounded", 
+                        "lower-bound" : var_bounds_tuple[i][0],
+                        "upper-bound" : var_bounds_tuple[i][1]
+                        }
+                        lv["type"] = type_
+    #
+    
+    #after all the bounds were added, if there still exists an unbounded variable,
+    #choose its initial value as both the lower_bound and the upper_bound
+    #(these are constants defined as variables)
+    for gv in global_variables:
+        if gv["type"] == "int":
+            type_ = {"base" : "int", 
+                    "kind" : "bounded", 
+                    "lower-bound" : gv["initial-value"],
+                    "upper-bound" : gv["initial-value"]
+                    }
+            gv["type"] = type_
+    
+    for automaton in automata:
+        if "variables" in automaton:
+            local_variables = automaton["variables"]
+            for lv in local_variables:
+                if lv["type"] == "int":
+                    type_ = {"base" : "int", 
+                            "kind" : "bounded", 
+                            "lower-bound" : lv["initial-value"],
+                            "upper-bound" : lv["initial-value"]
+                            }
+                    lv["type"] = type_
+    #
+    
+    return parsed_json
