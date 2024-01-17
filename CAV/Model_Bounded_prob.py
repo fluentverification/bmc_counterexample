@@ -8,7 +8,7 @@ import time
 import subprocess
 from Min_Max_ import get_min_max_species
 import math
-from JANI_parser import JSON_Parser_bound
+from JSON_Parser import JSON_Parser
 
 
 #
@@ -29,16 +29,16 @@ def CEX_GEN(json_data):
     model = Parser(model_path)
     target_index = model.species_to_index_dict[target_var]
     #
-    
+
     ##############################
     ########## parameters ########
     #
     thresh = -1
-    division_factor = 100
+    division_factor = 1000
     engine = "automatic"
-    max_comb_species = len(model.get_species_tuple())
+    # max_comb_species = len(model.get_species_tuple())
     max_comb_species = 1
-    steps = 2
+    steps = 10
     lower_bound = True
     poisson_step = 10
     #
@@ -56,14 +56,11 @@ def CEX_GEN(json_data):
     #initializing the min_max for each subset based on the population of 
     #species in the initial state of the model
     min_max_dict_species = {}
-    for i in range(steps):
-        min_max_bound = {}
-        for s in subsets_species:
-            temp = 0
-            for e in s:
-                temp = temp + model.get_initial_state()[e]
-            min_max_bound[s] = [temp, temp]
-        min_max_dict_species[i] = min_max_bound
+    for s in subsets_species:
+        temp = 0
+        for e in s:
+            temp = temp + model.get_initial_state()[e]
+        min_max_dict_species[s] = [temp, temp]
     #
 
     while (True):
@@ -84,25 +81,17 @@ def CEX_GEN(json_data):
         #
         
         if flag:
+            print(min_max_dict_species)
             new_steps = math.floor(math.log(max_len))
             if new_steps > steps:
-                for i in range(steps, new_steps):
-                    min_max_bound = {}
-                    for s in subsets_species:
-                        temp = 0
-                        for e in s:
-                            temp = temp + model.get_initial_state()[e]
-                        min_max_bound[s] = [temp, temp]
-                    min_max_dict_species[i] = min_max_bound
-            steps = new_steps
+                steps = new_steps
             
-            JSON_Parser_bound(model=model, 
+            JSON_Parser(model=model, 
                         model_name=model_name, 
                         file_suffix=(0-thresh), 
                         jani_path=jani_path, 
-                        min_max_dict=min_max_dict_species,
-                        max_len = max_len,
-                        index_to_reaction=model.index_to_reaction_dict)
+                        min_max_dict=min_max_dict_species)
+
             print("Calling Storm to calculate the probability... \n\n")
             
             #running storm on the produced output

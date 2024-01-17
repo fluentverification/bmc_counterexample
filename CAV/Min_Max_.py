@@ -23,11 +23,8 @@ def get_min_max_species(model,
 
     #initializing the min_max 
     min_max = {}
-    for key in min_max_prev.keys():
-        min_max_bound = {}
-        for k, e in min_max_prev[key].items():
-            min_max_bound[k] = e
-        min_max[key] = min_max_bound
+    for k, e in min_max_prev.items():
+        min_max[k] = e
     #
     
     #declaring the variables
@@ -124,8 +121,169 @@ def get_min_max_species(model,
     #
     
     #Calling the solver to get lower and upper bounds
-    return get_bounds(constraints, min_max, model, num_steps)
+    return get_bounds_(constraints, min_max, model, num_steps)
     #
+
+def get_bounds_(constraints, min_max, model, num_steps):
+    solver = Solver()
+    solver.add(And(constraints))
+    flag = False
+    max_len = 0
+
+    #upper-bound
+    for key, value in min_max.items():
+        solver.push()
+        while (solver.check()==sat):
+            assignment = solver.model()
+            #vars stores n_0_0, n_0_1, n_1_0, n_1_1,...
+            #vars_i stores i_0_0, i_i_1, i_1_0, i_1_1,...
+            vars = [None] * num_steps
+            vars_i = [None] * num_steps
+            for d in assignment.decls():
+                if "n_" in d.name():
+                    first_occurrence = d.name().find("_")
+                    second_occurrence = d.name().find("_", first_occurrence + 1)
+                    step_index = int(d.name()[first_occurrence + 1:second_occurrence])
+                    r_index = int(d.name()[second_occurrence + 1:])
+                    if vars[step_index] == None:
+                        vars[step_index] = []
+                        vars[step_index].append([r_index, assignment[d].as_long(), d.name()])
+                    else:
+                        vars[step_index].append([r_index, assignment[d].as_long(), d.name()])
+                if "i_" in d.name():
+                    first_occurrence = d.name().find("_")
+                    second_occurrence = d.name().find("_", first_occurrence + 1)
+                    step_index = int(d.name()[first_occurrence + 1:second_occurrence])
+                    r_index = int(d.name()[second_occurrence + 1:])
+                    if vars_i[step_index] == None:
+                        vars_i[step_index] = []
+                        vars_i[step_index].append([r_index, assignment[d].as_long(), d.name()])
+                    else:
+                        vars_i[step_index].append([r_index, assignment[d].as_long(), d.name()])
+
+            #what's the length of the modeled trace
+            length = 0
+            for i in range(num_steps):
+                for v in vars[i]:
+                    length = length + v[1]
+            if length > max_len:
+                max_len = length
+                    
+            #what would be the maximum value of the key for the current assignment
+            max_value = 0
+            initial_population = 0
+            for s in key:
+                initial_population = initial_population + model.get_initial_state()[s]
+            for i in range(num_steps):
+                population_temp = initial_population
+                for v in vars_i[i]:
+                    for s in key:
+                        population_temp = population_temp + (model.get_reactions_vector()[v[0]][s] * v[1])
+                if population_temp > min_max[key][1]:
+                    flag = True
+                    max_value = population_temp
+                    min_max[key][1] = population_temp
+                else:
+                    max_value = min_max[key][1]
+                for s in key:
+                    for v in vars[i]:
+                        initial_population = initial_population + (model.get_reactions_vector()[v[0]][s] * v[1])
+            
+            #querying the solver to return a larger max value
+            query = []
+            initial_population = 0
+            for s in key:
+                initial_population = initial_population + model.get_initial_state()[s]
+            for i in range(num_steps):
+                sum = initial_population
+                for v in vars_i[i]:
+                    for s in key:
+                        sum = sum + (Int(v[2]) * model.get_reactions_vector()[v[0]][s])
+                query.append(sum > max_value)
+                for v in vars[i]:
+                    for s in key:
+                        initial_population = initial_population + (Int(v[2]) * model.get_reactions_vector()[v[0]][s])
+
+            solver.add(Or(query))
+        solver.pop()
+
+    #lower-bound
+    for key, value in min_max.items():
+        solver.push()
+        while (solver.check()==sat):
+            assignment = solver.model()
+            #vars stores n_0_0, n_0_1, n_1_0, n_1_1,...
+            #vars_i stores i_0_0, i_i_1, i_1_0, i_1_1,...
+            vars = [None] * num_steps
+            vars_i = [None] * num_steps
+            for d in assignment.decls():
+                if "n_" in d.name():
+                    first_occurrence = d.name().find("_")
+                    second_occurrence = d.name().find("_", first_occurrence + 1)
+                    step_index = int(d.name()[first_occurrence + 1:second_occurrence])
+                    r_index = int(d.name()[second_occurrence + 1:])
+                    if vars[step_index] == None:
+                        vars[step_index] = []
+                        vars[step_index].append([r_index, assignment[d].as_long(), d.name()])
+                    else:
+                        vars[step_index].append([r_index, assignment[d].as_long(), d.name()])
+                if "i_" in d.name():
+                    first_occurrence = d.name().find("_")
+                    second_occurrence = d.name().find("_", first_occurrence + 1)
+                    step_index = int(d.name()[first_occurrence + 1:second_occurrence])
+                    r_index = int(d.name()[second_occurrence + 1:])
+                    if vars_i[step_index] == None:
+                        vars_i[step_index] = []
+                        vars_i[step_index].append([r_index, assignment[d].as_long(), d.name()])
+                    else:
+                        vars_i[step_index].append([r_index, assignment[d].as_long(), d.name()])
+
+            #what's the length of the modeled trace
+            length = 0
+            for i in range(num_steps):
+                for v in vars[i]:
+                    length = length + v[1]
+            if length > max_len:
+                max_len = length
+                    
+            #what would be the minimum value of the key for the current assignment
+            min_value = 0
+            initial_population = 0
+            for s in key:
+                initial_population = initial_population + model.get_initial_state()[s]
+            for i in range(num_steps):
+                population_temp = initial_population
+                for v in vars_i[i]:
+                    for s in key:
+                        population_temp = population_temp + (model.get_reactions_vector()[v[0]][s] * v[1])
+                if (population_temp < min_max[key][0]) and (population_temp >= 0):
+                    flag = True
+                    min_value = population_temp
+                    min_max[key][0] = population_temp
+                else:
+                    min_value = min_max[key][0]
+                for s in key:
+                    for v in vars[i]:
+                        initial_population = initial_population + (model.get_reactions_vector()[v[0]][s] * v[1])
+            
+            #querying the solver to return a smaller max value
+            query = []
+            initial_population = 0
+            for s in key:
+                initial_population = initial_population + model.get_initial_state()[s]
+            for i in range(num_steps):
+                sum = initial_population
+                for v in vars_i[i]:
+                    for s in key:
+                        sum = sum + (Int(v[2]) * model.get_reactions_vector()[v[0]][s])
+                query.append(And(sum < min_value, sum >= 0))
+                for v in vars[i]:
+                    for s in key:
+                        initial_population = initial_population + (Int(v[2]) * model.get_reactions_vector()[v[0]][s])
+
+            solver.add(Or(query))
+        solver.pop()
+    return flag, max_len, min_max
 
 def get_bounds(constraints, min_max, model, num_steps):
     solver = Solver()
