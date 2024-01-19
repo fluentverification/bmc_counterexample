@@ -1,49 +1,33 @@
 #! /home/ubu/projects/probmc/storm/pycarl/env/bin/python3
 
-
-import itertools
-from z3 import Solver, Int, And, Or, sat, simplify, ToInt
-from Parser import Parser
 import time
-import subprocess
 from Min_Max_ import get_min_max_species
 import math
-from JSON_Parser import JSON_Parser
+from JANI_Parser import JANI_Parser
+import stormpy
+from Utils import get_subsets
 
 
 #
-def CEX_GEN(json_data):
-    
+def CEX_GEN(model, model_name, prop_lb, prop_ub, target_variable, target_value, jani_model):
     start_time = time.time()
-    #parsing parameters from json elements
-    jani_path = json_data['jani_path']
-    model_name = json_data['model_name']
-    model_path = json_data['model_path']
-    csl_prop_lb = json_data['csl_property']
-    csl_prop_ub = json_data['csl_property_ub']
-    target_var = json_data['target_variable']
-    target_value = int(json_data['target_value'])
-    storm_bin = json_data["storm_binary"]
-    #
-    #parse the model into Parser() object
-    model = Parser(model_path)
-    target_index = model.species_to_index_dict[target_var]
-    #
 
     ##############################
     ########## parameters ########
     #
     thresh = -1
     division_factor = 1000
-    engine = "automatic"
+    engine = "sparse"
     # max_comb_species = len(model.get_species_tuple())
     max_comb_species = 1
-    steps = 10
+    steps = 2
     lower_bound = True
     poisson_step = 10
     #
     ##############################
     ##############################
+    
+    target_index = model.species_to_index_dict[target_variable]
 
     #generate subsets (keys for the min_max dictionary)
     index_tuple = (0,)
@@ -86,38 +70,28 @@ def CEX_GEN(json_data):
             if new_steps > steps:
                 steps = new_steps
             
-            JSON_Parser(model=model, 
+            JANI_Parser(model=model, 
                         model_name=model_name, 
-                        file_suffix=(0-thresh), 
-                        jani_path=jani_path, 
+                        file_suffix=0-thresh, 
+                        jani_model=jani_model, 
                         min_max_dict=min_max_dict_species)
 
+            # quit()
             print("Calling Storm to calculate the probability... \n\n")
-            
-            #running storm on the produced output
-            if lower_bound:
-                stdout_result = subprocess.run([storm_bin, "--jani", "./results/" + model_name + "/bounds/" + model_name + "_" + str(0 - thresh) + ".jani",'--engine', engine, '--prop', csl_prop_lb], stdout=subprocess.PIPE)
-            else:
-                stdout_result = subprocess.run([storm_bin, "--jani", "./results/" + model_name + "/bounds/" + model_name + "_" + str(0 - thresh) + ".jani",'--engine', engine, '--prop', csl_prop_ub], stdout=subprocess.PIPE)
-            stdout_result = stdout_result.stdout.decode('utf-8')
-            print(stdout_result)
-            #
+            jani, _ = stormpy.parse_jani_model("./tmp/" + model_name +  str(0-thresh) + ".jani")
+            jani_property = stormpy.parse_properties_for_jani_model(prop_lb, jani)
+            sparse_model = stormpy.build_sparse_model(jani, jani_property)
+            result = stormpy.check_model_sparse(sparse_model, jani_property[0], only_initial_states=True)
+            filter = stormpy.create_filter_initial_states_sparse(sparse_model)
+            result.filter(filter)
+            print("probability = " + str(float(result.min)))
         else:
             print("No additional witnesses found for threshold " + str(thresh))
-        #
         
         thresh = thresh - 1
         print("\n \nRunning time: " + str(time.time() - start_time) + " seconds")
         print("=" * 50)
 #
 
-
-#returns all the subsets of a tuple with cardinality in range [L, U]
-#returns a list of tuples where each tuple is a subset
-def get_subsets (tuple, L, U):
-    if U>len(tuple):
-        U = len(tuple)
-    return list(itertools.chain.from_iterable(itertools.combinations(tuple, r) for r in range(L, U+1)))
-#
 
 

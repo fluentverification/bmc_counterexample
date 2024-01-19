@@ -14,7 +14,7 @@ def format_expression(expression):
 def evaluate_compiled_expression(expression, var_assignments):
     return eval(expression, var_assignments)
 
-class Parser:
+class PRISM_Parser:
     def __init__(self, model_path):
         prism_program = stormpy.parse_prism_program(path=model_path, prism_compat=True)
         self.initial_state_tuple = tuple()

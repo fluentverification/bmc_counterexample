@@ -98,6 +98,11 @@ def get_min_max_species(model,
         trace_prob = trace_prob + (sum * t_abs_probs[i])
     constraints.append(trace_prob >= prob_thresh)
     #
+    #fourth constraint : reaching in less than K steps
+    # sum = 0
+    # for i in vars:
+    #     sum = sum + i
+    # constraints.append(sum <= prob_thresh)
 
     #fifth constraint : reaching the target
     if lower_bound:
