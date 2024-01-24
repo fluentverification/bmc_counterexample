@@ -23,8 +23,13 @@ def get_min_max_species(model,
 
     #initializing the min_max 
     min_max = {}
-    for k, e in min_max_prev.items():
-        min_max[k] = e
+    for key in min_max_prev.keys():
+        min_max_bound = {}
+        for k, e in min_max_prev[key].items():
+            min_max_bound[k] = e
+        min_max[key] = min_max_bound
+    # for k, e in min_max_prev.items():
+    #     min_max[k] = e
     #
     
     #declaring the variables
@@ -87,22 +92,40 @@ def get_min_max_species(model,
     #
     
     #fourth constraint : estimated probability of the path must be greater than probability threshold
-    trace_prob = 0
-    t_abs_probs = t_abstract_prob(model_name=model_name, division_factor=division_factor)
-    #time abstract probability
-    for i in range(len(model.get_reactions_vector())):
-        sum = 0
-        for ii in range(num_steps):
-            x = Int("n_" + str(ii) + "_" + str(i))
-            sum = sum + x
-        trace_prob = trace_prob + (sum * t_abs_probs[i])
-    constraints.append(trace_prob >= prob_thresh)
+    # trace_prob = 0
+    # t_abs_probs = t_abstract_prob(model_name=model_name, division_factor=division_factor)
+    # #time abstract probability
+    # for i in range(len(model.get_reactions_vector())):
+    #     sum = 0
+    #     for ii in range(num_steps):
+    #         x = Int("n_" + str(ii) + "_" + str(i))
+    #         sum = sum + x
+    #     trace_prob = trace_prob + (sum * t_abs_probs[i])
+    # constraints.append(trace_prob >= prob_thresh)
+    # poission_prob = poisson_at_least_k(model_name=model_name, poisson_step=5, division_factor=division_factor)
+    # prob_vars = []
+    # for i in range(len(model.get_reactions_vector())):
+    #     sum = 0
+    #     for ii in range(num_steps):
+    #         x = Int("n_" + str(ii) + "_" + str(i))
+    #         sum = sum + x
+    #     prob_value = Real("prob_" + str(i))
+    #     prob_vars.append(prob_value)
+    #     assignments = []
+    #     for key, element in poission_prob[i].items():
+    #         assignments.append(And(sum>=key[0], sum<key[1], prob_value==element))
+    #     constraints.append(Or(assignments))
+    # sum = 0
+    # for v in prob_vars:
+    #     sum = sum + v
+    # trace_prob = trace_prob + sum
+    # constraints.append(trace_prob>=prob_thresh)
     #
     #fourth constraint : reaching in less than K steps
-    # sum = 0
-    # for i in vars:
-    #     sum = sum + i
-    # constraints.append(sum <= prob_thresh)
+    sum = 0
+    for i in vars:
+        sum = sum + i
+    constraints.append(sum <= prob_thresh)
 
     #fifth constraint : reaching the target
     if lower_bound or True:
@@ -126,7 +149,7 @@ def get_min_max_species(model,
     #
     
     #Calling the solver to get lower and upper bounds
-    return get_bounds_(constraints, min_max, model, num_steps)
+    return get_bounds(constraints, min_max, model, num_steps)
     #
 
 def get_bounds_(constraints, min_max, model, num_steps):
@@ -346,7 +369,11 @@ def get_bounds(constraints, min_max, model, num_steps):
                 for v in vars_i[i]:
                     for s in key:
                         population_temp = population_temp + (model.get_reactions_vector()[v[0]][s] * v[1])
-                if population_temp > min_max[i][key][1]:
+                if min_max[i][key][1] == None:
+                    flag = True
+                    max_value[i] = population_temp
+                    min_max[i][key][1] = population_temp
+                elif population_temp > min_max[i][key][1]:
                     flag = True
                     max_value[i] = population_temp
                     min_max[i][key][1] = population_temp
@@ -421,7 +448,11 @@ def get_bounds(constraints, min_max, model, num_steps):
                 for v in vars_i[i]:
                     for s in key:
                         population_temp = population_temp + (model.get_reactions_vector()[v[0]][s] * v[1])
-                if (population_temp < min_max[i][key][0]) and (population_temp>=0):
+                if min_max[i][key][0] == None:
+                    flag = True
+                    min_value[i] = min_max[i][key][1]
+                    min_max[i][key][0] = min_max[i][key][1]
+                elif (population_temp < min_max[i][key][0]) and (population_temp>=0):
                     flag = True
                     min_value[i] = population_temp
                     min_max[i][key][0] = population_temp

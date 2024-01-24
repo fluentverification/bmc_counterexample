@@ -18,24 +18,16 @@ def JANI_Parser(model, model_name, jani_model, min_max_dict):
     #2-population of species should remain within provided guards
     parsed_json = population_guard(parsed_json=parsed_json, model=model, min_max_dict=min_max_dict)
 
-    #3-add a sink variable and define a sink state representing the probability of the rest of the state space
+    #3-adding the constraints on population of multiple species
+    parsed_json = multiple_species_guard(parsed_json=parsed_json, model=model, min_max_dict=min_max_dict)
+
+    #4-add a sink variable and define a sink state representing the probability of the rest of the state space
     parsed_json, sink_state = sink_assignment(parsed_json=parsed_json)
     
-    #4-reactions can only fire from non-sink states. Adding sink_var==0 to the guard of all reactions.
+    #5-reactions can only fire from non-sink states. Adding sink_var==0 to the guard of all reactions.
     parsed_json = sink_guard(parsed_json=parsed_json)
     
-                            
-    #Exporting the modified model into a jani fil with no sinks
-    file_path = "./tmp/" + model_name + "_no_sink" + ".jani"
-    try:
-        with open(file_path, "w") as json_file:
-            json.dump(parsed_json, json_file, indent=4, ensure_ascii=False)
-        print(f"JSON data saved to '{file_path}' successfully.")
-    except IOError:
-        print(f"Unable to save JSON data to '{file_path}'.")
-    #
-    
-    #5-For each reaction with augmented guard, add a new reaction where:
+    #6-For each reaction with augmented guard, add a new reaction where:
     #new guard = (original guard) ^ (! additional guard)
     #destination = sink state
     #rate = old rate
@@ -59,12 +51,19 @@ def add_bounds(parsed_json, model, min_max_dict):
     var_bounds_tuple = ([None, None], )
     for i in range(1,len(model.get_species_tuple())):
         var_bounds_tuple = var_bounds_tuple + ([None, None],) 
-    for key, value in min_max_dict.items():
-        if len(key) == 1:
-            for i, s in enumerate(species_tuple):
-                if i==key[0]:
-                    var_bounds_tuple[i][0] = value[0]
-                    var_bounds_tuple[i][1] = value[1]
+    for k, v in min_max_dict.items():
+        for key, value in v.items():
+            if len(key) == 1:
+                for i, s in enumerate(species_tuple):
+                    if i==key[0]:
+                        if var_bounds_tuple[i][0] == None:
+                            var_bounds_tuple[i][0] = value[0]
+                        elif value[0] < var_bounds_tuple[i][0]:
+                            var_bounds_tuple[i][0] = value[0]
+                        if var_bounds_tuple[i][1] == None:
+                            var_bounds_tuple[i][1] = value[1]
+                        elif value[1] > var_bounds_tuple[i][1]:
+                            var_bounds_tuple[i][1] = value[1]
     #
     
     global_variables = parsed_json["variables"]
@@ -128,10 +127,25 @@ def add_bounds(parsed_json, model, min_max_dict):
 def population_guard(parsed_json, model, min_max_dict):
     automata = parsed_json["automata"]
     species_tuple = model.get_species_tuple()
-    bounds_tuple = [None] * len(model.get_species_tuple())
-    for key, element in min_max_dict.items():
-        index = key[0]
-        bounds_tuple[index] = (element[0], element[1])
+    #getting the minimum and maximum values for species in all bounds
+    bounds_tuple = ([None, None], )
+    for i in range(1,len(model.get_species_tuple())):
+        bounds_tuple = bounds_tuple + ([None, None],) 
+    for k, v in min_max_dict.items():
+        for key, value in v.items():
+            if len(key) == 1:
+                for i, s in enumerate(species_tuple):
+                    if i==key[0]:
+                        if bounds_tuple[i][0] == None:
+                            bounds_tuple[i][0] = value[0]
+                        elif value[0] < bounds_tuple[i][0]:
+                            bounds_tuple[i][0] = value[0]
+                        if bounds_tuple[i][1] == None:
+                            bounds_tuple[i][1] = value[1]
+                        elif value[1] > bounds_tuple[i][1]:
+                            bounds_tuple[i][1] = value[1]
+    #
+
     #generating the guards that guarantee reducing variables does not result in variables value 
     #dropping below its lower-bound
     for automaton in automata:
@@ -187,6 +201,75 @@ def population_guard(parsed_json, model, min_max_dict):
                                                             "right" : lt_guard
                                                         }
                                                         }
+                                        
+
+    #
+    return parsed_json
+#
+
+def multiple_species_guard(parsed_json, model, min_max_dict):
+    species_tuple = model.get_species_tuple()
+    min_max_exp = {}
+    for k, e in min_max_dict.items():
+        min_max_bound = {}
+        for key, element in e.items():
+            if len(key) == 1:
+                continue
+            flag = True
+            for i in key:
+                if flag:
+                    lhs = species_tuple[i]
+                    flag = False
+                else:
+                    lhs = {"left" : lhs, "op" : "+", "right" : species_tuple[i]}
+            if len(min_max_bound) == 0 :
+                min_max_bound = {"left" : {"left" : element[0], 
+                                           "op": "≤", 
+                                           "right" : lhs
+                                           }, 
+                                "op": "∧", 
+                                "right": {"left" : lhs, 
+                                          "op": "≤", 
+                                          "right" : element[1]}
+                                }
+            else:
+                min_max_bound = {"left" : min_max_bound,
+                                 "op" : "∧",
+                                 "right" : { "left" : { "left" : element[0], 
+                                                        "op": "≤", 
+                                                        "right" : lhs
+                                                        }, 
+                                            "op": "∧", 
+                                            "right": {"left" : lhs, 
+                                                        "op": "≤", 
+                                                        "right" : element[1]
+                                                    }    
+                                            }
+                                 }
+
+        if len(min_max_exp) == 0:
+            min_max_exp = min_max_bound
+        else:
+            min_max_exp = {"left" : min_max_exp,
+                           "op" : "∨",
+                           "right" : min_max_bound
+                           }
+
+    
+        
+    automata = parsed_json["automata"]
+    for automaton in automata:
+        edges = automaton["edges"]
+        for edge in edges:
+            guard = edge["guard"]
+            if ("modified" in guard["comment"]):
+                guard["exp"] = {"left" : guard["exp"]["left"],
+                                "op": "∧", 
+                                "right" : {"left" : guard["exp"]["right"],
+                                           "op": "∧",
+                                           "right" : min_max_exp}
+                                           }
+    #
                                         
 
     #
