@@ -72,19 +72,53 @@ def CEX_GEN(model, model_name, prop_lb, prop_ub, target_variable, target_value, 
             
             JANI_Parser(model=model, 
                         model_name=model_name, 
-                        file_suffix=0-thresh, 
                         jani_model=jani_model, 
                         min_max_dict=min_max_dict_species)
 
             # quit()
             print("Calling Storm to calculate the probability... \n\n")
-            jani, _ = stormpy.parse_jani_model("./tmp/" + model_name +  str(0-thresh) + ".jani")
+            #Calculating P(A|B)
+            jani, _ = stormpy.parse_jani_model("./tmp/" + model_name +  "_no_sink" + ".jani")
             jani_property = stormpy.parse_properties_for_jani_model(prop_lb, jani)
             sparse_model = stormpy.build_sparse_model(jani, jani_property)
-            result = stormpy.check_model_sparse(sparse_model, jani_property[0], only_initial_states=True)
+            ss_size = int(sparse_model.nr_states) + int(sparse_model.nr_transitions)
+            print("state-space size = " + str(ss_size))
+            try:
+                result = stormpy.check_model_sparse(sparse_model, jani_property[0], only_initial_states=True)
+            except:
+                print("model-checking for this iteration could not be done")
+                print("=" * 50)
+                thresh = thresh - 1
+                continue
             filter = stormpy.create_filter_initial_states_sparse(sparse_model)
             result.filter(filter)
-            print("probability = " + str(float(result.min)))
+            A_B = float(result.min)
+            #
+            print("A|B = " + str(A_B))
+            #Calculating P(B)
+            jani, _ = stormpy.parse_jani_model("./tmp/" + model_name +  "_sink" + ".jani")
+            jani_property = stormpy.parse_properties_for_jani_model(prop_ub, jani)
+            sparse_model = stormpy.build_sparse_model(jani, jani_property)
+            ss_size = int(sparse_model.nr_states) + int(sparse_model.nr_transitions)
+            print("state-space size = " + str(ss_size))
+            try:
+                result = stormpy.check_model_sparse(sparse_model, jani_property[0], only_initial_states=True)
+            except:
+                print("model-checking for this iteration could not be done")
+                print("=" * 50)
+                thresh = thresh - 1
+                continue
+            filter = stormpy.create_filter_initial_states_sparse(sparse_model)
+            result.filter(filter)
+            B = 1.0 - float(result.min)
+            #
+            
+            print("B = " + str(B) )
+            prob_lb = A_B * B
+
+            print("lower-bound probability = " + str(prob_lb))
+            prob_ub = (A_B * B) / ( (A_B * B) / ( (A_B * B) + (1 - B) ))
+            print("upper-bound probability = " + str(prob_ub))
         else:
             print("No additional witnesses found for threshold " + str(thresh))
         

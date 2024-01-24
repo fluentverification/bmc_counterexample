@@ -3,7 +3,7 @@ import json
 import math
 
 
-def JANI_Parser(model, model_name, file_suffix, jani_model, min_max_dict):
+def JANI_Parser(model, model_name, jani_model, min_max_dict):
     try:
         with open(jani_model, "r") as json_file:
             parsed_json = json.load(json_file)
@@ -24,14 +24,9 @@ def JANI_Parser(model, model_name, file_suffix, jani_model, min_max_dict):
     #4-reactions can only fire from non-sink states. Adding sink_var==0 to the guard of all reactions.
     parsed_json = sink_guard(parsed_json=parsed_json)
     
-    #5-For each reaction with augmented guard, add a new reaction where:
-    #new guard = (original guard) ^ (! additional guard)
-    #destination = sink state
-    #rate = old rate
-    parsed_json = semantic_guard(parsed_json=parsed_json, sink_assignment=sink_state)
                             
-    #Exporting the modified model for a bound into a jani file
-    file_path = "./tmp/" + model_name + str(file_suffix) + ".jani"
+    #Exporting the modified model into a jani fil with no sinks
+    file_path = "./tmp/" + model_name + "_no_sink" + ".jani"
     try:
         with open(file_path, "w") as json_file:
             json.dump(parsed_json, json_file, indent=4, ensure_ascii=False)
@@ -39,6 +34,23 @@ def JANI_Parser(model, model_name, file_suffix, jani_model, min_max_dict):
     except IOError:
         print(f"Unable to save JSON data to '{file_path}'.")
     #
+    
+    #5-For each reaction with augmented guard, add a new reaction where:
+    #new guard = (original guard) ^ (! additional guard)
+    #destination = sink state
+    #rate = old rate
+    parsed_json = semantic_guard(parsed_json=parsed_json, sink_assignment=sink_state)
+    
+    #Exporting the modified model into a jani fil with sink states
+    file_path = "./tmp/" + model_name + "_sink" + ".jani"
+    try:
+        with open(file_path, "w") as json_file:
+            json.dump(parsed_json, json_file, indent=4, ensure_ascii=False)
+        print(f"JSON data saved to '{file_path}' successfully.")
+    except IOError:
+        print(f"Unable to save JSON data to '{file_path}'.")
+    #
+
 #
         
 def add_bounds(parsed_json, model, min_max_dict):

@@ -105,7 +105,7 @@ def get_min_max_species(model,
     # constraints.append(sum <= prob_thresh)
 
     #fifth constraint : reaching the target
-    if lower_bound:
+    if lower_bound or True:
         vars_ = []
         for i, r in enumerate(model.get_reactions_vector()):
             if r[target_index]!=0:

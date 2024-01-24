@@ -3,7 +3,7 @@
 	"model_path" : "./CRNs/motility_regulation/motility_unb.sm",
 	"storm-conv" : "/home/ubu/projects/probmc/storm/storm/build/bin/storm-conv",
 	"csl_property_lb" : "P=? [true U<=10 ((CodY=20))]",
-	"csl_property_ub" : "P=? [true U<=10 ((CodY=20) | (sink_var=1))]",
+	"csl_property_ub" : "P=? [true U<=10 (sink_var=1)]",
 	"target_variable" : "CodY",
 	"target_value" : "20"
 
