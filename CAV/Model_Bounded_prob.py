@@ -105,7 +105,7 @@ def CEX_GEN(model, model_name, prop_lb, prop_ub, target_variable, target_value, 
                 result = stormpy.check_model_sparse(sparse_model, jani_property[0], only_initial_states=True)
             except:
                 print("model-checking for this iteration could not be done")
-                print("=" * 50)
+                # print("=" * 50)
                 thresh = thresh - 1
                 continue
             filter = stormpy.create_filter_initial_states_sparse(sparse_model)
