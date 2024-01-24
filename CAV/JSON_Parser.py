@@ -3,7 +3,7 @@ import json
 import math
 
 
-def JSON_Parser(model, model_name, file_suffix, jani_path, min_max_dict):
+def JSON_Parser(model, dest_path, jani_path, min_max_dict):
     try:
         with open(jani_path, "r") as json_file:
             parsed_json = json.load(json_file)
@@ -31,7 +31,7 @@ def JSON_Parser(model, model_name, file_suffix, jani_path, min_max_dict):
     parsed_json = semantic_guard(parsed_json=parsed_json, sink_assignment=sink_state)
                             
     #Exporting the modified model for a bound into a jani file
-    file_path = "./results/" + model_name + "/bounds/" + model_name + "_" + str(file_suffix) + ".jani"
+    file_path = dest_path
     try:
         with open(file_path, "w") as json_file:
             json.dump(parsed_json, json_file, indent=4, ensure_ascii=False)

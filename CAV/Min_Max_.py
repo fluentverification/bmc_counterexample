@@ -87,16 +87,22 @@ def get_min_max_species(model,
     #
     
     #fourth constraint : estimated probability of the path must be greater than probability threshold
-    trace_prob = 0
-    t_abs_probs = t_abstract_prob(model_name=model_name, division_factor=division_factor)
-    #time abstract probability
-    for i in range(len(model.get_reactions_vector())):
-        sum = 0
-        for ii in range(num_steps):
-            x = Int("n_" + str(ii) + "_" + str(i))
-            sum = sum + x
-        trace_prob = trace_prob + (sum * t_abs_probs[i])
-    constraints.append(trace_prob >= prob_thresh)
+    # trace_prob = 0
+    # t_abs_probs = t_abstract_prob(model_name=model_name, division_factor=division_factor)
+    # #time abstract probability
+    # for i in range(len(model.get_reactions_vector())):
+    #     sum = 0
+    #     for ii in range(num_steps):
+    #         x = Int("n_" + str(ii) + "_" + str(i))
+    #         sum = sum + x
+    #     trace_prob = trace_prob + (sum * t_abs_probs[i])
+    # constraints.append(trace_prob >= prob_thresh)
+    
+    #fourth constraint : reaching in less than K steps
+    sum = 0
+    for i in vars:
+        sum = sum + i
+    constraints.append(sum <= prob_thresh)        
     #
 
     #fifth constraint : reaching the target

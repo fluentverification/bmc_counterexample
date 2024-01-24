@@ -9,6 +9,7 @@ import subprocess
 from Min_Max_ import get_min_max_species
 import math
 from JSON_Parser import JSON_Parser
+import stormpy
 
 
 #
@@ -33,12 +34,13 @@ def CEX_GEN(json_data):
     ##############################
     ########## parameters ########
     #
-    thresh = -1
+    thresh = 0
+    delta = 1
     division_factor = 1000
     engine = "automatic"
     # max_comb_species = len(model.get_species_tuple())
     max_comb_species = 1
-    steps = 10
+    steps = 2
     lower_bound = True
     poisson_step = 10
     #
@@ -81,32 +83,41 @@ def CEX_GEN(json_data):
         #
         
         if flag:
-            print(min_max_dict_species)
-            new_steps = math.floor(math.log(max_len))
-            if new_steps > steps:
-                steps = new_steps
+            # print(min_max_dict_species)
+            # new_steps = math.floor(math.log(max_len))
+            # if new_steps > steps:
+            #     steps = new_steps
             
+            dest_path = "./results/" + model_name + ".jani"
             JSON_Parser(model=model, 
-                        model_name=model_name, 
-                        file_suffix=(0-thresh), 
-                        jani_path=jani_path, 
+                        dest_path=dest_path,  
+                        jani_path=jani_path,
                         min_max_dict=min_max_dict_species)
 
             print("Calling Storm to calculate the probability... \n\n")
             
             #running storm on the produced output
-            if lower_bound:
-                stdout_result = subprocess.run([storm_bin, "--jani", "./results/" + model_name + "/bounds/" + model_name + "_" + str(0 - thresh) + ".jani",'--engine', engine, '--prop', csl_prop_lb], stdout=subprocess.PIPE)
-            else:
-                stdout_result = subprocess.run([storm_bin, "--jani", "./results/" + model_name + "/bounds/" + model_name + "_" + str(0 - thresh) + ".jani",'--engine', engine, '--prop', csl_prop_ub], stdout=subprocess.PIPE)
-            stdout_result = stdout_result.stdout.decode('utf-8')
-            print(stdout_result)
+            jani, _ = stormpy.parse_jani_model(dest_path)
+            jani_property = stormpy.parse_properties_for_jani_model(csl_prop_lb, jani)
+            sparse_model = stormpy.build_sparse_model(jani, jani_property)
+            ss_size = int(sparse_model.nr_states) + int(sparse_model.nr_transitions)
+            print("state-space size = " + str(ss_size))
+            try:
+                result = stormpy.check_model_sparse(sparse_model, jani_property[0], only_initial_states=True)
+            except:
+                print("model-checking for this iteration could not be done")
+                print("=" * 50)
+                thresh = thresh + delta
+                continue
+            filter = stormpy.create_filter_initial_states_sparse(sparse_model)
+            result.filter(filter)
+            print("Lower-Bound Probability = " + str(float(result.max)))
             #
         else:
             print("No additional witnesses found for threshold " + str(thresh))
         #
         
-        thresh = thresh - 1
+        thresh = thresh + delta
         print("\n \nRunning time: " + str(time.time() - start_time) + " seconds")
         print("=" * 50)
 #
