@@ -113,146 +113,6 @@ def add_bounds(parsed_json, model, min_max_dict):
     return parsed_json
 #
 
-def sink_assignment(parsed_json):
-    #adding a new sink variable to the model
-    global_variables = parsed_json["variables"]
-    sink_variable = {
-            "initial-value": 0,
-            "name": "sink_var",
-            "type": {
-                "base": "int",
-                "kind": "bounded",
-                "lower-bound": 0,
-                "upper-bound": 1
-            }
-        }
-    global_variables.append(sink_variable)
-    #
-    #generating the sink state:
-    sink_assignments = []
-    sink_assignments.append({"ref" : "sink_var", "value" : 1})
-    for gv in global_variables:
-        if (gv["name"] != "sink_var"):
-            value = gv["type"]["lower-bound"]
-            sink_assignments.append({"ref" : gv["name"], "value" : value})
-
-    automata = parsed_json["automata"]
-    for automaton in automata:
-        if "variables" in automaton:
-            local_variables = automaton["variables"]
-            for lv in local_variables:
-                if (lv["name"]!= "sink_var"):
-                    value = lv["type"]["lower-bound"]
-                    sink_assignments.append({"ref" : lv["name"], "value" : value})
-    #
-    
-    return parsed_json, sink_assignments
-#
-
-def update_guard(parsed_json, model, min_max_dict):
-    species_tuple = model.get_species_tuple()
-    automata = parsed_json["automata"]
-    #expanding the guards for all edges with min_max constraints
-    species_exp = {}
-    for key, element in min_max_dict.items():    
-        lhs = {}
-        if len(key) == 1:
-            lhs = {"left" : species_tuple[key[0]], "op" : "+", "right" : 0}
-        else:
-            flag = True
-            for s in key:
-                if flag:
-                    lhs = {"left" : species_tuple[s], "op" : "+", "right" : 0}
-                    flag = False
-                else:
-                    lhs = {"left" : lhs, 
-                            "op" : "+", 
-                            "right" : species_tuple[s]}
-
-        if len(species_exp) == 0:
-            species_exp = { "left" : { "left" : element[0],
-                                        "op" : "≤",
-                                        "right" : lhs,
-                                    },
-                            "op": "∧", 
-                            "right" : { "left" : lhs,
-                                        "op" : "≤",
-                                        "right" : element[1],
-                                    }
-                            }
-        
-        else:
-            species_exp = { "left" : species_exp, 
-                            "op" : "∧", 
-                            "right" : {"left" : { "left" : element[0],
-                                        "op" : "≤",
-                                        "right" : lhs,
-                                    },
-                            "op": "∧", 
-                            "right" : { "left" : lhs,
-                                        "op" : "≤",
-                                        "right" : element[1],
-                                    }
-                                    }
-                            }
-    
-
-    for automaton in automata:
-        edges = automaton["edges"]
-        for edge in edges:
-            if "guard" not in edge:
-                # raise Exception("an edge does not have a guard")
-                guard = {'comment': 'generated empty guard', 'exp': True}
-                edge["guard"] = guard
-            else:
-                guard = edge["guard"]
-            guard["exp"] = {"left" : guard["exp"], "op": "∧", "right" : species_exp}
-            guard["comment"] = "modified! old comment: " + guard["comment"]
-            edge["comment"] = "modified"
-    #
-    
-    #adding the statement that sink_variable should be 0 to all the guards
-    for automaton in automata:
-        edges = automaton["edges"]
-        for edge in edges:
-            guard = edge["guard"]
-            guard["exp"] = { "left" : { "left" : guard["exp"]["left"],
-                                        "op" : "∧",
-                                        "right" : {"left" : "sink_var",
-                                                   "op" : "=",
-                                                   "right" : 0}
-                                        },
-                              "op" : "∧",
-                              "right" : guard["exp"]["right"]
-                            }
-    return parsed_json
-#
-
-def semantic_guard(parsed_json, sink_assignment):
-    automata = parsed_json["automata"]
-    for automaton in automata:
-        edges = automaton["edges"]
-        new_edges = []
-        for edge in edges:
-            if "comment" not in edge:
-                continue
-            if edge["comment"] != "modified":
-                continue
-            new_edge = copy.deepcopy(edge)
-            new_edge["comment"] = "semantics edge"
-            del new_edge["action"]
-            guard = new_edge["guard"]
-            guard["comment"] = "semantics guard"
-            guard["exp"] = {"left" : guard["exp"]["left"], "op": "∧", "right" : {"op" : "¬", "exp" : guard["exp"]["right"]}}
-            destinations = new_edge["destinations"]
-            for destination in destinations:
-                destination["assignments"] = sink_assignment
-            new_edges.append(new_edge)
-        for new_edge in new_edges:
-            edges.append(new_edge)
-    return parsed_json
-#
-
 def population_guard(parsed_json, model, min_max_dict):
     automata = parsed_json["automata"]
     species_tuple = model.get_species_tuple()
@@ -290,7 +150,7 @@ def population_guard(parsed_json, model, min_max_dict):
                                         guard["exp"] = {"left" : guard["exp"], "op": "∧", "right" : gt_guard}
                                         guard["comment"] = "modified"
                                     else:
-                                        guard["exp"] = {"left" : guard["exp"], 
+                                        guard["exp"] = {"left" : guard["exp"]["left"], 
                                                         "op": "∧", 
                                                         "right" : {
                                                             "left" : guard["exp"]["right"],
@@ -301,13 +161,13 @@ def population_guard(parsed_json, model, min_max_dict):
                                         
                                 if value["op"] == "+":
                                     edge["comment"] = "modified"
-                                    rhs = rhs = value["right"]
+                                    rhs = value["right"]
                                     lt_guard = {"left" : s , "op" : "≤", "right" : bounds_tuple[i][1] - rhs}
                                     if ("modified" not in guard["comment"]):
                                         guard["exp"] = {"left" : guard["exp"], "op": "∧", "right" : lt_guard}
                                         guard["comment"] = "modified"
                                     else:
-                                        guard["exp"] = {"left" : guard["exp"], 
+                                        guard["exp"] = {"left" : guard["exp"]["left"], 
                                                         "op": "∧", 
                                                         "right" : {
                                                             "left" : guard["exp"]["right"],
@@ -321,27 +181,92 @@ def population_guard(parsed_json, model, min_max_dict):
     return parsed_json
 #
 
+def sink_assignment(parsed_json):
+    #adding a new sink variable to the model
+    global_variables = parsed_json["variables"]
+    sink_variable = {
+            "initial-value": 0,
+            "name": "sink_var",
+            "type": {
+                "base": "int",
+                "kind": "bounded",
+                "lower-bound": 0,
+                "upper-bound": 1
+            }
+        }
+    global_variables.append(sink_variable)
+    #
+    #generating the sink state:
+    sink_assignments = []
+    sink_assignments.append({"ref" : "sink_var", "value" : 1})
+    for gv in global_variables:
+        if (gv["name"] != "sink_var"):
+            value = gv["initial-value"]
+            sink_assignments.append({"ref" : gv["name"], "value" : value})
+
+    automata = parsed_json["automata"]
+    for automaton in automata:
+        if "variables" in automaton:
+            local_variables = automaton["variables"]
+            for lv in local_variables:
+                if (lv["name"]!= "sink_var"):
+                    value = lv["initial-value"]
+                    sink_assignments.append({"ref" : lv["name"], "value" : value})
+    #
+    
+    return parsed_json, sink_assignments
+#
+
 def sink_guard(parsed_json):
     automata = parsed_json["automata"]
     for automaton in automata:
         edges = automaton["edges"]
         for edge in edges:
+            guard = edge["guard"]
+            if "modified" not in guard["comment"]:
+                guard["exp"] = {"left" : guard["exp"], 
+                                "op" : "∧", 
+                                "right" : {"left" : "sink_var",
+                                                        "op" : "=",
+                                                        "right" : 0
+                                                        }
+                                }
+            elif guard["exp"] == True:
+                guard["exp"] = {"left" : "sink_var", "op" : "=", "right" : 0}
+            else:
+                guard["exp"] = {"left" : { "left" : guard["exp"]["left"],
+                                            "op" : "∧",
+                                            "right" : {"left" : "sink_var",
+                                                        "op" : "=",
+                                                        "right" : 0
+                                                        }
+                                            },
+                                "op" : "∧",
+                                "right": guard["exp"]["right"]}
+    return parsed_json
+#
+
+def semantic_guard(parsed_json, sink_assignment):
+    automata = parsed_json["automata"]
+    for automaton in automata:
+        edges = automaton["edges"]
+        new_edges = []
+        for edge in edges:
             if "comment" not in edge:
                 continue
             if edge["comment"] != "modified":
                 continue
-            guard = edge["guard"]
-            if guard["exp"] == True:
-                guard["exp"] = {"left" : "sink_var", "op" : "=", "right" : 0}
-            else:
-                guard["exp"] = {"left" : { "left" : guard["exp"]["left"],
-                                          "op" : "∧",
-                                          "right" : {"left" : "sink_var",
-                                                     "op" : "=",
-                                                     "right" : 0
-                                                     }
-                                         },
-                                "op" : "∧",
-                                "right": guard["exp"]["right"]}
+            new_edge = copy.deepcopy(edge)
+            new_edge["comment"] = "semantics edge"
+            del new_edge["action"]
+            guard = new_edge["guard"]
+            guard["comment"] = "semantics guard"
+            guard["exp"] = {"left" : guard["exp"]["left"], "op": "∧", "right" : {"op" : "¬", "exp" : guard["exp"]["right"]}}
+            destinations = new_edge["destinations"]
+            for destination in destinations:
+                destination["assignments"] = sink_assignment
+            new_edges.append(new_edge)
+        for new_edge in new_edges:
+            edges.append(new_edge)
     return parsed_json
 #

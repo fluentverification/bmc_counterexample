@@ -118,6 +118,7 @@ def CEX_GEN(json_data):
         #
         
         thresh = thresh + delta
+
         print("\n \nRunning time: " + str(time.time() - start_time) + " seconds")
         print("=" * 50)
 #
