@@ -1,15 +1,11 @@
 {
 	"model_name" : "circuit0x8E",
 	"model_path" : "./CRNs/circuit0x8E/Circuit0x8E_100to111_unb.sm",
-	"jani_path" : "./CRNs/circuit0x8E/circuit_prop.jani",
-	"starting_bound" : 7,
-	"prism_binary" : "/home/ubu/projects/probmc/prism-4.7-src/prism/bin/prism",
+	"jani_path" : "./CRNs/circuit0x8E/circuit.jani",
 	"storm_binary" : "/home/ubu/projects/probmc/storm/storm/build/bin/storm",
-	"csl_property" : "P=? [true U<=1000 (YFP_protein=70)]",
+	"csl_property" : "P=? [true U<=1000 ((YFP_protein=70 ))]",
 	"csl_property_ub" : "P=? [true U<=1000 (YFP_protein=70 | sink_var=1)]",
 	"target_variable" : "YFP_protein",
-	"target_value" : "70",
-	"model_check_step" : "100000",
-	"max_combination" : "12"
+	"target_value" : "70"
 
 }

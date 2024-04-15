@@ -312,35 +312,3 @@ module reaction_rates
 
 endmodule
 
-// Reward structures (one per species)
-
-// Reward 1: AmtR_protein
-rewards "AmtR_protein" true : AmtR_protein; endrewards
-// Reward 5: BetI_protein
-rewards "BetI_protein" true : BetI_protein; endrewards
-// Reward 6: HlyIIR_protein
-rewards "HlyIIR_protein" true : HlyIIR_protein; endrewards
-// Reward 7: PhlF_protein
-rewards "PhlF_protein" true : PhlF_protein; endrewards
-// Reward 8: YFP_protein
-rewards "YFP_protein" true : YFP_protein; endrewards
-// Reward 9: topModel_AmtRpart_module_sub__pBAD
-rewards "topModel_AmtRpart_module_sub__pBAD" true : topModel_AmtRpart_module_sub__pBAD; endrewards
-// Reward 10: topModel_AmtRpart_module_sub__pHlyIIR
-rewards "topModel_AmtRpart_module_sub__pHlyIIR" true : topModel_AmtRpart_module_sub__pHlyIIR; endrewards
-// Reward 11: topModel_YFPpart_module_sub__pPhlF
-rewards "topModel_YFPpart_module_sub__pPhlF" true : topModel_YFPpart_module_sub__pPhlF; endrewards
-// Reward 12: topModel_YFPpart_module_sub__pBetI
-rewards "topModel_YFPpart_module_sub__pBetI" true : topModel_YFPpart_module_sub__pBetI; endrewards
-// Reward 13: topModel_BetIpart_module_sub__pHlyIIR
-rewards "topModel_BetIpart_module_sub__pHlyIIR" true : topModel_BetIpart_module_sub__pHlyIIR; endrewards
-// Reward 14: topModel_BetIpart_module_sub__pTet
-rewards "topModel_BetIpart_module_sub__pTet" true : topModel_BetIpart_module_sub__pTet; endrewards
-// Reward 15: topModel_PhlFpart_module_sub__pTac
-rewards "topModel_PhlFpart_module_sub__pTac" true : topModel_PhlFpart_module_sub__pTac; endrewards
-// Reward 16: topModel_PhlFpart_module_sub__pAmtR
-rewards "topModel_PhlFpart_module_sub__pAmtR" true : topModel_PhlFpart_module_sub__pAmtR; endrewards
-// Reward 17: topModel_HlyIIRpart_module_sub__pTet
-rewards "topModel_HlyIIRpart_module_sub__pTet" true : topModel_HlyIIRpart_module_sub__pTet; endrewards
-// Reward 18: topModel_HlyIIRpart_module_sub__pBAD
-rewards "topModel_HlyIIRpart_module_sub__pBAD" true : topModel_HlyIIRpart_module_sub__pBAD; endrewards
