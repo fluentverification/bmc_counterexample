@@ -78,7 +78,7 @@ $$
 Where the initial population of species $(S_1, S_2, S_3, S_4, S_5, S_6)$ are:
 
 $$
-\textbf{x0} = [1, 50, 0, 1, 50, 0].
+{x_0} = [1, 50, 0, 1, 50, 0].
 $$
 
 Link to the PRISM model: [Link](https://github.com/fluentverification/bmc_counterexample/blob/main/CAV/CRNs/enzymatic_futile_cycle/enzym_unb.sm)
@@ -111,7 +111,7 @@ where the initial populations of the species $(\textrm{codY}, \textrm{CodY}, \te
 are:
 
 $$
-\bm{x_0} = [1, 10, 1, 10, 1, 1, 10, 1, 1].
+{x_0} = [1, 10, 1, 10, 1, 1, 10, 1, 1].
 $$
 
 Link to PRISM model: [Link](https://github.com/fluentverification/bmc_counterexample/blob/main/CAV/CRNs/motility_regulation/motility_unb.sm)
