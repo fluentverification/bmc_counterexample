@@ -1,6 +1,6 @@
 # Stochastic Analysis of Infinite-State Probabilistic Models
 
-## [Installation](https://github.com/fluentverification/bmc_counterexample/tree/qest2024?tab=readme-ov-file#Installation)            [Running](https://github.com/fluentverification/bmc_counterexample/tree/qest2024?tab=readme-ov-file#Running)            [Case Studies](https://github.com/fluentverification/bmc_counterexample/tree/qest2024?tab=readme-ov-file#CaseStudied)            [Contact](https://github.com/fluentverification/bmc_counterexample/tree/qest2024?tab=readme-ov-file#Contact)
+## [Installation](https://github.com/fluentverification/bmc_counterexample/tree/qest2024?tab=readme-ov-file#Installation) <pre>    </pre> [Running](https://github.com/fluentverification/bmc_counterexample/tree/qest2024?tab=readme-ov-file#Running)<pre>    </pre>[Case Studies](https://github.com/fluentverification/bmc_counterexample/tree/qest2024?tab=readme-ov-file#case-studies)<pre>    </pre>[Contact](https://github.com/fluentverification/bmc_counterexample/tree/qest2024?tab=readme-ov-file#Contact)
 
 # Installation
 
@@ -78,7 +78,7 @@ $$
 Where the initial population of species $(S_1, S_2, S_3, S_4, S_5, S_6)$ are:
 
 $$
-\bm{x_0} = [1, 50, 0, 1, 50, 0].
+\textbf{x0} = [1, 50, 0, 1, 50, 0].
 $$
 
 Link to the PRISM model: [Link](https://github.com/fluentverification/bmc_counterexample/blob/main/CAV/CRNs/enzymatic_futile_cycle/enzym_unb.sm)
