@@ -32,13 +32,17 @@ At each iteration, the lower-bound probabilty and the size of the state-space on
 
 ### Docker Image
 
-Alternatively, a docker container with all the prerequisites libraries and case studies can be downloaded from the docker hub:
+Alternatively, a docker container with all the prerequisites libraries and case studies can be build by the Dockerfile provided in the docker directory. To build the docker image:
 
 ```bash
-
-To  be  released  soon.
-
+cd docker
+docker build -t bmc .
 ```
+and then in order to run the docker image:
+```bash
+docker run -it bmc:latest
+```
+
 
 # Running
 
