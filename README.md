@@ -97,7 +97,7 @@ $$
     R_4 : \ \textrm{SigD} \xrightarrow{0.0002} \emptyset, \\
     R_5 : \ \textrm{SigD}\_{\textrm{hag}} \xrightarrow{1} \textrm{SigD} + \textrm{hag} + \textrm{Hag}, \\
     R_6 : \ \textrm{Hag} \xrightarrow{0.0002} \emptyset, \\
-    R_7 : \ \textrm{SigD} + \textrm{hag} \xrightarrow{0.01} \textrm{SigD\_hag}, \\
+    R_7 : \ \textrm{SigD} + \textrm{hag} \xrightarrow{0.01} \textrm{SigD}\_\textrm{hag}, \\
     R_8 : \ \textrm{SigD}\_\textrm{hag} \xrightarrow{0.1} \textrm{SigD} + \textrm{hag}, \\
     R_9 : \ \textrm{CodY} + \textrm{flache} \xrightarrow{0.02} \textrm{CodY}\_\textrm{flache},~~ \\
     R_{10} : \ \textrm{CodY}\_\textrm{flache} \xrightarrow{0.1} \textrm{CodY} + \textrm{flache}, \\
