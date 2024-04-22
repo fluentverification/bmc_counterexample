@@ -20,7 +20,7 @@ At each iteration, the lower-bound probabilty and the size of the state-space on
 
 		- This framework uses z3 and its python bindings z3-py as the underlying SMT-solver. z3-py can added to the python interpreter by running the following command: `pip install z3-solver` . More details on installation of z3-py can be found [here](https://github.com/Z3Prover/z3?tab=readme-ov-file#z3-bindings).
 
-- ==Note: Both Stormpy and z3-py should be installed in the same python virtual environment.==
+- **Note: Both Stormpy and z3-py should be installed in the same python virtual environment.**
 
 - Cloning the python scripts
 	
