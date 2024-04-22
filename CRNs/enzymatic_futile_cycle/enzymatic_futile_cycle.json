@@ -2,9 +2,7 @@
 	"model_path" : "./CRNs/enzymatic_futile_cycle/enzym_unb.sm",
 	"jani_path" : "./CRNs/enzymatic_futile_cycle/enzym_prop.jani",
 	"model_name" : "enzymatic_futile_cycle",
-	"storm_binary" : "/home/ubu/projects/probmc/storm/storm/build/bin/storm",
 	"csl_property" : "P=? [true U<=100 (s5=25)]",
-	"csl_property_ub" : "P=? [true U>100 ((s5=40 & sink_var=0))]",
 	"target_variable" : "s5",
 	"target_value" : "25"
 }

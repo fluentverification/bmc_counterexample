@@ -21,10 +21,8 @@ def CEX_GEN(json_data):
     model_name = json_data['model_name']
     model_path = json_data['model_path']
     csl_prop_lb = json_data['csl_property']
-    csl_prop_ub = json_data['csl_property_ub']
     target_var = json_data['target_variable']
     target_value = int(json_data['target_value'])
-    storm_bin = json_data["storm_binary"]
     #
     #parse the model into Parser() object
     model = Parser(model_path)

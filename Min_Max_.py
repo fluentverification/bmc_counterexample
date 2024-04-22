@@ -1,6 +1,4 @@
-import math
 from z3 import Int, Real, And, Or, Solver, sat, simplify
-from Probability import t_abstract_prob, poisson_at_least_k
 
 def get_min_max_species(model, 
                         model_name, 
