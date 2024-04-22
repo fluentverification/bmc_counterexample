@@ -95,18 +95,18 @@ $$
     R_2 : \ \textrm{CodY} \xrightarrow{0.0002} \emptyset, \\
     R_3 : \ \textrm{flache} \xrightarrow{1} \textrm{flache} + \textrm{SigD}, \\
     R_4 : \ \textrm{SigD} \xrightarrow{0.0002} \emptyset, \\
-    R_5 : \ \textrm{SigD\_hag} \xrightarrow{1} \textrm{SigD} + \textrm{hag} + \textrm{Hag}, \\
+    R_5 : \ \textrm{SigD}\_{\textrm{hag}} \xrightarrow{1} \textrm{SigD} + \textrm{hag} + \textrm{Hag}, \\
     R_6 : \ \textrm{Hag} \xrightarrow{0.0002} \emptyset, \\
     R_7 : \ \textrm{SigD} + \textrm{hag} \xrightarrow{0.01} \textrm{SigD\_hag}, \\
-    R_8 : \ \textrm{SigD\_hag} \xrightarrow{0.1} \textrm{SigD} + \textrm{hag}, \\
-    R_9 : \ \textrm{CodY} + \textrm{flache} \xrightarrow{0.02} \textrm{CodY\_flache},~~ \\
-    R_{10} : \ \textrm{CodY\_flache} \xrightarrow{0.1} \textrm{CodY} + \textrm{flache}, \\
-    R_{11} : \ \textrm{CodY} + \textrm{hag} \xrightarrow{0.01} \textrm{CodY\_hag}, \\
-    R_{12} : \ \textrm{CodY\_hag} \xrightarrow{0.1} \textrm{CodY} + \textrm{hag} \\
+    R_8 : \ \textrm{SigD}\_\textrm{hag} \xrightarrow{0.1} \textrm{SigD} + \textrm{hag}, \\
+    R_9 : \ \textrm{CodY} + \textrm{flache} \xrightarrow{0.02} \textrm{CodY}\_\textrm{flache},~~ \\
+    R_{10} : \ \textrm{CodY}\_\textrm{flache} \xrightarrow{0.1} \textrm{CodY} + \textrm{flache}, \\
+    R_{11} : \ \textrm{CodY} + \textrm{hag} \xrightarrow{0.01} \textrm{CodY}\_\textrm{hag}, \\
+    R_{12} : \ \textrm{CodY}\_\textrm{hag} \xrightarrow{0.1} \textrm{CodY} + \textrm{hag} \\
 \end{array}
 $$
 
-where the initial populations of the species $(\textrm{codY}, \textrm{CodY}, \textrm{flache}, \textrm{SigD}, \textrm{SigD\_hag}, \textrm{hag}, \textrm{Hag}, \textrm{CodY\_flache}, \textrm{CodY\_hag})$
+where the initial populations of the species $(\textrm{codY}, \textrm{CodY}, \textrm{flache}, \textrm{SigD}, \textrm{SigD}\_\textrm{hag}, \textrm{hag}, \textrm{Hag}, \textrm{CodY\_\textrm{flache}, \textrm{CodY\_\textrm{hag})$
 
 are:
 
