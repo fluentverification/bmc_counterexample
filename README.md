@@ -1,7 +1,5 @@
 # Stochastic Analysis of Infinite-State Probabilistic Models
 
-## [Installation](https://github.com/fluentverification/bmc_counterexample/tree/qest2024?tab=readme-ov-file#Installation) <pre>    </pre> [Running](https://github.com/fluentverification/bmc_counterexample/tree/qest2024?tab=readme-ov-file#Running)<pre>    </pre>[Case Studies](https://github.com/fluentverification/bmc_counterexample/tree/qest2024?tab=readme-ov-file#case-studies)<pre>    </pre>[Contact](https://github.com/fluentverification/bmc_counterexample/tree/qest2024?tab=readme-ov-file#Contact)
-
 # Installation
 
 - Prerequisites
@@ -106,7 +104,7 @@ $$
 \end{array}
 $$
 
-where the initial populations of the species $(\textrm{codY}, \textrm{CodY}, \textrm{flache}, \textrm{SigD}, \textrm{SigD}\_\textrm{hag}, \textrm{hag}, \textrm{Hag}, \textrm{CodY\_\textrm{flache}, \textrm{CodY\_\textrm{hag})$
+where the initial populations of the species $(\textrm{codY}, \textrm{CodY}, \textrm{flache}, \textrm{SigD}, \textrm{SigD}\_\textrm{hag}, \textrm{hag}, \textrm{Hag}, \textrm{CodY\_\textrm{flache}, \textrm{CodY}\_\textrm{hag})$
 
 are:
 
