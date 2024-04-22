@@ -104,7 +104,10 @@ $$
 \end{array}
 $$
 
-where the initial populations of the species $(\textrm{codY}, \textrm{CodY}, \textrm{flache}, \textrm{SigD}, \textrm{SigD}\_\textrm{hag}, \textrm{hag}, \textrm{Hag}, \textrm{CodY}\_\textrm{flache}, \textrm{CodY}\_\textrm{hag})$
+where the initial populations of the species 
+$$
+(\textrm{codY}, \textrm{CodY}, \textrm{flache}, \textrm{SigD}, \textrm{SigD}\\_\textrm{hag}, \textrm{hag}, \textrm{Hag}, \textrm{CodY}\_\textrm{flache}, \textrm{CodY}\_\textrm{hag})
+$$
 
 are:
 
