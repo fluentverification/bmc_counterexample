@@ -1,7 +1,7 @@
 
 # Stochastic Analysis of Infinite-State Probabilistic Models
 
-The framework takes PRISM models of CRNs and a CSL property of the form $P=? [true U<=T X=\theta]$ as input, and generates and iteratively increasing lower-bound for the probability of the property on the CRN model.
+The framework takes PRISM models of CRNs and a CSL property of the form $P=? [\textrm{true} \; \textrm{U}<=\textrm{T} \;  \textrm{X}=\theta]$ as input, and generates and iteratively increasing lower-bound for the probability of the property on the CRN model.
 At each iteration, the lower-bound probabilty and the size of the state-space on which this probability is computed is printed to the console.
 
 # Installation
