@@ -60,88 +60,55 @@ python Main.py file.json
 
 ### Enzymatic Futile Cycle
 
-Enzymatic Futile Cycle is a chemical reaction network that is defined by the following set of reactions:
+Enzymatic Futile Cycle is a chemical reaction network consisting of 6 chemical species reacting through 6 reaction channels.
 
-$$
-\begin{array}{lll}
-    R_1 : \ \textrm{S}_1 + \textrm{S}_2 \xrightarrow{1.0} \textrm{S}_3,~~~ &
-    R_2 : \ \textrm{S}_3 \xrightarrow{1.0} \textrm{S}_1 + \textrm{S}_2,~~~ \\
-    R_3 : \ \textrm{S}_3 \xrightarrow{0.1} \textrm{S}_1 + \textrm{S}_5, &
-    R_4 : \ \textrm{S}_4 + \textrm{S}_5 \xrightarrow{1.0} \textrm{S}_6,~~~ \\
-    R_5 : \ \textrm{S}_6 \xrightarrow{1.0} \textrm{S}_4 + \textrm{S}_5,~~~ &
-    R_6 : \ \textrm{S}_6 \xrightarrow{0.1} \textrm{S}_4 + \textrm{S}_2
-\end{array}
-$$
+Link to the PRISM model: [Link](https://github.com/fluentverification/bmc_counterexample/blob/qest2024/CRNs/enzymatic_futile_cycle/enzym_unb.sm)
 
-Where the initial population of species $(S_1, S_2, S_3, S_4, S_5, S_6)$ are:
+Link to the JSON file: [Link](https://github.com/fluentverification/bmc_counterexample/blob/qest2024/CRNs/enzymatic_futile_cycle/enzymatic_futile_cycle.json)
 
-$$
-{x_0} = [1, 50, 0, 1, 50, 0].
-$$
-
-Link to the PRISM model: [Link](https://github.com/fluentverification/bmc_counterexample/blob/main/CAV/CRNs/enzymatic_futile_cycle/enzym_unb.sm)
-
-Link to the JSON file: [Link](https://github.com/fluentverification/bmc_counterexample/blob/main/CAV/CRNs/enzymatic_futile_cycle/enzymatic_futile_cycle.json)
+The following command runs the framework on this model:
+```bash
+python Main.py path-to-json.json
+```
 
 ### Motility Regulation
 
-Motility regulation is a chemical reaction network of a gene regulatory network consisting of 9 chemical species reacting through 12 reaction channels:
+Motility regulation is a chemical reaction network of a gene regulatory network consisting of 9 chemical species reacting through 12 reaction channels.
 
-$$
-\begin{array}{ll}
-    R_1 : \ \textrm{codY} \xrightarrow{0.1} \textrm{codY} + \textrm{CodY}, \\
-    R_2 : \ \textrm{CodY} \xrightarrow{0.0002} \emptyset, \\
-    R_3 : \ \textrm{flache} \xrightarrow{1} \textrm{flache} + \textrm{SigD}, \\
-    R_4 : \ \textrm{SigD} \xrightarrow{0.0002} \emptyset, \\
-    R_5 : \ \textrm{SigD}\_{\textrm{hag}} \xrightarrow{1} \textrm{SigD} + \textrm{hag} + \textrm{Hag}, \\
-    R_6 : \ \textrm{Hag} \xrightarrow{0.0002} \emptyset, \\
-    R_7 : \ \textrm{SigD} + \textrm{hag} \xrightarrow{0.01} \textrm{SigD}\_\textrm{hag}, \\
-    R_8 : \ \textrm{SigD}\_\textrm{hag} \xrightarrow{0.1} \textrm{SigD} + \textrm{hag}, \\
-    R_9 : \ \textrm{CodY} + \textrm{flache} \xrightarrow{0.02} \textrm{CodY}\_\textrm{flache},~~ \\
-    R_{10} : \ \textrm{CodY}\_\textrm{flache} \xrightarrow{0.1} \textrm{CodY} + \textrm{flache}, \\
-    R_{11} : \ \textrm{CodY} + \textrm{hag} \xrightarrow{0.01} \textrm{CodY}\_\textrm{hag}, \\
-    R_{12} : \ \textrm{CodY}\_\textrm{hag} \xrightarrow{0.1} \textrm{CodY} + \textrm{hag} \\
-\end{array}
-$$
+Link to PRISM model: [Link](https://github.com/fluentverification/bmc_counterexample/blob/qest2024/CRNs/motility_regulation/motility_unb.sm)
 
-where the initial populations of the species 
-$$
-(\textrm{codY}, \textrm{CodY}, \textrm{flache}, \textrm{SigD}, \textrm{SigD}\\_\textrm{hag}, \textrm{hag}, \textrm{Hag}, \textrm{CodY}\_\textrm{flache}, \textrm{CodY}\_\textrm{hag})
-$$
+Link to JSON file: [Link](https://github.com/fluentverification/bmc_counterexample/blob/qest2024/CRNs/motility_regulation/motility_regulation.json)
 
-are:
-
-$$
-{x_0} = [1, 10, 1, 10, 1, 1, 10, 1, 1].
-$$
-
-Link to PRISM model: [Link](https://github.com/fluentverification/bmc_counterexample/blob/main/CAV/CRNs/motility_regulation/motility_unb.sm)
-
-Link to JSON file: [Link](https://github.com/fluentverification/bmc_counterexample/blob/main/CAV/CRNs/motility_regulation/motility_regulation.json)
+The following command runs the framework on this model:
+```bash
+python Main.py path-to-json.json
+```
 
 ### Yeast Polarization
 
-Yeast Polarization is a chemical reaction network model consisting of 7 chemical species reacting through 8 reaction channels:
+Yeast Polarization is a chemical reaction network model consisting of 7 chemical species reacting through 8 reaction channels.
 
-$$
-\begin{array}{lll}
-    R_1 : \ \emptyset \xrightarrow{0.0038} \textrm{R}, &
-    R_2 : \ \textrm{R} \xrightarrow{4.00\times 10^{-4}} \emptyset,~~~ \\
-    R_3 : \ \textrm{L} + \textrm{R} \xrightarrow{0.042} \textrm{RL} + \textrm{L}, &
-    R_4 : \ \textrm{RL} \xrightarrow{0.0100} \textrm{R},~~~ \\
-    R_5 : \ \textrm{RL} + \textrm{G} \xrightarrow{0.011} \textrm{G}_\textrm{a} + \textrm{G}_{\textrm{bg}},~~~ &
-    R_6 : \ \textrm{G}_\textrm{a} \xrightarrow{0.100} \textrm{G}_\textrm{d}, \\
-    R_7 : \ \textrm{G}_\textrm{d} + \textrm{G}_{\textrm{bg}} \xrightarrow{1.05\times 10^{3}} \textrm{G},~~~ &
-    R_8 : \ \emptyset \xrightarrow{3.21} \textrm{RL} & \\
-\end{array}
-$$
+Link to PRISM model: [Link](https://github.com/fluentverification/bmc_counterexample/blob/qest2024/CRNs/yeast_polarization/yeast_unb.sm)
 
-Link to PRISM model: [Link](https://github.com/fluentverification/bmc_counterexample/blob/main/CAV/CRNs/yeast_polarization/yeast_unb.sm)
+Link to JSON file: [Link](https://github.com/fluentverification/bmc_counterexample/blob/qest2024/CRNs/yeast_polarization/yeast_polarization.json)
 
-Link to JSON file: [Link](https://github.com/fluentverification/bmc_counterexample/blob/main/CAV/CRNs/yeast_polarization/yeast_polarization.json)
+The following command runs the framework on this model:
+```bash
+python Main.py path-to-json.json
+```
 
 ### Genetic Circuit0x8E
 
+Genetic Circuit0x8E is a chemical reaction network of a genetic circuit model consisting of 18 chemical species reacting through 15 reaction channels.
+
+Link to PRISM model: [Link](https://github.com/fluentverification/bmc_counterexample/blob/qest2024/CRNs/circuit0x8E/Circuit0x8E_100to111_unb.sm)
+
+Link to JSON file: [Link](https://github.com/fluentverification/bmc_counterexample/blob/qest2024/CRNs/circuit0x8E/circuit0x8E.json)
+
+The following command runs the framework on this model:
+```bash
+python Main.py path-to-json.json
+```
 
 # Contact
 
