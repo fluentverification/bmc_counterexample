@@ -1,0 +1,27 @@
+K = 19
+number of transitions = 220
+number of states = 78
+time stamp before model checking = 0.004027366638183594
+--
+probability= 0.042179892426205554
+size= 298
+time= 1.1172075271606445
+==================================================
+K = 20
+number of transitions = 232
+number of states = 82
+time stamp before model checking = 1.119964599609375
+--
+probability= 0.042179898822982884
+size= 314
+time= 2.236982583999634
+==================================================
+K = 21
+number of transitions = 244
+number of states = 86
+time stamp before model checking = 2.2398509979248047
+--
+probability= 0.04217989882780716
+size= 330
+time= 3.354473352432251
+==================================================

@@ -6,7 +6,7 @@
 	"prism_binary" : "/home/ubu/projects/probmc/prism-4.7-src/prism/bin/prism",
 	"storm_binary" : "/home/ubu/projects/probmc/storm/storm/build/bin/storm",
 	"csl_property" : "P=? [true U<=1000 (YFP_protein=70)]",
-	"csl_property_ub" : "P=? [true U<=1000 (YFP_protein=70 | sink_var=1)]",
+	"csl_property_upper_bound" : "P=? [(YFP_protein != 70) U<=1000 (YFP_protein=70 | \"sink\")]",
 	"target_variable" : "YFP_protein",
 	"target_value" : "70",
 	"model_check_step" : "100000",

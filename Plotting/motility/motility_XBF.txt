@@ -1,0 +1,318 @@
+probability= 5.1109543834393304e-11
+number of transitions: 175605
+number of states: 23357
+size= 198962
+time= 34.43695855140686
+==================================================
+probability= 3.949680538547833e-10
+number of transitions: 184498
+number of states: 24470
+size= 208968
+time= 51.794203996658325
+==================================================
+probability= 3.9613331121571677e-10
+number of transitions: 193368
+number of states: 25600
+size= 218968
+time= 70.10726833343506
+==================================================
+probability= 1.0509609975054429e-09
+number of transitions: 202238
+number of states: 26730
+size= 228968
+time= 89.12132859230042
+==================================================
+probability= 1.5263878725175366e-09
+number of transitions: 211117
+number of states: 27852
+size= 238969
+time= 110.47689366340637
+==================================================
+probability= 1.5301422057968217e-09
+number of transitions: 219997
+number of states: 28972
+size= 248969
+time= 131.64453434944153
+==================================================
+probability= 1.6607163376380673e-09
+number of transitions: 228893
+number of states: 30077
+size= 258970
+time= 154.55693650245667
+==================================================
+probability= 2.732514298615059e-09
+number of transitions: 237771
+number of states: 31199
+size= 268970
+time= 177.01616716384888
+==================================================
+probability= 4.105446093816607e-09
+number of transitions: 246656
+number of states: 32316
+size= 278972
+time= 201.49389672279358
+==================================================
+probability= 4.160022767111161e-09
+number of transitions: 255542
+number of states: 33430
+size= 288972
+time= 226.31170678138733
+==================================================
+probability= 5.414484921549214e-09
+number of transitions: 264427
+number of states: 34545
+size= 298972
+time= 252.2739405632019
+==================================================
+probability= 6.485288077360149e-09
+number of transitions: 273297
+number of states: 35675
+size= 308972
+time= 279.9109652042389
+==================================================
+probability= 8.4904789708475e-09
+number of transitions: 282198
+number of states: 36778
+size= 318976
+time= 307.5769283771515
+==================================================
+probability= 9.207449745437895e-09
+number of transitions: 291080
+number of states: 37896
+size= 328976
+time= 336.79180693626404
+==================================================
+probability= 9.959559415705087e-09
+number of transitions: 299980
+number of states: 38996
+size= 338976
+time= 367.6304349899292
+==================================================
+probability= 1.150865014004354e-08
+number of transitions: 308862
+number of states: 40114
+size= 348976
+time= 399.62507700920105
+==================================================
+probability= 1.3257031541128283e-08
+number of transitions: 317746
+number of states: 41230
+size= 358976
+time= 433.54150128364563
+==================================================
+probability= 1.5792129124452997e-08
+number of transitions: 326635
+number of states: 42342
+size= 368977
+time= 466.37401032447815
+==================================================
+probability= 1.620547056020528e-08
+number of transitions: 335532
+number of states: 43448
+size= 378980
+time= 500.40866780281067
+==================================================
+probability= 1.945346837709133e-08
+number of transitions: 344403
+number of states: 44577
+size= 388980
+time= 535.2466788291931
+==================================================
+probability= 2.0419699727035477e-08
+number of transitions: 353286
+number of states: 45699
+size= 398985
+time= 573.2833666801453
+==================================================
+probability= 2.287031211744614e-08
+number of transitions: 362185
+number of states: 46802
+size= 408987
+time= 610.9886567592621
+==================================================
+probability= 2.4960005542818303e-08
+number of transitions: 371077
+number of states: 47910
+size= 418987
+time= 648.8570735454559
+==================================================
+probability= 2.679383697286723e-08
+number of transitions: 379962
+number of states: 49028
+size= 428990
+time= 687.6078951358795
+==================================================
+probability= 2.9359559656931677e-08
+number of transitions: 388854
+number of states: 50136
+size= 438990
+time= 728.1987817287445
+==================================================
+probability= 3.0920661067990895e-08
+number of transitions: 397740
+number of states: 51254
+size= 448994
+time= 770.1686856746674
+==================================================
+probability= 3.446687038855495e-08
+number of transitions: 406631
+number of states: 52364
+size= 458995
+time= 816.0362505912781
+==================================================
+probability= 3.7642519408591995e-08
+number of transitions: 415519
+number of states: 53478
+size= 468997
+time= 859.7489528656006
+==================================================
+probability= 3.827105967654592e-08
+number of transitions: 424401
+number of states: 54597
+size= 478998
+time= 906.5806043148041
+==================================================
+probability= 4.083538569153197e-08
+number of transitions: 433294
+number of states: 55707
+size= 489001
+time= 954.090292930603
+==================================================
+probability= 4.436867397517223e-08
+number of transitions: 442165
+number of states: 56839
+size= 499004
+time= 1003.1234986782074
+==================================================
+probability= 4.7485064659319255e-08
+number of transitions: 451053
+number of states: 57951
+size= 509004
+time= 1051.7869057655334
+==================================================
+probability= 5.009285379668147e-08
+number of transitions: 459958
+number of states: 59046
+size= 519004
+time= 1101.2777168750763
+==================================================
+probability= 5.140589113687035e-08
+number of transitions: 468844
+number of states: 60162
+size= 529006
+time= 1151.8970935344696
+==================================================
+probability= 5.372385454505587e-08
+number of transitions: 477733
+number of states: 61273
+size= 539006
+time= 1205.6920676231384
+==================================================
+probability= 5.678996902525684e-08
+number of transitions: 486619
+number of states: 62389
+size= 549008
+time= 1261.33837723732
+==================================================
+probability= 5.95287082012831e-08
+number of transitions: 495516
+number of states: 63498
+size= 559014
+time= 1316.8186717033386
+==================================================
+probability= 6.228014380562973e-08
+number of transitions: 504406
+number of states: 64612
+size= 569018
+time= 1374.3737082481384
+==================================================
+probability= 6.508461124592198e-08
+number of transitions: 513293
+number of states: 65725
+size= 579018
+time= 1433.7395868301392
+==================================================
+probability= 6.814300166320456e-08
+number of transitions: 522185
+number of states: 66835
+size= 589020
+time= 1491.0932087898254
+==================================================
+probability= 6.971096602587666e-08
+number of transitions: 531074
+number of states: 67950
+size= 599024
+time= 1550.6056492328644
+==================================================
+probability= 7.210243905270285e-08
+number of transitions: 539965
+number of states: 69059
+size= 609024
+time= 1610.4493038654327
+==================================================
+probability= 7.486418469893296e-08
+number of transitions: 548838
+number of states: 70186
+size= 619024
+time= 1676.664663553238
+==================================================
+probability= 8.032836202882464e-08
+number of transitions: 557730
+number of states: 71297
+size= 629027
+time= 1744.2115285396576
+==================================================
+probability= 8.194328717758582e-08
+number of transitions: 566613
+number of states: 72414
+size= 639027
+time= 1809.888564825058
+==================================================
+probability= 8.433488945928337e-08
+number of transitions: 575504
+number of states: 73524
+size= 649028
+time= 1878.4272496700287
+==================================================
+probability= 8.464557654511748e-08
+number of transitions: 584401
+number of states: 74631
+size= 659032
+time= 1948.5234096050262
+==================================================
+probability= 8.687981847506001e-08
+number of transitions: 593288
+number of states: 75744
+size= 669032
+time= 2020.198354959488
+==================================================
+probability= 9.12118131927982e-08
+number of transitions: 602169
+number of states: 76864
+size= 679033
+time= 2091.1253259181976
+==================================================
+probability= 9.430540750635652e-08
+number of transitions: 611051
+number of states: 77982
+size= 689033
+time= 2165.3332047462463
+==================================================
+probability= 9.809182123813106e-08
+number of transitions: 619953
+number of states: 79080
+size= 699033
+time= 2240.823265314102
+==================================================
+probability= 9.925483066483517e-08
+number of transitions: 628848
+number of states: 80189
+size= 709037
+time= 2320.289127111435
+==================================================
+probability= 1.0130654392965789e-07
+number of transitions: 637731
+number of states: 81307
+size= 719038
+time= 2397.522654056549
+==================================================

@@ -1,0 +1,108 @@
+K = 10
+number of transitions: 181431
+number of states = 26872
+time stamp before model checking = 2.714038133621216
+--
+probability= 3.2383804100251245e-10
+size= 208303
+time= 8.971711874008179
+==================================================
+K = 11
+number of transitions: 249581
+number of states = 35945
+time stamp before model checking = 12.963288307189941
+--
+probability= 1.5114184576556544e-09
+size= 285526
+time= 21.808969497680664
+==================================================
+K = 12
+number of transitions: 332635
+number of states = 46755
+time stamp before model checking = 27.330413579940796
+--
+probability= 4.259383436960636e-09
+size= 379390
+time= 38.463576555252075
+==================================================
+K = 13
+number of transitions: 431095
+number of states = 59299
+time stamp before model checking = 45.67828035354614
+--
+probability= 8.95336726695369e-09
+size= 490394
+time= 59.60714244842529
+==================================================
+K = 14
+number of transitions: 544752
+number of states = 73506
+time stamp before model checking = 68.97249698638916
+--
+probability= 1.6065307758365675e-08
+size= 618258
+time= 86.64741706848145
+==================================================
+K = 15
+number of transitions: 672865
+number of states = 89271
+time stamp before model checking = 98.234610080719
+--
+probability= 2.555004243173597e-08
+size= 762136
+time= 121.12343287467957
+==================================================
+K = 16
+number of transitions: 814453
+number of states = 106477
+time stamp before model checking = 135.77365565299988
+--
+probability= 3.741262260980694e-08
+size= 920930
+time= 163.57479786872864
+==================================================
+K = 17
+number of transitions: 968457
+number of states = 125005
+time stamp before model checking = 181.50148797035217
+--
+probability= 5.1251650105577656e-08
+size= 1093462
+time= 214.67383074760437
+==================================================
+K = 18
+number of transitions: 1133803
+number of states = 144735
+time stamp before model checking = 236.09654831886292
+--
+probability= 6.670142889117026e-08
+size= 1278538
+time= 274.9830195903778
+==================================================
+K = 19
+number of transitions: 1309411
+number of states = 165547
+time stamp before model checking = 300.4355471134186
+--
+probability= 8.320792198911471e-08
+size= 1474958
+time= 347.34942388534546
+==================================================
+K = 20
+number of transitions: 1494201
+number of states = 187321
+time stamp before model checking = 377.2476668357849
+--
+probability= 1.0025557676487845e-07
+size= 1681522
+time= 433.8311085700989
+==================================================
+K = 21
+number of transitions: 1687129
+number of states = 209949
+time stamp before model checking = 468.5633702278137
+--
+probability= 1.1730409480051346e-07
+size= 1897078
+time= 532.6110906600952
+==================================================

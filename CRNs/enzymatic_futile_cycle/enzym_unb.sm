@@ -11,7 +11,7 @@ module sixrxn
 
 s1 : int init 1;
 s2 : int init 50;
-s3 : int  init 0;
+s3 : int init 0;
 s4 : int init 1;
 s5 : int init 50;
 s6 : int init 0;

@@ -113,10 +113,12 @@ def XBF(model, target_index, target_value, mc_step, model_name, prism_bin, csl_p
                         result = check_probability(diag, model, model_name, prism_bin, csl_prop)
                         print('probability= ' + str(result))
                         diag_size = len(diag.edges) + len(diag.nodes)
+                        print("number of transitions: " + str(len(diag.edges)))
+                        print("number of states: " + str(len(diag.nodes)))
                         print('size= ' + str(diag_size))
                         print('time= ' + str(time.time()-start_time))
                         print('='*50)
-                        if time.time()-start_time > 360000:
+                        if time.time()-start_time > 3600000:
                             quit()
             
                 if ((s_prime.var_values not in map_) 

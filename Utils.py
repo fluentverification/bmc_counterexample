@@ -9,6 +9,6 @@ def get_reaction_rate(var_values, model, reaction):
     return model.get_reaction_rate(var_values, reaction)
 
 def is_target(var_values, target_index, target_value):
-    if var_values[target_index] <= target_value:
+    if var_values[target_index] == target_value:
         return True
     return False

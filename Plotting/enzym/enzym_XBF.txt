@@ -1,0 +1,90 @@
+probability= 0.03123781858353058
+number of tranisitons: 192
+number of states: 68
+size= 260
+time= 0.15173554420471191
+==================================================
+probability= 0.03123781944690146
+number of tranisitons: 196
+number of states: 70
+size= 266
+time= 0.3006751537322998
+==================================================
+probability= 0.03606101552762781
+number of tranisitons: 201
+number of states: 71
+size= 272
+time= 0.4506957530975342
+==================================================
+probability= 0.04047632091424513
+number of tranisitons: 202
+number of states: 71
+size= 273
+time= 0.6003823280334473
+==================================================
+probability= 0.04047632455856408
+number of tranisitons: 207
+number of states: 72
+size= 279
+time= 0.7489063739776611
+==================================================
+probability= 0.04047633040763957
+number of tranisitons: 208
+number of states: 72
+size= 280
+time= 0.8983871936798096
+==================================================
+probability= 0.04047633422433377
+number of tranisitons: 210
+number of states: 73
+size= 283
+time= 1.047905445098877
+==================================================
+probability= 0.040476334323799254
+number of tranisitons: 214
+number of states: 75
+size= 289
+time= 1.1976606845855713
+==================================================
+probability= 0.04047633468183999
+number of tranisitons: 219
+number of states: 76
+size= 295
+time= 1.3490626811981201
+==================================================
+probability= 0.04047633527676168
+number of tranisitons: 220
+number of states: 76
+size= 296
+time= 1.501042366027832
+==================================================
+probability= 0.04147082473322571
+number of tranisitons: 223
+number of states: 77
+size= 300
+time= 1.652719259262085
+==================================================
+probability= 0.04217989896993917
+number of tranisitons: 224
+number of states: 78
+size= 302
+time= 1.805391550064087
+==================================================
+probability= 0.04217989933478213
+number of tranisitons: 226
+number of states: 79
+size= 305
+time= 1.956235647201538
+==================================================
+probability= 0.04217989934380188
+number of tranisitons: 230
+number of states: 81
+size= 311
+time= 2.1084818840026855
+==================================================
+probability= 0.04217989937643477
+number of tranisitons: 235
+number of states: 82
+size= 317
+time= 2.2589941024780273
+==================================================

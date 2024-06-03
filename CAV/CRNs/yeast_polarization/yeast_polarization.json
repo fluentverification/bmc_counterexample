@@ -1,9 +1,0 @@
-{
-	"model_name" : "yeast_polarization",
-	"model_path" : "./CRNs/yeast_polarization/yeast_unb.sm",
-	"storm-conv" : "/home/ubu/projects/probmc/storm/storm/build/bin/storm-conv",
-	"csl_property_lb" : "P=? [true U<=20 ((Gbg=50))]",
-	"csl_property_ub" : "P=? [true U<=20 ((Gbg=50) | (sink_var=1))]",
-	"target_variable" : "Gbg",
-	"target_value" : "50"
-}

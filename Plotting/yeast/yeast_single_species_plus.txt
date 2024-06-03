@@ -1,0 +1,52 @@
+time stamp after constraint generation: 0.19321179389953613
+K = 100
+number of transitions: 508725
+number of states: 88450
+time stamp before model checking = 4.27697491645813
+----
+probability= 3.794648132311012e-15
+size= 597175
+time= 21.66201663017273
+total constraint generation time= 0.19136452674865723
+total graph construction time= 4.083752632141113
+total model checking time= 17.385028839111328
+==================================================
+time stamp after constraint generation: 21.87521982192993
+K = 101
+number of transitions: 1250116
+number of states: 185826
+time stamp before model checking = 32.0604612827301
+----
+probability= 1.5524956147689453e-06
+size= 1435942
+time= 1665.8775596618652
+total constraint generation time= 0.3854644298553467
+total graph construction time= 14.268983840942383
+total model checking time= 1651.2021141052246
+==================================================
+time stamp after constraint generation: 1666.130358695984
+K = 102
+number of transitions: 2057623
+number of states: 291630
+time stamp before model checking = 1683.4934182167053
+----
+probability= 1.5855333650621692e-06
+size= 2349253
+time= 7170.904949903488
+total constraint generation time= 0.5902440547943115
+total graph construction time= 31.63203239440918
+total model checking time= 7138.613631486893
+==================================================
+time stamp after constraint generation: 7171.200932025909
+K = 103
+number of transitions: 2927378
+number of states: 405378
+time stamp before model checking = 7196.27444767952
+----
+probability= 1.6085572851203097e-06
+size= 3332756
+time= 18836.090982675552
+total constraint generation time= 0.8004519939422607
+total graph construction time= 56.70553779602051
+total model checking time= 18778.430153369904
+==================================================

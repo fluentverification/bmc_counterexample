@@ -1,0 +1,58 @@
+time stamp after constraint generation: 3.0751523971557617
+K = 100
+number of transitions: 261275
+number of states: 45526
+time stamp before model checking = 7.478137731552124
+----
+probability= 8.511582811412971e-26
+size= 306801
+time= 16.90493106842041
+total constraint generation time= 3.0617973804473877
+total graph construction time= 4.402960538864136
+total model checking time= 9.426779508590698
+==================================================
+time stamp after constraint generation: 19.992431640625
+K = 101
+number of transitions: 633598
+number of states: 94928
+time stamp before model checking = 30.46668291091919
+----
+probability= 1.5622852201779191e-18
+size= 728526
+time= 911.3342607021332
+total constraint generation time= 6.139464855194092
+total graph construction time= 14.877197027206421
+total model checking time= 890.2943439483643
+==================================================
+time stamp after constraint generation: 914.1713201999664
+K = 102
+number of transitions: 1035122
+number of states: 148056
+time stamp before model checking = 931.1064147949219
+----
+probability= 2.782044305258277e-17
+size= 1183178
+time= 3762.560868740082
+total constraint generation time= 8.950271606445312
+total graph construction time= 31.812278032302856
+total model checking time= 3721.7487847805023
+==================================================
+time stamp after constraint generation: 3765.8398208618164
+K = 103
+number of transitions: 1464680
+number of states: 204764
+time stamp before model checking = 3790.2552988529205
+----
+probability= 3.2338269909942673e-16
+size= 1669444
+time= 9575.93771982193
+total constraint generation time= 12.182893514633179
+total graph construction time= 56.22774338722229
+total model checking time= 9507.431192159653
+==================================================
+time stamp after constraint generation: 9579.163922548294
+K = 104
+number of transitions: 1921137
+number of states: 264910
+time stamp before model checking = 9611.798696994781
+----

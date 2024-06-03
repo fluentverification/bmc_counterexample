@@ -45,22 +45,25 @@ def CEX_GEN(json_data):
         print('diag_size = ' + str(diag_size))
         print('time stamp before model checking = ' + str(time.time()-start_time))
         print('----')
-        # result = check_probability(diag, model, model_name, prism_bin, csl_prop_lb)
-        result = 0
+        result = check_probability(diag, model, model_name, prism_bin, csl_prop_lb)
+        # result = 0
         print('probability= ' + str(result))
         print('size= ' + str(diag_size))
         print('time= ' + str(time.time()-start_time))
         #print('='*50)
         K = K + 1
+        print('time stamp before generating traces ' + str(time.time()-start_time))
+        if K > 1:
+            print(dijkstra(diag, model, target_index, target_value))
+        # if K > 3:
+        #     # print(astar_0xF6(diag, model, model_name, prism_bin, csl_prop_lb, target_index, target_value))
+        #     print(dijkstra_0xF6_modified(diag, model, target_index, target_value, model_name, prism_bin))
+        #     # pop_dict, freq_dict = modified_SSA(diag, model)
+        #     # print(pop_dict)
+        #     # print(freq_dict)
+        #     # pass
 
-        if K > 3:
-            # print(astar_0xF6(diag, model, model_name, prism_bin, csl_prop_lb, target_index, target_value))
-            print(dijkstra_0xF6_modified(diag, model, target_index, target_value, model_name, prism_bin))
-            # pop_dict, freq_dict = modified_SSA(diag, model)
-            # print(pop_dict)
-            # print(freq_dict)
-            # pass
-
+        print('time stamp after generating traces ' + str(time.time()-start_time))
         diag = Graph()
         print ('=' * 50)
         
@@ -85,8 +88,8 @@ def Bounded_DFS(model, min_max_dict, diag, target_var, target_index, target_valu
 
     while stack:
         n, E = stack[-1]    
-        # if ((len(E)==0) or (is_target(n.var_values, target_index, target_value))):
-        if len(E) == 0:
+        if ((len(E)==0) or (is_target(n.var_values, target_index, target_value))):
+        # if len(E) == 0:
             stack.pop()      
             continue
 
@@ -174,85 +177,85 @@ def get_min_max(model, bound, target_index, target_value, subsets):
     constraints.append((sum<=bound))
     
     #third constraint (reaching the target)
+    vars = []
+    for i, r in enumerate(model.get_reactions_vector()):
+        if r[target_index]!=0:
+            vars.append([Int("n_i_" + str(i)), r[target_index]])
+            vars.append([Int("n_t_" + str(i)), r[target_index]])
+    sum = model.get_initial_state()[target_index]
+    for i in vars:
+        sum = sum + i[0]*i[1]
+    constraints.append(sum<=target_value)
+
     # vars = []
     # for i, r in enumerate(model.get_reactions_vector()):
-    #     if r[target_index]!=0:
-    #         vars.append([Int("n_i_" + str(i)), r[target_index]])
-    #         vars.append([Int("n_t_" + str(i)), r[target_index]])
-    # sum = model.get_initial_state()[target_index]
+    #     if r[0]!=0:
+    #         vars.append([Int("n_i_" + str(i)), r[0]])
+    #         vars.append([Int("n_t_" + str(i)), r[0]])
+    # sum = model.get_initial_state()[0]
     # for i in vars:
     #     sum = sum + i[0]*i[1]
-    # constraints.append(sum<=target_value)
+    # constraints.append(sum>=70)
 
-    vars = []
-    for i, r in enumerate(model.get_reactions_vector()):
-        if r[0]!=0:
-            vars.append([Int("n_i_" + str(i)), r[0]])
-            vars.append([Int("n_t_" + str(i)), r[0]])
-    sum = model.get_initial_state()[0]
-    for i in vars:
-        sum = sum + i[0]*i[1]
-    constraints.append(sum>=70)
+    # vars = []
+    # for i, r in enumerate(model.get_reactions_vector()):
+    #     if r[1]!=0:
+    #         vars.append([Int("n_i_" + str(i)), r[1]])
+    #         vars.append([Int("n_t_" + str(i)), r[1]])
+    # sum = model.get_initial_state()[1]
+    # for i in vars:
+    #     sum = sum + i[0]*i[1]
+    # constraints.append(sum>=80)
 
-    vars = []
-    for i, r in enumerate(model.get_reactions_vector()):
-        if r[1]!=0:
-            vars.append([Int("n_i_" + str(i)), r[1]])
-            vars.append([Int("n_t_" + str(i)), r[1]])
-    sum = model.get_initial_state()[1]
-    for i in vars:
-        sum = sum + i[0]*i[1]
-    constraints.append(sum>=80)
+    # vars = []
+    # for i, r in enumerate(model.get_reactions_vector()):
+    #     if r[2]!=0:
+    #         vars.append([Int("n_i_" + str(i)), r[2]])
+    #         vars.append([Int("n_t_" + str(i)), r[2]])
+    # sum = model.get_initial_state()[2]
+    # for i in vars:
+    #     sum = sum + i[0]*i[1]
+    # constraints.append(sum>=70)
 
-    vars = []
-    for i, r in enumerate(model.get_reactions_vector()):
-        if r[2]!=0:
-            vars.append([Int("n_i_" + str(i)), r[2]])
-            vars.append([Int("n_t_" + str(i)), r[2]])
-    sum = model.get_initial_state()[2]
-    for i in vars:
-        sum = sum + i[0]*i[1]
-    constraints.append(sum>=70)
+    # vars = []
+    # for i, r in enumerate(model.get_reactions_vector()):
+    #     if r[3]!=0:
+    #         vars.append([Int("n_i_" + str(i)), r[3]])
+    #         vars.append([Int("n_t_" + str(i)), r[3]])
+    # sum = model.get_initial_state()[3]
+    # for i in vars:
+    #     sum = sum + i[0]*i[1]
+    # constraints.append(sum==0)
 
-    vars = []
-    for i, r in enumerate(model.get_reactions_vector()):
-        if r[3]!=0:
-            vars.append([Int("n_i_" + str(i)), r[3]])
-            vars.append([Int("n_t_" + str(i)), r[3]])
-    sum = model.get_initial_state()[3]
-    for i in vars:
-        sum = sum + i[0]*i[1]
-    constraints.append(sum==0)
+    # vars = []
+    # for i, r in enumerate(model.get_reactions_vector()):
+    #     if r[4]!=0:
+    #         vars.append([Int("n_i_" + str(i)), r[4]])
+    #         vars.append([Int("n_t_" + str(i)), r[4]])
+    # sum = model.get_initial_state()[4]
+    # for i in vars:
+    #     sum = sum + i[0]*i[1]
+    # constraints.append(sum>=70)
 
-    vars = []
-    for i, r in enumerate(model.get_reactions_vector()):
-        if r[4]!=0:
-            vars.append([Int("n_i_" + str(i)), r[4]])
-            vars.append([Int("n_t_" + str(i)), r[4]])
-    sum = model.get_initial_state()[4]
-    for i in vars:
-        sum = sum + i[0]*i[1]
-    constraints.append(sum>=70)
+    # vars = []
+    # for i, r in enumerate(model.get_reactions_vector()):
+    #     if r[5]!=0:
+    #         vars.append([Int("n_i_" + str(i)), r[5]])
+    #         vars.append([Int("n_t_" + str(i)), r[5]])
+    # sum = model.get_initial_state()[5]
+    # for i in vars:
+    #     sum = sum + i[0]*i[1]
+    # constraints.append(sum>=60)
 
-    vars = []
-    for i, r in enumerate(model.get_reactions_vector()):
-        if r[5]!=0:
-            vars.append([Int("n_i_" + str(i)), r[5]])
-            vars.append([Int("n_t_" + str(i)), r[5]])
-    sum = model.get_initial_state()[5]
-    for i in vars:
-        sum = sum + i[0]*i[1]
-    constraints.append(sum>=60)
-
-    vars = []
-    for i, r in enumerate(model.get_reactions_vector()):
-        if r[6]!=0:
-            vars.append([Int("n_i_" + str(i)), r[6]])
-            vars.append([Int("n_t_" + str(i)), r[6]])
-    sum = model.get_initial_state()[6]
-    for i in vars:
-        sum = sum + i[0]*i[1]
-    constraints.append(sum==0)
+    # vars = []
+    # for i, r in enumerate(model.get_reactions_vector()):
+    #     if r[6]!=0:
+    #         vars.append([Int("n_i_" + str(i)), r[6]])
+    #         vars.append([Int("n_t_" + str(i)), r[6]])
+    # sum = model.get_initial_state()[6]
+    # for i in vars:
+    #     sum = sum + i[0]*i[1]
+    # constraints.append(sum==0)
 
     
     ###########################################
