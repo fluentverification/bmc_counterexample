@@ -3,11 +3,9 @@ from Parser import Parser
 from z3 import Solver, Int, And, Or, sat, simplify
 from Graph import Node, Edge, Graph, check_probability
 from Utils import get_total_outgoing_rate, get_reaction_rate, is_target
-from math import log, pow, floor, ceil
+from math import log
 import time
-import random
-import sys
-import json
+
 
 def CEX_GEN(json_data):
     start_time = time.time()
@@ -21,8 +19,9 @@ def CEX_GEN(json_data):
     target_var = json_data['target_variable']
     target_value = int(json_data['target_value'])
     mc_step = int(json_data['model_check_step'])
-    max_comb = int(json_data['max_combination'])
-    max_comb = 1
+    comb = json_data['mode']
+
+    
 
     #parse the model into Parser() object
     model = Parser(model_path)
@@ -34,54 +33,90 @@ def CEX_GEN(json_data):
     for i in range(1,len(model.get_species_tuple())):
         index_tuple = index_tuple + (i,)
 
-    subsets = get_subsets(index_tuple, 1, max_comb)
-    # subsets.append(index_tuple)
+    if comb == "bdfs_1":
+        subsets = get_subsets(index_tuple, 1, 1)
+    elif comb == "bdfs_1_plus":
+        subsets = get_subsets(index_tuple, 1, 1)
+        subsets.append(index_tuple)
+    elif comb =="bdfs_all":
+        subsets = get_subsets(index_tuple, 1, len(model.get_species_tuple()))
+
+        
 
     diag = Graph()
 
     mc_time = 0
     construction_time = 0
-    constraint_time = 0    
+    constraint_time = 0
+    # file = open("./ouput.txt", "w")
+    # file.close()   
     while (True):
-        file = open("./Res/circuit/circuit_single_species_2.txt", "a")
+        print('K = ' + str(K))
+        # file.write('K = ' + str(K))
+        print("\n")
+        # file.write("\n")
+        # file = open("./ouput.txt", "a")
         stamp = time.time()
         min_max_dict = get_min_max(model, K, target_index, target_value, subsets)
         constraint_time = constraint_time + (time.time() - stamp)
-        file.write("time stamp after constraint generation: " + str(time.time()-start_time))
-        file.write("\n")
+        print("time stamp after constraint generation: " + str(time.time()-start_time))
+        # file.write("time stamp after constraint generation: " + str(time.time()-start_time))
+        print("\n")
+        # file.write("\n")
         stamp = time.time()
         diag = Bounded_DFS(model, min_max_dict, diag, target_var, target_index, target_value)
         construction_time = construction_time + (time.time() - stamp)
-        file.write('K = ' + str(K))
-        file.write("\n")
+        
         diag_size = len(diag.edges) + len(diag.nodes)
-        file.write("number of transitions: " + str(len(diag.edges)))
-        file.write("\n")
-        file.write("number of states: " + str(len(diag.nodes)))
-        file.write("\n")
+        print("number of transitions: " + str(len(diag.edges)))
+        print("\n")
+        print("number of states: " + str(len(diag.nodes)))
+        print("\n")
+        # file.write("number of transitions: " + str(len(diag.edges)))
+        # file.write("\n")
+        # file.write("number of states: " + str(len(diag.nodes)))
+        # file.write("\n")
         # print('diag_size = ' + str(diag_size))
-        file.write('time stamp before model checking = ' + str(time.time()-start_time))
-        file.write("\n")
-        file.write('----')
-        file.write("\n")
+        print('time stamp before model checking = ' + str(time.time()-start_time))
+        print("\n")
+        print('----')
+        print("\n")
+        # file.write('time stamp before model checking = ' + str(time.time()-start_time))
+        # file.write("\n")
+        # file.write('----')
+        # file.write("\n")
         stamp = time.time()
         result = check_probability(diag, model, model_name, prism_bin, csl_prop_lb)
         mc_time = mc_time + (time.time() - stamp)
-        file.write('probability= ' + str(result))
-        file.write("\n")
-        file.write('size= ' + str(diag_size))
-        file.write("\n")
-        file.write('time= ' + str(time.time()-start_time))
-        file.write("\n")
-        file.write("total constraint generation time= " + str(constraint_time))
-        file.write("\n")
-        file.write("total graph construction time= " + str(construction_time))
-        file.write("\n")
-        file.write("total model checking time= " + str(mc_time))
-        file.write("\n")
-        file.write("="*50)
-        file.write("\n")
-        file.close()
+        print('probability= ' + str(result))
+        print("\n")
+        print('size= ' + str(diag_size))
+        print("\n")
+        print('time= ' + str(time.time()-start_time))
+        print("\n")
+        print("total constraint generation time= " + str(constraint_time))
+        print("\n")
+        print("total graph construction time= " + str(construction_time))
+        print("\n")
+        print("total model checking time= " + str(mc_time))
+        print("\n")
+        print("="*50)
+        print("\n")
+        # file.write('probability= ' + str(result))
+        # file.write("\n")
+        # file.write('size= ' + str(diag_size))
+        # file.write("\n")
+        # file.write('time= ' + str(time.time()-start_time))
+        # file.write("\n")
+        # file.write("total constraint generation time= " + str(constraint_time))
+        # file.write("\n")
+        # file.write("total graph construction time= " + str(construction_time))
+        # file.write("\n")
+        # file.write("total model checking time= " + str(mc_time))
+        # file.write("\n")
+        # file.write("="*50)
+        # file.write("\n")
+        # file.close()
         #print('='*50)
         K = K + 1
 

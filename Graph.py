@@ -163,7 +163,7 @@ def check_probability(graph, model, file_name_prefix, prism_bin, csl_prop):
     to_file_prism_format(graph, model, "./results/" + file_name_prefix + "/" + file_name_prefix)
     stdout_result = subprocess.run([prism_bin, '-importmodel', "./results/" + file_name_prefix + "/" + file_name_prefix + ".all", '-pf', csl_prop, '-ctmc', '-s'], stdout=subprocess.PIPE)
     stdout_result = stdout_result.stdout.decode('utf-8')
-    print(stdout_result)
+    # print(stdout_result)
     stdout_result = stdout_result.splitlines()
     result = ''
     for r in stdout_result:
