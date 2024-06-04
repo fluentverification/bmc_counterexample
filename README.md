@@ -82,19 +82,19 @@ Enzymatic Futile Cycle is a chemical reaction network consisting of 6 chemical s
 where the initial populations of species $(S_1, S_2, S_3, S_4, S_5, S_6)$ are 
 ```math
 \begin{array}{lll}
-    $x_0 = [1, 50, 0, 1, 50, 0].
+    x_0 = [1, 50, 0, 1, 50, 0].
 \end{array}
 ```
 
 
-Link to the PRISM model: [Link](https://github.com/fluentverification/bmc_counterexample/blob/qest2024/CRNs/enzymatic_futile_cycle/enzym_unb.sm)
+Link to the PRISM model: [Link](https://github.com/fluentverification/bmc_counterexample/blob/IEEE/CRNs/enzymatic_futile_cycle/enzym_unb.sm)
 
-Link to the JSON file: [Link](https://github.com/fluentverification/bmc_counterexample/blob/qest2024/CRNs/enzymatic_futile_cycle/enzymatic_futile_cycle.json)
+Link to the JSON file: [Link](https://github.com/fluentverification/bmc_counterexample/blob/IEEE/CRNs/enzymatic_futile_cycle/enzymatic_futile_cycle.json)
 
-The following command runs the framework on this model:
+The following command runs the framework on this model (from the repo's main directory):
 
 ```bash
-python  Main.py  path-to-json.json
+python  ./Main.py  ./CRNs/enzymatic_futile_cycle/enzymatic_futile_cycle.json
 ```
 
 ### Motility Regulation
