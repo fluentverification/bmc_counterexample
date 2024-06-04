@@ -10,6 +10,7 @@ Genetic Circuit0x8E is a chemical reaction network of a genetic circuit model co
     R_4 : \ \textrm{10S}_\textrm{6} \xrightarrow{k_{1}} \emptyset, \\
     R_5 : \ \textrm{10S}_\textrm{8} \xrightarrow{k_{1}} \emptyset, &
     R_6 : \ \textrm{S}_\textrm{9} + \textrm{S}_\textrm{2} \xrightarrow{k_{2}} \textrm{S}_\textrm{9} + \textrm{S}_\textrm{2} + \textrm{10S}_\textrm{1}, \\
+    R_7 : \ \textrm{S}_\textrm{10} + \textrm{S}_\textrm{4} \xrightarrow{k_{3}} \textrm{S}_\textrm{10} + \textrm{S}_\textrm{4} + \textrm{10S}_\textrm{1}, &
     
 \end{array}
 ```
