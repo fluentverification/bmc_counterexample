@@ -115,7 +115,7 @@ Motility regulation is a chemical reaction network of a gene regulatory network 
     R_{10} : \ \textrm{CodY\_flache} \xrightarrow{0.1} \textrm{CodY} + \textrm{flache}, \\
     R_{11} : \ \textrm{CodY} + \textrm{hag} \xrightarrow{0.01} \textrm{CodY\_hag}, &
     R_{12} : \ \textrm{CodY\_hag} \xrightarrow{0.1} \textrm{CodY} + \textrm{hag} 
-\end{array}$
+\end{array}
 ```
 
 where the initial populations of the species 
