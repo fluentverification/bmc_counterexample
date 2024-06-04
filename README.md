@@ -101,7 +101,7 @@ python  ./Main.py  ./CRNs/enzymatic_futile_cycle/enzymatic_futile_cycle.json
 
 Motility regulation is a chemical reaction network of a gene regulatory network consisting of 9 chemical species reacting through 12 reaction channels. The model is defined by the following set of reactions:
 
-```
+```math
 \begin{array}{lll}
     R_1 : \ \textrm{codY} \xrightarrow{0.1} \textrm{codY} + \textrm{CodY}, &
     R_2 : \ \textrm{CodY} \xrightarrow{0.0002} \emptyset, \\
@@ -119,7 +119,7 @@ Motility regulation is a chemical reaction network of a gene regulatory network 
 ```
 
 where the initial populations of the species 
-({codY}, {CodY}, {flache}, {SigD}, {SigD\_hag}, {hag}, {Hag}, {CodY\_flache}, {CodY\_hag})
+(codY, CodY, flache, SigD, SigD\_hag, hag, Hag, CodY\_flache, CodY\_hag)
 are 
 
 ```math

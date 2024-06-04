@@ -20,7 +20,7 @@ Motility regulation is a chemical reaction network of a gene regulatory network 
 ```
 
 where the initial populations of the species 
-({codY}, {CodY}, {flache}, {SigD}, {SigD\_hag}, {hag}, {Hag}, {CodY\_flache}, {CodY\_hag})
+(codY, CodY, flache, SigD, SigD\_hag, hag, Hag, CodY\_flache, CodY\_hag)
 are 
 
 ```math
