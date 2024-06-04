@@ -100,7 +100,8 @@ python  ./Main.py  ./CRNs/enzymatic_futile_cycle/enzymatic_futile_cycle.json
 ### Motility Regulation
 
 Motility regulation is a chemical reaction network of a gene regulatory network consisting of 9 chemical species reacting through 12 reaction channels. The model is defined by the following set of reactions:
-'''math
+
+```
 \begin{array}{lll}
     R_1 : \ \textrm{codY} \xrightarrow{0.1} \textrm{codY} + \textrm{CodY}, &
     R_2 : \ \textrm{CodY} \xrightarrow{0.0002} \emptyset, \\
@@ -115,15 +116,17 @@ Motility regulation is a chemical reaction network of a gene regulatory network 
     R_{11} : \ \textrm{CodY} + \textrm{hag} \xrightarrow{0.01} \textrm{CodY\_hag}, &
     R_{12} : \ \textrm{CodY\_hag} \xrightarrow{0.1} \textrm{CodY} + \textrm{hag} 
 \end{array}$
-'''
+```
+
 where the initial populations of the species 
 ({codY}, {CodY}, {flache}, {SigD}, {SigD\_hag}, {hag}, {Hag}, {CodY\_flache}, {CodY\_hag})
 are 
-'''math
+
+```math
 \begin{array}{lll}
     x_0 = [1, 10, 1, 10, 1, 1, 10, 1, 1]..
 \end{array}
-'''
+```
 
 Link to PRISM model: [Link](https://github.com/fluentverification/bmc_counterexample/blob/IEEE/CRNs/motility_regulation/motility_unb.sm)
 
