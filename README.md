@@ -1,7 +1,7 @@
 
-# Stochastic Analysis of Infinite-State Probabilistic Models
+# Stochastic Analysis of Infinite-State Chemical Reaction Networks
 
-The framework takes PRISM models of CRNs and a CSL property of the form $P=? [\textrm{true} \textrm{U}<=\textrm{T}  (\textrm{X}=\theta)]$ as input, and generates and iteratively increasing lower-bound for the probability of the property on the CRN model.
+The framework takes PRISM models of CRNs and a CSL property of the form $P=? [\textrm{true} \; \textrm{U}<=\textrm{T} \;  (\textrm{X}=\theta)]$ as input, and generates and iteratively increasing lower-bound for the probability of the property on the CRN model.
 At each iteration, the lower-bound probabilty and the size of the state-space on which this probability is computed is printed to the console.
 
 # Installation
@@ -10,11 +10,11 @@ At each iteration, the lower-bound probabilty and the size of the state-space on
 
 	- Stormpy
 
-		- Stormpy is a set of python bindings for the STORM’s C++ API. The framework uses this library for building models, and checking the probability of properties on the built models. Stormpy can be installed following the instructions showed [here](https://moves-rwth.github.io/stormpy/installation.html#installation-steps).
+		- Stormpy is a set of python bindings for the STORM’s C++ API. The framework uses this library for parsing models. Stormpy can be installed following the instructions showed [here](https://moves-rwth.github.io/stormpy/installation.html#installation-steps).
 
-	- STORM
+	- PRISM
 
-		- Stormpy installation requires STORM to be available on the system. The framework additionally uses the  `storm-conv` binary to convert PRISM models to JANI models. `storm-conv` binary will be built following the standard installation of STORM. The instructions to compile STORM can be found [here](https://www.stormchecker.org/documentation/obtain-storm/build.html).
+		- PRISM is used as the back-end probabilistic model-checker. The location to the PRISM binary should be passed as a parameter to the framework. Details on installation of PRISM can be found [here](https://www.prismmodelchecker.org/manual/InstallingPRISM/Instructions).
 
 	- z3-py
 
@@ -26,22 +26,9 @@ At each iteration, the lower-bound probabilty and the size of the state-space on
 	
 	- After prerequisite libraries are installed, the python scripts can be cloned and accessed by following commands:
 		 ```bash
-		git clone --depth 1 --branch qest2024 https://github.com/fluentverification/bmc_counterexample.git
+		git clone --depth 1 --branch IEEE https://github.com/fluentverification/bmc_counterexample.git
 		cd bmc_counterexample
 		```
-
-### Docker Image
-
-Alternatively, a docker container with all the prerequisites libraries and case studies can be build by the Dockerfile provided in the docker directory. To build the docker image:
-
-```bash
-cd docker
-docker build -t bmc .
-```
-and then in order to run the docker image:
-```bash
-docker run -it bmc:latest
-```
 
 
 # Running
@@ -54,20 +41,19 @@ The framework accepts CTMC models written in [PRISM modeling language](https://w
 
 3. Each command in the model must have exactly one update.
 
-In addition to the PRISM model, the JANI model of the input CTMC must be passed to the framework as well. The JANI model of the case-studies in this repository are available in the directory containing each CRN's PRISM model. The following command uses the `storm-conv` binary to convert the PRISM-Model.sm which is a PRISM model to a JANI model:
-```bash
-torm-conv --prism ./PRISM-Model.sm --prop "Property of Interest" --tojani JANI-Model.jani -pc
-```
 To run the framework, a JSON file containing the necessary parameters should be passed to the python interpreter. This JSON file should follow this format:
 
 ```json
 {
 "model_name" : (string)  arbitrary  name  given  to  the  model,
 "model_path" : (string)  the  path  to  the  PRISM  model,
-"jani_path" : (string)  the  path  to  the  jani  model,
+"starting_bound" : (string) length of shortest witness trace. Can be set to 1 if not known,
+"prism_binary" : (string) path to the PRISM binary,
 "csl_property" : (string)  CSL  property  that  is  going  to  be  checked,
 "target_variable" : (string)  the  variable  of  interest  in  the  CSL  property,
-"target_value" : (string)  the  value  of  the  variable  of  interest  in  the  CSL  property
+"target_value" : (string)  the  value  of  the  variable  of  interest  in  the  CSL  property,
+"model_check_step" : (string) only necessary for XBF. PRISM is going to be called after the size of state space has increased by at least this value,
+"mode" : (string) one of 1)bdfs_1 2)bdfs_1_plus 3)bdfs_all
 }
 ```
 
