@@ -154,7 +154,7 @@ Yeast Polarization is a chemical reaction network model consisting of 7 chemical
     R_8 : \ \emptyset \xrightarrow{3.21} \textrm{RL} 
 \end{array}
 ```
-where the initial populations of species (R, L, RL, G, G_{a}, G_{bg}, G_d) are 
+where the initial populations of species $(R, L, RL, G, G_{a}, G_{bg}, G_d)$ are 
 
 ```math
 \begin{center}
