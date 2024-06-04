@@ -25,7 +25,9 @@ where the initial populations of the species ($S_1$, $S_2$, $S_3$, $S_4$, $S_5$,
 are 
 
 ```math
+\begin{array}{lll}
 x_0 = [70, 60, 70, 0, 0, 70, 0, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2].
+\end{array}
 ```
 This model uses Hill functions for the propensity of reactions. The reaction rates can be found in the PRISM file.
 

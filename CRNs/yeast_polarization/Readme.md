@@ -26,8 +26,8 @@ Link to PRISM model: [Link](https://github.com/fluentverification/bmc_counterexa
 
 Link to JSON file: [Link](https://github.com/fluentverification/bmc_counterexample/blob/IEEE/CRNs/yeast_polarization/yeast_polarization.json)
 
-The following command runs the framework on this model(from the repo's main directory):
+The following command runs the framework on this model (from the repo's main directory):
 
 ```bash
-python  Main.py  ./CRNs/yeast_polarization/yeast_polarization.json
+python  ./Main.py  ./CRNs/yeast_polarization/yeast_polarization.json
 ```
