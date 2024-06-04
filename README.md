@@ -82,7 +82,7 @@ Enzymatic Futile Cycle is a chemical reaction network consisting of 6 chemical s
 where the initial populations of species $(S_1, S_2, S_3, S_4, S_5, S_6)$ are 
 ```math
 \begin{array}{lll}
-    $\bm{x_0} = [1, 50, 0, 1, 50, 0].
+    $x_0 = [1, 50, 0, 1, 50, 0].
 \end{array}
 ```
 
