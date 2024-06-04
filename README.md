@@ -157,9 +157,9 @@ Yeast Polarization is a chemical reaction network model consisting of 7 chemical
 where the initial populations of species $(R, L, RL, G, G_{a}, G_{bg}, G_d)$ are 
 
 ```math
-\begin{center}
+\begin{array}{lll}
 x_0 = [50, 2, 0, 50, 0, 0, 0].
-\end{center}
+\end{array}
 ```
 
 Link to PRISM model: [Link](https://github.com/fluentverification/bmc_counterexample/blob/IEEE/CRNs/yeast_polarization/yeast_unb.sm) 
