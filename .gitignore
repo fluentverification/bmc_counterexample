@@ -3,7 +3,12 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+#
 results/
+*.swp
+stormpy_test/
+#
+
 # C extensions
 *.so
 
