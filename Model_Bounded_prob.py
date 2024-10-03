@@ -1,4 +1,4 @@
-#! /home/ubu/projects/probmc/storm/pycarl/env/bin/python3
+#! /home/ubu/projects/probmc/storm-1.9/env/bin/python3
 
 
 import itertools
@@ -66,17 +66,18 @@ def CEX_GEN(json_data):
     while (True):
         print("thresh = " + str(thresh))
         before = time.time()
-        flag, max_len, min_max_dict_species = get_min_max_species(model=model, 
-                                                          model_name=model_name, 
-                                                          prob_thresh=thresh, 
-                                                          num_steps = steps, 
-                                                          division_factor=division_factor,
-                                                          poisson_step= poisson_step, 
-                                                          subsets=subsets_species, 
-                                                          min_max_prev=min_max_dict_species, 
-                                                          target_index=target_index, 
-                                                          target_value=target_value, 
-                                                          lower_bound = lower_bound)
+        flag, max_len, min_max_dict_species = get_min_max_species(
+        model=model, 
+        model_name=model_name, 
+        prob_thresh=thresh, 
+        num_steps = steps, 
+        division_factor=division_factor,
+        poisson_step= poisson_step, 
+        subsets=subsets_species, 
+        min_max_prev=min_max_dict_species, 
+        target_index=target_index, 
+        target_value=target_value, 
+        lower_bound = lower_bound)
         print("Generating min_max dictonary took " + str(time.time() - before) + "seconds.")
         #
         

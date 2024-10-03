@@ -57,5 +57,3 @@ for i, v in enumerate(initial_state_stormpy):
         raise Exception("one of the variables in the model has a type other than bool/int")
 print(initial_state)
 #}
-
-
