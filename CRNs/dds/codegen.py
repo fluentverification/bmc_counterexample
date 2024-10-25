@@ -2,8 +2,8 @@
 import sys, os
 
 n = 2
-lambda_ = 1.0 
-mu = 2.0
+lambda_ = "1.0 / (6000000)" 
+mu = "1.0"
 
 folder_path = "./n" + str(n)
 file_path = folder_path + "/dds_" + str(n) + ".sm" 
@@ -43,32 +43,32 @@ f.write("\n")
 f.write("\n")
 
 for i in range(6):
-    f.write("[cluster" + str(i) + "_failing] (disc_cluster" + str(i) + " < " + str(2*n) + ") : ((" + str(2*n) + " - disc_cluster" + str(i) + ") * labmda) -> (disc_cluster" + str(i) + " = disc_cluster" + str(i) + " + 1);") 
+    f.write("[cluster" + str(i) + "_failing] (disc_cluster" + str(i) + " < " + str(2*n) + ") -> ((" + str(2*n) + " - disc_cluster" + str(i) + ") * lambda) : (disc_cluster" + str(i) + "' = disc_cluster" + str(i) + " + 1);") 
     f.write("\n")
 f.write("\n")
 
-f.write("[controller0_failing] (disc_controller0 < " + str(n) + ")  : ((" + str(n) + " - disc_controller0) * 3 * labmda) -> (disc_controller0 = disc_controller0 + 1);") 
+f.write("[controller0_failing] (disc_controller0 < " + str(n) + ") -> ((" + str(n) + " - disc_controller0) * 3 * lambda) : (disc_controller0' = disc_controller0 + 1);") 
 f.write("\n")
-f.write("[controller1_failing] (disc_controller1 < " + str(n) + ")  : ((" + str(n) + " - disc_controller1) * 3 * labmda) -> (disc_controller1 = disc_controller1 + 1);") 
+f.write("[controller1_failing] (disc_controller1 < " + str(n) + ") -> ((" + str(n) + " - disc_controller1) * 3 * lambda) : (disc_controller1' = disc_controller1 + 1);") 
 f.write("\n")
 f.write("\n")
 
-f.write("[processor_failing] (processor < " + str(n) + ")  : ((" + str(n) + " - processor) * 3 * labmda) -> (processor = processor + 1);") 
+f.write("[processor_failing] (processor < " + str(n) + ") -> ((" + str(n) + " - processor) * 3 * lambda) : (processor' = processor + 1);") 
 f.write("\n")
 f.write("\n")
 
 for i in range(6):
-    f.write("[cluster" + str(i) + "_repair] (disc_cluster" + str(i) + " > 0 ) : (mu) -> (disc_cluster" + str(i) + " = disc_cluster" + str(i) + " - 1);") 
+    f.write("[cluster" + str(i) + "_repair] (disc_cluster" + str(i) + " > 0 ) -> (mu) : (disc_cluster" + str(i) + "' = disc_cluster" + str(i) + " - 1);") 
     f.write("\n")
 f.write("\n")
 
-f.write("[controller0_repair] (disc_controller0 > 0)  : (mu) -> (disc_controller0 = disc_controller0 - 1);") 
+f.write("[controller0_repair] (disc_controller0 > 0) -> (mu) : (disc_controller0' = disc_controller0 - 1);") 
 f.write("\n")
-f.write("[controller1_repair] (disc_controller1 > 0)  : (mu) -> (disc_controller1 = disc_controller1 - 1);") 
+f.write("[controller1_repair] (disc_controller1 > 0) -> (mu) : (disc_controller1' = disc_controller1 - 1);") 
 f.write("\n")
 f.write("\n")
 
-f.write("[processor_repair] (processor > 0)  : (mu) -> (processor = processor - 1);") 
+f.write("[processor_repair] (processor > 0) -> (mu) : (processor' = processor - 1);") 
 f.write("\n")
 f.write("\n")
 
