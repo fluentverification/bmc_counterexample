@@ -3,6 +3,6 @@
 	"jani_path" : "./CRNs/yeast_polarization/yeast_prop.jani",
 	"model_name" : "yeast_polarization",
 	"csl_property" : "P=? [true U<=20 ((Gbg=50))]",
-	"target_variable" : "Gbg",
-	"target_value" : "50"
+	"target_variables" : ["Gbg"],
+	"target_values" : ["50"]
 }

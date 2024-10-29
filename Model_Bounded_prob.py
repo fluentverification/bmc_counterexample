@@ -37,8 +37,8 @@ def CEX_GEN(json_data):
     division_factor = 1000
     engine = "automatic"
     # max_comb_species = len(model.get_species_tuple())
-    max_comb_species = 2
-    steps = 2
+    max_comb_species = 1
+    steps = 1
     lower_bound = True
     poisson_step = 10
     #
