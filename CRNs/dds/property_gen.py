@@ -2,7 +2,7 @@
 import sys, os
 import math
 
-n = 2
+n = 6
 
 folder_path = "./n" + str(n)
 file_path = folder_path + "/dds_" + str(n) + ".csl" 

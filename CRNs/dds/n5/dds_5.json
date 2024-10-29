@@ -1,0 +1,28 @@
+{
+    "model_path": "./CRNs/dds/n5/dds_5.sm",
+    "jani_path": "./CRNs/dds/n5/dds_5.jani",
+    "model_name": "dds_5",
+    "csl_property": "P=? [ true U<=840 ((disc_cluster0 >= 5) | (disc_cluster1 >= 5) | (disc_cluster2 >= 5) | (disc_cluster3 >= 5) | (disc_cluster4 >= 5) | (disc_cluster5 >= 5) | (disc_controller0 = 5) | (disc_controller1 = 5) | (processor = 5))]",
+    "target_variables": [
+        "disc_cluster0",
+        "disc_cluster1",
+        "disc_cluster2",
+        "disc_cluster3",
+        "disc_cluster4",
+        "disc_cluster5",
+        "disc_controller0",
+        "disc_controller1",
+        "processor"
+    ],
+    "target_values": [
+        "5",
+        "5",
+        "5",
+        "5",
+        "5",
+        "5",
+        "5",
+        "5",
+        "5"
+    ]
+}

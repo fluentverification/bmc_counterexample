@@ -1,0 +1,1 @@
+P=? [ true U<=840 ((disc_cluster0 >= 3) | (disc_cluster1 >= 3) | (disc_cluster2 >= 3) | (disc_cluster3 >= 3) | (disc_cluster4 >= 3) | (disc_cluster5 >= 3) | (disc_controller0 = 3) | (disc_controller1 = 3) | (processor = 3))]

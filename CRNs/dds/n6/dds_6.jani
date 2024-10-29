@@ -1,0 +1,1444 @@
+{
+    "actions": [
+        {
+            "name": "cluster0_failing"
+        },
+        {
+            "name": "cluster0_repair"
+        },
+        {
+            "name": "cluster1_failing"
+        },
+        {
+            "name": "cluster1_repair"
+        },
+        {
+            "name": "cluster2_failing"
+        },
+        {
+            "name": "cluster2_repair"
+        },
+        {
+            "name": "cluster3_failing"
+        },
+        {
+            "name": "cluster3_repair"
+        },
+        {
+            "name": "cluster4_failing"
+        },
+        {
+            "name": "cluster4_repair"
+        },
+        {
+            "name": "cluster5_failing"
+        },
+        {
+            "name": "cluster5_repair"
+        },
+        {
+            "name": "controller0_failing"
+        },
+        {
+            "name": "controller0_repair"
+        },
+        {
+            "name": "controller1_failing"
+        },
+        {
+            "name": "controller1_repair"
+        },
+        {
+            "name": "processor_failing"
+        },
+        {
+            "name": "processor_repair"
+        }
+    ],
+    "automata": [
+        {
+            "edges": [
+                {
+                    "action": "cluster0_failing",
+                    "destinations": [
+                        {
+                            "assignments": [
+                                {
+                                    "comment": "disc_cluster0 <- (disc_cluster0 + 1)",
+                                    "ref": "disc_cluster0",
+                                    "value": {
+                                        "left": "disc_cluster0",
+                                        "op": "+",
+                                        "right": 1
+                                    }
+                                }
+                            ],
+                            "location": "l",
+                            "probability": {
+                                "comment": "(((12 - disc_cluster0) * (1 / 6000000)) / ((12 - disc_cluster0) * (1 / 6000000)))",
+                                "exp": {
+                                    "left": {
+                                        "left": {
+                                            "left": 12,
+                                            "op": "-",
+                                            "right": "disc_cluster0"
+                                        },
+                                        "op": "*",
+                                        "right": {
+                                            "left": 1.0,
+                                            "op": "/",
+                                            "right": 6000000.0
+                                        }
+                                    },
+                                    "op": "/",
+                                    "right": {
+                                        "left": {
+                                            "left": 12,
+                                            "op": "-",
+                                            "right": "disc_cluster0"
+                                        },
+                                        "op": "*",
+                                        "right": {
+                                            "left": 1.0,
+                                            "op": "/",
+                                            "right": 6000000.0
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                    "guard": {
+                        "comment": "(disc_cluster0 < 12)",
+                        "exp": {
+                            "left": "disc_cluster0",
+                            "op": "<",
+                            "right": 12
+                        }
+                    },
+                    "location": "l",
+                    "rate": {
+                        "comment": "((12 - disc_cluster0) * (1 / 6000000))",
+                        "exp": {
+                            "left": {
+                                "left": 12,
+                                "op": "-",
+                                "right": "disc_cluster0"
+                            },
+                            "op": "*",
+                            "right": {
+                                "left": 1.0,
+                                "op": "/",
+                                "right": 6000000.0
+                            }
+                        }
+                    }
+                },
+                {
+                    "action": "cluster0_repair",
+                    "destinations": [
+                        {
+                            "assignments": [
+                                {
+                                    "comment": "disc_cluster0 <- (disc_cluster0 - 1)",
+                                    "ref": "disc_cluster0",
+                                    "value": {
+                                        "left": "disc_cluster0",
+                                        "op": "-",
+                                        "right": 1
+                                    }
+                                }
+                            ],
+                            "location": "l",
+                            "probability": {
+                                "comment": "(1 / 1)",
+                                "exp": 1.0
+                            }
+                        }
+                    ],
+                    "guard": {
+                        "comment": "(disc_cluster0 > 0)",
+                        "exp": {
+                            "left": "disc_cluster0",
+                            "op": ">",
+                            "right": 0
+                        }
+                    },
+                    "location": "l",
+                    "rate": {
+                        "comment": "1",
+                        "exp": 1.0
+                    }
+                },
+                {
+                    "action": "cluster1_failing",
+                    "destinations": [
+                        {
+                            "assignments": [
+                                {
+                                    "comment": "disc_cluster1 <- (disc_cluster1 + 1)",
+                                    "ref": "disc_cluster1",
+                                    "value": {
+                                        "left": "disc_cluster1",
+                                        "op": "+",
+                                        "right": 1
+                                    }
+                                }
+                            ],
+                            "location": "l",
+                            "probability": {
+                                "comment": "(((12 - disc_cluster1) * (1 / 6000000)) / ((12 - disc_cluster1) * (1 / 6000000)))",
+                                "exp": {
+                                    "left": {
+                                        "left": {
+                                            "left": 12,
+                                            "op": "-",
+                                            "right": "disc_cluster1"
+                                        },
+                                        "op": "*",
+                                        "right": {
+                                            "left": 1.0,
+                                            "op": "/",
+                                            "right": 6000000.0
+                                        }
+                                    },
+                                    "op": "/",
+                                    "right": {
+                                        "left": {
+                                            "left": 12,
+                                            "op": "-",
+                                            "right": "disc_cluster1"
+                                        },
+                                        "op": "*",
+                                        "right": {
+                                            "left": 1.0,
+                                            "op": "/",
+                                            "right": 6000000.0
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                    "guard": {
+                        "comment": "(disc_cluster1 < 12)",
+                        "exp": {
+                            "left": "disc_cluster1",
+                            "op": "<",
+                            "right": 12
+                        }
+                    },
+                    "location": "l",
+                    "rate": {
+                        "comment": "((12 - disc_cluster1) * (1 / 6000000))",
+                        "exp": {
+                            "left": {
+                                "left": 12,
+                                "op": "-",
+                                "right": "disc_cluster1"
+                            },
+                            "op": "*",
+                            "right": {
+                                "left": 1.0,
+                                "op": "/",
+                                "right": 6000000.0
+                            }
+                        }
+                    }
+                },
+                {
+                    "action": "cluster1_repair",
+                    "destinations": [
+                        {
+                            "assignments": [
+                                {
+                                    "comment": "disc_cluster1 <- (disc_cluster1 - 1)",
+                                    "ref": "disc_cluster1",
+                                    "value": {
+                                        "left": "disc_cluster1",
+                                        "op": "-",
+                                        "right": 1
+                                    }
+                                }
+                            ],
+                            "location": "l",
+                            "probability": {
+                                "comment": "(1 / 1)",
+                                "exp": 1.0
+                            }
+                        }
+                    ],
+                    "guard": {
+                        "comment": "(disc_cluster1 > 0)",
+                        "exp": {
+                            "left": "disc_cluster1",
+                            "op": ">",
+                            "right": 0
+                        }
+                    },
+                    "location": "l",
+                    "rate": {
+                        "comment": "1",
+                        "exp": 1.0
+                    }
+                },
+                {
+                    "action": "cluster2_failing",
+                    "destinations": [
+                        {
+                            "assignments": [
+                                {
+                                    "comment": "disc_cluster2 <- (disc_cluster2 + 1)",
+                                    "ref": "disc_cluster2",
+                                    "value": {
+                                        "left": "disc_cluster2",
+                                        "op": "+",
+                                        "right": 1
+                                    }
+                                }
+                            ],
+                            "location": "l",
+                            "probability": {
+                                "comment": "(((12 - disc_cluster2) * (1 / 6000000)) / ((12 - disc_cluster2) * (1 / 6000000)))",
+                                "exp": {
+                                    "left": {
+                                        "left": {
+                                            "left": 12,
+                                            "op": "-",
+                                            "right": "disc_cluster2"
+                                        },
+                                        "op": "*",
+                                        "right": {
+                                            "left": 1.0,
+                                            "op": "/",
+                                            "right": 6000000.0
+                                        }
+                                    },
+                                    "op": "/",
+                                    "right": {
+                                        "left": {
+                                            "left": 12,
+                                            "op": "-",
+                                            "right": "disc_cluster2"
+                                        },
+                                        "op": "*",
+                                        "right": {
+                                            "left": 1.0,
+                                            "op": "/",
+                                            "right": 6000000.0
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                    "guard": {
+                        "comment": "(disc_cluster2 < 12)",
+                        "exp": {
+                            "left": "disc_cluster2",
+                            "op": "<",
+                            "right": 12
+                        }
+                    },
+                    "location": "l",
+                    "rate": {
+                        "comment": "((12 - disc_cluster2) * (1 / 6000000))",
+                        "exp": {
+                            "left": {
+                                "left": 12,
+                                "op": "-",
+                                "right": "disc_cluster2"
+                            },
+                            "op": "*",
+                            "right": {
+                                "left": 1.0,
+                                "op": "/",
+                                "right": 6000000.0
+                            }
+                        }
+                    }
+                },
+                {
+                    "action": "cluster2_repair",
+                    "destinations": [
+                        {
+                            "assignments": [
+                                {
+                                    "comment": "disc_cluster2 <- (disc_cluster2 - 1)",
+                                    "ref": "disc_cluster2",
+                                    "value": {
+                                        "left": "disc_cluster2",
+                                        "op": "-",
+                                        "right": 1
+                                    }
+                                }
+                            ],
+                            "location": "l",
+                            "probability": {
+                                "comment": "(1 / 1)",
+                                "exp": 1.0
+                            }
+                        }
+                    ],
+                    "guard": {
+                        "comment": "(disc_cluster2 > 0)",
+                        "exp": {
+                            "left": "disc_cluster2",
+                            "op": ">",
+                            "right": 0
+                        }
+                    },
+                    "location": "l",
+                    "rate": {
+                        "comment": "1",
+                        "exp": 1.0
+                    }
+                },
+                {
+                    "action": "cluster3_failing",
+                    "destinations": [
+                        {
+                            "assignments": [
+                                {
+                                    "comment": "disc_cluster3 <- (disc_cluster3 + 1)",
+                                    "ref": "disc_cluster3",
+                                    "value": {
+                                        "left": "disc_cluster3",
+                                        "op": "+",
+                                        "right": 1
+                                    }
+                                }
+                            ],
+                            "location": "l",
+                            "probability": {
+                                "comment": "(((12 - disc_cluster3) * (1 / 6000000)) / ((12 - disc_cluster3) * (1 / 6000000)))",
+                                "exp": {
+                                    "left": {
+                                        "left": {
+                                            "left": 12,
+                                            "op": "-",
+                                            "right": "disc_cluster3"
+                                        },
+                                        "op": "*",
+                                        "right": {
+                                            "left": 1.0,
+                                            "op": "/",
+                                            "right": 6000000.0
+                                        }
+                                    },
+                                    "op": "/",
+                                    "right": {
+                                        "left": {
+                                            "left": 12,
+                                            "op": "-",
+                                            "right": "disc_cluster3"
+                                        },
+                                        "op": "*",
+                                        "right": {
+                                            "left": 1.0,
+                                            "op": "/",
+                                            "right": 6000000.0
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                    "guard": {
+                        "comment": "(disc_cluster3 < 12)",
+                        "exp": {
+                            "left": "disc_cluster3",
+                            "op": "<",
+                            "right": 12
+                        }
+                    },
+                    "location": "l",
+                    "rate": {
+                        "comment": "((12 - disc_cluster3) * (1 / 6000000))",
+                        "exp": {
+                            "left": {
+                                "left": 12,
+                                "op": "-",
+                                "right": "disc_cluster3"
+                            },
+                            "op": "*",
+                            "right": {
+                                "left": 1.0,
+                                "op": "/",
+                                "right": 6000000.0
+                            }
+                        }
+                    }
+                },
+                {
+                    "action": "cluster3_repair",
+                    "destinations": [
+                        {
+                            "assignments": [
+                                {
+                                    "comment": "disc_cluster3 <- (disc_cluster3 - 1)",
+                                    "ref": "disc_cluster3",
+                                    "value": {
+                                        "left": "disc_cluster3",
+                                        "op": "-",
+                                        "right": 1
+                                    }
+                                }
+                            ],
+                            "location": "l",
+                            "probability": {
+                                "comment": "(1 / 1)",
+                                "exp": 1.0
+                            }
+                        }
+                    ],
+                    "guard": {
+                        "comment": "(disc_cluster3 > 0)",
+                        "exp": {
+                            "left": "disc_cluster3",
+                            "op": ">",
+                            "right": 0
+                        }
+                    },
+                    "location": "l",
+                    "rate": {
+                        "comment": "1",
+                        "exp": 1.0
+                    }
+                },
+                {
+                    "action": "cluster4_failing",
+                    "destinations": [
+                        {
+                            "assignments": [
+                                {
+                                    "comment": "disc_cluster4 <- (disc_cluster4 + 1)",
+                                    "ref": "disc_cluster4",
+                                    "value": {
+                                        "left": "disc_cluster4",
+                                        "op": "+",
+                                        "right": 1
+                                    }
+                                }
+                            ],
+                            "location": "l",
+                            "probability": {
+                                "comment": "(((12 - disc_cluster4) * (1 / 6000000)) / ((12 - disc_cluster4) * (1 / 6000000)))",
+                                "exp": {
+                                    "left": {
+                                        "left": {
+                                            "left": 12,
+                                            "op": "-",
+                                            "right": "disc_cluster4"
+                                        },
+                                        "op": "*",
+                                        "right": {
+                                            "left": 1.0,
+                                            "op": "/",
+                                            "right": 6000000.0
+                                        }
+                                    },
+                                    "op": "/",
+                                    "right": {
+                                        "left": {
+                                            "left": 12,
+                                            "op": "-",
+                                            "right": "disc_cluster4"
+                                        },
+                                        "op": "*",
+                                        "right": {
+                                            "left": 1.0,
+                                            "op": "/",
+                                            "right": 6000000.0
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                    "guard": {
+                        "comment": "(disc_cluster4 < 12)",
+                        "exp": {
+                            "left": "disc_cluster4",
+                            "op": "<",
+                            "right": 12
+                        }
+                    },
+                    "location": "l",
+                    "rate": {
+                        "comment": "((12 - disc_cluster4) * (1 / 6000000))",
+                        "exp": {
+                            "left": {
+                                "left": 12,
+                                "op": "-",
+                                "right": "disc_cluster4"
+                            },
+                            "op": "*",
+                            "right": {
+                                "left": 1.0,
+                                "op": "/",
+                                "right": 6000000.0
+                            }
+                        }
+                    }
+                },
+                {
+                    "action": "cluster4_repair",
+                    "destinations": [
+                        {
+                            "assignments": [
+                                {
+                                    "comment": "disc_cluster4 <- (disc_cluster4 - 1)",
+                                    "ref": "disc_cluster4",
+                                    "value": {
+                                        "left": "disc_cluster4",
+                                        "op": "-",
+                                        "right": 1
+                                    }
+                                }
+                            ],
+                            "location": "l",
+                            "probability": {
+                                "comment": "(1 / 1)",
+                                "exp": 1.0
+                            }
+                        }
+                    ],
+                    "guard": {
+                        "comment": "(disc_cluster4 > 0)",
+                        "exp": {
+                            "left": "disc_cluster4",
+                            "op": ">",
+                            "right": 0
+                        }
+                    },
+                    "location": "l",
+                    "rate": {
+                        "comment": "1",
+                        "exp": 1.0
+                    }
+                },
+                {
+                    "action": "cluster5_failing",
+                    "destinations": [
+                        {
+                            "assignments": [
+                                {
+                                    "comment": "disc_cluster5 <- (disc_cluster5 + 1)",
+                                    "ref": "disc_cluster5",
+                                    "value": {
+                                        "left": "disc_cluster5",
+                                        "op": "+",
+                                        "right": 1
+                                    }
+                                }
+                            ],
+                            "location": "l",
+                            "probability": {
+                                "comment": "(((12 - disc_cluster5) * (1 / 6000000)) / ((12 - disc_cluster5) * (1 / 6000000)))",
+                                "exp": {
+                                    "left": {
+                                        "left": {
+                                            "left": 12,
+                                            "op": "-",
+                                            "right": "disc_cluster5"
+                                        },
+                                        "op": "*",
+                                        "right": {
+                                            "left": 1.0,
+                                            "op": "/",
+                                            "right": 6000000.0
+                                        }
+                                    },
+                                    "op": "/",
+                                    "right": {
+                                        "left": {
+                                            "left": 12,
+                                            "op": "-",
+                                            "right": "disc_cluster5"
+                                        },
+                                        "op": "*",
+                                        "right": {
+                                            "left": 1.0,
+                                            "op": "/",
+                                            "right": 6000000.0
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                    "guard": {
+                        "comment": "(disc_cluster5 < 12)",
+                        "exp": {
+                            "left": "disc_cluster5",
+                            "op": "<",
+                            "right": 12
+                        }
+                    },
+                    "location": "l",
+                    "rate": {
+                        "comment": "((12 - disc_cluster5) * (1 / 6000000))",
+                        "exp": {
+                            "left": {
+                                "left": 12,
+                                "op": "-",
+                                "right": "disc_cluster5"
+                            },
+                            "op": "*",
+                            "right": {
+                                "left": 1.0,
+                                "op": "/",
+                                "right": 6000000.0
+                            }
+                        }
+                    }
+                },
+                {
+                    "action": "cluster5_repair",
+                    "destinations": [
+                        {
+                            "assignments": [
+                                {
+                                    "comment": "disc_cluster5 <- (disc_cluster5 - 1)",
+                                    "ref": "disc_cluster5",
+                                    "value": {
+                                        "left": "disc_cluster5",
+                                        "op": "-",
+                                        "right": 1
+                                    }
+                                }
+                            ],
+                            "location": "l",
+                            "probability": {
+                                "comment": "(1 / 1)",
+                                "exp": 1.0
+                            }
+                        }
+                    ],
+                    "guard": {
+                        "comment": "(disc_cluster5 > 0)",
+                        "exp": {
+                            "left": "disc_cluster5",
+                            "op": ">",
+                            "right": 0
+                        }
+                    },
+                    "location": "l",
+                    "rate": {
+                        "comment": "1",
+                        "exp": 1.0
+                    }
+                },
+                {
+                    "action": "controller0_failing",
+                    "destinations": [
+                        {
+                            "assignments": [
+                                {
+                                    "comment": "disc_controller0 <- (disc_controller0 + 1)",
+                                    "ref": "disc_controller0",
+                                    "value": {
+                                        "left": "disc_controller0",
+                                        "op": "+",
+                                        "right": 1
+                                    }
+                                }
+                            ],
+                            "location": "l",
+                            "probability": {
+                                "comment": "((((6 - disc_controller0) * 3) * (1 / 6000000)) / (((6 - disc_controller0) * 3) * (1 / 6000000)))",
+                                "exp": {
+                                    "left": {
+                                        "left": {
+                                            "left": {
+                                                "left": 6,
+                                                "op": "-",
+                                                "right": "disc_controller0"
+                                            },
+                                            "op": "*",
+                                            "right": 3
+                                        },
+                                        "op": "*",
+                                        "right": {
+                                            "left": 1.0,
+                                            "op": "/",
+                                            "right": 6000000.0
+                                        }
+                                    },
+                                    "op": "/",
+                                    "right": {
+                                        "left": {
+                                            "left": {
+                                                "left": 6,
+                                                "op": "-",
+                                                "right": "disc_controller0"
+                                            },
+                                            "op": "*",
+                                            "right": 3
+                                        },
+                                        "op": "*",
+                                        "right": {
+                                            "left": 1.0,
+                                            "op": "/",
+                                            "right": 6000000.0
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                    "guard": {
+                        "comment": "(disc_controller0 < 6)",
+                        "exp": {
+                            "left": "disc_controller0",
+                            "op": "<",
+                            "right": 6
+                        }
+                    },
+                    "location": "l",
+                    "rate": {
+                        "comment": "(((6 - disc_controller0) * 3) * (1 / 6000000))",
+                        "exp": {
+                            "left": {
+                                "left": {
+                                    "left": 6,
+                                    "op": "-",
+                                    "right": "disc_controller0"
+                                },
+                                "op": "*",
+                                "right": 3
+                            },
+                            "op": "*",
+                            "right": {
+                                "left": 1.0,
+                                "op": "/",
+                                "right": 6000000.0
+                            }
+                        }
+                    }
+                },
+                {
+                    "action": "controller0_repair",
+                    "destinations": [
+                        {
+                            "assignments": [
+                                {
+                                    "comment": "disc_controller0 <- (disc_controller0 - 1)",
+                                    "ref": "disc_controller0",
+                                    "value": {
+                                        "left": "disc_controller0",
+                                        "op": "-",
+                                        "right": 1
+                                    }
+                                }
+                            ],
+                            "location": "l",
+                            "probability": {
+                                "comment": "(1 / 1)",
+                                "exp": 1.0
+                            }
+                        }
+                    ],
+                    "guard": {
+                        "comment": "(disc_controller0 > 0)",
+                        "exp": {
+                            "left": "disc_controller0",
+                            "op": ">",
+                            "right": 0
+                        }
+                    },
+                    "location": "l",
+                    "rate": {
+                        "comment": "1",
+                        "exp": 1.0
+                    }
+                },
+                {
+                    "action": "controller1_failing",
+                    "destinations": [
+                        {
+                            "assignments": [
+                                {
+                                    "comment": "disc_controller1 <- (disc_controller1 + 1)",
+                                    "ref": "disc_controller1",
+                                    "value": {
+                                        "left": "disc_controller1",
+                                        "op": "+",
+                                        "right": 1
+                                    }
+                                }
+                            ],
+                            "location": "l",
+                            "probability": {
+                                "comment": "((((6 - disc_controller1) * 3) * (1 / 6000000)) / (((6 - disc_controller1) * 3) * (1 / 6000000)))",
+                                "exp": {
+                                    "left": {
+                                        "left": {
+                                            "left": {
+                                                "left": 6,
+                                                "op": "-",
+                                                "right": "disc_controller1"
+                                            },
+                                            "op": "*",
+                                            "right": 3
+                                        },
+                                        "op": "*",
+                                        "right": {
+                                            "left": 1.0,
+                                            "op": "/",
+                                            "right": 6000000.0
+                                        }
+                                    },
+                                    "op": "/",
+                                    "right": {
+                                        "left": {
+                                            "left": {
+                                                "left": 6,
+                                                "op": "-",
+                                                "right": "disc_controller1"
+                                            },
+                                            "op": "*",
+                                            "right": 3
+                                        },
+                                        "op": "*",
+                                        "right": {
+                                            "left": 1.0,
+                                            "op": "/",
+                                            "right": 6000000.0
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                    "guard": {
+                        "comment": "(disc_controller1 < 6)",
+                        "exp": {
+                            "left": "disc_controller1",
+                            "op": "<",
+                            "right": 6
+                        }
+                    },
+                    "location": "l",
+                    "rate": {
+                        "comment": "(((6 - disc_controller1) * 3) * (1 / 6000000))",
+                        "exp": {
+                            "left": {
+                                "left": {
+                                    "left": 6,
+                                    "op": "-",
+                                    "right": "disc_controller1"
+                                },
+                                "op": "*",
+                                "right": 3
+                            },
+                            "op": "*",
+                            "right": {
+                                "left": 1.0,
+                                "op": "/",
+                                "right": 6000000.0
+                            }
+                        }
+                    }
+                },
+                {
+                    "action": "controller1_repair",
+                    "destinations": [
+                        {
+                            "assignments": [
+                                {
+                                    "comment": "disc_controller1 <- (disc_controller1 - 1)",
+                                    "ref": "disc_controller1",
+                                    "value": {
+                                        "left": "disc_controller1",
+                                        "op": "-",
+                                        "right": 1
+                                    }
+                                }
+                            ],
+                            "location": "l",
+                            "probability": {
+                                "comment": "(1 / 1)",
+                                "exp": 1.0
+                            }
+                        }
+                    ],
+                    "guard": {
+                        "comment": "(disc_controller1 > 0)",
+                        "exp": {
+                            "left": "disc_controller1",
+                            "op": ">",
+                            "right": 0
+                        }
+                    },
+                    "location": "l",
+                    "rate": {
+                        "comment": "1",
+                        "exp": 1.0
+                    }
+                },
+                {
+                    "action": "processor_failing",
+                    "destinations": [
+                        {
+                            "assignments": [
+                                {
+                                    "comment": "processor <- (processor + 1)",
+                                    "ref": "processor",
+                                    "value": {
+                                        "left": "processor",
+                                        "op": "+",
+                                        "right": 1
+                                    }
+                                }
+                            ],
+                            "location": "l",
+                            "probability": {
+                                "comment": "((((6 - processor) * 3) * (1 / 6000000)) / (((6 - processor) * 3) * (1 / 6000000)))",
+                                "exp": {
+                                    "left": {
+                                        "left": {
+                                            "left": {
+                                                "left": 6,
+                                                "op": "-",
+                                                "right": "processor"
+                                            },
+                                            "op": "*",
+                                            "right": 3
+                                        },
+                                        "op": "*",
+                                        "right": {
+                                            "left": 1.0,
+                                            "op": "/",
+                                            "right": 6000000.0
+                                        }
+                                    },
+                                    "op": "/",
+                                    "right": {
+                                        "left": {
+                                            "left": {
+                                                "left": 6,
+                                                "op": "-",
+                                                "right": "processor"
+                                            },
+                                            "op": "*",
+                                            "right": 3
+                                        },
+                                        "op": "*",
+                                        "right": {
+                                            "left": 1.0,
+                                            "op": "/",
+                                            "right": 6000000.0
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                    "guard": {
+                        "comment": "(processor < 6)",
+                        "exp": {
+                            "left": "processor",
+                            "op": "<",
+                            "right": 6
+                        }
+                    },
+                    "location": "l",
+                    "rate": {
+                        "comment": "(((6 - processor) * 3) * (1 / 6000000))",
+                        "exp": {
+                            "left": {
+                                "left": {
+                                    "left": 6,
+                                    "op": "-",
+                                    "right": "processor"
+                                },
+                                "op": "*",
+                                "right": 3
+                            },
+                            "op": "*",
+                            "right": {
+                                "left": 1.0,
+                                "op": "/",
+                                "right": 6000000.0
+                            }
+                        }
+                    }
+                },
+                {
+                    "action": "processor_repair",
+                    "destinations": [
+                        {
+                            "assignments": [
+                                {
+                                    "comment": "processor <- (processor - 1)",
+                                    "ref": "processor",
+                                    "value": {
+                                        "left": "processor",
+                                        "op": "-",
+                                        "right": 1
+                                    }
+                                }
+                            ],
+                            "location": "l",
+                            "probability": {
+                                "comment": "(1 / 1)",
+                                "exp": 1.0
+                            }
+                        }
+                    ],
+                    "guard": {
+                        "comment": "(processor > 0)",
+                        "exp": {
+                            "left": "processor",
+                            "op": ">",
+                            "right": 0
+                        }
+                    },
+                    "location": "l",
+                    "rate": {
+                        "comment": "1",
+                        "exp": 1.0
+                    }
+                }
+            ],
+            "initial-locations": [
+                "l"
+            ],
+            "locations": [
+                {
+                    "name": "l"
+                }
+            ],
+            "name": "dds_6",
+            "variables": []
+        }
+    ],
+    "constants": [
+        {
+            "name": "lambda",
+            "type": "real",
+            "value": {
+                "left": 1.0,
+                "op": "/",
+                "right": 6000000.0
+            }
+        },
+        {
+            "name": "mu",
+            "type": "real",
+            "value": 1.0
+        }
+    ],
+    "features": [
+        "derived-operators"
+    ],
+    "jani-version": 1,
+    "name": "dds_6",
+    "properties": [
+        {
+            "expression": {
+                "fun": "values",
+                "op": "filter",
+                "states": {
+                    "op": "initial"
+                },
+                "values": {
+                    "exp": {
+                        "left": true,
+                        "op": "U",
+                        "right": {
+                            "left": {
+                                "left": {
+                                    "left": {
+                                        "left": {
+                                            "left": "processor",
+                                            "op": "=",
+                                            "right": 6
+                                        },
+                                        "op": "∨",
+                                        "right": {
+                                            "left": "disc_cluster1",
+                                            "op": "≥",
+                                            "right": 6
+                                        }
+                                    },
+                                    "op": "∨",
+                                    "right": {
+                                        "left": "disc_cluster4",
+                                        "op": "≥",
+                                        "right": 6
+                                    }
+                                },
+                                "op": "∨",
+                                "right": {
+                                    "left": {
+                                        "left": "disc_controller0",
+                                        "op": "=",
+                                        "right": 6
+                                    },
+                                    "op": "∨",
+                                    "right": {
+                                        "left": "disc_cluster2",
+                                        "op": "≥",
+                                        "right": 6
+                                    }
+                                }
+                            },
+                            "op": "∨",
+                            "right": {
+                                "left": {
+                                    "left": {
+                                        "left": "disc_controller1",
+                                        "op": "=",
+                                        "right": 6
+                                    },
+                                    "op": "∨",
+                                    "right": {
+                                        "left": "disc_cluster0",
+                                        "op": "≥",
+                                        "right": 6
+                                    }
+                                },
+                                "op": "∨",
+                                "right": {
+                                    "left": {
+                                        "left": "disc_cluster5",
+                                        "op": "≥",
+                                        "right": 6
+                                    },
+                                    "op": "∨",
+                                    "right": {
+                                        "left": "disc_cluster3",
+                                        "op": "≥",
+                                        "right": 6
+                                    }
+                                }
+                            }
+                        },
+                        "time-bounds": {
+                            "upper": 840,
+                            "upper-exclusive": false
+                        }
+                    },
+                    "op": "Pmin"
+                }
+            },
+            "name": "1"
+        }
+    ],
+    "restrict-initial": {
+        "exp": true
+    },
+    "system": {
+        "elements": [
+            {
+                "automaton": "dds_6"
+            }
+        ],
+        "syncs": [
+            {
+                "result": "cluster0_failing",
+                "synchronise": [
+                    "cluster0_failing"
+                ]
+            },
+            {
+                "result": "cluster0_repair",
+                "synchronise": [
+                    "cluster0_repair"
+                ]
+            },
+            {
+                "result": "cluster1_failing",
+                "synchronise": [
+                    "cluster1_failing"
+                ]
+            },
+            {
+                "result": "cluster1_repair",
+                "synchronise": [
+                    "cluster1_repair"
+                ]
+            },
+            {
+                "result": "cluster2_failing",
+                "synchronise": [
+                    "cluster2_failing"
+                ]
+            },
+            {
+                "result": "cluster2_repair",
+                "synchronise": [
+                    "cluster2_repair"
+                ]
+            },
+            {
+                "result": "cluster3_failing",
+                "synchronise": [
+                    "cluster3_failing"
+                ]
+            },
+            {
+                "result": "cluster3_repair",
+                "synchronise": [
+                    "cluster3_repair"
+                ]
+            },
+            {
+                "result": "cluster4_failing",
+                "synchronise": [
+                    "cluster4_failing"
+                ]
+            },
+            {
+                "result": "cluster4_repair",
+                "synchronise": [
+                    "cluster4_repair"
+                ]
+            },
+            {
+                "result": "cluster5_failing",
+                "synchronise": [
+                    "cluster5_failing"
+                ]
+            },
+            {
+                "result": "cluster5_repair",
+                "synchronise": [
+                    "cluster5_repair"
+                ]
+            },
+            {
+                "result": "controller0_failing",
+                "synchronise": [
+                    "controller0_failing"
+                ]
+            },
+            {
+                "result": "controller0_repair",
+                "synchronise": [
+                    "controller0_repair"
+                ]
+            },
+            {
+                "result": "controller1_failing",
+                "synchronise": [
+                    "controller1_failing"
+                ]
+            },
+            {
+                "result": "controller1_repair",
+                "synchronise": [
+                    "controller1_repair"
+                ]
+            },
+            {
+                "result": "processor_failing",
+                "synchronise": [
+                    "processor_failing"
+                ]
+            },
+            {
+                "result": "processor_repair",
+                "synchronise": [
+                    "processor_repair"
+                ]
+            }
+        ]
+    },
+    "type": "ctmc",
+    "variables": [
+        {
+            "initial-value": 0,
+            "name": "disc_cluster0",
+            "type": {
+                "base": "int",
+                "kind": "bounded",
+                "lower-bound": 0,
+                "upper-bound": 12
+            }
+        },
+        {
+            "initial-value": 0,
+            "name": "disc_cluster1",
+            "type": {
+                "base": "int",
+                "kind": "bounded",
+                "lower-bound": 0,
+                "upper-bound": 12
+            }
+        },
+        {
+            "initial-value": 0,
+            "name": "disc_cluster2",
+            "type": {
+                "base": "int",
+                "kind": "bounded",
+                "lower-bound": 0,
+                "upper-bound": 12
+            }
+        },
+        {
+            "initial-value": 0,
+            "name": "disc_cluster3",
+            "type": {
+                "base": "int",
+                "kind": "bounded",
+                "lower-bound": 0,
+                "upper-bound": 12
+            }
+        },
+        {
+            "initial-value": 0,
+            "name": "disc_cluster4",
+            "type": {
+                "base": "int",
+                "kind": "bounded",
+                "lower-bound": 0,
+                "upper-bound": 12
+            }
+        },
+        {
+            "initial-value": 0,
+            "name": "disc_cluster5",
+            "type": {
+                "base": "int",
+                "kind": "bounded",
+                "lower-bound": 0,
+                "upper-bound": 12
+            }
+        },
+        {
+            "initial-value": 0,
+            "name": "disc_controller0",
+            "type": {
+                "base": "int",
+                "kind": "bounded",
+                "lower-bound": 0,
+                "upper-bound": 6
+            }
+        },
+        {
+            "initial-value": 0,
+            "name": "disc_controller1",
+            "type": {
+                "base": "int",
+                "kind": "bounded",
+                "lower-bound": 0,
+                "upper-bound": 6
+            }
+        },
+        {
+            "initial-value": 0,
+            "name": "processor",
+            "type": {
+                "base": "int",
+                "kind": "bounded",
+                "lower-bound": 0,
+                "upper-bound": 6
+            }
+        }
+    ]
+}

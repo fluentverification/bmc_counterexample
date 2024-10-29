@@ -1,0 +1,28 @@
+{
+    "model_path": "./CRNs/dds/n2/dds_2.sm",
+    "jani_path": "./CRNs/dds/n2/dds_2.jani",
+    "model_name": "dds_2",
+    "csl_property": "P=? [ true U<=840 ((disc_cluster0 >= 2) | (disc_cluster1 >= 2) | (disc_cluster2 >= 2) | (disc_cluster3 >= 2) | (disc_cluster4 >= 2) | (disc_cluster5 >= 2) | (disc_controller0 = 2) | (disc_controller1 = 2) | (processor = 2))]",
+    "target_variables": [
+        "disc_cluster0",
+        "disc_cluster1",
+        "disc_cluster2",
+        "disc_cluster3",
+        "disc_cluster4",
+        "disc_cluster5",
+        "disc_controller0",
+        "disc_controller1",
+        "processor"
+    ],
+    "target_values": [
+        "2",
+        "2",
+        "2",
+        "2",
+        "2",
+        "2",
+        "2",
+        "2",
+        "2"
+    ]
+}

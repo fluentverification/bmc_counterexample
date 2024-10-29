@@ -1,0 +1,44 @@
+ctmc
+
+const double lambda = 1.0 / (6000000) ;
+const double mu = 1.0 ;
+
+module dds_4
+
+disc_cluster0 : [0..8] init 0;
+disc_cluster1 : [0..8] init 0;
+disc_cluster2 : [0..8] init 0;
+disc_cluster3 : [0..8] init 0;
+disc_cluster4 : [0..8] init 0;
+disc_cluster5 : [0..8] init 0;
+
+disc_controller0 : [0..4] init 0;
+disc_controller1 : [0..4] init 0;
+
+processor : [0..4] init 0;
+
+[cluster0_failing] (disc_cluster0 < 8) -> ((8 - disc_cluster0) * lambda) : (disc_cluster0' = disc_cluster0 + 1);
+[cluster1_failing] (disc_cluster1 < 8) -> ((8 - disc_cluster1) * lambda) : (disc_cluster1' = disc_cluster1 + 1);
+[cluster2_failing] (disc_cluster2 < 8) -> ((8 - disc_cluster2) * lambda) : (disc_cluster2' = disc_cluster2 + 1);
+[cluster3_failing] (disc_cluster3 < 8) -> ((8 - disc_cluster3) * lambda) : (disc_cluster3' = disc_cluster3 + 1);
+[cluster4_failing] (disc_cluster4 < 8) -> ((8 - disc_cluster4) * lambda) : (disc_cluster4' = disc_cluster4 + 1);
+[cluster5_failing] (disc_cluster5 < 8) -> ((8 - disc_cluster5) * lambda) : (disc_cluster5' = disc_cluster5 + 1);
+
+[controller0_failing] (disc_controller0 < 4) -> ((4 - disc_controller0) * 3 * lambda) : (disc_controller0' = disc_controller0 + 1);
+[controller1_failing] (disc_controller1 < 4) -> ((4 - disc_controller1) * 3 * lambda) : (disc_controller1' = disc_controller1 + 1);
+
+[processor_failing] (processor < 4) -> ((4 - processor) * 3 * lambda) : (processor' = processor + 1);
+
+[cluster0_repair] (disc_cluster0 > 0 ) -> (mu) : (disc_cluster0' = disc_cluster0 - 1);
+[cluster1_repair] (disc_cluster1 > 0 ) -> (mu) : (disc_cluster1' = disc_cluster1 - 1);
+[cluster2_repair] (disc_cluster2 > 0 ) -> (mu) : (disc_cluster2' = disc_cluster2 - 1);
+[cluster3_repair] (disc_cluster3 > 0 ) -> (mu) : (disc_cluster3' = disc_cluster3 - 1);
+[cluster4_repair] (disc_cluster4 > 0 ) -> (mu) : (disc_cluster4' = disc_cluster4 - 1);
+[cluster5_repair] (disc_cluster5 > 0 ) -> (mu) : (disc_cluster5' = disc_cluster5 - 1);
+
+[controller0_repair] (disc_controller0 > 0) -> (mu) : (disc_controller0' = disc_controller0 - 1);
+[controller1_repair] (disc_controller1 > 0) -> (mu) : (disc_controller1' = disc_controller1 - 1);
+
+[processor_repair] (processor > 0) -> (mu) : (processor' = processor - 1);
+
+endmodule

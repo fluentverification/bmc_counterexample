@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 import sys, os
 
-n = 2
+n = 6
 lambda_ = "1.0 / (6000000)" 
 mu = "1.0"
 

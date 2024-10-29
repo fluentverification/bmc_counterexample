@@ -1,0 +1,28 @@
+{
+    "model_path": "./CRNs/dds/n6/dds_6.sm",
+    "jani_path": "./CRNs/dds/n6/dds_6.jani",
+    "model_name": "dds_6",
+    "csl_property": "P=? [ true U<=840 ((disc_cluster0 >= 6) | (disc_cluster1 >= 6) | (disc_cluster2 >= 6) | (disc_cluster3 >= 6) | (disc_cluster4 >= 6) | (disc_cluster5 >= 6) | (disc_controller0 = 6) | (disc_controller1 = 6) | (processor = 6))]",
+    "target_variables": [
+        "disc_cluster0",
+        "disc_cluster1",
+        "disc_cluster2",
+        "disc_cluster3",
+        "disc_cluster4",
+        "disc_cluster5",
+        "disc_controller0",
+        "disc_controller1",
+        "processor"
+    ],
+    "target_values": [
+        "6",
+        "6",
+        "6",
+        "6",
+        "6",
+        "6",
+        "6",
+        "6",
+        "6"
+    ]
+}
