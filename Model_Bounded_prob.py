@@ -21,12 +21,12 @@ def CEX_GEN(json_data):
     model_name = json_data['model_name']
     model_path = json_data['model_path']
     csl_prop_lb = json_data['csl_property']
-    target_var = json_data['target_variable']
-    target_value = int(json_data['target_value'])
+    target_vars = json_data['target_variables']
+    target_values = [int(v) for v in json_data['target_values']]
     #
     #parse the model into Parser() object
     model = Parser(model_path)
-    target_index = model.species_to_index_dict[target_var]
+    target_indices = [model.species_to_index_dict[v] for _ , v in enumerate(target_vars)]
     #
 
     ##############################
@@ -37,8 +37,8 @@ def CEX_GEN(json_data):
     division_factor = 1000
     engine = "automatic"
     # max_comb_species = len(model.get_species_tuple())
-    max_comb_species = 1
-    steps = 1
+    max_comb_species = 2
+    steps = 2
     lower_bound = True
     poisson_step = 10
     #
@@ -75,10 +75,11 @@ def CEX_GEN(json_data):
         poisson_step= poisson_step, 
         subsets=subsets_species, 
         min_max_prev=min_max_dict_species, 
-        target_index=target_index, 
-        target_value=target_value, 
+        target_indices=target_indices, 
+        target_values=target_values, 
         lower_bound = lower_bound)
         print("Generating min_max dictonary took " + str(time.time() - before) + "seconds.")
+        print(min_max_dict_species)
         #
         
         if flag:

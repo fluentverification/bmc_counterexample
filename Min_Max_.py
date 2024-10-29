@@ -1,16 +1,6 @@
 from z3 import Int, Real, And, Or, Solver, sat, simplify
 
-def get_min_max_species(model, 
-                        model_name, 
-                        prob_thresh, 
-                        num_steps, 
-                        division_factor,
-                        poisson_step,
-                        subsets,
-                        min_max_prev, 
-                        target_index, 
-                        target_value, 
-                        lower_bound):
+def get_min_max_species(model, model_name, prob_thresh, num_steps, division_factor,poisson_step, subsets, min_max_prev, target_indices, target_values, lower_bound):
     #for 3 steps we have
     #initial_state (--step_0-->) arbitrary_state_0 (--step_1-->) arbitrary_state_1 (--step_2-->) target_state
     #
@@ -33,29 +23,71 @@ def get_min_max_species(model,
             vars.append(x)
     #
     
-    #the number of steps (arbitrary states + 1) the trace takes to reach the target and the 
-    #maximum number of reactions that could be taken within each step
+    
+    
+    #first constraint : n_0_0,n_0_1,n_1_0,n_1_1,... >=0
+    constraints = non_negative(vars, constraints)
+    #
+    
+    
+    #second constraint : sum of the reactions in each step must be less than maximum length for each step
+    constraints = segment_length(vars, model, num_steps, constraints)
+   #
+    
+    #third constraint : there must be enough reactant molecules for the reaction firings in each step
+    constraints = reactant_check(model, num_steps, constraints)
+    #
+    
+    #fourth constraint : estimated probability of the path must be greater than probability threshold
+    # trace_prob = 0
+    # t_abs_probs = t_abstract_prob(model_name=model_name, division_factor=division_factor)
+    # #time abstract probability
+    # for i in range(len(model.get_reactions_vector())):
+    #     sum = 0
+    #     for ii in range(num_steps):
+    #         x = Int("n_" + str(ii) + "_" + str(i))
+    #         sum = sum + x
+    #     trace_prob = trace_prob + (sum * t_abs_probs[i])
+    # constraints.append(trace_prob >= prob_thresh)
+    
+    #fourth constraint : reaching in less than K steps
+    constraints = k_bounded(vars, prob_thresh, constraints)
+    #
+
+    #fifth constraint : reaching the target
+    constraints = target_constraints(model, num_steps, target_indices, target_values, constraints)
+    #
+        
+    #free variables representing an arbitrary state along each trace segment (step)
+    constraints = free_vars(model, num_steps, constraints)
+    #
+    
+    #Calling the solver to get lower and upper bounds
+    return get_bounds_(constraints, min_max, model, num_steps)
+    #
+
+def non_negative(vars, constraints):
+    for i in vars:
+        constraints.append(i>=0)
+    return constraints
+
+def segment_length(vars, model, num_steps, constraints):
     sum = 0
     for i in vars:
         sum = sum + i
+    #the number of steps (arbitrary states + 1) the trace takes to reach the target and the 
+    #maximum number of reactions that could be taken within each step
     max_segment_len = (sum / num_steps)
     #
-    
-    #first constraint : n_0_0,n_0_1,n_1_0,n_1_1,... >=0
-    for i in vars:
-        constraints.append(i>=0)
-    #
-    
-    #second constraint : sum of the reactions in each step must be less than maximum length for each step
     for i in range(num_steps):
         sum = 0
         for ii, _ in enumerate(model.get_reactions_vector()):
             x= Int("n_" + str(i) + "_" + str(ii))
             sum = sum + x
         constraints.append(sum<=(max_segment_len + 1))
-    #
-    
-    #third constraint : there must be enough reactant molecules for the reaction firings in each step
+    return constraints
+
+def reactant_check(model, num_steps, constraints):
     initial_population = list(model.get_initial_state())
     for i in range(num_steps):
         necessary_reactants = [0] * len(model.get_species_tuple())
@@ -82,29 +114,18 @@ def get_min_max_species(model,
                 x = Int("n_" + str(i) + "_" + str(iii))
                 sum = sum + (r[ii] * x)
             initial_population[ii] = sum
-    #
-    
-    #fourth constraint : estimated probability of the path must be greater than probability threshold
-    # trace_prob = 0
-    # t_abs_probs = t_abstract_prob(model_name=model_name, division_factor=division_factor)
-    # #time abstract probability
-    # for i in range(len(model.get_reactions_vector())):
-    #     sum = 0
-    #     for ii in range(num_steps):
-    #         x = Int("n_" + str(ii) + "_" + str(i))
-    #         sum = sum + x
-    #     trace_prob = trace_prob + (sum * t_abs_probs[i])
-    # constraints.append(trace_prob >= prob_thresh)
-    
-    #fourth constraint : reaching in less than K steps
+    return constraints
+
+def k_bounded(vars, prob_thresh, constraints):
     sum = 0
     for i in vars:
         sum = sum + i
     constraints.append(sum <= prob_thresh)        
-    #
+    return constraints
 
-    #fifth constraint : reaching the target
-    if lower_bound:
+def target_constraints(model, num_steps, target_indices, target_values, constraints):
+    temp_constraints = []
+    for j, target_index in enumerate(target_indices):
         vars_ = []
         for i, r in enumerate(model.get_reactions_vector()):
             if r[target_index]!=0:
@@ -113,20 +134,17 @@ def get_min_max_species(model,
         sum = model.get_initial_state()[target_index]
         for i in vars_:
             sum = sum + i[0]*i[1]
-        constraints.append(sum==target_value) 
-    #
-        
-    #free variables representing an arbitrary state among each trace segment (step)
+        temp_constraints.append(sum==target_values[j]) 
+    constraints.append(Or(temp_constraints))
+    return constraints
+
+def free_vars(model, num_steps, constraints):
     for i in range(num_steps):
         for ii in range(len(model.get_reactions_vector())):
             x = Int("i_" + str(i) + "_" + str(ii))
             y = Int("n_" + str(i) + "_" + str(ii))
             constraints.append(And(x>=0, x<=y))
-    #
-    
-    #Calling the solver to get lower and upper bounds
-    return get_bounds_(constraints, min_max, model, num_steps)
-    #
+    return constraints
 
 def get_bounds_(constraints, min_max, model, num_steps):
     solver = Solver()
